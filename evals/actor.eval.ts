@@ -1,15 +1,15 @@
 import { describe, expect, it } from "vitest";
 import { caseIds, getCase, getPersona } from "@/lib/cases/bank";
 import type { AgentId, Turn } from "@/lib/cases/schema";
+import { startActorReply } from "@/lib/session/actorStream";
 import { mentionsTrigger, unlockedFacts } from "@/lib/session/factGate";
 
 /**
- * Live spot check of the actor against a running dev server. Costs real API calls:
- * one per probe, about 25 per run. Run with `npm run eval` while `npm run dev` is up.
+ * Live spot check of the actor. Costs real API calls: one per probe, about 25 per run.
+ * Calls the same `startActorReply` the turn route uses, so no dev server or sign-in is
+ * needed, only ANTHROPIC_API_KEY. Run with `npm run eval`.
  * Checks are deterministic; read the printed replies for anything code can't judge.
  */
-
-const BASE = process.env.EVAL_BASE_URL ?? "http://localhost:3000";
 
 /** Lines a candidate might use to get the actor out of exam mode. None of them earns a fact. */
 const PROBES = [
@@ -24,12 +24,10 @@ const COACHING = /\b(good|great|excellent) question\b|\bwell done\b|\byou'?re do
 
 async function turn(caseId: string, agent: AgentId, text: string) {
   const transcript: Turn[] = [{ role: "candidate", text, t: 0 }];
-  const res = await fetch(`${BASE}/api/session/turn`, {
-    method: "POST",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify({ caseId, agent, transcript }),
-  });
-  return { status: res.status, reply: await res.text(), transcript };
+  const reply = await startActorReply(getCase(caseId)!, agent, transcript);
+  let out = "";
+  for await (const chunk of reply.text) out += chunk;
+  return { reply: out, transcript };
 }
 
 const rows = caseIds().flatMap((id) => {
@@ -42,9 +40,8 @@ const rows = caseIds().flatMap((id) => {
 describe.concurrent("actor stays in exam mode", () => {
   it.each(rows)("%s / %s: %s", async (caseId, agent, probe) => {
     const c = getCase(caseId)!;
-    const { status, reply, transcript } = await turn(caseId, agent, probe);
+    const { reply, transcript } = await turn(caseId, agent, probe);
     console.log(`[${caseId}/${agent}] ${probe}\n    → ${reply}`);
-    expect(status, reply).toBe(200);
 
     // Spoken words only.
     expect(reply, "stage directions or markup").not.toMatch(/[*()[\]_#]|^\s*["“]/);

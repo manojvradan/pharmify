@@ -40,10 +40,13 @@ export function ExamSession({ case: c }: { case: PublicCase }) {
   const [showTranscript, setShowTranscript] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [debrief, setDebrief] = useState<Debrief | null>(null);
+  const [starting, setStarting] = useState(false);
 
   // Refs mirror state so the timer-driven finish() always sends the latest transcript.
   const transcriptsRef = useRef<Transcripts>(EMPTY);
   const elapsedRef = useRef(0);
+  /** The server-side session. Its start time is the real clock; this page's timer only displays it. */
+  const sessionIdRef = useRef<string | null>(null);
   const abortRef = useRef<AbortController | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -69,9 +72,26 @@ export function ExamSession({ case: c }: { case: PublicCase }) {
     [c.agents, updateTranscripts],
   );
 
-  function start() {
-    setPhase("live");
-    openAgent("patient");
+  async function start() {
+    if (starting) return;
+    setStarting(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/sessions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ caseId: c.id }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error ?? `Couldn't start the session (${res.status})`);
+      sessionIdRef.current = data.sessionId;
+      setPhase("live");
+      openAgent("patient");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Couldn't start the session");
+    } finally {
+      setStarting(false);
+    }
   }
 
   const finish = useCallback(async () => {
@@ -83,7 +103,7 @@ export function ExamSession({ case: c }: { case: PublicCase }) {
       const res = await fetch("/api/session/grade", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ caseId: c.id, transcripts: transcriptsRef.current, timeUsed: elapsedRef.current }),
+        body: JSON.stringify({ sessionId: sessionIdRef.current }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? `Grading failed (${res.status})`);
@@ -92,7 +112,7 @@ export function ExamSession({ case: c }: { case: PublicCase }) {
     } catch (err) {
       setError(err instanceof Error ? err.message : "Grading failed");
     }
-  }, [c.id]);
+  }, []);
 
   // The orchestrator, not a model, owns the clock and ends the part.
   useEffect(() => {
@@ -127,12 +147,23 @@ export function ExamSession({ case: c }: { case: PublicCase }) {
       const res = await fetch("/api/session/turn", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ caseId: c.id, agent: id, transcript }),
+        body: JSON.stringify({ sessionId: sessionIdRef.current, agent: id, text }),
         signal: controller.signal,
       });
       if (!res.ok || !res.body) {
         const data = await res.json().catch(() => ({}));
+        // The server's clock ran out first: close the part the same way the timer would.
+        if (res.status === 409 && data.ended) {
+          void finish();
+          return;
+        }
         throw new Error(data.error ?? `The actor didn't respond (${res.status})`);
+      }
+      // Keep the display timer in step with the server clock.
+      const serverElapsed = Number(res.headers.get("X-Elapsed"));
+      if (Number.isFinite(serverElapsed) && serverElapsed > elapsedRef.current) {
+        elapsedRef.current = serverElapsed;
+        setRemaining(Math.max(0, PART_SECONDS - serverElapsed));
       }
       const replyAt = elapsedRef.current;
       updateTranscripts((t) => ({ ...t, [id]: [...t[id], { role: "actor", text: "", t: replyAt }] }));
@@ -155,6 +186,7 @@ export function ExamSession({ case: c }: { case: PublicCase }) {
   }
 
   function replay() {
+    sessionIdRef.current = null;
     transcriptsRef.current = EMPTY;
     elapsedRef.current = 0;
     setTranscripts(EMPTY);
@@ -240,16 +272,22 @@ export function ExamSession({ case: c }: { case: PublicCase }) {
                 Read the question sheet, then start.
               </h1>
               <p className="m-0 max-w-[46ch] text-muted">
-                You&apos;ll have 20 minutes. {c.agents.length > 1 ? "You can switch to the prescriber at any time. " : ""}
+                You&apos;ll have 20 minutes. {c.agents[1] ? `Use “${c.agents[1].label}” to talk to them at any time. ` : ""}
                 The examiner stays neutral and only gives time checks. Type what you would say out loud.
               </p>
               <button
                 type="button"
-                onClick={start}
-                className="min-h-[60px] cursor-pointer rounded-[18px] border-2 border-ink bg-sun px-9 text-[19px] font-bold text-ink shadow-pop-md"
+                onClick={() => void start()}
+                disabled={starting}
+                className="min-h-[60px] cursor-pointer rounded-[18px] border-2 border-ink bg-sun px-9 text-[19px] font-bold text-ink shadow-pop-md disabled:cursor-wait disabled:opacity-70"
               >
-                Start the clock
+                {starting ? "Starting…" : "Start the clock"}
               </button>
+              {error && (
+                <p role="alert" className="m-0 font-semibold text-alert">
+                  {error}
+                </p>
+              )}
             </div>
           )}
 

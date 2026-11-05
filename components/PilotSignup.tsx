@@ -2,14 +2,32 @@
 
 import { useState, type FormEvent } from "react";
 
-/** Mock pilot sign-up: no backend yet, it only confirms on screen. */
+/** Pilot waitlist: saves the email to the database. */
 export function PilotSignup() {
   const [email, setEmail] = useState("");
   const [saved, setSaved] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (email) setSaved(true);
+    if (!email || sending) return;
+    setSending(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/pilot", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error ?? "Couldn't save your spot, try again");
+      setSaved(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Couldn't save your spot, try again");
+    } finally {
+      setSending(false);
+    }
   }
 
   if (saved) {
@@ -39,10 +57,16 @@ export function PilotSignup() {
       />
       <button
         type="submit"
-        className="min-h-14 flex-none cursor-pointer rounded-2xl border-2 border-ink bg-sun px-[26px] font-bold text-ink shadow-pop"
+        disabled={sending}
+        className="min-h-14 flex-none cursor-pointer rounded-2xl border-2 border-ink bg-sun px-[26px] font-bold text-ink shadow-pop disabled:cursor-wait disabled:opacity-70"
       >
-        Save my spot
+        {sending ? "Saving…" : "Save my spot"}
       </button>
+      {error && (
+        <p role="alert" className="m-0 basis-full font-semibold text-alert">
+          {error}
+        </p>
+      )}
     </form>
   );
 }

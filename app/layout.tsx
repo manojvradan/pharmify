@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ClerkProvider } from "@clerk/nextjs";
 import { Figtree, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -24,7 +25,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${figtree.variable} ${geistMono.variable}`}>
-      <body>{children}</body>
+      {/* Inside <body>, not around <html>: required with Cache Components (Clerk Core 3). */}
+      <body>
+        <ClerkProvider>{children}</ClerkProvider>
+      </body>
     </html>
   );
 }

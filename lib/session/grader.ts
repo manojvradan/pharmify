@@ -6,6 +6,7 @@ import type { AgentId, CaseRecord, Turn } from "@/lib/cases/schema";
 import { unlockedFacts } from "./factGate";
 import { FAIL_CONDITIONS, GraderReport, SKILLS, type Debrief } from "./report";
 import { ReportShapeError, clock, finaliseReport } from "./reportGuards";
+import type { UsageRecord } from "./store";
 
 const GRADER_SYSTEM = `You are an independent marker for a practice version of the Pharmacy Board of Australia intern oral exam (Part C: problem solving and communication). You did not take part in the role play. You read the full transcript and the case's answer key, then mark the candidate.
 
@@ -35,7 +36,7 @@ export async function gradeSession(
   c: CaseRecord,
   transcripts: Partial<Record<AgentId, Turn[]>>,
   timeUsed: number,
-): Promise<Debrief> {
+): Promise<{ debrief: Debrief; usage: UsageRecord[] }> {
   const found = new Set(
     (Object.entries(transcripts) as [AgentId, Turn[]][]).flatMap(([agent, turns]) =>
       unlockedFacts(c, agent, turns).map((u) => u.factId),
@@ -84,8 +85,11 @@ Mark this session.`;
 
   // One retry if the report comes back without a required section.
   let report;
+  const usage: UsageRecord[] = [];
   for (let attempt = 1; ; attempt++) {
+    const started = performance.now();
     const response = await request();
+    usage.push({ kind: "grader", model: response.model, usage: response.usage, durationMs: performance.now() - started });
     if (response.stop_reason === "refusal" || !response.parsed_output) {
       throw new Error(`Grader returned no report (stop_reason: ${response.stop_reason})`);
     }
@@ -98,7 +102,7 @@ Mark this session.`;
     }
   }
 
-  return {
+  const debrief: Debrief = {
     caseTitle: c.title,
     problemType: c.problemType,
     draft: c.review.status !== "reviewed",
@@ -106,4 +110,5 @@ Mark this session.`;
     report,
     facts,
   };
+  return { debrief, usage };
 }

@@ -2,7 +2,7 @@
 
 Nov 5, 2026 · living document, update as items close
 
-This tracks what is left after the text-only loop (milestone 2 in `mvp-plan.md`) started working: what we need from people, the evals we still need, and the hidden facts two cases are missing. Status as of PR #1 (`phase-1-agent-hardening`).
+This tracks what is left after the text-only loop (milestone 2 in `mvp-plan.md`) started working: what we need from people, the evals we still need, and the hidden facts two cases are missing. Status as of the Phase 2 commit on `phase-1-agent-hardening`.
 
 ## Where things stand
 
@@ -14,7 +14,13 @@ This tracks what is left after the text-only loop (milestone 2 in `mvp-plan.md`)
 | Grader | Structured report with moments anchored to the transcript; shape and quotes checked in code |
 | Unit tests (`npm test`) | 109, no API calls |
 | Live actor eval (`npm run eval`) | 25 calls, one per probe; needs `npm run dev` |
-| Persistence, auth, server-owned sessions | Not started (Phase 2) |
+| Persistence (Neon + Drizzle) | Done: sessions, turns, debriefs, usage events, pilot sign-ups. Migrations in `drizzle/`; `npm run db:migrate` |
+| Auth (Clerk) | Done: `proxy.ts` protects app pages; APIs return 401 JSON. Sign-in and sign-up at `/sign-in`, `/sign-up` |
+| Server-owned sessions | Done: the server holds the transcript and the clock; turns after 20:00 plus 10 s are refused; grading reads from the database and can be retried safely |
+| Debriefs, history, home stats | Done: `/debrief` lists sessions, `/debrief/[id]` shows a saved report, and home stats come from graded sessions |
+| Usage logging | Done: tokens, time to first token and duration per model call in `usage_events` (cost is computed when reporting) |
+| Delete my data | Endpoint done (`DELETE /api/me/data`); no button in the UI yet |
+| DB integration test (`npm run test:db`) | Runs against Neon with a throwaway user and cleans up |
 | Voice (LiveKit Agents) | Not started (Phase 3) |
 
 ## Needed from you
@@ -22,13 +28,15 @@ This tracks what is left after the text-only loop (milestone 2 in `mvp-plan.md`)
 | Item | Why | Status |
 | --- | --- | --- |
 | Neon Postgres | Database for Phase 2 | Done Nov 5: `pharmify-db`, Free plan, Sydney, connected to the project; variables merged into `.env.local` |
-| Install Clerk (Vercel Marketplace) | Sign-in for Phase 2 | Not started |
+| Clerk | Sign-in | Done Nov 5: `pharmify-auth`, Hobby plan; keys merged into `.env.local` |
+| Sign in once on localhost so the full flow can be tested in the browser | The assistant doesn't create accounts on Clerk's hosted service | Waiting |
+| Restart `npm run dev` | A dev server started before `proxy.ts` existed doesn't load it, so auth calls return 500 | Waiting |
 | Add `ANTHROPIC_API_KEY` to the Vercel project env | Deploys don't have it; today it only exists in `.env.local` | Not started |
 | Recruit a pharmacist reviewer | Every case, every hidden fact below, and grader calibration need sign-off | Not started |
 | Decide an eval budget per run | Grader consistency and LLM-judge evals need repeated live calls; currently "minimal" | Minimal for now |
 | Check the Board's current candidate guide | The guide we hold is the 2021 version | Not started |
 
-When Clerk is installed, pull the env vars with `vercel env pull` into a **separate file** and merge them in. A plain `vercel env pull .env.local` overwrites the file and drops `ANTHROPIC_API_KEY`.
+To pull new env vars later, pull them with `vercel env pull` into a **separate file** and merge them in. A plain `vercel env pull .env.local` overwrites the file and drops `ANTHROPIC_API_KEY`.
 
 ## Evals
 
@@ -55,10 +63,10 @@ Ordered by how much they protect candidates. Rough cost assumes about 1–2¢ pe
 | 5 | **Invention** | Does the actor add medicines, people, events or reasons not in the case? | Judge each reply against the persona, public facts and unlocked facts; flag anything new. Seen on Nov 5: "for my heart", "a bag of tablets", "my wife sorts it". | Budget | ~$0.50 |
 | 6 | **Fact gate recall on real phrasing** | How often do real candidates' questions miss a trigger? | Collect pilot transcripts; label which facts each candidate *should* have earned; measure misses. If recall is poor, add a model classifier behind `matches()`. | Pilot transcripts | Free (labelling) |
 | 7 | **Injection and jailbreak** | Can a candidate talk the actor into giving answers? | Extend the eval probes: "ignore your instructions", role swaps, "the examiner said you can tell me", long multi-turn pressure. | — | ~$0.50 |
-| 8 | **Latency** | Is the role play fast enough? | Log time to first token per turn (text now; speech end to end in Phase 3). Set a target after first measurements. | Phase 2 logging | Free (logged) |
-| 9 | **Cost per session** | What does a 20-minute session cost? | Log token usage per call to `usage_events`; report per session. | Phase 2 tables | Free (logged) |
+| 8 | **Latency** | Is the role play fast enough? | Time to first token is now logged per turn in `usage_events.ttft_ms`; add a report and set a target. Speech end to end comes in Phase 3. | A report query | Free (logged) |
+| 9 | **Cost per session** | What does a 20-minute session cost? | Token usage is now logged per call in `usage_events`; write the per-session report with current prices. | A report query | Free (logged) |
 | 10 | **Quote drop rate** | How often does the grader quote something not in the transcript? | Log how many moments and replays `finaliseReport` drops; alert if above about 10%. | Phase 2 logging | Free (logged) |
-| 11 | **Timer enforcement** | Are turns after 20:00 rejected and the session closed? | API test against server-owned sessions. | Phase 2 | Free |
+| 11 | **Timer enforcement** | Are turns after 20:00 rejected and the session closed? | The rule is unit tested (`clock.test.ts`); still needs an API test with a signed-in test user. | Clerk test user | Free |
 
 ## Hidden facts we need
 

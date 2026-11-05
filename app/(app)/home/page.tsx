@@ -1,25 +1,26 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import { Pip } from "@/components/Pip";
+import type { Category } from "@/lib/session/progress";
+import { getViewerProgress } from "@/lib/session/viewer";
 
 export const metadata: Metadata = { title: "Home" };
 
-// Mock data until sessions are stored.
-const stats = [
-  { label: "Interviews done", value: "7", note: "2 this week" },
-  { label: "Pass rate", value: "57%", note: "4 of 7 passed" },
-  { label: "Hidden facts found", value: "75%", note: "Most missed: other medicines" },
-];
-
-const categories = [
+const categories: {
+  key: Category;
+  big: string;
+  tag: string;
+  bg: string;
+  bar: string;
+  icon: string;
+}[] = [
   {
     key: "ethical",
     big: "Ethical",
     tag: "Tough calls",
     bg: "radial-gradient(circle, rgba(22,17,42,0.07) 1.6px, transparent 1.9px) 0 0 / 16px 16px, #FFE8F3",
     bar: "#FF8CC6",
-    played: 4,
-    passed: 3,
     icon: "M12 3v18M7 21h10M4 7h16M6.5 7L4 13a3 3 0 005 0L6.5 7zM17.5 7L15 13a3 3 0 005 0l-2.5-6z",
   },
   {
@@ -28,8 +29,6 @@ const categories = [
     tag: "Know the rules",
     bg: "repeating-linear-gradient(0deg, transparent 0 21px, rgba(22,17,42,0.06) 21px 22.5px), #FFF4D6",
     bar: "#FFC94D",
-    played: 2,
-    passed: 1,
     icon: "M7 3h7l4 4v14H7zM14 3v4h4M10 12h5M10 16h5",
   },
   {
@@ -38,11 +37,89 @@ const categories = [
     tag: "More than one problem",
     bg: "linear-gradient(rgba(22,17,42,0.045) 1px, transparent 1px) 0 0 / 18px 18px, linear-gradient(90deg, rgba(22,17,42,0.045) 1px, transparent 1px) 0 0 / 18px 18px, #EFE6FF",
     bar: "#B99CF5",
-    played: 1,
-    passed: 0,
     icon: "M9.5 4.5l-5 5a4.6 4.6 0 006.5 6.5l5-5a4.6 4.6 0 00-6.5-6.5zM7 7l6.5 6.5M18 15v6M15 18h6",
   },
 ];
+
+const tile = "flex flex-col gap-0.5 rounded-[18px] border border-line bg-white px-[18px] py-3.5";
+
+function pct(part: number, whole: number) {
+  return whole ? Math.round((part / whole) * 100) : 0;
+}
+
+/** The four progress tiles, from the user's graded sessions. */
+async function ProgressTiles() {
+  const p = await getViewerProgress();
+  if (!p || p.done === 0) {
+    return (
+      <div className={`${tile} col-span-full`}>
+        <span className="text-[13px] font-semibold text-muted">No interviews yet</span>
+        <span className="text-xl leading-[1.3] font-bold">Your progress shows up here after your first debrief.</span>
+      </div>
+    );
+  }
+  const stats = [
+    { label: "Interviews done", value: String(p.done), note: `${p.doneThisWeek} this week` },
+    { label: "Pass rate", value: `${pct(p.passed, p.done)}%`, note: `${p.passed} of ${p.done} passed` },
+    {
+      label: "Hidden facts found",
+      value: p.factsTotal ? `${pct(p.factsFound, p.factsTotal)}%` : "–",
+      note: p.mostMissed ? `Most missed: ${p.mostMissed.fact}` : p.factsTotal ? "None missed" : "No hidden facts yet",
+    },
+  ];
+  return (
+    <>
+      {stats.map((s) => (
+        <div key={s.label} className={tile}>
+          <span className="text-[13px] font-semibold text-muted">{s.label}</span>
+          <span className="text-[28px] leading-[1.1] font-bold tracking-[-0.02em]">{s.value}</span>
+          <span className="text-[13px] text-muted">{s.note}</span>
+        </div>
+      ))}
+      <div className="flex flex-col gap-0.5 rounded-[18px] bg-sun-tint px-[18px] py-3.5">
+        <span className="text-[13px] font-semibold text-muted">Work on next</span>
+        <span className="text-2xl leading-[1.2] font-bold tracking-[-0.02em]">{p.workOn?.skill ?? "Keep it up"}</span>
+        <span className="text-[13px] text-muted">
+          {p.workOn ? `Needed work in ${p.workOn.sessions} of ${p.done}` : "No skill gaps so far"}
+        </span>
+      </div>
+    </>
+  );
+}
+
+function ProgressTilesFallback() {
+  return (
+    <>
+      {["Interviews done", "Pass rate", "Hidden facts found", "Work on next"].map((label) => (
+        <div key={label} className={tile} aria-busy="true">
+          <span className="text-[13px] font-semibold text-muted">{label}</span>
+          <span className="h-[31px] w-16 animate-pulse rounded-lg bg-line-soft motion-reduce:animate-none" />
+          <span className="h-4 w-24 animate-pulse rounded bg-line-soft motion-reduce:animate-none" />
+        </div>
+      ))}
+    </>
+  );
+}
+
+function CategoryBar({ played, passed, bar }: { played: number | null; passed: number | null; bar: string }) {
+  return (
+    <div className="flex flex-col gap-1.5 pt-0.5">
+      <span className="flex justify-between text-sm font-bold">
+        <span>{played ?? "–"} played</span>
+        <span className="text-muted">{passed ?? "–"} passed</span>
+      </span>
+      <span aria-hidden="true" className="block h-2.5 overflow-hidden rounded-[5px] bg-line-soft">
+        <span className="block h-full" style={{ width: `${pct(passed ?? 0, played ?? 0)}%`, background: bar }} />
+      </span>
+    </div>
+  );
+}
+
+async function CategoryCounts({ category, bar }: { category: Category; bar: string }) {
+  const p = await getViewerProgress();
+  const c = p?.byCategory[category] ?? { played: 0, passed: 0 };
+  return <CategoryBar played={c.played} passed={c.passed} bar={bar} />;
+}
 
 function Chip({ children }: { children: React.ReactNode }) {
   return (
@@ -138,18 +215,9 @@ export default function HomePage() {
           <Link href="/debrief" className="text-[15px] font-bold">See past debriefs</Link>
         </div>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(min(190px,100%),1fr))] gap-3.5">
-          {stats.map((s) => (
-            <div key={s.label} className="flex flex-col gap-0.5 rounded-[18px] border border-line bg-white px-[18px] py-3.5">
-              <span className="text-[13px] font-semibold text-muted">{s.label}</span>
-              <span className="text-[28px] leading-[1.1] font-bold tracking-[-0.02em]">{s.value}</span>
-              <span className="text-[13px] text-muted">{s.note}</span>
-            </div>
-          ))}
-          <div className="flex flex-col gap-0.5 rounded-[18px] bg-sun-tint px-[18px] py-3.5">
-            <span className="text-[13px] font-semibold text-muted">Work on next</span>
-            <span className="text-2xl leading-[1.2] font-bold tracking-[-0.02em]">Counselling</span>
-            <span className="text-[13px] text-muted">Missed points in 3 of 7</span>
-          </div>
+          <Suspense fallback={<ProgressTilesFallback />}>
+            <ProgressTiles />
+          </Suspense>
         </div>
       </section>
 
@@ -161,7 +229,6 @@ export default function HomePage() {
         </div>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(min(280px,100%),1fr))] gap-5">
           {categories.map((c) => {
-            const pct = c.played ? Math.round((c.passed / c.played) * 100) : 0;
             return (
               <article
                 key={c.big}
@@ -185,15 +252,9 @@ export default function HomePage() {
                   </h3>
                 </div>
                 <div className="flex flex-1 flex-col gap-3.5 px-5 pt-4 pb-5">
-                  <div className="flex flex-col gap-1.5 pt-0.5">
-                    <span className="flex justify-between text-sm font-bold">
-                      <span>{c.played} played</span>
-                      <span className="text-muted">{c.passed} passed</span>
-                    </span>
-                    <span aria-hidden="true" className="block h-2.5 overflow-hidden rounded-[5px] bg-line-soft">
-                      <span className="block h-full" style={{ width: `${pct}%`, background: c.bar }} />
-                    </span>
-                  </div>
+                  <Suspense fallback={<CategoryBar played={null} passed={null} bar={c.bar} />}>
+                    <CategoryCounts category={c.key} bar={c.bar} />
+                  </Suspense>
                   <Link
                     href={`/session?category=${c.key}`}
                     className="mt-auto inline-flex min-h-[52px] items-center justify-center gap-2.5 rounded-2xl border-[1.5px] border-ink bg-white text-base font-semibold text-ink no-underline hover:text-ink"

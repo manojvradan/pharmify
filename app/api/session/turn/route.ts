@@ -1,86 +1,69 @@
-import type Anthropic from "@anthropic-ai/sdk";
+import { auth } from "@clerk/nextjs/server";
 import { z } from "zod";
-import { ACTOR_EFFORT, ACTOR_MODEL, ACTOR_THINKING, anthropic, anthropicErrorResponse } from "@/lib/anthropic";
+import { anthropicErrorResponse } from "@/lib/anthropic";
 import { getCase, getPersona } from "@/lib/cases/bank";
-import { AgentId, Turn } from "@/lib/cases/schema";
-import { actorMessages, actorSystemPrompt } from "@/lib/session/actor";
-import { stripSpeakerLabel } from "@/lib/session/speech";
+import { AgentId, type Turn } from "@/lib/cases/schema";
+import { startActorReply } from "@/lib/session/actorStream";
+import { canTakeTurn, elapsedSeconds } from "@/lib/session/clock";
 import { unlockedFacts } from "@/lib/session/factGate";
+import { appendTurns, getOwnedSession, loadTranscripts, recordUsage } from "@/lib/session/store";
 
 const Body = z.object({
-  caseId: z.string(),
+  sessionId: z.uuid(),
   agent: AgentId,
-  transcript: z.array(Turn).min(1).max(200),
+  text: z.string().trim().min(1).max(2000),
 });
 
 /**
- * One actor turn. The client sends the whole transcript for this agent; the server
- * re-derives the unlocked facts from it, builds the prompt and streams the reply
- * back as plain text. The unlocked fact ids (never the fact text) go in a header.
+ * One candidate turn. The transcript, the clock and the fact gate all come from the
+ * server: the browser sends only what the candidate said. The reply streams back as
+ * plain text, and both turns are saved when it finishes.
  */
 export async function POST(req: Request) {
+  const { userId } = await auth();
+  if (!userId) return Response.json({ error: "Please sign in" }, { status: 401 });
+
   const parsed = Body.safeParse(await req.json().catch(() => null));
   if (!parsed.success) return Response.json({ error: "Invalid request" }, { status: 400 });
+  const { sessionId, agent, text } = parsed.data;
 
-  const { caseId, agent, transcript } = parsed.data;
-  const c = getCase(caseId);
-  if (!c || !getPersona(c, agent)) return Response.json({ error: "Unknown case or agent" }, { status: 404 });
-  if (transcript.at(-1)?.role !== "candidate") {
-    return Response.json({ error: "The last turn must be the candidate's" }, { status: 400 });
-  }
+  const session = await getOwnedSession(userId, sessionId);
+  if (!session) return Response.json({ error: "Session not found" }, { status: 404 });
+  if (session.status !== "live") return Response.json({ error: "This session has ended", ended: true }, { status: 409 });
 
-  const unlocked = unlockedFacts(c, agent, transcript).map((u) => u.factId);
+  const elapsed = elapsedSeconds(session.startedAt);
+  if (!canTakeTurn(elapsed)) return Response.json({ error: "Time is up", ended: true }, { status: 409 });
 
-  const stream = anthropic().messages.stream(
-    {
-      model: ACTOR_MODEL,
-      max_tokens: 400, // replies are one to three spoken sentences
-      // Latency first: no thinking, lowest effort. The role is narrow and fully scripted.
-      thinking: ACTOR_THINKING,
-      output_config: { effort: ACTOR_EFFORT },
-      cache_control: { type: "ephemeral" },
-      system: actorSystemPrompt(c, agent),
-      messages: actorMessages(c, agent, transcript),
-    },
-    { signal: req.signal },
-  );
+  const c = getCase(session.caseId);
+  const persona = c && getPersona(c, agent);
+  if (!c || !persona) return Response.json({ error: "Unknown case or agent" }, { status: 404 });
 
-  // Wait for the first event so auth and rate-limit errors come back as JSON,
-  // not as a broken stream. The first event arrives with the first token anyway.
-  const events = stream[Symbol.asyncIterator]();
-  let first: IteratorResult<Anthropic.MessageStreamEvent>;
+  // The scripted opening line is shown in the browser when the agent is first opened;
+  // record it with the first candidate turn so the transcript is complete.
+  const history = (await loadTranscripts(sessionId))[agent];
+  const opening: Turn[] = history.length === 0 && persona.openingLine ? [{ role: "actor", text: persona.openingLine, t: elapsed }] : [];
+  const candidate: Turn = { role: "candidate", text, t: elapsed };
+  const transcript = [...history, ...opening, candidate];
+  const unlocked = unlockedFacts(c, agent, transcript);
+  const newlyUnlocked = unlocked.filter((u) => u.turnIndex === transcript.length - 1).map((u) => u.factId);
+
+  let reply;
   try {
-    first = await events.next();
+    reply = await startActorReply(c, agent, transcript, req.signal);
   } catch (err) {
     return anthropicErrorResponse(err, "actor");
   }
+  // Saved only once the model has accepted the turn, so a failed call can be retried without duplicates.
+  await appendTurns(sessionId, agent, [...opening, { ...candidate, unlockedFactIds: newlyUnlocked }]);
 
-  const name = getPersona(c, agent)!.name;
   const encoder = new TextEncoder();
   const body = new ReadableStream<Uint8Array>({
     async start(controller) {
       try {
-        // Hold back the first few tokens until we know whether the reply starts with a speaker label.
-        let head: string | null = "";
-        for (let r = first; !r.done; r = await events.next()) {
-          const event = r.value;
-          if (event.type !== "content_block_delta" || event.delta.type !== "text_delta") continue;
-          if (head === null) {
-            controller.enqueue(encoder.encode(event.delta.text));
-            continue;
-          }
-          head += event.delta.text;
-          const out = stripSpeakerLabel(head, name);
-          if (out !== undefined) {
-            if (out) controller.enqueue(encoder.encode(out));
-            head = null;
-          }
-        }
-        if (head) controller.enqueue(encoder.encode(stripSpeakerLabel(head, name, true)!));
-        const final = await stream.finalMessage();
-        if (final.stop_reason === "refusal") {
-          controller.enqueue(encoder.encode("Sorry, could you say that again?"));
-        }
+        for await (const chunk of reply.text) controller.enqueue(encoder.encode(chunk));
+        const done = await reply.done();
+        await appendTurns(sessionId, agent, [{ role: "actor", text: done.text, t: elapsed }]);
+        await recordUsage(userId, sessionId, [{ kind: "actor", ...done }]);
         controller.close();
       } catch (err) {
         console.error("[actor] stream failed", err);
@@ -88,7 +71,7 @@ export async function POST(req: Request) {
       }
     },
     cancel() {
-      stream.abort();
+      reply.abort();
     },
   });
 
@@ -96,7 +79,8 @@ export async function POST(req: Request) {
     headers: {
       "Content-Type": "text/plain; charset=utf-8",
       "Cache-Control": "no-store",
-      "X-Unlocked-Facts": unlocked.join(","),
+      // Lets the browser keep its display timer in step with the server clock.
+      "X-Elapsed": String(elapsed),
     },
   });
 }
