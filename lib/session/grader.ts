@@ -4,7 +4,8 @@ import { betaZodOutputFormat } from "@anthropic-ai/sdk/helpers/beta/zod";
 import { GRADER_MODEL, anthropic } from "@/lib/anthropic";
 import type { AgentId, CaseRecord, Turn } from "@/lib/cases/schema";
 import { unlockedFacts } from "./factGate";
-import { FAIL_CONDITIONS, GraderReport, SKILLS, type Debrief, type Moment } from "./report";
+import { FAIL_CONDITIONS, GraderReport, SKILLS, type Debrief } from "./report";
+import { ReportShapeError, clock, finaliseReport } from "./reportGuards";
 
 const GRADER_SYSTEM = `You are an independent marker for a practice version of the Pharmacy Board of Australia intern oral exam (Part C: problem solving and communication). You did not take part in the role play. You read the full transcript and the case's answer key, then mark the candidate.
 
@@ -18,30 +19,6 @@ Marking rules:
 - Focus: name the one thing that would most improve this candidate's result next time. Put the replay that shows it first.
 - Replays: pick the two or three candidate turns that mattered most to the result. Quote the candidate exactly, and give a short model line they could have said instead.
 - Write to the candidate in plain, encouraging but honest language, like a good preceptor. No jargon they wouldn't use. This is practice feedback, not a predicted exam result.`;
-
-function clock(t: number) {
-  return `${String(Math.floor(t / 60)).padStart(2, "0")}:${String(t % 60).padStart(2, "0")}`;
-}
-
-/** Lowercase, straight quotes, single spaces: so a copied quote matches despite typography. */
-function flat(s: string) {
-  return s.toLowerCase().replace(/[‘’]/g, "'").replace(/[“”]/g, '"').replace(/\s+/g, " ").trim();
-}
-
-/**
- * Keeps only moments whose quote really appears in a turn by that speaker in that
- * conversation, and takes the time from the turn itself rather than the model.
- */
-export function anchorMoments(moments: Moment[], transcripts: Partial<Record<AgentId, Turn[]>>): Moment[] {
-  const out: Moment[] = [];
-  for (const m of moments) {
-    const quote = flat(m.quote).replace(/^["']|["']$/g, "").replace(/\.{3}|…/g, "").trim();
-    if (!quote) continue;
-    const turn = transcripts[m.agent]?.find((t) => t.role === m.speaker && flat(t.text).includes(quote));
-    if (turn) out.push({ ...m, time: clock(turn.t) });
-  }
-  return out.sort((a, b) => a.time.localeCompare(b.time));
-}
 
 function renderTranscript(c: CaseRecord, transcripts: Partial<Record<AgentId, Turn[]>>) {
   return (Object.entries(transcripts) as [AgentId, Turn[]][])
@@ -94,22 +71,32 @@ ${renderTranscript(c, transcripts) || "The candidate did not say anything."}
 
 Mark this session.`;
 
-  const response = await anthropic().beta.messages.parse({
-    model: GRADER_MODEL,
-    max_tokens: 16000,
-    betas: ["server-side-fallback-2026-07-01"],
-    fallbacks: "default",
-    output_config: { effort: "high", format: betaZodOutputFormat(GraderReport) },
-    system: GRADER_SYSTEM,
-    messages: [{ role: "user", content: userContent }],
-  });
+  const request = () =>
+    anthropic().beta.messages.parse({
+      model: GRADER_MODEL,
+      max_tokens: 16000,
+      betas: ["server-side-fallback-2026-07-01"],
+      fallbacks: "default",
+      output_config: { effort: "high", format: betaZodOutputFormat(GraderReport) },
+      system: GRADER_SYSTEM,
+      messages: [{ role: "user", content: userContent }],
+    });
 
-  if (response.stop_reason === "refusal" || !response.parsed_output) {
-    throw new Error(`Grader returned no report (stop_reason: ${response.stop_reason})`);
+  // One retry if the report comes back without a required section.
+  let report;
+  for (let attempt = 1; ; attempt++) {
+    const response = await request();
+    if (response.stop_reason === "refusal" || !response.parsed_output) {
+      throw new Error(`Grader returned no report (stop_reason: ${response.stop_reason})`);
+    }
+    try {
+      report = finaliseReport(response.parsed_output, c, transcripts);
+      break;
+    } catch (err) {
+      if (!(err instanceof ReportShapeError) || attempt >= 2) throw err;
+      console.warn("[grader] regrading:", err.message);
+    }
   }
-
-  const report = response.parsed_output;
-  report.failConditions = report.failConditions.map((f) => ({ ...f, moments: anchorMoments(f.moments, transcripts) }));
 
   return {
     caseTitle: c.title,

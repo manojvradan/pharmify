@@ -3,7 +3,8 @@ import { z } from "zod";
 import { ACTOR_EFFORT, ACTOR_MODEL, ACTOR_THINKING, anthropic, anthropicErrorResponse } from "@/lib/anthropic";
 import { getCase, getPersona } from "@/lib/cases/bank";
 import { AgentId, Turn } from "@/lib/cases/schema";
-import { actorMessages, actorSystemPrompt, stripSpeakerLabel } from "@/lib/session/actor";
+import { actorMessages, actorSystemPrompt } from "@/lib/session/actor";
+import { stripSpeakerLabel } from "@/lib/session/speech";
 import { unlockedFacts } from "@/lib/session/factGate";
 
 const Body = z.object({
