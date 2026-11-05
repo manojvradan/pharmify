@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import raw from "@/data/cases/atorvastatin-doubling-up.json";
 import { CaseRecord, type AgentId, type Turn } from "@/lib/cases/schema";
 import { caseIds, getCase } from "@/lib/cases/bank";
-import { normalise, unlockedFacts } from "./factGate";
+import { mentionsTrigger, normalise, unlockedFacts } from "./factGate";
 
 const atorva = CaseRecord.parse(raw);
 
@@ -182,5 +182,14 @@ describe("trigger hygiene, every case", () => {
   it.each(triggers)("%s / %s: %j keeps two words, or one distinctive word", (_c, _f, trigger) => {
     const words = normalise(trigger);
     expect(words.length > 1 || SINGLE_WORD_OK.has(words[0]), `normalises to [${words.join(" ")}]`).toBe(true);
+  });
+});
+
+describe("unlock hints, every case", () => {
+  const facts = caseIds().flatMap((id) => getCase(id)!.hiddenFacts.map((f) => [id, f.id, f] as const));
+
+  // The debrief shows the hint as "the question a strong candidate would ask", so asking it must work.
+  it.each(facts)("%s / %s: asking the unlock hint unlocks the fact", (_c, _f, fact) => {
+    expect(mentionsTrigger(fact.unlockHint, fact.triggers)).toBe(true);
   });
 });

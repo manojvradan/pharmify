@@ -2,52 +2,40 @@
 
 import { useState } from "react";
 import { Pip } from "@/components/Pip";
+import { CODE_OF_ETHICS, DOMAINS, SESSION_SIZE, type Domain } from "@/lib/flashcards";
 
-type Card = { section: string; front: string; back: string; source: string };
-
-// Placeholder deck: answers must come from the current Code of Ethics and be pharmacist-reviewed.
-const CARDS: Card[] = [
-  {
-    section: "[CODE SECTION]",
-    front: "A patient asks you not to tell their GP they have stopped a medicine. What does the Code expect of you?",
-    back: "[ANSWER FROM THE CURRENT CODE OF ETHICS, PHARMACIST-REVIEWED]",
-    source: "[CODE SECTION AND CLAUSE]",
-  },
-  {
-    section: "[CODE SECTION]",
-    front: "Your personal beliefs stop you supplying a medicine. What must you do for the patient?",
-    back: "[ANSWER FROM THE CURRENT CODE OF ETHICS, PHARMACIST-REVIEWED]",
-    source: "[CODE SECTION AND CLAUSE]",
-  },
-  {
-    section: "[CODE SECTION]",
-    front: "A supplier offers you a gift. When would accepting it conflict with the Code?",
-    back: "[ANSWER FROM THE CURRENT CODE OF ETHICS, PHARMACIST-REVIEWED]",
-    source: "[CODE SECTION AND CLAUSE]",
-  },
-];
-
-const DUE = 12;
+const ALL = CODE_OF_ETHICS.cards;
+const COUNTS = new Map(DOMAINS.map((d) => [d, ALL.filter((c) => c.domain === d).length]));
 
 const pillStat = "rounded-full border-[1.5px] border-line px-3.5 py-2 text-sm font-bold";
 const gradeBtn =
   "min-h-[60px] cursor-pointer rounded-[18px] border-2 border-ink text-[17px] font-semibold text-ink shadow-pop-md";
 
 export function FlashcardDeck() {
+  const [deck, setDeck] = useState<Domain | "all">("all");
   const [i, setI] = useState(0);
   const [flipped, setFlipped] = useState(false);
-  const [done, setDone] = useState(3);
-  const [mastered, setMastered] = useState(32);
+  const [learning, setLearning] = useState(0);
+  const [mastered, setMastered] = useState(0);
 
-  const card = CARDS[i % CARDS.length];
-  const left = DUE - done;
-  const finished = done >= DUE;
+  const cards = deck === "all" ? ALL : ALL.filter((c) => c.domain === deck);
+  const due = Math.min(SESSION_SIZE, cards.length);
+  const card = cards[i % cards.length];
+  const done = Math.min(i, due);
+  const left = due - done;
+  const finished = done >= due;
 
-  function next(masteredDelta: number) {
+  function next(gotIt: boolean) {
     setI(i + 1);
     setFlipped(false);
-    setDone(Math.min(DUE, done + 1));
-    setMastered(mastered + masteredDelta);
+    if (gotIt) setMastered(mastered + 1);
+    else setLearning(learning + 1);
+  }
+
+  function chooseDeck(d: Domain | "all") {
+    setDeck(d);
+    setI(0);
+    setFlipped(false);
   }
 
   return (
@@ -63,7 +51,7 @@ export function FlashcardDeck() {
             Due today <b>{left}</b>
           </span>
           <span className={`${pillStat} bg-white`}>
-            Learning <b>18</b>
+            Learning <b>{learning}</b>
           </span>
           <span className={`${pillStat} bg-sun`}>
             Mastered <b>{mastered}</b>
@@ -74,10 +62,10 @@ export function FlashcardDeck() {
       {/* Progress */}
       <div className="flex items-center gap-3.5">
         <span aria-hidden="true" className="block h-3.5 flex-1 overflow-hidden rounded-[7px] border-[1.5px] border-line bg-white">
-          <span className="block h-full bg-pink transition-[width]" style={{ width: `${Math.round((done / DUE) * 100)}%` }} />
+          <span className="block h-full bg-pink transition-[width]" style={{ width: `${Math.round((done / due) * 100)}%` }} />
         </span>
         <span className="font-mono text-sm">
-          {done} / {DUE}
+          {done} / {due}
         </span>
       </div>
 
@@ -89,6 +77,13 @@ export function FlashcardDeck() {
               <Pip mood="celebrate" size={110} />
               <p className="m-0 text-[clamp(24px,2.6vw,34px)] font-bold tracking-[-0.02em]">All done for today.</p>
               <p className="m-0 text-muted">Come back tomorrow to keep the streak going.</p>
+              <button
+                type="button"
+                onClick={() => chooseDeck(deck)}
+                className="min-h-12 cursor-pointer rounded-[14px] border-2 border-ink bg-white px-6 font-bold text-ink shadow-pop"
+              >
+                Study this deck again
+              </button>
             </div>
           ) : (
             <>
@@ -136,13 +131,13 @@ export function FlashcardDeck() {
                   aria-label="How well did you know it?"
                   className="grid grid-cols-[repeat(auto-fit,minmax(min(150px,100%),1fr))] gap-3"
                 >
-                  <button type="button" onClick={() => next(0)} className={`${gradeBtn} bg-white`}>
+                  <button type="button" onClick={() => next(false)} className={`${gradeBtn} bg-white`}>
                     Again<span className="block text-xs font-semibold text-muted">in a few minutes</span>
                   </button>
-                  <button type="button" onClick={() => next(0)} className={`${gradeBtn} bg-pink-tint`}>
+                  <button type="button" onClick={() => next(false)} className={`${gradeBtn} bg-pink-tint`}>
                     Almost<span className="block text-xs font-semibold text-muted">tomorrow</span>
                   </button>
-                  <button type="button" onClick={() => next(1)} className={`${gradeBtn} bg-pink`}>
+                  <button type="button" onClick={() => next(true)} className={`${gradeBtn} bg-pink`}>
                     Got it<span className="block text-xs font-semibold text-plum">in 4 days</span>
                   </button>
                 </div>
@@ -173,21 +168,23 @@ export function FlashcardDeck() {
           </div>
           <div className="flex flex-col gap-2.5 rounded-3xl border-[1.5px] border-line bg-white p-5">
             <h2 className="m-0 text-lg font-bold">Decks</h2>
-            <a
-              href="#all"
-              className="flex min-h-11 items-center justify-between rounded-xl bg-pink-tint px-3.5 font-bold text-ink no-underline hover:text-ink"
-            >
-              All cards<span className="text-sm text-muted">[TOTAL]</span>
-            </a>
-            {[1, 2, 3].map((n) => (
-              <a
-                key={n}
-                href={`#s${n}`}
-                className="flex min-h-11 items-center justify-between rounded-xl px-3.5 font-semibold text-ink no-underline hover:text-ink"
-              >
-                [CODE SECTION {n}]<span className="text-sm text-muted">[N]</span>
-              </a>
-            ))}
+            {(["all", ...DOMAINS] as const).map((d) => {
+              const active = deck === d;
+              return (
+                <button
+                  key={d}
+                  type="button"
+                  onClick={() => chooseDeck(d)}
+                  aria-pressed={active}
+                  className={`flex min-h-11 cursor-pointer items-center justify-between rounded-xl px-3.5 text-left text-base text-ink ${
+                    active ? "bg-pink-tint font-bold" : "bg-transparent font-semibold"
+                  }`}
+                >
+                  {d === "all" ? "All cards" : d}
+                  <span className="text-sm text-muted">{d === "all" ? ALL.length : COUNTS.get(d)}</span>
+                </button>
+              );
+            })}
           </div>
         </aside>
       </div>

@@ -1,0 +1,132 @@
+{
+  "id": "glp1-shortage",
+  "title": "The last boxes",
+  "category": "ethical",
+  "problemType": "Allocating a medicine in short supply",
+  "setting": "Community pharmacy during a national shortage",
+  "questionSheet": "Your pharmacy has just received 10 boxes of a GLP-1 agonist that has been unavailable for some time. Three regular patients who were waiting have had their scripts dispensed. A new patient now presents a repeat prescription for the same medicine, saying a friend told her you had stock. Your technician asks whether to dispense it or keep the rest for your regular patients. Manage the situation as you would in practice.",
+  "documents": {
+    "prescription": {
+      "item": "GLP-1 agonist pre-filled pen",
+      "directions": "Inject subcutaneously once weekly as directed · Repeat",
+      "footer": "Prescriber not known to this pharmacy · New patient"
+    },
+    "notes": [
+      "Stock: 10 boxes received today. 3 dispensed to regular patients. 7 left.",
+      "No date given for the next delivery."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient · Ms K",
+      "name": "Ms K",
+      "description": "A woman in her forties, polite but anxious after weeks of ringing pharmacies. Answers questions honestly when asked, but doesn't volunteer details. Gets upset if she's turned away without a reason, and calms down when things are explained clearly and she's offered a plan.",
+      "openingLine": "Hi, my friend said you've got this one in stock? I've been everywhere.",
+      "publicFacts": [
+        "She is new to this pharmacy.",
+        "Her usual pharmacy has none, and a friend told her this pharmacy had stock.",
+        "She has a repeat prescription."
+      ]
+    }
+  },
+  "hiddenFacts": [
+    {
+      "id": "indication",
+      "agent": "patient",
+      "fact": "It's for your type 2 diabetes. Your GP started it because your sugars weren't controlled on tablets alone.",
+      "triggers": [
+        "why take",
+        "why prescribed",
+        "reason take",
+        "medical condition",
+        "diabetes weight",
+        "weight loss",
+        "weight management",
+        "blood sugar",
+        "sugar levels",
+        "condition take"
+      ],
+      "unlockHint": "“What condition are you taking it for?”"
+    },
+    {
+      "id": "established",
+      "agent": "patient",
+      "fact": "You've been on it for about eight months at a steady dose. Your last pen runs out this week.",
+      "triggers": [
+        "long take",
+        "already take",
+        "currently take",
+        "started recently",
+        "first time",
+        "new medicine",
+        "last dose",
+        "running low",
+        "many left",
+        "supply left",
+        "much left"
+      ],
+      "unlockHint": "“How long have you been on it, and how much do you have left?”"
+    },
+    {
+      "id": "other-diabetes-medicines",
+      "agent": "patient",
+      "fact": "You also take metformin 1 g twice a day, and you have plenty of it.",
+      "triggers": [
+        "other medicine",
+        "any other",
+        "anything else",
+        "other tablet",
+        "diabetes medicine",
+        "diabetes tablet"
+      ],
+      "unlockHint": "“What other medicines do you take?”"
+    }
+  ],
+  "answerKey": {
+    "plantedProblem": "Limited stock with no restock date. The tension is fair, equitable access for everyone against each patient's wellbeing and preventing harm. Reserving stock for regulars out of loyalty is the least defensible option.",
+    "acceptableResolutions": [
+      "Gather the relevant information: indication, whether she is established on therapy or starting, disease control, other treatments and how much she has left.",
+      "Weigh the options openly (first come first served, continuity of care, clinical need, indication, regulator or professional guidance) and justify a choice based on ethical principles, not loyalty.",
+      "Given she is established on therapy for type 2 diabetes and about to run out, supplying her is defensible; any decision must be explained and justified.",
+      "Explain the decision to her clearly and respectfully, with options such as alternatives via her prescriber if supply is limited.",
+      "Document the clinical factors, rationale and actions.",
+      "Put safeguards in place: monitor stock, keep a waitlist, talk to prescribers about alternatives, brief the team, and write a shortage policy that avoids over-ordering."
+    ],
+    "unacceptableActions": [
+      "Refusing her simply because she isn't a regular patient.",
+      "Deciding without asking anything about her clinical situation.",
+      "Stockpiling or over-ordering to protect this pharmacy's patients."
+    ],
+    "counsellingPoints": [
+      "Why supply is limited",
+      "What was decided and why",
+      "Alternatives to discuss with her prescriber",
+      "What to do if she runs out",
+      "When to come back"
+    ],
+    "codePrinciples": [
+      "Care 1a",
+      "Care 1b",
+      "Care 1c",
+      "Care 1f",
+      "Care 2a",
+      "Care 2b",
+      "Care 2j",
+      "Care 3a",
+      "Competency 2d",
+      "Collaboration 2g"
+    ],
+    "legal": [
+      "Follow any TGA or professional body guidance issued for this shortage, applied with professional judgement."
+    ],
+    "modelAnswer": "Gather the facts first: indication, whether she is established on therapy, disease control, alternatives and how much she has left. The dilemma is equitable access against individual wellbeing and harm prevention. Several options can be defended depending on context (first come first served, continuity, clinical need, indication, official guidance), but reserving stock for regulars out of loyalty is not. Here she is established on therapy for type 2 diabetes and about to run out, so supply is justifiable. Explain the decision respectfully, document the rationale, and put safeguards in place: stock monitoring, a waitlist, liaison with prescribers about alternatives, a team briefing, and a shortage policy that avoids over-ordering."
+  },
+  "review": {
+    "status": "draft",
+    "version": "0.1"
+  },
+  "sources": [
+    "PSA Code of Ethics case study (provided by the user, 5-step framework). Confirm licence before publishing.",
+    "Patient details (type 2 diabetes, eight months on therapy, metformin) added for the role play; needs pharmacist review."
+  ]
+}

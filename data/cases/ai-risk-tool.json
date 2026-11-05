@@ -1,0 +1,126 @@
+{
+  "id": "ai-risk-tool",
+  "title": "The list doesn't catch everyone",
+  "category": "ethical",
+  "problemType": "Digital tools, accountability and raising concerns",
+  "setting": "Hospital ward pharmacy",
+  "questionSheet": "You are a ward pharmacist in a busy hospital. Your department has introduced an AI risk-prediction tool, and your team leader has asked that it be used to generate a daily list of patients for thorough review. It has made you much more productive, but other hospital staff have raised concerns that some high-risk patients are not being identified and are being harmed. You've gone to speak with your team leader. Manage the situation as you would in practice.",
+  "documents": {
+    "notes": [
+      "Department instruction: use the AI tool's daily list to decide which patients get a thorough medication review.",
+      "Productivity has improved since the tool was introduced."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Team leader · Priya",
+      "name": "Priya",
+      "description": "The pharmacy team leader. Busy and under pressure to keep the efficiency gains the tool has brought. Initially a bit defensive about the tool, but reasonable and safety-minded when concerns are raised constructively and with specifics. Dismissive of vague complaints.",
+      "situation": "You are the hospital pharmacy team leader. A ward pharmacist from your team has come to talk to you.",
+      "standing": "professional",
+      "openingLine": "Hi. The new risk tool's been great for the team's numbers. What did you want to talk about?",
+      "publicFacts": [
+        "The department introduced the AI tool to improve efficiency.",
+        "You asked the team to use the tool's daily list to decide which patients get a thorough review.",
+        "Review numbers are up since the tool came in."
+      ]
+    }
+  },
+  "hiddenFacts": [
+    {
+      "id": "informal-complaints",
+      "agent": "patient",
+      "fact": "You've heard informally from two nurses that patients weren't flagged by the tool, but nothing has been lodged through the incident reporting system.",
+      "triggers": [
+        "concerns raised",
+        "staff concerns",
+        "heard concerns",
+        "not flagged",
+        "patients missed",
+        "missed patients",
+        "any incidents",
+        "incident report",
+        "incidents reported"
+      ],
+      "unlockHint": "“Have you heard the concerns about patients not being flagged? Have any incidents been reported?”"
+    },
+    {
+      "id": "no-validation",
+      "agent": "patient",
+      "fact": "The tool came from a vendor. You don't know how it was validated for this hospital's patients, and there is no process for reviewing the patients it misses.",
+      "triggers": [
+        "tool validated",
+        "tool tested",
+        "accuracy tool",
+        "monitor tool",
+        "tool performance",
+        "review process",
+        "clinical governance",
+        "how tool works",
+        "vendor tool"
+      ],
+      "unlockHint": "“How was the tool validated for our patients, and who reviews the cases it misses?”"
+    },
+    {
+      "id": "open-to-escalation",
+      "agent": "patient",
+      "fact": "You're fine with pharmacists using their clinical judgement to review patients beyond the list. With specific examples, you'll take it to the medication safety committee.",
+      "triggers": [
+        "use judgement",
+        "clinical judgement",
+        "beyond list",
+        "additional patients",
+        "escalate concerns",
+        "safety committee",
+        "formal report",
+        "raise formally"
+      ],
+      "unlockHint": "“I'd like to keep reviewing patients beyond the list using my judgement, and raise this formally. Can we escalate it?”"
+    }
+  ],
+  "answerKey": {
+    "plantedProblem": "Relying on an organisational efficiency tool versus the pharmacist's own responsibility for patient safety. Missed high-risk patients, automation bias, and accountability that cannot be delegated to technology.",
+    "acceptableResolutions": [
+      "Name the tension between the tool's efficiency and his duty of care, and recognise automation bias.",
+      "State that accountability stays with the pharmacist: digital tools support, not replace, clinical judgement.",
+      "Use the AI list as a guide while applying independent clinical judgement to find other high-risk patients.",
+      "Monitor and record cases the tool misses, and raise concerns constructively and with evidence through appropriate channels (team leader, incident reporting, medication safety or clinical governance).",
+      "Document risks, incidents and actions; contribute to quality improvement of the tool.",
+      "Suggest future measures: tool improvement or validation, staff training on its limits, and protocols that keep clinical judgement central."
+    ],
+    "unacceptableActions": [
+      "Relying solely on the AI list despite known misses.",
+      "Refusing to use the tool without raising concerns or proposing a safe alternative.",
+      "Raising concerns only informally, with no documentation."
+    ],
+    "counsellingPoints": [
+      "Clinical judgement beyond the list",
+      "Specific examples of missed patients",
+      "Incident reporting",
+      "Escalation to governance",
+      "Documentation"
+    ],
+    "codePrinciples": [
+      "Care 1b",
+      "Care 1c",
+      "Care 1f",
+      "Integrity 2a",
+      "Integrity 2b",
+      "Integrity 2e",
+      "Competency 2e",
+      "Competency 2g"
+    ],
+    "legal": [
+      "A legal duty of care to prevent foreseeable harm, which reliance on an AI tool does not remove."
+    ],
+    "modelAnswer": "The tool improves efficiency, but staff report missed high-risk patients being harmed. The dilemma is reliance on an organisational system versus his duty of care, and accountability can't be delegated to technology. Relying solely on the list risks preventable harm, and refusing the tool conflicts with policy and loses its benefits. Use the list as a guide while applying clinical judgement to find other at-risk patients, track the tool's misses, and raise concerns constructively and with evidence through the team leader and formal reporting. Document risks and actions, and push for validation, staff training and protocols that keep judgement central."
+  },
+  "review": {
+    "status": "draft",
+    "version": "0.1"
+  },
+  "sources": [
+    "PSA Code of Ethics case study (provided by the user, 5-step framework). Confirm licence before publishing.",
+    "Persona details (Priya, informal complaints, vendor tool) added for the role play; needs pharmacist review."
+  ]
+}

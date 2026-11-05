@@ -1,0 +1,98 @@
+{
+  "id": "bush-medicine",
+  "title": "Bush medicine for his heart",
+  "category": "ethical",
+  "problemType": "Patient safety and culturally safe care (traditional medicines)",
+  "setting": "Community pharmacy in a town with a significant First Nations population",
+  "questionSheet": "Mr G, a regular patient, brings in a prescription for a new blood pressure medicine. During the consultation he seems hesitant and quiet. Manage the situation as you would in practice.",
+  "documents": {
+    "prescription": {
+      "item": "Amlodipine 5 mg tablets",
+      "directions": "One tablet daily · Qty 30 · 5 repeats",
+      "footer": "Local GP · Mr G · New medicine"
+    },
+    "notes": ["Mr G is a regular patient. This is his first blood pressure medicine."]
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient · Mr G",
+      "name": "Mr G",
+      "description": "An Aboriginal man in his fifties and a regular at this pharmacy. Quiet and a little hesitant, with short answers. He relaxes and says more when the pharmacist is respectful, unhurried and non-judgemental. If the pharmacist lectures him or tells him to stop his own medicine, he goes quiet, says he'll think about it, and wants to leave.",
+      "openingLine": "Afternoon. Doctor gave me this one for my blood pressure.",
+      "publicFacts": [
+        "His GP told him his blood pressure is high and gave him this new tablet.",
+        "He has not taken a blood pressure tablet before."
+      ]
+    }
+  },
+  "hiddenFacts": [
+    {
+      "id": "uses-bush-medicine",
+      "agent": "patient",
+      "fact": "You are also seeing a traditional healer and using bush medicine for your heart.",
+      "triggers": [
+        "any questions",
+        "anything else",
+        "other medicine",
+        "other treatment",
+        "anything heart",
+        "bush medicine",
+        "traditional medicine",
+        "traditional healer",
+        "complementary medicine",
+        "herbal medicine",
+        "cultural medicine"
+      ],
+      "unlockHint": "“Do you have any questions, or are you using anything else for your heart, including traditional or bush medicines?”"
+    },
+    {
+      "id": "cannot-share-details",
+      "agent": "patient",
+      "fact": "You don't know exactly what is in the bush medicine, and some things about it are not yours to share. It matters to you and you want to keep using it.",
+      "triggers": [
+        "tell more",
+        "more bush",
+        "bush made",
+        "medicine made",
+        "plant name",
+        "often take",
+        "keep take",
+        "continue bush",
+        "bush contain",
+        "comfortable sharing"
+      ],
+      "unlockHint": "“Are you comfortable telling me a bit more about the bush medicine? Only share what you're comfortable with.”"
+    }
+  ],
+  "answerKey": {
+    "plantedProblem": "A possible interaction between the new antihypertensive and bush medicine. Information may be unavailable, or culturally sensitive or sacred, and there is little published evidence on most bush medicines. The dilemma is patient safety against culturally safe, respectful care that supports his choices.",
+    "acceptableResolutions": [
+      "Ask about the bush medicine respectfully and without judgement, accepting that he may not know or be able to share details.",
+      "Name the tension between preventing harm and respecting his culture and autonomy, and acknowledge his right to use traditional medicine.",
+      "Give clear, balanced information about the new medicine, what is and isn't known about the bush medicine, possible interactions, and ways to reduce risk, then support his own informed decision.",
+      "Arrange monitoring of his blood pressure and other relevant parameters, and liaise with his GP with his consent.",
+      "Document the discussion and plan, and reflect on staff education about culturally safe care and bush medicine interactions."
+    ],
+    "unacceptableActions": [
+      "Telling him to stop the bush medicine and take only the prescribed tablet.",
+      "Avoiding the subject of bush medicine as outside scope.",
+      "Pressing him for culturally sensitive details, or dismissing traditional medicine."
+    ],
+    "counsellingPoints": [
+      "What the new medicine is for",
+      "Dose and timing",
+      "Common side effects",
+      "Possible interaction risk with the bush medicine",
+      "Blood pressure monitoring and follow-up",
+      "When to come back or see the GP"
+    ],
+    "codePrinciples": ["Care 1b", "Care 1f", "Care 2a", "Care 2b", "Care 2e", "Care 2f", "Care 2i", "Care 2l"],
+    "legal": ["Ahpra shared Code of Conduct: care must be culturally safe for Aboriginal and Torres Strait Islander peoples, as defined by patients and communities."],
+    "modelAnswer": "Explore the bush medicine respectfully, accepting he may not know or be able to share details. The dilemma is preventing harm from a possible interaction versus delivering culturally safe care that respects his autonomy. Strongly advising him to stop disrespects his self-determination, and ignoring it neglects a core competency. So give balanced information on the new medicine and what is known about the bush medicine, explain ways to reduce risk, and support his informed choice. Monitor his blood pressure and clinical response, involve the GP with consent, document the discussion, and use it to build the team's confidence with culturally safe care."
+  },
+  "review": { "status": "draft", "version": "0.1" },
+  "sources": [
+    "PSA Code of Ethics case study (provided by the user, 5-step framework). Confirm licence before publishing.",
+    "Prescription details (amlodipine 5 mg) added for the role play; needs pharmacist review."
+  ]
+}

@@ -4,11 +4,12 @@ import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { Suspense } from "react";
 import { usePathname } from "next/navigation";
+import { SESSION_SIZE } from "@/lib/flashcards";
 import { CardsIcon, DocIcon, Flame, HomeIcon, LogoMark } from "@/components/icons";
 
 const items = [
   { href: "/home", label: "Home", Icon: HomeIcon },
-  { href: "/flashcards", label: "Flashcards", Icon: CardsIcon, badge: "12" },
+  { href: "/flashcards", label: "Flashcards", Icon: CardsIcon, badge: String(SESSION_SIZE) },
   { href: "/debrief", label: "Debriefs", Icon: DocIcon },
 ];
 

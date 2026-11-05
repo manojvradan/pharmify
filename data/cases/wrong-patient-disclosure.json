@@ -1,0 +1,148 @@
+{
+  "id": "wrong-patient-disclosure",
+  "title": "The wrong Mrs Lee",
+  "category": "ethical",
+  "problemType": "Dispensing error and open disclosure",
+  "setting": "Community pharmacy (you are the pharmacist on duty)",
+  "questionSheet": "Yesterday afternoon a new dispensary technician handed a bag of medicines to Mrs Margaret Lee (66). The bag was actually for Mrs Marjorie Lee (71). It contained Marjorie's new terbinafine 250 mg tablets ('Take ONE tablet ONCE a day'), labelled with her name and address. Margaret's son has just rung: his mum thought the terbinafine was the new blood pressure tablet her GP had mentioned, and she took one this morning. Margaret's own bag, containing her new perindopril, is still on your shelf. The pharmacy owner overhears and says: 'Just swap the bags over. No need to make a fuss or tell Marjorie or her son.' Manage the situation as you would in practice, and explain how this could be prevented.",
+  "documents": {
+    "notes": [
+      "Bag given to Margaret Lee: terbinafine 250 mg tablets, labelled for Marjorie Lee (71), with her name and address.",
+      "Still on the shelf: Margaret Lee's perindopril, new medicine."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Margaret's son · Daniel",
+      "name": "Daniel",
+      "description": "Margaret's son, in his forties. Worried and a bit cross, but calms down with a clear, honest explanation and a plan. Wants to know what happened and whether his mum will be okay. Gets angrier if the pharmacist is vague, evasive, or blames someone.",
+      "situation": "You have phoned the pharmacy about your mother, Margaret Lee, and are speaking with the pharmacist.",
+      "openingLine": "Hi, it's about my mum, Margaret Lee. She took one of the tablets you gave her yesterday, and I don't think they're even hers.",
+      "publicFacts": [
+        "His mum, Margaret Lee, was given a bag at the pharmacy yesterday.",
+        "She thought the tablets were the new blood pressure tablet her GP had mentioned, and took one this morning.",
+        "The labels have someone else's name on them."
+      ]
+    },
+    "prescriber": {
+      "label": "Talk to the owner",
+      "name": "Greg",
+      "description": "The pharmacy owner. Brisk and worried about complaints and the pharmacy's reputation. Wants it handled quietly. Listens if the pharmacist explains clearly and respectfully why it must be disclosed and reported, and reluctantly agrees.",
+      "situation": "You own the pharmacy and are standing in the dispensary talking to the pharmacist on duty.",
+      "standing": "public",
+      "openingLine": "Just swap the bags over. No need to make a fuss or tell Marjorie or her son.",
+      "publicFacts": [
+        "You want the bags swapped quietly without telling either family.",
+        "You're worried about a complaint."
+      ]
+    }
+  },
+  "hiddenFacts": [
+    {
+      "id": "one-dose-feeling-fine",
+      "agent": "patient",
+      "fact": "She took one tablet at about 8 this morning. She feels fine: no rash, no nausea, no stomach pain.",
+      "triggers": [
+        "many tablet",
+        "many take",
+        "much take",
+        "time take",
+        "feeling today",
+        "feeling okay",
+        "any symptoms",
+        "side effects"
+      ],
+      "unlockHint": "“How many did she take, and when? How is she feeling now?”"
+    },
+    {
+      "id": "health-background",
+      "agent": "patient",
+      "fact": "She has high blood pressure and no liver problems that you know of. She doesn't take any other regular medicines yet.",
+      "triggers": [
+        "medical conditions",
+        "health conditions",
+        "liver problems",
+        "other medicine",
+        "any other",
+        "regular medicine"
+      ],
+      "unlockHint": "“Does she have any other health conditions, like liver problems, or take other medicines?”"
+    },
+    {
+      "id": "gp",
+      "agent": "patient",
+      "fact": "Her GP is Dr Patel at the local medical centre, who told her last week she'd be starting a new blood pressure tablet.",
+      "triggers": [
+        "doctor name",
+        "regular doctor",
+        "usual doctor",
+        "blood pressure",
+        "new tablet"
+      ],
+      "unlockHint": "“Who is her GP? Was she expecting a new blood pressure medicine?”"
+    },
+    {
+      "id": "owner-concern",
+      "agent": "prescriber",
+      "fact": "Your real worry is a complaint and your insurance. If the pharmacist explains open disclosure and notifying PDL, you agree, and you don't want the technician blamed.",
+      "triggers": [
+        "open disclosure",
+        "notify pdl",
+        "professional indemnity",
+        "incident report",
+        "tell truth",
+        "privacy breach",
+        "report incident"
+      ],
+      "unlockHint": "“We have to disclose this and notify PDL. Swapping the bags would hide a privacy breach and a patient harm.”"
+    }
+  ],
+  "answerKey": {
+    "plantedProblem": "A wrong-patient dispensing error. Margaret took one dose of someone else's terbinafine and has missed her own perindopril, and Marjorie's privacy was breached. The owner is asking for a cover-up, which conflicts with honesty, accountability and duty of care.",
+    "acceptableResolutions": [
+      "Assess the clinical risk first: a single 250 mg dose of terbinafine is low risk for most people. Tell her not to take any more, explain possible side effects and an escalation plan, and contact her GP.",
+      "Retrieve Marjorie's medicines and get Margaret's own perindopril to her today, with counselling. Note she has missed her intended therapy.",
+      "Disclose openly to Margaret and her son: apologise, explain factually what happened and what is being done, and give a contact person. Don't speculate or blame the technician.",
+      "Recognise Marjorie's privacy breach (Privacy Act 1988, APP 11) and her continuity-of-care interest.",
+      "Decline the owner's request respectfully and explain why. Complete an incident report, notify PDL promptly, and don't admit legal liability or offer compensation before taking PDL advice.",
+      "Support the technician (just culture) and focus on the system.",
+      "Never falsify or obliterate records; correct them with an initialled, dated marginal note (s 185).",
+      "Prevention (any two): two patient identifiers at handout, with the patient stating them; barcode scanning bag to patient; similar-name alerts; pharmacist counselling for new high-risk medicines at handout; induction and supervision for new staff; incident review at staff meetings."
+    ],
+    "unacceptableActions": [
+      "Agreeing to swap the bags without disclosure (immediate fail).",
+      "Not assessing the clinical risk of the terbinafine dose (immediate fail).",
+      "Blaming the technician to the patient (immediate fail)."
+    ],
+    "counsellingPoints": [
+      "Don't take any more terbinafine",
+      "Side effects to watch for and what to do",
+      "Her own perindopril: dose, timing, dizziness",
+      "Contact person at the pharmacy",
+      "Follow-up with her GP"
+    ],
+    "codePrinciples": [
+      "Care 1a",
+      "Care 1f",
+      "Care 2a",
+      "Integrity 1c",
+      "Integrity 2b",
+      "Integrity 2e",
+      "Collaboration 1f"
+    ],
+    "legal": [
+      "Privacy Act 1988, APP 11: Marjorie's personal and health information was disclosed to another person.",
+      "Dispensing records must not be falsified; corrections by an initialled, dated marginal note (s 185).",
+      "Notify the professional indemnity insurer (PDL) promptly; don't admit liability before taking advice."
+    ],
+    "modelAnswer": "Assess the clinical risk first: one 250 mg dose of terbinafine is low risk, so tell her to take no more, explain what to watch for and when to seek help, and contact her GP. Get Margaret her own perindopril today with counselling, and retrieve Marjorie's medicines. Disclose openly to Margaret and her son: apologise, explain the facts and the plan, give a contact person, and don't blame the technician. Recognise Marjorie's privacy breach under APP 11. Decline the owner's cover-up respectfully, explaining the duty of honesty and accountability. Complete an incident report, notify PDL before admitting liability, keep records accurate, and support the technician. Prevent recurrence with two patient identifiers stated by the patient at handout, barcode scanning, similar-name alerts and pharmacist counselling for new medicines."
+  },
+  "review": {
+    "status": "draft",
+    "version": "0.1"
+  },
+  "sources": [
+    "Practice OSCE, Ethics Case 1: Wrong-patient error and open disclosure (provided by the user). Confirm licence before publishing.",
+    "Role-play details (Daniel, Greg, dose time, Dr Patel) added; needs pharmacist review."
+  ]
+}
