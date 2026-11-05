@@ -7,9 +7,10 @@ import { DebriefReport } from "@/components/DebriefReport";
 import { Pip } from "@/components/Pip";
 import { PipGrading } from "@/components/PipGrading";
 import { LogoMark } from "@/components/icons";
+import { PharmacyScene } from "@/components/PharmacyScene";
 import { useTalkingMouth } from "@/hooks/useTalkingMouth";
 import type { AgentId, PublicCase, Turn } from "@/lib/cases/schema";
-import type { CastId } from "@/lib/cast";
+import { CAST, type CastId } from "@/lib/cast";
 import type { Debrief } from "@/lib/session/report";
 
 const PART_SECONDS = 20 * 60;
@@ -353,10 +354,10 @@ export function ExamSession({ case: c }: { case: PublicCase }) {
 
               {/* Orb and latest line */}
               <div className="flex flex-1 flex-col items-center justify-center gap-7 px-6 py-8 text-center">
-                <SpeakerAvatar avatar={agentInfo.avatar} talking={streaming && !waiting} />
+                <SpeakerAvatar avatar={agentInfo.avatar} name={agentInfo.name} talking={streaming && !waiting} />
                 <div className="flex flex-col items-center gap-3">
                   <span className="text-sm text-subtle">
-                    {waiting ? `${agentInfo.name} is thinking…` : streaming ? `${agentInfo.name} is speaking` : agentInfo.name}
+                    {waiting ? `${agentInfo.name} is thinking…` : streaming ? `${agentInfo.name} is speaking` : ""}
                   </span>
                   <p
                     aria-live="polite"
@@ -490,27 +491,54 @@ function SessionHeader({
 }
 
 /**
- * The character the candidate is talking to, in place of the old voice orb. The halo
- * pulses, the head bobs and the mouth moves while their reply comes in. Decorative: the name and the
- * reply text next to it carry the meaning.
+ * The character the candidate is talking to. Patients stand at the pharmacy counter
+ * (design: "Voice session"); prescribers are on the phone, so they stay in a circle with
+ * a halo that pulses while they talk. Either way the head bobs and the mouth moves while
+ * the reply comes in. Decorative apart from the name tag; the reply text carries the meaning.
  */
-function SpeakerAvatar({ avatar, talking }: { avatar: CastId; talking: boolean }) {
+function SpeakerAvatar({ avatar, name, talking }: { avatar: CastId; name: string; talking: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
   useTalkingMouth(ref, { talking });
+  const bob = talking ? "cast-bob" : "";
+  const tag = (
+    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 rounded-full border-[1.5px] border-line-soft bg-white px-3 py-1 text-[13px] font-bold whitespace-nowrap">
+      {name}
+    </span>
+  );
+
+  if (CAST[avatar].kind === "patient") {
+    return (
+      <div ref={ref} className="relative w-full max-w-[680px]">
+        <div className="overflow-hidden rounded-[28px] border-[3px] border-white shadow-[0_20px_40px_-24px_rgba(22,17,42,0.45),0_0_0_1.5px_#E5E1EC]">
+          <PharmacyScene className="block">
+            <g className={bob}>
+              <CastAvatar key={avatar} id={avatar} size={216} decorative />
+            </g>
+          </PharmacyScene>
+        </div>
+        {tag}
+      </div>
+    );
+  }
+
   return (
-    <div ref={ref} aria-hidden="true" className="relative grid size-[200px] place-items-center">
+    <div ref={ref} className="relative grid size-[200px] place-items-center">
       {talking && (
         <>
-          <span className="absolute inset-4 animate-ring rounded-full bg-pink opacity-25" />
-          <span className="absolute inset-4 animate-ring-late rounded-full bg-pink opacity-25" />
+          <span aria-hidden="true" className="absolute inset-4 animate-ring rounded-full bg-pink opacity-25" />
+          <span aria-hidden="true" className="absolute inset-4 animate-ring-late rounded-full bg-pink opacity-25" />
         </>
       )}
-      <span className="absolute inset-4 rounded-full bg-pink opacity-10" />
-      <span className="relative grid size-[152px] place-items-end justify-center overflow-hidden rounded-full border-[3px] border-white bg-pink-tint shadow-[0_24px_48px_-20px_rgba(230,80,150,0.45)]">
-        <span className={`block translate-y-1.5 ${talking ? "cast-bob" : ""}`}>
+      <span aria-hidden="true" className="absolute inset-4 rounded-full bg-pink opacity-10" />
+      <span
+        aria-hidden="true"
+        className="relative grid size-[152px] place-items-end justify-center overflow-hidden rounded-full border-[3px] border-white bg-pink-tint shadow-[0_24px_48px_-20px_rgba(230,80,150,0.45)]"
+      >
+        <span className={`block translate-y-1.5 ${bob}`}>
           <CastAvatar key={avatar} id={avatar} size={150} decorative className="block" />
         </span>
       </span>
+      {tag}
     </div>
   );
 }
