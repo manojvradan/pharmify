@@ -31,7 +31,7 @@ This tracks what is left after the text-only loop (milestone 2 in `mvp-plan.md`)
 | Clerk | Sign-in | Done Nov 5: `pharmify-auth`, Hobby plan; keys merged into `.env.local` |
 | Sign in once on localhost so the full flow can be tested in the browser | The assistant doesn't create accounts on Clerk's hosted service | Waiting |
 | Restart `npm run dev` | A dev server started before `proxy.ts` existed doesn't load it, so auth calls return 500 | Waiting |
-| Add `ANTHROPIC_API_KEY` to the Vercel project env | Deploys don't have it; today it only exists in `.env.local` | Not started |
+| Keys on Vercel | Deploys need every key | Done Nov 5: `ANTHROPIC_API_KEY` (sensitive in production) and the Clerk sign-in/up URLs added to development and production; Neon and Clerk keys came with their integrations. **Preview has no Anthropic key yet** |
 | Recruit a pharmacist reviewer | Every case, every hidden fact below, and grader calibration need sign-off | Not started |
 | Decide an eval budget per run | Grader consistency and LLM-judge evals need repeated live calls; currently "minimal" | Minimal for now |
 | Check the Board's current candidate guide | The guide we hold is the 2021 version | Not started |
