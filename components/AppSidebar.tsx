@@ -1,6 +1,6 @@
 "use client";
 
-import { UserButton } from "@clerk/nextjs";
+import { UserButton, useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import { Suspense } from "react";
 import { usePathname } from "next/navigation";
@@ -51,11 +51,32 @@ function ActiveNav() {
   return <Nav pathname={usePathname()} />;
 }
 
+/** Avatar (opens Clerk's account menu) with the user's name and email beside it. */
+function Profile() {
+  const { user } = useUser();
+  const name = user?.fullName || user?.firstName || "Your account";
+  const email = user?.primaryEmailAddress?.emailAddress;
+  return (
+    <div className="flex min-h-14 items-center gap-3 rounded-[14px] px-2">
+      <UserButton appearance={{ elements: { avatarBox: "size-9" } }} />
+      <div className="flex min-w-0 flex-col leading-tight">
+        <span className="truncate text-[15px] font-bold text-ink">{name}</span>
+        {email && <span className="truncate text-[13px] text-subtle">{email}</span>}
+      </div>
+    </div>
+  );
+}
+
+/**
+ * Side by side with the page (wide screens), it stays put while the page scrolls, with
+ * the streak and profile pinned to the bottom. When it wraps above the page on narrow
+ * screens it scrolls away normally.
+ */
 export function AppSidebar() {
   return (
     <aside
       aria-label="App"
-      className="box-border flex flex-[1_1_240px] flex-col gap-7 border-r border-line-soft bg-white px-[18px] py-6"
+      className="box-border flex flex-[1_1_240px] flex-col gap-7 border-r border-line-soft bg-white px-[18px] py-6 min-[820px]:sticky min-[820px]:top-0 min-[820px]:h-screen min-[820px]:self-start min-[820px]:overflow-y-auto"
     >
       <Link href="/" className="flex items-center gap-2.5 px-2 text-ink no-underline">
         <LogoMark size={38} />
@@ -66,16 +87,16 @@ export function AppSidebar() {
         <ActiveNav />
       </Suspense>
 
-      <div className="flex min-h-12 items-center gap-3 px-4">
-        <UserButton />
-        <span className="text-base font-bold text-ink-2">Account</span>
-      </div>
-
-      <div className="mt-auto flex items-center gap-3 rounded-[18px] bg-sun-tint p-4">
-        <Flame size={48} className="flex-none" />
-        <div className="flex flex-col leading-[1.3]">
-          <span className="text-lg font-bold">3-day streak</span>
-          <span className="text-[13px] text-muted">Play today to keep it</span>
+      <div className="mt-auto flex flex-col gap-3">
+        <div className="flex items-center gap-3 rounded-[18px] bg-sun-tint p-4">
+          <Flame size={48} className="flex-none" />
+          <div className="flex flex-col leading-[1.3]">
+            <span className="text-lg font-bold">3-day streak</span>
+            <span className="text-[13px] text-muted">Play today to keep it</span>
+          </div>
+        </div>
+        <div className="border-t border-line-soft pt-3">
+          <Profile />
         </div>
       </div>
     </aside>
