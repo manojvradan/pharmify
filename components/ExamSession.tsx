@@ -8,6 +8,8 @@ import { Pip } from "@/components/Pip";
 import { PipGrading } from "@/components/PipGrading";
 import { LogoMark } from "@/components/icons";
 import { PharmacyScene } from "@/components/PharmacyScene";
+import { useCharacterVoice } from "@/hooks/useCharacterVoice";
+import { type MicError, useRecorder } from "@/hooks/useRecorder";
 import { useTalkingMouth } from "@/hooks/useTalkingMouth";
 import type { AgentId, PublicCase, Turn } from "@/lib/cases/schema";
 import { CAST, type CastId } from "@/lib/cast";
@@ -34,7 +36,11 @@ const docLabel = "m-0 text-xs font-medium tracking-[0.05em] text-subtle uppercas
 const roundBtn = "grid size-[52px] cursor-pointer place-items-center rounded-full border-0";
 const CATEGORY_LABEL = { ethical: "Ethical", legal: "Legal", clinical: "Complex clinical" } as const;
 
-export function ExamSession({ case: c }: { case: PublicCase }) {
+/**
+ * `voice`: characters speak their lines (ElevenLabs) and the candidate can hold to speak
+ * instead of typing. Off when the server has no ELEVENLABS_API_KEY.
+ */
+export function ExamSession({ case: c, voice = false }: { case: PublicCase; voice?: boolean }) {
   const [phase, setPhase] = useState<Phase>("ready");
   const [remaining, setRemaining] = useState(PART_SECONDS);
   const [agent, setAgent] = useState<AgentId>("patient");
@@ -45,6 +51,14 @@ export function ExamSession({ case: c }: { case: PublicCase }) {
   const [error, setError] = useState<string | null>(null);
   const [debrief, setDebrief] = useState<Debrief | null>(null);
   const [starting, setStarting] = useState(false);
+  /** Voice mode only: the text box is shown instead of "Hold to speak". */
+  const [typing, setTyping] = useState(!voice);
+  const [transcribing, setTranscribing] = useState(false);
+  // Destructured so effects and callbacks depend on the stable functions, not a new object each render.
+  const { play: playVoice, stop: stopVoice, unlock: unlockVoice, speaking, level: voiceLevel } = useCharacterVoice();
+  const recorder = useRecorder();
+  /** True while the "Hold to speak" button is held, so a release during the mic prompt still stops it. */
+  const holdingRef = useRef(false);
 
   // Refs mirror state so the timer-driven finish() always sends the latest transcript.
   const transcriptsRef = useRef<Transcripts>(EMPTY);
@@ -67,17 +81,21 @@ export function ExamSession({ case: c }: { case: PublicCase }) {
     (id: AgentId) => {
       setAgent(id);
       const info = c.agents.find((a) => a.id === id);
+      stopVoice();
       if (info?.openingLine && transcriptsRef.current[id].length === 0) {
         const line = info.openingLine;
         updateTranscripts((t) => ({ ...t, [id]: [{ role: "actor", text: line, t: elapsedRef.current }] }));
+        if (voice && sessionIdRef.current) void playVoice(sessionIdRef.current, id);
       }
       inputRef.current?.focus();
     },
-    [c.agents, updateTranscripts],
+    [c.agents, updateTranscripts, voice, playVoice, stopVoice],
   );
 
   async function start() {
     if (starting) return;
+    // Inside the click, so the browser lets the characters speak later.
+    if (voice) unlockVoice();
     setStarting(true);
     setError(null);
     try {
@@ -100,6 +118,7 @@ export function ExamSession({ case: c }: { case: PublicCase }) {
 
   const finish = useCallback(async () => {
     abortRef.current?.abort();
+    stopVoice();
     setStreaming(false);
     setPhase("grading");
     setError(null);
@@ -116,7 +135,7 @@ export function ExamSession({ case: c }: { case: PublicCase }) {
     } catch (err) {
       setError(err instanceof Error ? err.message : "Grading failed");
     }
-  }, []);
+  }, [stopVoice]);
 
   // The orchestrator, not a model, owns the clock and ends the part.
   useEffect(() => {
@@ -133,12 +152,19 @@ export function ExamSession({ case: c }: { case: PublicCase }) {
     return () => clearInterval(id);
   }, [phase, finish]);
 
-  async function send(e: FormEvent) {
+  function send(e: FormEvent) {
     e.preventDefault();
     const text = input.trim();
-    if (!text || streaming || phase !== "live") return;
+    if (!text) return;
     setInput("");
+    void say(text);
+  }
+
+  /** Sends one thing the candidate said (typed or transcribed) and plays the reply. */
+  async function say(text: string) {
+    if (streaming || phase !== "live") return;
     setError(null);
+    stopVoice();
 
     const id = agent;
     const transcript: Turn[] = [...transcriptsRef.current[id], { role: "candidate", text, t: elapsedRef.current }];
@@ -181,11 +207,61 @@ export function ExamSession({ case: c }: { case: PublicCase }) {
         const soFar = reply;
         updateTranscripts((t) => ({ ...t, [id]: [...t[id].slice(0, -1), { role: "actor", text: soFar, t: replyAt }] }));
       }
+      // The reply is saved before the stream closes, so the server can voice it now.
+      if (voice && reply.trim() && sessionIdRef.current) void playVoice(sessionIdRef.current, id);
     } catch (err) {
       if (!controller.signal.aborted) setError(err instanceof Error ? err.message : "Something went wrong");
     } finally {
       setStreaming(false);
       inputRef.current?.focus();
+    }
+  }
+
+  async function holdStart() {
+    if (streaming || transcribing || phase !== "live" || recorder.recording) return;
+    holdingRef.current = true;
+    unlockVoice();
+    stopVoice();
+    setError(null);
+    try {
+      await recorder.start();
+      // Let go while the browser was still asking for the mic: discard this take.
+      if (!holdingRef.current) await recorder.stop();
+    } catch (err) {
+      setError(
+        (err as MicError) === "blocked"
+          ? "Pharmify can't use your microphone. Allow it in your browser, or type instead."
+          : "This browser can't record audio. Type instead.",
+      );
+      setTyping(true);
+    }
+  }
+
+  async function holdEnd() {
+    holdingRef.current = false;
+    const take = await recorder.stop();
+    if (!take) return;
+    if (take.ms < 400) {
+      setError("Hold the button down while you talk, then let go.");
+      return;
+    }
+    setTranscribing(true);
+    try {
+      const form = new FormData();
+      form.append("sessionId", sessionIdRef.current ?? "");
+      form.append("audio", take.audio);
+      const res = await fetch("/api/session/listen", { method: "POST", body: form });
+      const data = await res.json().catch(() => ({}));
+      if (res.status === 409 && data.ended) return void finish();
+      if (!res.ok) throw new Error(data.error ?? `Couldn't hear that (${res.status})`);
+      const text = String(data.text ?? "").trim();
+      if (!text) throw new Error("Didn't catch that. Try again, a little closer to the mic.");
+      setTranscribing(false);
+      await say(text);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Couldn't hear that");
+    } finally {
+      setTranscribing(false);
     }
   }
 
@@ -214,6 +290,15 @@ export function ExamSession({ case: c }: { case: PublicCase }) {
   const lastActor = [...thread].reverse().find((t) => t.role === "actor");
   const lastCandidate = [...thread].reverse().find((t) => t.role === "candidate");
   const waiting = streaming && thread.at(-1)?.role === "candidate";
+  // With voice, the character "talks" while the audio plays; without it, while the text streams in.
+  const talking = voice ? speaking : streaming && !waiting;
+  const status = transcribing
+    ? "Listening back…"
+    : waiting || (voice && streaming)
+      ? `${agentInfo.name} is thinking…`
+      : talking
+        ? `${agentInfo.name} is speaking`
+        : "";
 
   return (
     <div className="flex min-h-screen flex-col bg-white text-base leading-normal">
@@ -354,10 +439,15 @@ export function ExamSession({ case: c }: { case: PublicCase }) {
 
               {/* Orb and latest line */}
               <div className="flex flex-1 flex-col items-center justify-center gap-7 px-6 py-8 text-center">
-                <SpeakerAvatar avatar={agentInfo.avatar} name={agentInfo.name} talking={streaming && !waiting} />
+                <SpeakerAvatar
+                  avatar={agentInfo.avatar}
+                  name={agentInfo.name}
+                  talking={talking}
+                  level={voice ? voiceLevel : undefined}
+                />
                 <div className="flex flex-col items-center gap-3">
                   <span className="text-sm text-subtle">
-                    {waiting ? `${agentInfo.name} is thinking…` : streaming ? `${agentInfo.name} is speaking` : ""}
+                    {status}
                   </span>
                   <p
                     aria-live="polite"
@@ -387,26 +477,70 @@ export function ExamSession({ case: c }: { case: PublicCase }) {
                   onSubmit={send}
                   className="flex w-full max-w-[760px] flex-wrap items-center gap-2.5 rounded-[28px] border-[1.5px] border-line bg-white p-2.5 shadow-card"
                 >
-                  <label htmlFor="say" className="sr-only">
-                    What you say to {agentInfo.name}
-                  </label>
-                  <input
-                    id="say"
-                    ref={inputRef}
-                    autoFocus
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    autoComplete="off"
-                    placeholder={`Say something to ${agentInfo.name}…`}
-                    className="min-h-[52px] min-w-0 flex-[1_1_260px] rounded-full bg-chip px-5 text-base text-ink outline-none focus:ring-2 focus:ring-pink"
-                  />
-                  <button
-                    type="submit"
-                    disabled={streaming || !input.trim()}
-                    className="min-h-[52px] cursor-pointer rounded-full border-2 border-ink bg-sun px-6 text-base font-bold text-ink shadow-pop disabled:cursor-not-allowed disabled:opacity-50"
-                  >
-                    Say it
-                  </button>
+                  {voice && (
+                    <button
+                      type="button"
+                      aria-label={typing ? "Speak instead" : "Type instead"}
+                      title={typing ? "Speak instead" : "Type instead"}
+                      onClick={() => setTyping(!typing)}
+                      className={`${roundBtn} bg-chip`}
+                    >
+                      {typing ? <MicIcon /> : <KeyboardIcon />}
+                    </button>
+                  )}
+                  {typing ? (
+                    <>
+                      <label htmlFor="say" className="sr-only">
+                        What you say to {agentInfo.name}
+                      </label>
+                      <input
+                        id="say"
+                        ref={inputRef}
+                        autoFocus
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}
+                        autoComplete="off"
+                        placeholder={`Say something to ${agentInfo.name}…`}
+                        className="min-h-[52px] min-w-0 flex-[1_1_260px] rounded-full bg-chip px-5 text-base text-ink outline-none focus:ring-2 focus:ring-pink"
+                      />
+                      <button
+                        type="submit"
+                        disabled={streaming || !input.trim()}
+                        className="min-h-[52px] cursor-pointer rounded-full border-2 border-ink bg-sun px-6 text-base font-bold text-ink shadow-pop disabled:cursor-not-allowed disabled:opacity-50"
+                      >
+                        Say it
+                      </button>
+                    </>
+                  ) : (
+                    <button
+                      type="button"
+                      disabled={streaming || transcribing}
+                      aria-pressed={recorder.recording}
+                      onPointerDown={(e) => {
+                        if (e.button !== 0) return;
+                        e.currentTarget.setPointerCapture(e.pointerId);
+                        void holdStart();
+                      }}
+                      onPointerUp={() => void holdEnd()}
+                      onPointerCancel={() => void holdEnd()}
+                      onKeyDown={(e) => {
+                        if ((e.key === " " || e.key === "Enter") && !e.repeat) {
+                          e.preventDefault();
+                          void holdStart();
+                        }
+                      }}
+                      onKeyUp={(e) => {
+                        if (e.key === " " || e.key === "Enter") void holdEnd();
+                      }}
+                      onContextMenu={(e) => e.preventDefault()}
+                      className={`inline-flex min-h-[60px] flex-[1_1_220px] cursor-pointer touch-none items-center justify-center gap-2.5 rounded-full border-2 border-ink px-7 text-[17px] font-bold text-ink shadow-pop select-none disabled:cursor-not-allowed disabled:opacity-60 ${
+                        recorder.recording ? "translate-y-[2px] bg-pink-tint shadow-none" : "bg-sun"
+                      }`}
+                    >
+                      <MicIcon filled />
+                      {recorder.recording ? "Listening… let go to send" : transcribing ? "Working it out…" : "Hold to speak"}
+                    </button>
+                  )}
                   <button
                     type="button"
                     aria-label={showTranscript ? "Hide transcript" : "Show transcript"}
@@ -432,6 +566,24 @@ export function ExamSession({ case: c }: { case: PublicCase }) {
         </section>
       </main>
     </div>
+  );
+}
+
+function MicIcon({ filled = false }: { filled?: boolean }) {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <rect x="7" y="2.5" width="6" height="10" rx="3" {...(filled ? { fill: "#16112A" } : { stroke: "#16112A", strokeWidth: 1.6 })} />
+      <path d="M4 9.5a6 6 0 0012 0M10 15.5v2.5" stroke="#16112A" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function KeyboardIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <rect x="2" y="5" width="16" height="10" rx="2" stroke="#16112A" strokeWidth="1.6" />
+      <path d="M5 8.5h1M8 8.5h1M11 8.5h1M14 8.5h1M6 11.5h8" stroke="#16112A" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
   );
 }
 
@@ -496,9 +648,20 @@ function SessionHeader({
  * a halo that pulses while they talk. Either way the head bobs and the mouth moves while
  * the reply comes in. Decorative apart from the name tag; the reply text carries the meaning.
  */
-function SpeakerAvatar({ avatar, name, talking }: { avatar: CastId; name: string; talking: boolean }) {
+function SpeakerAvatar({
+  avatar,
+  name,
+  talking,
+  level,
+}: {
+  avatar: CastId;
+  name: string;
+  talking: boolean;
+  /** Loudness of the voice, 0–1, when audio is playing; the mouth follows it. */
+  level?: () => number;
+}) {
   const ref = useRef<HTMLDivElement>(null);
-  useTalkingMouth(ref, { talking });
+  useTalkingMouth(ref, { talking, level });
   const bob = talking ? "cast-bob" : "";
   const tag = (
     <span className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 rounded-full border-[1.5px] border-line-soft bg-white px-3 py-1 text-[13px] font-bold whitespace-nowrap">

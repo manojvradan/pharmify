@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ExamSession } from "@/components/ExamSession";
 import { caseIds, getCase, toPublic } from "@/lib/cases/bank";
+import { voiceEnabled } from "@/lib/voice/elevenlabs";
 
 export function generateStaticParams() {
   return caseIds().map((caseId) => ({ caseId }));
@@ -14,5 +15,5 @@ export default async function CaseSessionPage({ params }: PageProps<"/session/[c
   const c = getCase(caseId);
   if (!c) notFound();
   // Only the public part of the case reaches the browser.
-  return <ExamSession case={toPublic(c)} />;
+  return <ExamSession case={toPublic(c)} voice={voiceEnabled()} />;
 }
