@@ -5,7 +5,7 @@ import { db, schema } from "@/lib/db";
 import type { AgentId, CaseRecord, Turn } from "@/lib/cases/schema";
 import type { Debrief } from "./report";
 
-const { sessions, turns, debriefs, usageEvents } = schema;
+const { sessions, turns, debriefs, usageEvents, profiles } = schema;
 
 export type SessionRow = typeof sessions.$inferSelect;
 export type Transcripts = Record<AgentId, Turn[]>;
@@ -145,5 +145,6 @@ export async function deleteUserData(userId: string): Promise<number> {
       .where(inArray(sessions.id, mine.map((s) => s.id)));
   }
   await db().delete(usageEvents).where(eq(usageEvents.userId, userId));
+  await db().delete(profiles).where(eq(profiles.userId, userId));
   return mine.length;
 }

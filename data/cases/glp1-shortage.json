@@ -20,6 +20,7 @@
     "patient": {
       "label": "Patient · Ms K",
       "name": "Ms K",
+      "avatar": "penny-penguin",
       "description": "A woman in her forties, polite but anxious after weeks of ringing pharmacies. Answers questions honestly when asked, but doesn't volunteer details. Gets upset if she's turned away without a reason, and calms down when things are explained clearly and she's offered a plan.",
       "openingLine": "Hi, my friend said you've got this one in stock? I've been everywhere.",
       "publicFacts": [

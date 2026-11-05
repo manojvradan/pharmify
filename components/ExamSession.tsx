@@ -2,11 +2,14 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
+import { CastAvatar } from "@/components/CastAvatar";
 import { DebriefReport } from "@/components/DebriefReport";
 import { Pip } from "@/components/Pip";
 import { PipGrading } from "@/components/PipGrading";
 import { LogoMark } from "@/components/icons";
+import { useTalkingMouth } from "@/hooks/useTalkingMouth";
 import type { AgentId, PublicCase, Turn } from "@/lib/cases/schema";
+import type { CastId } from "@/lib/cast";
 import type { Debrief } from "@/lib/session/report";
 
 const PART_SECONDS = 20 * 60;
@@ -337,7 +340,10 @@ export function ExamSession({ case: c }: { case: PublicCase }) {
                             on ? "bg-white text-ink shadow-[0_1px_2px_rgba(22,17,42,0.12)]" : "bg-transparent text-ink-2"
                           }`}
                         >
-                          {a.label}
+                          <span className="inline-flex items-center gap-2">
+                            <CastAvatar id={a.avatar} size={26} decorative className="-my-1" />
+                            {a.label}
+                          </span>
                         </button>
                       );
                     })}
@@ -347,24 +353,7 @@ export function ExamSession({ case: c }: { case: PublicCase }) {
 
               {/* Orb and latest line */}
               <div className="flex flex-1 flex-col items-center justify-center gap-7 px-6 py-8 text-center">
-                <div aria-hidden="true" className="relative grid size-[200px] place-items-center">
-                  {streaming && (
-                    <>
-                      <span className="absolute inset-4 animate-ring rounded-full bg-pink opacity-25" />
-                      <span className="absolute inset-4 animate-ring-late rounded-full bg-pink opacity-25" />
-                    </>
-                  )}
-                  <span className="absolute inset-4 rounded-full bg-pink opacity-10" />
-                  <span className="relative flex size-[124px] items-center justify-center gap-1.5 rounded-full bg-pink shadow-[0_24px_48px_-20px_rgba(230,80,150,0.45)]">
-                    {[18, 38, 26, 44, 22].map((h, idx) => (
-                      <span
-                        key={idx}
-                        className={`w-1.5 rounded-[3px] bg-ink ${streaming && !waiting ? "animate-bar" : ""}`}
-                        style={{ height: streaming && !waiting ? h : 8, animationDelay: `${idx * 0.15}s` }}
-                      />
-                    ))}
-                  </span>
-                </div>
+                <SpeakerAvatar avatar={agentInfo.avatar} talking={streaming && !waiting} />
                 <div className="flex flex-col items-center gap-3">
                   <span className="text-sm text-subtle">
                     {waiting ? `${agentInfo.name} is thinking…` : streaming ? `${agentInfo.name} is speaking` : agentInfo.name}
@@ -497,5 +486,31 @@ function SessionHeader({
         </div>
       </div>
     </header>
+  );
+}
+
+/**
+ * The character the candidate is talking to, in place of the old voice orb. The halo
+ * pulses, the head bobs and the mouth moves while their reply comes in. Decorative: the name and the
+ * reply text next to it carry the meaning.
+ */
+function SpeakerAvatar({ avatar, talking }: { avatar: CastId; talking: boolean }) {
+  const ref = useRef<HTMLDivElement>(null);
+  useTalkingMouth(ref, { talking });
+  return (
+    <div ref={ref} aria-hidden="true" className="relative grid size-[200px] place-items-center">
+      {talking && (
+        <>
+          <span className="absolute inset-4 animate-ring rounded-full bg-pink opacity-25" />
+          <span className="absolute inset-4 animate-ring-late rounded-full bg-pink opacity-25" />
+        </>
+      )}
+      <span className="absolute inset-4 rounded-full bg-pink opacity-10" />
+      <span className="relative grid size-[152px] place-items-end justify-center overflow-hidden rounded-full border-[3px] border-white bg-pink-tint shadow-[0_24px_48px_-20px_rgba(230,80,150,0.45)]">
+        <span className={`block translate-y-1.5 ${talking ? "cast-bob" : ""}`}>
+          <CastAvatar key={avatar} id={avatar} size={150} decorative className="block" />
+        </span>
+      </span>
+    </div>
   );
 }

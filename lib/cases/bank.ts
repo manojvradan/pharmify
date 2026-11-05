@@ -11,6 +11,7 @@ import mdma from "@/data/cases/mdma-sertraline.json";
 import family from "@/data/cases/prescribing-for-family.json";
 import cannabis from "@/data/cases/telehealth-cannabis.json";
 import wrongPatient from "@/data/cases/wrong-patient-disclosure.json";
+import { defaultAvatar } from "@/lib/cast";
 import { CaseRecord, type AgentId, type PublicCase } from "./schema";
 
 /**
@@ -50,16 +51,12 @@ export function caseIds(): string[] {
 }
 
 export function toPublic(c: CaseRecord): PublicCase {
-  const agents: PublicCase["agents"] = [
-    { id: "patient", label: c.agents.patient.label, name: c.agents.patient.name, openingLine: c.agents.patient.openingLine },
-  ];
-  if (c.agents.prescriber) {
-    agents.push({
-      id: "prescriber",
-      label: c.agents.prescriber.label,
-      name: c.agents.prescriber.name,
-      openingLine: c.agents.prescriber.openingLine,
-    });
+  const agents: PublicCase["agents"] = [];
+  for (const id of ["patient", "prescriber"] as const) {
+    const p = getPersona(c, id);
+    if (!p) continue;
+    const standing = p.standing ?? (id === "patient" ? "public" : "professional");
+    agents.push({ id, label: p.label, name: p.name, openingLine: p.openingLine, avatar: p.avatar ?? defaultAvatar(standing) });
   }
   return {
     id: c.id,

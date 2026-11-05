@@ -20,6 +20,7 @@
     "patient": {
       "label": "Patient · Mr Kells",
       "name": "Mr Kells",
+      "avatar": "wally-wombat",
       "description": "A man in his thirties, in a hurry and impatient. Short, vague answers. Pushes to have it filled and gets irritated by questions, but is never violent. If told calmly that it can't be filled today, he grumbles, asks for the script back, and leaves.",
       "openingLine": "Can you fill this quickly? I've got somewhere to be.",
       "publicFacts": [
@@ -30,6 +31,7 @@
     "prescriber": {
       "label": "Call Dr Burton's practice",
       "name": "Dr Burton",
+      "avatar": "dr-hoot",
       "description": "The local GP, reached through the practice's published number. Helpful and concerned once they understand why the pharmacist is calling.",
       "openingLine": "Dr Burton speaking, how can I help?",
       "publicFacts": [

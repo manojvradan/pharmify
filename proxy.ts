@@ -1,7 +1,7 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
 /** Pages that need a signed-in user. API routes check `auth()` themselves and answer 401 as JSON. */
-const isProtectedPage = createRouteMatcher(["/home(.*)", "/flashcards(.*)", "/debrief(.*)", "/session(.*)"]);
+const isProtectedPage = createRouteMatcher(["/home(.*)", "/flashcards(.*)", "/debrief(.*)", "/session(.*)", "/onboarding(.*)"]);
 
 export default clerkMiddleware(async (auth, req) => {
   if (isProtectedPage(req)) await auth.protect();

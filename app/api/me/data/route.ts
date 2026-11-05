@@ -2,7 +2,7 @@ import { auth } from "@clerk/nextjs/server";
 import { deleteUserData } from "@/lib/session/store";
 
 /**
- * Deletes every session, transcript, debrief and usage record for the signed-in user.
+ * Deletes every session, transcript, debrief, usage record and onboarding answer for the signed-in user.
  * Their Clerk account itself is managed in Clerk.
  */
 export async function DELETE() {
