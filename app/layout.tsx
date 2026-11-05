@@ -27,7 +27,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="en" className={`${figtree.variable} ${geistMono.variable}`}>
       {/* Inside <body>, not around <html>: required with Cache Components (Clerk Core 3). */}
       <body>
-        <ClerkProvider>{children}</ClerkProvider>
+        {/* Clerk's CSS goes in the `clerk` layer (declared in globals.css) so Tailwind classes can restyle it. */}
+        <ClerkProvider appearance={{ cssLayerName: "clerk" }}>{children}</ClerkProvider>
       </body>
     </html>
   );

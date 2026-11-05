@@ -491,7 +491,7 @@ function SessionHeader({
 
 /**
  * The character the candidate is talking to, in place of the old voice orb. The halo
- * pulses and the mouth moves while their reply comes in. Decorative: the name and the
+ * pulses, the head bobs and the mouth moves while their reply comes in. Decorative: the name and the
  * reply text next to it carry the meaning.
  */
 function SpeakerAvatar({ avatar, talking }: { avatar: CastId; talking: boolean }) {
@@ -507,7 +507,9 @@ function SpeakerAvatar({ avatar, talking }: { avatar: CastId; talking: boolean }
       )}
       <span className="absolute inset-4 rounded-full bg-pink opacity-10" />
       <span className="relative grid size-[152px] place-items-end justify-center overflow-hidden rounded-full border-[3px] border-white bg-pink-tint shadow-[0_24px_48px_-20px_rgba(230,80,150,0.45)]">
-        <CastAvatar key={avatar} id={avatar} size={150} decorative className="translate-y-1.5" />
+        <span className={`block translate-y-1.5 ${talking ? "cast-bob" : ""}`}>
+          <CastAvatar key={avatar} id={avatar} size={150} decorative className="block" />
+        </span>
       </span>
     </div>
   );

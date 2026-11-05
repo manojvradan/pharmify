@@ -82,6 +82,23 @@ export const usageEvents = pgTable(
   (t) => [index("usage_session_idx").on(t.sessionId)],
 );
 
+/**
+ * Onboarding answers, one row per Clerk user. A user with no row, or with
+ * `onboarded_at` null, hasn't finished onboarding. Allowed values are in lib/onboarding.ts.
+ */
+export const profiles = pgTable("profiles", {
+  userId: text("user_id").primaryKey(),
+  /** "YYYY-MM"; null means not booked yet (or not answered, if onboarding isn't done). */
+  examSitting: text("exam_sitting"),
+  /** State or territory, e.g. "NSW": legal cases follow its rules. */
+  state: text("state"),
+  internshipStage: text("internship_stage"),
+  micCheckedAt: timestamp("mic_checked_at", { withTimezone: true }),
+  onboardedAt: timestamp("onboarded_at", { withTimezone: true }),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
 /** Pilot waitlist from the landing page. Not tied to a Clerk user. */
 export const pilotSignups = pgTable("pilot_signups", {
   email: text("email").primaryKey(),
