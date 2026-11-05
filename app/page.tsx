@@ -346,8 +346,8 @@ export default function LandingPage() {
             <span>© 2026 Pharmify</span>
           </div>
           <nav aria-label="Footer" className="flex gap-7">
-            <a href="#privacy" className="text-ink-2 no-underline">Privacy</a>
-            <a href="#terms" className="text-ink-2 no-underline">Terms</a>
+            <Link href="/privacy" className="text-ink-2 no-underline">Privacy</Link>
+            <Link href="/terms" className="text-ink-2 no-underline">Terms</Link>
             <a href="mailto:[CONTACT EMAIL]" className="text-ink-2 no-underline">Contact</a>
           </nav>
         </div>
