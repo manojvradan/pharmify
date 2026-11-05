@@ -21,13 +21,14 @@ This tracks what is left after the text-only loop (milestone 2 in `mvp-plan.md`)
 
 | Item | Why | Status |
 | --- | --- | --- |
-| Accept Neon's marketplace terms in the Vercel dashboard | The CLI can't accept terms for you; the install is waiting on it | Waiting |
+| Neon Postgres | Database for Phase 2 | Done Nov 5: `pharmify-db`, Free plan, Sydney, connected to the project; variables merged into `.env.local` |
 | Install Clerk (Vercel Marketplace) | Sign-in for Phase 2 | Not started |
+| Add `ANTHROPIC_API_KEY` to the Vercel project env | Deploys don't have it; today it only exists in `.env.local` | Not started |
 | Recruit a pharmacist reviewer | Every case, every hidden fact below, and grader calibration need sign-off | Not started |
 | Decide an eval budget per run | Grader consistency and LLM-judge evals need repeated live calls; currently "minimal" | Minimal for now |
 | Check the Board's current candidate guide | The guide we hold is the 2021 version | Not started |
 
-When Neon (and later Clerk) is installed, pull the env vars with `vercel env pull` into a **separate file** and merge them in. A plain `vercel env pull .env.local` overwrites the file and drops `ANTHROPIC_API_KEY`.
+When Clerk is installed, pull the env vars with `vercel env pull` into a **separate file** and merge them in. A plain `vercel env pull .env.local` overwrites the file and drops `ANTHROPIC_API_KEY`.
 
 ## Evals
 
