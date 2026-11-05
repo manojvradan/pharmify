@@ -1,0 +1,126 @@
+{
+  "id": "conscientious-objection-ecp",
+  "title": "Before the first shift",
+  "category": "ethical",
+  "problemType": "Conscientious objection and access to care",
+  "setting": "City community pharmacy, pharmacist in charge",
+  "questionSheet": "You manage a city community pharmacy with three pharmacists and have just hired a fourth. You're redoing the roster so you can cut your own hours and still have at least two pharmacists on each day. Before their first shift, the new pharmacist rings to tell you they have a conscientious objection to supplying the emergency contraceptive pill, and asks how this will be managed. Manage the situation as you would in practice.",
+  "documents": {
+    "notes": [
+      "Staff: you plus three pharmacists, and one new pharmacist starting next week.",
+      "Goal: at least two pharmacists on duty each day."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "New pharmacist · Sam",
+      "name": "Sam",
+      "description": "A pharmacist in their thirties about to start at the pharmacy. Calm, sincere and a little nervous about how this will be received. Firm about not supplying the emergency contraceptive pill personally, but wants to be fair to patients and colleagues. Gets defensive if told they can't have a job because of their beliefs.",
+      "situation": "You are a pharmacist about to start a new job. You have phoned the pharmacy manager before your first shift.",
+      "standing": "professional",
+      "openingLine": "Hi, it's Sam. Before I start next week, there's something I should tell you.",
+      "publicFacts": [
+        "You have a conscientious objection to supplying the emergency contraceptive pill.",
+        "You want to know how this will be managed in the pharmacy."
+      ]
+    }
+  },
+  "hiddenFacts": [
+    {
+      "id": "will-hand-over",
+      "agent": "patient",
+      "fact": "If a patient asks for it, you'd tell them politely that a colleague will help, and hand over straight away. You'd never lecture a patient or delay them.",
+      "triggers": [
+        "patient asks",
+        "patient requests",
+        "handle request",
+        "another pharmacist",
+        "other pharmacist",
+        "refer another",
+        "hand over",
+        "refer colleague",
+        "patient asked"
+      ],
+      "unlockHint": "“What would you do if a patient asked you for it?”"
+    },
+    {
+      "id": "wants-sundays",
+      "agent": "patient",
+      "fact": "You were hoping to work Sunday afternoons, which you heard are usually covered by one pharmacist.",
+      "triggers": [
+        "shifts available",
+        "shifts prefer",
+        "days work",
+        "work alone",
+        "only pharmacist",
+        "sole pharmacist",
+        "roster shifts",
+        "rostered alone",
+        "shifts hoping",
+        "hoping work",
+        "ever alone"
+      ],
+      "unlockHint": "“Which shifts were you hoping to work? Would you ever be on alone?”"
+    },
+    {
+      "id": "nothing-else",
+      "agent": "patient",
+      "fact": "The emergency contraceptive pill is the only service you object to. You're happy to do everything else.",
+      "triggers": [
+        "other services",
+        "anything else",
+        "other medicine",
+        "only one",
+        "other objections"
+      ],
+      "unlockHint": "“Is there anything else you wouldn't be comfortable providing?”"
+    }
+  ],
+  "answerKey": {
+    "plantedProblem": "A pharmacist's right to conscientious objection against patients' timely access to the emergency contraceptive pill, with possible moral injury to the pharmacist on one side and harm from delayed care on the other.",
+    "acceptableResolutions": [
+      "Thank them for disclosing in advance and respond respectfully, without discrimination.",
+      "Acknowledge the legally recognised right to conscientious objection and the duty to ensure timely patient access.",
+      "Roster them so they are never the only pharmacist on duty, so another pharmacist can always supply the ECP.",
+      "Agree a respectful, prompt hand-over process for patients, with no delay or judgement.",
+      "Consult the other staff that the plan is fair and workable, communicate it clearly and document it.",
+      "Review it later for gaps in access and fairness to staff; consider asking new hires to disclose objections during recruitment."
+    ],
+    "unacceptableActions": [
+      "Withdrawing the job offer because of their beliefs.",
+      "Requiring them to supply the ECP regardless.",
+      "Allowing unrestricted objection, including rostering them alone."
+    ],
+    "counsellingPoints": [
+      "How patient requests will be handed over",
+      "Never rostered as the only pharmacist",
+      "Respectful communication with patients",
+      "Advance notice and documentation"
+    ],
+    "codePrinciples": [
+      "Care 1a",
+      "Care 1b",
+      "Care 1f",
+      "Integrity 2f",
+      "Integrity 2g",
+      "Collaboration 1a",
+      "Collaboration 1c",
+      "Collaboration 1f",
+      "Collaboration 1g",
+      "Collaboration 2e"
+    ],
+    "legal": [
+      "Practitioners have a legally recognised right to conscientiously object, which must not obstruct timely access to care."
+    ],
+    "modelAnswer": "Identify the tension between the pharmacist's autonomy to act on their beliefs and the patient's right to timely care, with possible moral injury on one side and harm from delay on the other. Refusing to hire them would be discriminatory, forcing supply risks moral injury, and unrestricted objection risks gaps in care. Allow the objection within a structured system: never roster them as the sole pharmacist, agree a prompt and respectful hand-over to a colleague, consult the team, communicate and document the plan. Review it for access and staff fairness, and consider asking about objections during recruitment."
+  },
+  "review": {
+    "status": "draft",
+    "version": "0.1"
+  },
+  "sources": [
+    "PSA Code of Ethics case study (provided by the user, 5-step framework). Confirm licence before publishing.",
+    "PSA Code of Ethics (2026), section on moral injury and conscientious objection.",
+    "Persona details (Sam, Sunday shifts) added for the role play; needs pharmacist review."
+  ]
+}

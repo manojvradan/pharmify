@@ -4,7 +4,7 @@
   "category": "ethical",
   "problemType": "Personal relationship and professional objectivity",
   "setting": "Rural community pharmacy, central Queensland",
-  "questionSheet": "You are a prescribing pharmacist and the only pharmacist in a rural town. It is Saturday afternoon. Your partner, Xiaoyu, has symptoms of a urinary tract infection. The nearest other prescriber is a 3-hour drive away and is closed. Manage the situation as you would in practice.",
+  "questionSheet": "You are a prescribing pharmacist and the only pharmacist in a rural town in central Queensland. It is Saturday afternoon. Your wife, Xiaoyu, has developed symptoms of a urinary tract infection. The nearest other prescriber is a 3-hour drive away and is currently closed. Manage the situation as you would in practice.",
   "documents": {
     "notes": [
       "You are the only pharmacist in town.",
@@ -13,35 +13,63 @@
   },
   "agents": {
     "patient": {
-      "label": "Xiaoyu (your partner)",
+      "label": "Xiaoyu (your wife)",
       "name": "Xiaoyu",
-      "description": "The pharmacist's partner. Uncomfortable and keen for treatment today. Assumes the pharmacist will just sort it out because the pharmacist is her partner, and is a little surprised if it is treated formally.",
+      "description": "The pharmacist's wife, in her thirties. Uncomfortable and keen to be treated today. She assumes her husband will just sort it out, and is a little surprised, though cooperative, when he treats it like a proper consultation.",
+      "situation": "You have come into the pharmacy where your husband is the pharmacist, to ask him for help.",
       "openingLine": "I think it's another UTI. Can you just give me something?",
       "publicFacts": [
-        "She has symptoms of a urinary tract infection.",
+        "She has symptoms of a urinary tract infection: burning when she passes urine and needing to go often.",
         "She would rather not drive three hours to another prescriber."
       ]
     }
   },
-  "hiddenFacts": [],
+  "hiddenFacts": [
+    {
+      "id": "no-red-flags",
+      "agent": "patient",
+      "fact": "No fever, no back or side pain, no nausea, and no blood in your urine. It started yesterday.",
+      "triggers": ["any fever", "high temperature", "back pain", "side pain", "blood urine", "symptoms started", "long symptoms", "feel sick", "nausea vomiting"],
+      "unlockHint": "“Any fever, back or side pain, or blood in your urine? When did it start?”"
+    },
+    {
+      "id": "not-pregnant",
+      "agent": "patient",
+      "fact": "You are not pregnant and not breastfeeding. You have no allergies and take no regular medicines.",
+      "triggers": ["chance pregnant", "might pregnant", "pregnancy test", "currently breastfeeding", "any allergies", "allergic anything", "other medicine", "any medicine", "regular medicine"],
+      "unlockHint": "“Is there any chance you're pregnant? Any allergies or regular medicines?”"
+    },
+    {
+      "id": "uti-history",
+      "agent": "patient",
+      "fact": "Your last UTI was about two years ago and cleared up with a short course of antibiotics.",
+      "triggers": ["uti old", "last uti", "old infections", "had one old", "how often uti", "often infections"],
+      "unlockHint": "“Have you had a UTI before? When was the last one?”"
+    }
+  ],
   "answerKey": {
-    "plantedProblem": "Prescribing to a family member: the personal relationship may compromise, or appear to compromise, professional objectivity, set against timely access to treatment and antibiotic stewardship.",
+    "plantedProblem": "Prescribing for a family member. The personal relationship may compromise, or appear to compromise, professional objectivity, set against timely access to treatment and antibiotic stewardship.",
     "acceptableResolutions": [
-      "Recognise the conflict with Integrity principle 3b and weigh it against timely care.",
-      "Given no timely alternative prescriber, prescribing can be justified if the decision stays objective and evidence-based.",
-      "Carry out and record a proper clinical assessment, as for any patient.",
+      "Name the conflict with Integrity 3b and weigh it against the harm of delayed treatment.",
+      "Identify harms to her, to public trust in the profession, and to antibiotic stewardship.",
+      "With no timely alternative prescriber, prescribing can be justified if the assessment and decision stay objective and evidence-based.",
+      "Carry out a proper clinical assessment as for any patient, including red flags, pregnancy, allergies and history.",
       "Document the indication, assessment, rationale, alternatives considered, guideline alignment and steps taken to minimise bias.",
       "State that referral would be preferred if another prescriber were reasonably available."
     ],
     "unacceptableActions": [
-      "Prescribing informally without assessment or documentation.",
-      "Refusing all care without considering the harm of delay."
+      "Prescribing informally without an assessment or documentation.",
+      "Refusing all care without weighing the harm of delay.",
+      "Prescribing outside the guideline or protocol because she is family."
     ],
-    "counsellingPoints": ["Dose", "Duration", "Side effects", "What to watch for", "When to seek further care"],
+    "counsellingPoints": ["Dose", "Duration", "Side effects", "What to watch for", "When to seek further care", "Fluids and comfort measures"],
     "codePrinciples": ["Care 1a", "Care 1b", "Care 1c", "Care 1f", "Integrity 3b"],
-    "legal": ["Prescribing within the pharmacist prescribing scope and protocol that applies in Queensland."],
-    "modelAnswer": "Identify the dual relationship as the ethical problem, with harms to the patient, to public trust and to antibiotic stewardship. With no timely alternative, prescribing is justified when the assessment and decision are objective, evidence-based and documented, including the steps taken to reduce bias. If another prescriber were reasonably available, referral would be the better option."
+    "legal": ["Prescribe only within the Queensland pharmacist prescribing scope and protocol for uncomplicated UTI."],
+    "modelAnswer": "The dilemma is prescribing for a family member, where the relationship may undermine objectivity, set against timely treatment. Harms reach her, public trust and antibiotic stewardship. Referral keeps objectivity but would mean a 3-hour drive to a closed service. With no timely alternative, prescribing is justified when the assessment is complete and objective, the decision follows the protocol, and everything is documented: indication, assessment, rationale, alternatives and the steps taken to reduce bias. If another prescriber were reasonably available, referral would be the better option."
   },
-  "review": { "status": "draft", "version": "0.1" },
-  "sources": ["Provided worked ethical case (5-step framework). Confirm licence before publishing."]
+  "review": { "status": "draft", "version": "0.2" },
+  "sources": [
+    "PSA Code of Ethics case study (provided by the user, 5-step framework). Confirm licence before publishing.",
+    "Assessment details (no red flags, not pregnant, last UTI two years ago) added for the role play; needs pharmacist review."
+  ]
 }

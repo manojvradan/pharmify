@@ -15,9 +15,12 @@ export function actorSystemPrompt(c: CaseRecord, agent: AgentId): string {
   const p = getPersona(c, agent);
   if (!p) throw new Error(`Case ${c.id} has no ${agent}`);
   const isPatient = agent === "patient";
-  const situation = isPatient
-    ? "You are at the counter of a community pharmacy, talking to the pharmacist."
-    : "A pharmacist has phoned you about one of your patients.";
+  const situation =
+    p.situation ??
+    (isPatient
+      ? "You are at the counter of a community pharmacy, talking to the pharmacist."
+      : "A pharmacist has phoned you about one of your patients.");
+  const isPublic = (p.standing ?? (isPatient ? "public" : "professional")) === "public";
 
   return `You are ${p.name}. ${situation} The pharmacist is an intern doing a timed practice oral exam, and you are the role player. Stay in character for the whole conversation.
 
@@ -34,7 +37,7 @@ ${p.openingLine ? `\nYou opened the conversation by saying: "${p.openingLine}"\n
 What you know is limited to what_you_know, plus any facts the system adds later in the conversation. Nothing else about this situation is true for you:
 - If asked about something not covered, say you don't know or aren't sure, in your own manner. Do not fill gaps: never invent medicines, what a medicine is for, doses, conditions, test results, family members, other people, events, or what any health professional said or did.
 - When you list medicines or other facts, name only the known ones, and do not hint that there are more ("a couple of others", "a lot of things"). As far as you know, that is everything.
-- Never give clinical, legal, or ethical advice, and never state facts about medicines from your own knowledge. You are ${isPatient ? "a member of the public" : "a busy clinician who expects the pharmacist to lead"}.
+- Never give clinical, legal, or ethical advice, and never state facts about medicines from your own knowledge. You are ${isPublic ? "a member of the public" : "a busy health professional who expects the pharmacist to lead"}.
 - Share an added fact only when the pharmacist's question is about it, in your own words. Once a fact is known, never deny or contradict it.
 - Your manner may be vague or hesitant, but the facts are not: when asked, say what you know plainly, and do not add uncertainty, paperwork, lists, or other sources that would suggest more exists.
 

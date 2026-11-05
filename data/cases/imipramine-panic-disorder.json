@@ -1,0 +1,217 @@
+{
+  "id": "imipramine-panic-disorder",
+  "title": "Not working for her panic",
+  "category": "clinical",
+  "problemType": "Suboptimal therapy and a drug interaction",
+  "setting": "Community pharmacy",
+  "questionSheet": "Sarah Jones presents a legal and valid prescription for imipramine 10 mg tablets, one tablet at night, prescribed by Dr Burton, who can be contacted by phone. Manage the situation as you would in practice. You may contact the prescriber.",
+  "documents": {
+    "prescription": {
+      "item": "Imipramine 10 mg tablets",
+      "directions": "Take ONE tablet at night · Qty 50",
+      "footer": "Dr Burton (contactable by phone) · Sarah Jones, 40"
+    }
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient · Sarah",
+      "name": "Sarah",
+      "description": "A 40-year-old woman, softly spoken and a little flat. Her partner died a few months ago. Polite and cooperative, but she answers only what she is asked and doesn't volunteer information.",
+      "openingLine": "Hi, I'm just here to pick up my tablets again.",
+      "publicFacts": [
+        "She has been taking this medicine for about three months."
+      ]
+    },
+    "prescriber": {
+      "label": "Call Dr Burton",
+      "name": "Dr Burton",
+      "description": "Sarah's GP. Courteous and open to a pharmacist's input, but expects a clear, referenced recommendation. Will ask the pharmacist what they recommend and which reference to check next time. Thanks the pharmacist for calling at the end.",
+      "openingLine": "Dr Burton speaking.",
+      "publicFacts": [
+        "You prescribed imipramine 10 mg at night for Sarah Jones's panic disorder about three months ago.",
+        "You'd like the pharmacist's recommendation on the best medicine for her, and which reference to check next time.",
+        "If the pharmacist recommends a change, you want to discuss how to switch and the starting dose."
+      ]
+    }
+  },
+  "hiddenFacts": [
+    {
+      "id": "not-working",
+      "agent": "patient",
+      "fact": "You feel a little helpless because the tablet doesn't seem to be working for your anxiety and panic attacks. You're still having as many panic attacks as before you started.",
+      "triggers": [
+        "medicine working",
+        "working well",
+        "helping symptoms",
+        "feeling lately",
+        "panic attacks",
+        "symptoms better",
+        "any better",
+        "going medicine",
+        "finding medicine",
+        "medicine helping"
+      ],
+      "unlockHint": "“How have you been finding the medicine? Is it helping?”"
+    },
+    {
+      "id": "conditions",
+      "agent": "patient",
+      "fact": "You have panic disorder, diagnosed about four months ago after your partner died. You've had angina for five years, which is stable, with only one or two attacks a year. You've had asthma since childhood; it's been well controlled for over a year because you now use your preventer twice every day.",
+      "triggers": [
+        "medical conditions",
+        "health conditions",
+        "other conditions",
+        "health problems",
+        "medical history"
+      ],
+      "unlockHint": "“Do you have any other medical conditions?”"
+    },
+    {
+      "id": "prescription-medicines",
+      "agent": "patient",
+      "fact": "Your other prescription medicines: glyceryl trinitrate 400 microgram spray, 2 to 3 sprays when needed, repeated every 5 minutes up to 6 to 8 sprays; diltiazem CR 180 mg once daily; rosuvastatin 5 mg once daily; salbutamol inhaler 100 to 200 micrograms when needed; budesonide 400 micrograms twice daily.",
+      "triggers": [
+        "other medicine",
+        "any other",
+        "anything else",
+        "other tablet",
+        "prescription medicine",
+        "currently take",
+        "medicine list",
+        "regular medicine"
+      ],
+      "unlockHint": "“What other medicines are you taking?”"
+    },
+    {
+      "id": "otc-complementary",
+      "agent": "patient",
+      "fact": "You take paracetamol for occasional headaches and a Vitamin B Stress Relief Formula once a day.",
+      "triggers": [
+        "over counter",
+        "any vitamins",
+        "any supplements",
+        "herbal medicine",
+        "complementary medicine",
+        "buy yourself",
+        "vitamins supplements"
+      ],
+      "unlockHint": "“Do you take anything over the counter, or any vitamins or supplements?”"
+    },
+    {
+      "id": "allergies-pregnancy",
+      "agent": "patient",
+      "fact": "You have no allergies that you know of, and you're not pregnant or breastfeeding.",
+      "triggers": [
+        "any allergies",
+        "allergic anything",
+        "chance pregnant",
+        "might pregnant",
+        "pregnant breastfeeding",
+        "currently breastfeeding"
+      ],
+      "unlockHint": "“Any allergies? Any chance you're pregnant or breastfeeding?”"
+    },
+    {
+      "id": "why-imipramine",
+      "agent": "patient",
+      "fact": "Your doctor chose it because his other patients did well on it. You hadn't tried anything else for panic disorder before. He said once the attacks are controlled he'd move you onto non-medicine options.",
+      "triggers": [
+        "tried anything",
+        "tried other",
+        "other treatments",
+        "seen psychologist",
+        "psychological therapy",
+        "talking therapy",
+        "cognitive behavioural",
+        "doctor choose",
+        "doctor chose",
+        "why doctor"
+      ],
+      "unlockHint": "“Have you tried any other treatments, like CBT or seeing a psychologist?”"
+    },
+    {
+      "id": "consents",
+      "agent": "patient",
+      "fact": "If the pharmacist suggests switching to a different antidepressant, you agree and are happy for them to contact your doctor.",
+      "triggers": [
+        "contact doctor",
+        "call doctor",
+        "speak doctor",
+        "talk doctor",
+        "switch medicine",
+        "change medicine",
+        "different medicine",
+        "different antidepressant",
+        "call burton",
+        "call dr",
+        "switching medicine",
+        "changing medicine"
+      ],
+      "unlockHint": "“Would you be happy for me to call Dr Burton about switching your medicine?”"
+    },
+    {
+      "id": "interaction-response",
+      "agent": "prescriber",
+      "fact": "If the pharmacist gives the diltiazem interaction as the reason to change imipramine: you have checked your references, you're okay to continue imipramine as it is, and you'll monitor her response.",
+      "triggers": [
+        "diltiazem interaction",
+        "interaction imipramine",
+        "diltiazem imipramine",
+        "imipramine diltiazem"
+      ],
+      "unlockHint": "“Imipramine isn't first line and she isn't responding. I recommend an SSRI. Separately, diltiazem can raise imipramine levels.”"
+    },
+    {
+      "id": "aspirin-response",
+      "agent": "prescriber",
+      "fact": "If the pharmacist suggests adding aspirin because of her angina: you'll evaluate the need for aspirin at her next consultation and are happy to go ahead without it for now.",
+      "triggers": [
+        "add aspirin",
+        "start aspirin",
+        "aspirin prevention",
+        "low dose aspirin",
+        "aspirin angina"
+      ],
+      "unlockHint": "“Would you consider low-dose aspirin given her angina?”"
+    }
+  ],
+  "answerKey": {
+    "plantedProblem": "Imipramine (a TCA) is not first line for panic disorder unless the patient has responded to it before, and 10 mg is far below the effective dose (usually titrated, with up to 150 mg daily sometimes needed). She is not responding and has had no psychological therapy. She also uses her GTN spray incorrectly, and diltiazem can raise imipramine concentrations (risk of adverse effects, possibly first-degree heart block).",
+    "acceptableResolutions": [
+      "Introduce yourself and your role, outline the interaction, get consent and address privacy. On the phone, confirm the patient's full name and date of birth and give background.",
+      "Take a full history: response to treatment, conditions, all medicines including OTC and complementary, allergies, pregnancy.",
+      "Call Dr Burton and recommend switching to an SSRI (or SNRI) as first line, explaining that TCAs are first line only after a previous response and that the current dose is subtherapeutic. Name a reference (AMH).",
+      "Identify the diltiazem and imipramine interaction, but don't give it as the main reason for the switch.",
+      "Recommend a changeover: withdraw imipramine gradually (usually reduce by 25% a day), then wait 2 to 4 days before starting the SSRI.",
+      "Recommend an appropriate starting dose: sertraline 25 mg daily, increasing to 50 mg after a week; escitalopram 10 mg daily (max 20 mg); or citalopram 20 mg daily (max 40 mg).",
+      "Recommend CBT or other psychological interventions.",
+      "Counsel her on the change: why, how to taper, when to start the new medicine, morning dosing, 2 to 4 weeks to full effect, possible early worsening, not stopping suddenly, and correct GTN spray use."
+    ],
+    "unacceptableActions": [
+      "Failing to identify both that a TCA is not first line and the diltiazem interaction (overall fail).",
+      "Dispensing without raising the ineffective therapy.",
+      "Switching abruptly without a taper and washout."
+    ],
+    "counsellingPoints": [
+      "Why the medicine is changing",
+      "How to taper imipramine",
+      "Washout before starting the SSRI",
+      "SSRI dose and morning timing",
+      "Takes 2 to 4 weeks to work",
+      "Don't stop suddenly",
+      "Correct GTN spray use: sit down, 1 or 2 sprays, repeat after 5 minutes, call an ambulance if severe or lasting 10 minutes",
+      "Psychological support such as CBT"
+    ],
+    "codePrinciples": [],
+    "legal": [],
+    "modelAnswer": "Take a full history: she has had no response after three months of imipramine 10 mg for panic disorder, has never tried psychological therapy, takes diltiazem, and misuses her GTN spray. Call Dr Burton, confirm her identity, and recommend switching to an SSRI. A TCA is first line only after a prior response, and 10 mg is subtherapeutic. Cite AMH. Note the diltiazem interaction, but don't make it the main reason. Recommend tapering imipramine (about 25% a day), a 2 to 4 day washout, then for example sertraline 25 mg in the morning, increasing to 50 mg after a week, plus CBT. Counsel her on the plan, the delay before it works, not stopping suddenly, and correct GTN use with ambulance advice."
+  },
+  "review": {
+    "status": "draft",
+    "version": "0.1"
+  },
+  "sources": [
+    "Complex Clinical Case Practice 1, PHRM4032 2026 (provided by the user). Confirm licence before publishing.",
+    "Australian Medicines Handbook 2026: antidepressant changeover and dosing."
+  ]
+}

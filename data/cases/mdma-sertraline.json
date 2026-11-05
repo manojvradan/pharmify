@@ -1,0 +1,79 @@
+{
+  "id": "mdma-sertraline",
+  "title": "A private question",
+  "category": "ethical",
+  "problemType": "Harm reduction and recreational drug use",
+  "setting": "Community pharmacy consultation room",
+  "questionSheet": "A 28-year-old man asks if he can ask you a few questions somewhere private. In the consultation room, he asks whether it is safe to take MDMA with sertraline. Manage the situation as you would in practice.",
+  "documents": {
+    "notes": ["The conversation is taking place in the consultation room."]
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient · Josh",
+      "name": "Josh",
+      "description": "A 28-year-old man, a bit embarrassed but direct. He expects to be judged, so he'll go quiet or leave if the pharmacist moralises, threatens to involve anyone, or refuses to talk about it. He opens up when spoken to plainly and without judgement.",
+      "situation": "You are in the consultation room of a community pharmacy, talking privately to the pharmacist.",
+      "openingLine": "Thanks for this. I just wanted to ask, is it safe to take MDMA if I'm on sertraline?",
+      "publicFacts": [
+        "He takes sertraline every day.",
+        "He wants to know whether MDMA is safe with sertraline."
+      ]
+    }
+  },
+  "hiddenFacts": [
+    {
+      "id": "plans",
+      "agent": "patient",
+      "fact": "You're going to a music festival this Saturday and plan to take MDMA there.",
+      "triggers": ["planning take", "plan take", "going take", "event going", "going party", "going festival", "this weekend take"],
+      "unlockHint": "“Are you planning to take it soon? Is it for an event?”"
+    },
+    {
+      "id": "sertraline-details",
+      "agent": "patient",
+      "fact": "You take sertraline 100 mg every morning for depression, and have for about a year. It's working well.",
+      "triggers": ["sertraline dose", "much sertraline", "dose take", "long sertraline", "why sertraline", "sertraline prescribed", "mental health"],
+      "unlockHint": "“What dose of sertraline are you on, and what's it for?”"
+    },
+    {
+      "id": "other-substances",
+      "agent": "patient",
+      "fact": "You'll probably drink alcohol too. You took MDMA once before, years ago, before you started sertraline.",
+      "triggers": ["other drugs", "other substances", "anything else", "drink alcohol", "used old", "taken old", "first time", "other medicine"],
+      "unlockHint": "“Will you be taking anything else, like alcohol or other drugs? Have you used MDMA before?”"
+    }
+  ],
+  "answerKey": {
+    "plantedProblem": "MDMA with an SSRI has an additive serotonergic effect and risks serotonin toxicity. The tension is between appearing to endorse illicit drug use and ensuring his safety whatever he chooses.",
+    "acceptableResolutions": [
+      "Provide privacy and engage without judgement; recognise that harm-reduction advice is within scope and is not the same as encouraging use.",
+      "Explain clearly and accurately that combining MDMA with sertraline risks serotonin toxicity, and that he should not stop sertraline suddenly.",
+      "Make sure he can recognise the signs of serotonin toxicity and knows to seek urgent medical help (call 000) if they appear.",
+      "Respect his autonomy while supporting a safer, informed choice; offer safer-use and harm-reduction information.",
+      "Refer him to alcohol and other drug support services, and to his GP if he wants to discuss his treatment."
+    ],
+    "unacceptableActions": [
+      "Refusing to discuss it, or lecturing him.",
+      "Threatening to report him or calling the police.",
+      "Telling him it's safe, or advising him to skip or stop his sertraline to make room for MDMA."
+    ],
+    "counsellingPoints": [
+      "Serotonin toxicity risk",
+      "Warning signs: agitation, confusion, sweating, tremor, muscle twitching, fever, fast heartbeat",
+      "When to call 000",
+      "Don't stop sertraline suddenly",
+      "Alcohol and mixing substances",
+      "Where to get AOD support"
+    ],
+    "codePrinciples": ["Care 1c", "Care 1f", "Care 2a", "Care 2b", "Care 2d", "Care 2f", "Care 2j", "Integrity 1c", "Competency 1e", "Collaboration 1g", "Collaboration 2c"],
+    "legal": ["There is no legal requirement to report him to police, and no ethical justification for doing so."],
+    "modelAnswer": "Recognise the serotonergic interaction between MDMA and an SSRI and the risk of serotonin toxicity. The dilemma is perceived endorsement of illicit drug use versus his safety. Harm-reduction advice is within scope and is not encouragement, so give clear, evidence-based, non-judgemental information. Make sure he can recognise the signs of serotonin toxicity and knows when to seek urgent help, advise against stopping sertraline suddenly, and refer him to AOD support services. Afterwards, make sure you know your local AOD referral pathways."
+  },
+  "review": { "status": "draft", "version": "0.1" },
+  "sources": [
+    "PSA Code of Ethics case study (provided by the user, 5-step framework). Confirm licence before publishing.",
+    "Australian Medicines Handbook: adverse effects of antidepressants (serotonin toxicity).",
+    "Patient details (dose, festival, alcohol) added for the role play; needs pharmacist review."
+  ]
+}

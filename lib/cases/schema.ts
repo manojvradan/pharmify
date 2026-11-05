@@ -15,6 +15,14 @@ const Persona = z.object({
   name: z.string(),
   /** Age, manner, health literacy, how hard they push back. */
   description: z.string(),
+  /**
+   * Where they are and how they are talking to the pharmacist, e.g. "You have phoned the
+   * pharmacy about your mother." Defaults to the counter (patient) or a phone call about
+   * one of your patients (prescriber).
+   */
+  situation: z.string().optional(),
+  /** Whether they speak as a member of the public or as a health professional. Defaults by slot. */
+  standing: z.enum(["public", "professional"]).optional(),
   /** Said word for word, without the model, when the candidate first opens this agent. */
   openingLine: z.string().optional(),
   /** What the persona may say without being asked. */

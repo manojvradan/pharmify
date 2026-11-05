@@ -1,0 +1,310 @@
+{
+  "source": "PSA Code of Ethics for Pharmacists (endorsed May 2026). Answers are paraphrased, not quoted; check with PSA before publishing and have a pharmacist review.",
+  "review": { "status": "draft", "version": "0.1" },
+  "cards": [
+    {
+      "id": "care-1-first",
+      "domain": "Care",
+      "section": "Care principle 1",
+      "front": "Your duties pull in different directions. Whose interests come first?",
+      "back": "The patient's. Your duty of care to the patient comes first, you prioritise their health and wellbeing, and you act to prevent harm to them.",
+      "source": "Care 1a, 1b, 1f"
+    },
+    {
+      "id": "care-1-evidence",
+      "domain": "Care",
+      "section": "Care principle 1",
+      "front": "A prescription is legal, but you doubt there's good evidence for this use. What must be true before you supply?",
+      "back": "There must be credible evidence the medicine works, and the benefit must outweigh the risk. Clarify with the prescriber before supplying, and keep the patient's safety first.",
+      "source": "Care 1c, 1d"
+    },
+    {
+      "id": "care-1-environment",
+      "domain": "Care",
+      "section": "Care principle 1",
+      "front": "What does the Code expect of the environment you provide services in?",
+      "back": "It should be set up so services can be delivered safely and effectively, for example with enough privacy, staff and systems.",
+      "source": "Care 1e"
+    },
+    {
+      "id": "care-2-bush-medicine",
+      "domain": "Care",
+      "section": "Care principle 2",
+      "front": "A patient tells you they use bush medicine alongside their prescribed medicine. What is your obligation?",
+      "back": "Acknowledge their right to use traditional or cultural medicines and help them feel safe and respected talking about it. Give balanced information so they can make their own informed decision.",
+      "source": "Care 2b, 2e"
+    },
+    {
+      "id": "care-2-refusal",
+      "domain": "Care",
+      "section": "Care principle 2",
+      "front": "A patient refuses the treatment you recommend. What do you do?",
+      "back": "Respect their choice. Patients may refuse care or advice, or withdraw consent, at any time. Make sure they're properly informed, document it, and keep the door open.",
+      "source": "Care 2a, 2i"
+    },
+    {
+      "id": "care-2-cultural-safety",
+      "domain": "Care",
+      "section": "Care principle 2",
+      "front": "What is culturally safe care, and who decides whether it was achieved?",
+      "back": "Care that Aboriginal and Torres Strait Islander people experience as safe, respectful and free of racism. It is judged by the people receiving the care, not by the practitioner.",
+      "source": "Care 2l; Considerations: culturally safe care"
+    },
+    {
+      "id": "care-2-health-literacy",
+      "domain": "Care",
+      "section": "Care principle 2",
+      "front": "How should you adapt information for a patient with low health literacy?",
+      "back": "Give information in language, detail and a format that suit them, and make the care itself responsive to their literacy, abilities and needs.",
+      "source": "Care 2f, 2g"
+    },
+    {
+      "id": "care-2-privacy",
+      "domain": "Care",
+      "section": "Care principle 2",
+      "front": "A patient starts asking about a sensitive medicine at a busy counter. What should you think about?",
+      "back": "Their privacy and confidentiality. Offer a private space so the conversation has physical, visual and auditory privacy.",
+      "source": "Care 2c; Integrity 3c"
+    },
+    {
+      "id": "care-2-consent",
+      "domain": "Care",
+      "section": "Care principle 2",
+      "front": "What makes consent 'informed'?",
+      "back": "The patient has been told their options, risks, benefits and costs, has the capacity to understand, and agrees voluntarily. Seek it in line with legislation and best practice.",
+      "source": "Care 2h; Glossary: informed consent"
+    },
+    {
+      "id": "care-3-shortage",
+      "domain": "Care",
+      "section": "Care principle 3",
+      "front": "A medicine is in short supply. Which obligations shape how you distribute it?",
+      "back": "Facilitate timely access while keeping use fair, equitable and sustainable, and work with other health professionals during the shortage so resources are used well. Loyalty to regular customers isn't an ethical basis.",
+      "source": "Care 3a; Collaboration 2g"
+    },
+    {
+      "id": "care-3-pharmacovigilance",
+      "domain": "Care",
+      "section": "Care principle 3",
+      "front": "How does the Code expect you to contribute to medicine safety beyond the patient in front of you?",
+      "back": "Take part in pharmacovigilance and risk management, such as reporting adverse events, and support quality use of medicines across the population.",
+      "source": "Care 3b, 3e"
+    },
+    {
+      "id": "care-3-environment",
+      "domain": "Care",
+      "section": "Care principle 3",
+      "front": "What does the Code say about the environmental impact of your practice?",
+      "back": "Identify how your practice affects the environment and take proactive steps to reduce harm and support sustainability in health care.",
+      "source": "Care 3c"
+    },
+    {
+      "id": "care-4-pressure",
+      "domain": "Care",
+      "section": "Care principle 4",
+      "front": "A manager asks a junior colleague to do something beyond their scope to save time. What does the Code say?",
+      "back": "Don't pressure staff to do anything unlawful, unethical or beyond their scope or capacity, and watch for power imbalances that stop colleagues using their professional judgement.",
+      "source": "Care 4d, 4e"
+    },
+    {
+      "id": "care-4-impairment",
+      "domain": "Care",
+      "section": "Care principle 4",
+      "front": "A colleague seems impaired at work. What is your obligation?",
+      "back": "Recognise signs of impairment in yourself or colleagues that need intervention and support, and act on them. Mandatory notification may also apply.",
+      "source": "Care 4f; Competency 2a"
+    },
+    {
+      "id": "integrity-1-gifts",
+      "domain": "Integrity",
+      "section": "Integrity principle 1",
+      "front": "A supplier offers you tickets to an event. When would accepting conflict with the Code?",
+      "back": "When it could affect, or be seen to affect, your professional independence or judgement. Don't offer, ask for or accept incentives, gifts, hospitality or referrals like that.",
+      "source": "Integrity 1h"
+    },
+    {
+      "id": "integrity-1-disclosure",
+      "domain": "Integrity",
+      "section": "Integrity principle 1",
+      "front": "You find a dispensing error and the owner says to fix it quietly. What does the Code require?",
+      "back": "Be truthful and transparent: disclose openly to the patient, report it through the proper channels, and don't mislead anyone. You're accountable for the outcome.",
+      "source": "Integrity 1c, 2b, 2e"
+    },
+    {
+      "id": "integrity-1-conflict",
+      "domain": "Integrity",
+      "section": "Integrity principle 1",
+      "front": "How should you handle a conflict of interest, such as recommending a product your pharmacy profits from?",
+      "back": "Declare it clearly and promptly, then actively manage it. Disclosure alone is often not enough. Never make an unjustifiable profit from what you recommend or supply.",
+      "source": "Integrity 1d, 1e; Considerations: conflicts of interest"
+    },
+    {
+      "id": "integrity-1-complaints",
+      "domain": "Integrity",
+      "section": "Integrity principle 1",
+      "front": "A patient complains about your service. How should you respond?",
+      "back": "Honestly, openly, courteously and promptly, without being disrespectful in any setting, including online.",
+      "source": "Integrity 1a, 1g"
+    },
+    {
+      "id": "integrity-2-objection",
+      "domain": "Integrity",
+      "section": "Integrity principle 2",
+      "front": "You have a conscientious objection to supplying a medicine. What must you do?",
+      "back": "Tell your employer and colleagues in advance, and tell patients promptly and respectfully where appropriate. Don't let it affect colleagues' duties, and take reasonable steps so the patient gets timely care elsewhere.",
+      "source": "Integrity 2f, 2g; Collaboration 2e"
+    },
+    {
+      "id": "integrity-2-challenge",
+      "domain": "Integrity",
+      "section": "Integrity principle 2",
+      "front": "Another practitioner's decision puts your patient at risk of harm. What should you do?",
+      "back": "Act promptly and respectfully: question or challenge it, intervene, or decline to facilitate the treatment.",
+      "source": "Integrity 2d"
+    },
+    {
+      "id": "integrity-2-ai",
+      "domain": "Integrity",
+      "section": "Integrity principle 2",
+      "front": "An AI tool decides which patients get reviewed. Who is accountable if it misses a high-risk patient?",
+      "back": "You are. Accountability can't be handed to a tool. Use it transparently, apply your own judgement, and raise system problems through proper channels.",
+      "source": "Integrity 2a, 2b, 2e; Competency 2e"
+    },
+    {
+      "id": "integrity-2-self",
+      "domain": "Integrity",
+      "section": "Integrity principle 2",
+      "front": "Can you prescribe a Schedule 4 medicine for yourself, or dispense your own prescription?",
+      "back": "You must never prescribe an S4 or S8 medicine for your own use. Only dispense your own prescription if no other option is reasonably available.",
+      "source": "Integrity 2h, 2j"
+    },
+    {
+      "id": "integrity-3-family",
+      "domain": "Integrity",
+      "section": "Integrity principle 3",
+      "front": "Your partner asks you to prescribe for them. What does the Code say?",
+      "back": "Avoid providing care where a personal relationship could undermine, or seem to undermine, your objectivity. If there's genuinely no reasonable alternative, stay objective, follow guidelines and document your reasoning.",
+      "source": "Integrity 3b"
+    },
+    {
+      "id": "integrity-3-boundaries",
+      "domain": "Integrity",
+      "section": "Integrity principle 3",
+      "front": "Name some situations where professional boundaries can be crossed.",
+      "back": "Gifts and favours, social contact, texting or social media, emotional involvement, physical contact, privacy, treating family or friends, romantic relationships, and boundaries between colleagues.",
+      "source": "Integrity 3a; Glossary: professional boundaries"
+    },
+    {
+      "id": "competency-1-scope",
+      "domain": "Competency",
+      "section": "Competency principle 1",
+      "front": "A patient asks about something outside your expertise. What are your obligations?",
+      "back": "Practise only within your scope and keep up your competence for it. Recognise your limits, and seek guidance or refer in good time.",
+      "source": "Competency 1e, 1f; Collaboration 2c"
+    },
+    {
+      "id": "competency-1-students",
+      "domain": "Competency",
+      "section": "Competency principle 1",
+      "front": "What does the Code expect of you towards students and early-career pharmacists?",
+      "back": "Give them meaningful learning experiences and feedback that build their clinical and professional skills.",
+      "source": "Competency 1d"
+    },
+    {
+      "id": "competency-1-cultural",
+      "domain": "Competency",
+      "section": "Competency principle 1",
+      "front": "What does the Code say about your own cultural competence?",
+      "back": "Keep developing it, so your care and collaboration are respectful, inclusive and responsive to the cultural needs of patients and colleagues.",
+      "source": "Competency 1g"
+    },
+    {
+      "id": "competency-2-records",
+      "domain": "Competency",
+      "section": "Competency principle 2",
+      "front": "What records does the Code expect you to keep?",
+      "back": "Accurate records of your professional assessments and decisions.",
+      "source": "Competency 2c"
+    },
+    {
+      "id": "competency-2-systems",
+      "domain": "Competency",
+      "section": "Competency principle 2",
+      "front": "You notice a gap in a workplace system that puts patients at risk. What should you do?",
+      "back": "Recognise the limitation and either address it or push for improvements that support patient care, public safety and accountability.",
+      "source": "Competency 2d"
+    },
+    {
+      "id": "competency-2-resources",
+      "domain": "Competency",
+      "section": "Competency principle 2",
+      "front": "What should inform your professional decisions?",
+      "back": "Credible, up-to-date, evidence-based resources, tools and guidelines, used within your legal obligations, including privacy and mandatory notification.",
+      "source": "Competency 2a, 2b"
+    },
+    {
+      "id": "collaboration-1-disagree",
+      "domain": "Collaboration",
+      "section": "Collaboration principle 1",
+      "front": "A colleague disagrees with your clinical decision. How should you resolve it?",
+      "back": "Talk it through openly and considerately, keeping patient safety as the main focus.",
+      "source": "Collaboration 1c"
+    },
+    {
+      "id": "collaboration-1-just-culture",
+      "domain": "Collaboration",
+      "section": "Collaboration principle 1",
+      "front": "A technician makes a dispensing error. How should you respond as the pharmacist?",
+      "back": "Support a workplace where staff can question decisions and report incidents without fear of reprisal. Focus on fixing the system, not blaming the person.",
+      "source": "Collaboration 1f"
+    },
+    {
+      "id": "collaboration-1-discrimination",
+      "domain": "Collaboration",
+      "section": "Collaboration principle 1",
+      "front": "Can you refuse to hire a pharmacist because of their personal beliefs?",
+      "back": "No. You must not discriminate against others, staff or patients. Manage issues like conscientious objection with a fair system instead.",
+      "source": "Collaboration 1a, 1g"
+    },
+    {
+      "id": "collaboration-2-handover",
+      "domain": "Collaboration",
+      "section": "Collaboration principle 2",
+      "front": "A patient is moving into an aged care facility. What does continuity of care require of you?",
+      "back": "Give a timely, adequate handover of information to the health professionals taking over their care, and refer in good time where needed.",
+      "source": "Collaboration 2a, 2d"
+    },
+    {
+      "id": "collaboration-2-first-nations",
+      "domain": "Collaboration",
+      "section": "Collaboration principle 2",
+      "front": "How should you work with Aboriginal and Torres Strait Islander communities?",
+      "back": "In partnership with the people, communities and organisations themselves, supporting collaborative approaches to care.",
+      "source": "Collaboration 2h"
+    },
+    {
+      "id": "using-domains",
+      "domain": "Using the Code",
+      "section": "Ethical values and structure",
+      "front": "Name the four domains of the Code and the ethical values behind them.",
+      "back": "Care, Integrity, Competency and Collaboration. They rest on beneficence (act in the patient's interest), non-maleficence (prevent harm), autonomy (respect self-determination) and justice (allocate resources fairly).",
+      "source": "Ethical values and structure of the Code"
+    },
+    {
+      "id": "using-five-steps",
+      "domain": "Using the Code",
+      "section": "Working through a dilemma",
+      "front": "What are the five steps for working through an ethical dilemma?",
+      "back": "1. Gather information and understand the problem. 2. Identify the relevant law, standards and Code principles. 3. Identify, weigh and choose an option. 4. Develop and carry out an action plan. 5. Evaluate and prevent future issues.",
+      "source": "Ethical decision-making framework used in the PSA case studies"
+    },
+    {
+      "id": "using-law",
+      "domain": "Using the Code",
+      "section": "Purpose of the Code",
+      "front": "Does following the Code ever justify breaking the law?",
+      "back": "No. Legal obligations always apply, and nothing in the Code permits a breach of the law. The Board may also refer to the Code when considering complaints.",
+      "source": "Purpose of the Code"
+    }
+  ]
+}

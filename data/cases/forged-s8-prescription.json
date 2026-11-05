@@ -1,0 +1,137 @@
+{
+  "id": "forged-s8-prescription",
+  "title": "A different pen",
+  "category": "legal",
+  "problemType": "Suspected forged Schedule 8 prescription",
+  "setting": "Community pharmacy, NSW (you are the pharmacist in charge)",
+  "questionSheet": "An unknown patient, Mr Jordan Kells, hands you a handwritten prescription from the local GP, Dr Burton, for paracetamol/codeine 500 mg/30 mg and oxycodone 5 mg. He asks for it to be filled quickly because he has somewhere to be. The Schedule 8 item appears to be written in a different pen. Manage the situation as you would in practice, and explain the legal issues and how this could be prevented.",
+  "documents": {
+    "prescription": {
+      "item": "Paracetamol 500 mg / codeine 30 mg tablets · Oxycodone 5 mg tablets",
+      "directions": "Handwritten · both items on one prescription · oxycodone line in a different pen",
+      "footer": "Dr Burton, local general practice · Mr Jordan Kells"
+    },
+    "notes": [
+      "Phone number written on the prescription: a mobile number.",
+      "The practice's published landline is in the online directory."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient · Mr Kells",
+      "name": "Mr Kells",
+      "description": "A man in his thirties, in a hurry and impatient. Short, vague answers. Pushes to have it filled and gets irritated by questions, but is never violent. If told calmly that it can't be filled today, he grumbles, asks for the script back, and leaves.",
+      "openingLine": "Can you fill this quickly? I've got somewhere to be.",
+      "publicFacts": [
+        "He wants the prescription filled now.",
+        "He says Dr Burton wrote it."
+      ]
+    },
+    "prescriber": {
+      "label": "Call Dr Burton's practice",
+      "name": "Dr Burton",
+      "description": "The local GP, reached through the practice's published number. Helpful and concerned once they understand why the pharmacist is calling.",
+      "openingLine": "Dr Burton speaking, how can I help?",
+      "publicFacts": [
+        "You are a GP at the local practice."
+      ]
+    }
+  },
+  "hiddenFacts": [
+    {
+      "id": "vague-reason",
+      "agent": "patient",
+      "fact": "You say it's for your back, but you can't say when you hurt it or when you saw the doctor.",
+      "triggers": [
+        "why need",
+        "reason prescription",
+        "medical condition",
+        "where pain",
+        "see doctor",
+        "saw doctor",
+        "saw burton",
+        "saw dr",
+        "see dr"
+      ],
+      "unlockHint": "“Can I ask what it's for, and when you saw Dr Burton?”"
+    },
+    {
+      "id": "no-id",
+      "agent": "patient",
+      "fact": "You don't have any ID or a Medicare card on you.",
+      "triggers": [
+        "photo id",
+        "show id",
+        "any identification",
+        "driver licence",
+        "medicare card"
+      ],
+      "unlockHint": "“Do you have some photo ID?”"
+    },
+    {
+      "id": "not-regular",
+      "agent": "patient",
+      "fact": "You usually go to a different pharmacy, but they were busy today.",
+      "triggers": [
+        "usual pharmacy",
+        "regular pharmacy",
+        "other pharmacy",
+        "filled old",
+        "been here old"
+      ],
+      "unlockHint": "“Have you had prescriptions filled here before?”"
+    },
+    {
+      "id": "gp-did-not-prescribe",
+      "agent": "prescriber",
+      "fact": "You saw Mr Kells last week for back pain and prescribed paracetamol/codeine only. You did not prescribe oxycodone.",
+      "triggers": [
+        "prescribe oxycodone",
+        "wrote oxycodone",
+        "oxycodone prescribed",
+        "oxycodone script",
+        "confirm prescription",
+        "verify prescription",
+        "write prescription",
+        "jordan kells"
+      ],
+      "unlockHint": "“I'm calling to verify a prescription for Jordan Kells. Did you prescribe oxycodone 5 mg?”"
+    }
+  ],
+  "answerKey": {
+    "plantedProblem": "A suspected forged Schedule 8 prescription. Red flags: unknown patient, urgency, and the S8 item in a different pen. A Schedule 4 and a Schedule 8 medicine cannot be written on the same prescription, so it is invalid either way.",
+    "acceptableResolutions": [
+      "Recognise the forgery red flags: unknown patient, urgency, different pen.",
+      "State that S4 and S8 medicines cannot be on the same prescription under the Medicine, Poisons and Therapeutic Goods Regulation, so the prescription is invalid.",
+      "Oxycodone is S8 and cannot be supplied without a valid prescription. Check SafeScript NSW. Supplying on a forged prescription, or obtaining drugs by false representation, is an offence.",
+      "Verify with the prescriber using an independently sourced number (the practice's published number or a directory), not the number on the prescription.",
+      "Decline to supply the oxycodone.",
+      "Put staff safety first: a calm, non-accusatory explanation (for example 'I'm unable to fill this today'), no confrontation, no attempt to detain him; keep the prescription only if it is safe to do so.",
+      "Report to NSW Police and the NSW Health Pharmaceutical Regulatory Unit, notify Dr Burton's practice, and document the events, the prescription details and a description of the person.",
+      "Prevention (any two): an S8 verification procedure using independent contact details, routine SafeScript checks, staff training on fraud red flags, encouraging electronic prescriptions, a duress or escalation protocol, incident review at staff meetings."
+    ],
+    "unacceptableActions": [
+      "Supplying the oxycodone (immediate fail).",
+      "Calling the number written on the prescription to verify it.",
+      "Accusing or confronting him, or trying to detain him."
+    ],
+    "counsellingPoints": [],
+    "codePrinciples": [],
+    "legal": [
+      "NSW Medicine, Poisons and Therapeutic Goods Regulation: S4 and S8 medicines cannot be written on the same prescription.",
+      "S8 supply only on a valid prescription; SafeScript NSW may be checked (s 177(1)).",
+      "Knowingly supplying on a forged prescription, or obtaining drugs by false representation, is an offence.",
+      "Report to NSW Police and the NSW Health Pharmaceutical Regulatory Unit."
+    ],
+    "modelAnswer": "Recognise the red flags: an unknown patient in a hurry, and an S8 item in a different pen. The prescription is invalid anyway, because S4 and S8 medicines can't share a prescription under the Medicine, Poisons and Therapeutic Goods Regulation. Check SafeScript and verify with Dr Burton using the practice's published number, not the one on the script. Decline supply calmly without accusing him ('I'm unable to fill this today'), and don't confront or detain him; keep the script only if it's safe. Report to NSW Police and the Pharmaceutical Regulatory Unit, notify the practice, and document everything including a description. Prevent recurrence with an S8 verification SOP, routine SafeScript checks, staff training, e-prescriptions and a duress protocol."
+  },
+  "review": {
+    "status": "draft",
+    "version": "0.1"
+  },
+  "sources": [
+    "Practice OSCE, Legal Case 1: Suspected forged S8 prescription (provided by the user). Confirm licence before publishing.",
+    "Verify legislation names and section numbers against current NSW law before publishing.",
+    "Role-play details (back pain, no ID, GP confirms only codeine) added; needs pharmacist review."
+  ]
+}

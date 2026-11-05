@@ -1,8 +1,8 @@
 import { defineConfig } from "vitest/config";
+import { loadEnvLocal } from "./test/env";
 import base from "./vitest.config";
 
-/** Live evals: hit a running dev server and cost API calls, so they never run with `npm test`. */
 export default defineConfig({
   ...base,
-  test: { ...base.test, include: ["evals/**/*.eval.ts"], testTimeout: 60_000 },
+  test: { ...base.test, include: ["evals/**/*.eval.ts"], testTimeout: 60_000, env: loadEnvLocal() },
 });
