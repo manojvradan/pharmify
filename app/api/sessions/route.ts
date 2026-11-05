@@ -1,7 +1,7 @@
 import { auth } from "@clerk/nextjs/server";
 import { z } from "zod";
 import { getCase } from "@/lib/cases/bank";
-import { PART_SECONDS } from "@/lib/session/clock";
+import { PART_SECONDS_BY_FORMAT, caseFormat } from "@/lib/cases/format";
 import { createSession } from "@/lib/session/store";
 
 const Body = z.object({ caseId: z.string() });
@@ -18,7 +18,7 @@ export async function POST(req: Request) {
 
   const session = await createSession(userId, c);
   return Response.json(
-    { sessionId: session.id, partSeconds: PART_SECONDS },
+    { sessionId: session.id, partSeconds: PART_SECONDS_BY_FORMAT[caseFormat(c.category)] },
     { status: 201, headers: { "Cache-Control": "no-store" } },
   );
 }

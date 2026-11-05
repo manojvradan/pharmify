@@ -137,7 +137,7 @@ export default function HomePage() {
         <div className="flex flex-col gap-0.5">
           <h1 className="m-0 text-[clamp(26px,2.6vw,32px)] font-bold tracking-[-0.015em]">Ready for an interview?</h1>
           <p className="m-0 text-muted">
-            Every case is a 20-minute voice interview. You won&apos;t know the problem until you&apos;re in the room.
+            Clinical cases are a 20-minute role play. Ethical and legal cases: read the case, then talk for 5 minutes about what you&apos;d do.
           </p>
         </div>
         <span className="inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2.5 text-sm font-bold text-white">
@@ -176,7 +176,7 @@ export default function HomePage() {
                 <circle cx="8" cy="8.5" r="5.5" stroke="#16112A" strokeWidth="1.6" />
                 <path d="M8 6v2.7l1.8 1.1" stroke="#16112A" strokeWidth="1.6" strokeLinecap="round" />
               </svg>
-              20 min
+              5–20 min
             </Chip>
             <Chip>
               <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">

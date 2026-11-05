@@ -2,6 +2,7 @@ import { auth } from "@clerk/nextjs/server";
 import { z } from "zod";
 import { anthropicErrorResponse } from "@/lib/anthropic";
 import { getCase, getPersona } from "@/lib/cases/bank";
+import { caseFormat } from "@/lib/cases/format";
 import { AgentId, type Turn } from "@/lib/cases/schema";
 import { startActorReply } from "@/lib/session/actorStream";
 import { canTakeTurn, elapsedSeconds } from "@/lib/session/clock";
@@ -37,6 +38,8 @@ export async function POST(req: Request) {
   const c = getCase(session.caseId);
   const persona = c && getPersona(c, agent);
   if (!c || !persona) return Response.json({ error: "Unknown case or agent" }, { status: 404 });
+  // Ethical and legal cases are a spoken answer with no one to reply (see /api/session/answer).
+  if (caseFormat(c.category) !== "roleplay") return Response.json({ error: "This case has no role play" }, { status: 400 });
 
   // The scripted opening line is shown in the browser when the agent is first opened;
   // record it with the first candidate turn so the transcript is complete.
