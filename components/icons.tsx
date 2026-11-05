@@ -1,16 +1,65 @@
-import type { SVGProps } from "react";
+import { useId, type SVGProps } from "react";
 
 type IconProps = SVGProps<SVGSVGElement> & { size?: number };
 
-/** The pharmify capsule mark. */
-export function LogoMark({ size = 28, ...props }: IconProps) {
+const LOGO_TONES = {
+  /** Maroon line work, for white and light-pink backgrounds. */
+  light: { line: "#6E1F35", spark: "#EC6F9E", fill: "#EC6F9E" },
+  /** White line work, for the maroon tile and other dark backgrounds. */
+  dark: { line: "#FFFFFF", spark: "#FF8CC6", fill: "#FF8CC6" },
+} as const;
+
+/**
+ * The Pharmify mark: a smiling face with ears, sparkles and a capsule.
+ * `pill` is the capsule's empty half and should match the background behind the mark.
+ */
+export function LogoMark({
+  size = 38,
+  tone = "light",
+  pill = tone === "light" ? "#FFFFFF" : "#6E1F35",
+  ...props
+}: IconProps & { tone?: keyof typeof LOGO_TONES; pill?: string }) {
+  const maskId = useId();
+  const c = LOGO_TONES[tone];
   return (
-    <svg width={size} height={size} viewBox="0 0 28 28" fill="none" aria-hidden="true" {...props}>
-      <g transform="rotate(-35 14 14)">
-        <rect x="8" y="2" width="12" height="24" rx="6" fill="#FFC94D" />
-        <path d="M8 15 V8 A6 6 0 0 1 20 8 V15 Z" fill="#FF8CC6" />
-        <rect x="8" y="2" width="12" height="24" rx="6" stroke="#16112A" strokeWidth="2" />
-        <path d="M8 15 H20" stroke="#16112A" strokeWidth="1.6" />
+    <svg
+      width={size}
+      height={Math.round((size * 60) / 72)}
+      viewBox="0 0 72 60"
+      fill="none"
+      aria-hidden="true"
+      {...props}
+      style={{ flex: "none", ...props.style }}
+    >
+      <mask id={maskId} maskUnits="userSpaceOnUse" x="0" y="0" width="72" height="60">
+        <rect width="72" height="60" fill="#FFFFFF" />
+        <circle cx="32" cy="32" r="20" fill="#000000" />
+      </mask>
+      <g mask={`url(#${maskId})`} stroke={c.line} strokeWidth="4">
+        <circle cx="11" cy="31" r="8.5" />
+        <circle cx="11" cy="31" r="3.5" strokeWidth="3" />
+        <circle cx="52.5" cy="26" r="7.5" />
+        <circle cx="52.5" cy="26" r="3" strokeWidth="3" />
+      </g>
+      <circle cx="32" cy="32" r="20" stroke={c.line} strokeWidth="4" />
+      <path
+        d="M32 24 C29 19 21 19 19 25 C17 31 19 38 24 42 C27 45 29.5 46 32 46 C34.5 46 37 45 40 42 C45 38 47 31 45 25 C43 19 35 19 32 24 Z"
+        stroke={c.line}
+        strokeWidth="3.2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M24 33.5 Q26.5 30 29 33.5 M35 33.5 Q37.5 30 40 33.5 M29 38.5 Q32 41.5 35 38.5"
+        stroke={c.line}
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
+      <path d="M57 4 L55 9.5 M64.5 8.5 L60 12.5 M67 18 L61.5 18.8" stroke={c.spark} strokeWidth="3.5" strokeLinecap="round" />
+      <g transform="translate(56 44) rotate(45)">
+        <rect x="-6.5" y="-14" width="13" height="28" rx="6.5" fill={pill} />
+        <path d="M-6.5 0 V7.5 A6.5 6.5 0 0 0 6.5 7.5 V0 Z" fill={c.fill} />
+        <rect x="-6.5" y="-14" width="13" height="28" rx="6.5" stroke={c.line} strokeWidth="3.5" />
+        <path d="M-6.5 0 H6.5" stroke={c.line} strokeWidth="3" />
       </g>
     </svg>
   );

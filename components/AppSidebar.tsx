@@ -20,8 +20,8 @@ export function AppSidebar() {
       className="box-border flex flex-[1_1_240px] flex-col gap-7 border-r border-line-soft bg-white px-[18px] py-6"
     >
       <Link href="/" className="flex items-center gap-2.5 px-2 text-ink no-underline">
-        <LogoMark size={28} />
-        <span className="text-[22px] font-bold tracking-[-0.02em]">pharmify</span>
+        <LogoMark size={38} />
+        <span className="text-[22px] font-bold tracking-[-0.02em] text-brand">Pharmify</span>
       </Link>
 
       <nav aria-label="Main" className="flex flex-col gap-1.5 text-base font-bold">

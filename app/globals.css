@@ -20,6 +20,11 @@
   --color-chip: #f4f2f8;
   --color-tile: #f1eef6;
 
+  /* Brand (logo) */
+  --color-brand: #6e1f35;
+  --color-brand-pink: #ec6f9e;
+  --color-brand-tint: #fde7ef;
+
   /* Pink (accent) */
   --color-pink: #ff8cc6;
   --color-pink-tint: #ffe8f3;
@@ -39,6 +44,14 @@
   --color-alert-tint: #fbe9e4;
   --color-alert: #8a2914;
   --color-alert-deep: #6e2312;
+
+  /* Pass */
+  --color-ok-tint: #e7f6ec;
+  --color-ok: #1e6b3a;
+
+  /* Peach */
+  --color-peach-tint: #fff0e0;
+  --color-peach: #ffe0b8;
 
   /* Lilac */
   --color-lilac: #c4adf5;
@@ -119,4 +132,83 @@
   .animate-bar {
     animation: none;
   }
+}
+
+/* Pip marking the exam sheet while the grader runs (components/PipGrading.tsx). One 6s cycle marks four rows. */
+@keyframes grading-pencil {
+  0%, 4% { transform: translate(14px, 34px); }
+  15% { transform: translate(52px, 34px); }
+  18% { transform: translate(61px, 33px); }
+  20% { transform: translate(65px, 37.5px); }
+  23% { transform: translate(74px, 27.5px); }
+  26% { transform: translate(14px, 52px); }
+  37% { transform: translate(52px, 52px); }
+  40% { transform: translate(61px, 51px); }
+  42% { transform: translate(65px, 55.5px); }
+  45% { transform: translate(74px, 45.5px); }
+  48% { transform: translate(14px, 70px); }
+  59% { transform: translate(52px, 70px); }
+  62% { transform: translate(61px, 69px); }
+  64% { transform: translate(65px, 73.5px); }
+  67% { transform: translate(74px, 63.5px); }
+  70% { transform: translate(14px, 88px); }
+  81% { transform: translate(52px, 88px); }
+  84% { transform: translate(61px, 87px); }
+  86% { transform: translate(65px, 91.5px); }
+  89% { transform: translate(74px, 81.5px); }
+  96%, 100% { transform: translate(14px, 34px); }
+}
+.grading-pencil { animation: grading-pencil 6s ease-in-out infinite; }
+.grading-tick { stroke-dasharray: 1; stroke-dashoffset: 1; }
+@keyframes grading-tick-0 {
+  0%, 18% { stroke-dashoffset: 1; opacity: 1; }
+  23%, 92% { stroke-dashoffset: 0; opacity: 1; }
+  97% { stroke-dashoffset: 0; opacity: 0; }
+  100% { stroke-dashoffset: 1; opacity: 0; }
+}
+.grading-tick-0 { animation: grading-tick-0 6s ease-in-out infinite; }
+@keyframes grading-tick-1 {
+  0%, 40% { stroke-dashoffset: 1; opacity: 1; }
+  45%, 92% { stroke-dashoffset: 0; opacity: 1; }
+  97% { stroke-dashoffset: 0; opacity: 0; }
+  100% { stroke-dashoffset: 1; opacity: 0; }
+}
+.grading-tick-1 { animation: grading-tick-1 6s ease-in-out infinite; }
+@keyframes grading-tick-2 {
+  0%, 62% { stroke-dashoffset: 1; opacity: 1; }
+  67%, 92% { stroke-dashoffset: 0; opacity: 1; }
+  97% { stroke-dashoffset: 0; opacity: 0; }
+  100% { stroke-dashoffset: 1; opacity: 0; }
+}
+.grading-tick-2 { animation: grading-tick-2 6s ease-in-out infinite; }
+@keyframes grading-tick-3 {
+  0%, 84% { stroke-dashoffset: 1; opacity: 1; }
+  89%, 92% { stroke-dashoffset: 0; opacity: 1; }
+  97% { stroke-dashoffset: 0; opacity: 0; }
+  100% { stroke-dashoffset: 1; opacity: 0; }
+}
+.grading-tick-3 { animation: grading-tick-3 6s ease-in-out infinite; }
+@keyframes grading-nod {
+  0%, 100% { transform: rotate(-2.5deg); }
+  50% { transform: rotate(2.5deg) translateY(1px); }
+}
+.grading-nod { transform-origin: 50% 85%; animation: grading-nod 1.5s ease-in-out infinite; }
+@keyframes grading-caption {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+.grading-caption { animation: grading-caption 0.35s ease-out; }
+@keyframes grading-dot {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-3px); opacity: 1; }
+}
+.grading-dots > span { animation: grading-dot 1.2s ease-in-out infinite; }
+.grading-dots > span:nth-child(2) { animation-delay: 0.15s; }
+.grading-dots > span:nth-child(3) { animation-delay: 0.3s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .grading-pencil, .grading-nod, .grading-caption, .grading-dots > span,
+  .grading-tick-0, .grading-tick-1, .grading-tick-2, .grading-tick-3 { animation: none; }
+  .grading-tick { stroke-dashoffset: 0; }
+  .grading-pencil { transform: translate(74px, 81.5px); }
 }

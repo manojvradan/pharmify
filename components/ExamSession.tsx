@@ -1,92 +1,187 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
+import { DebriefReport } from "@/components/DebriefReport";
 import { Pip } from "@/components/Pip";
-import { LogoMark, MicIcon } from "@/components/icons";
+import { PipGrading } from "@/components/PipGrading";
+import { LogoMark } from "@/components/icons";
+import type { AgentId, PublicCase, Turn } from "@/lib/cases/schema";
+import type { Debrief } from "@/lib/session/report";
 
 const PART_SECONDS = 20 * 60;
+/** The examiner's only interjections: neutral time checks. */
+function timeCheck(remaining: number) {
+  if (remaining <= 60) return "One minute remaining.";
+  if (remaining <= 300) return "Five minutes remaining.";
+  return null;
+}
 
-// Mock dialogue until the voice loop is wired up.
-const AGENTS = {
-  patient: {
-    tab: "Patient · Mr R.",
-    speaking: "Mr R. is speaking",
-    line: "“I've still got the old ones at home. Nobody said to stop them.”",
-    you: "“Are you still taking the tablets you had before you went in?”",
-  },
-  gp: {
-    tab: "Call the GP",
-    speaking: "Dr [PRESCRIBER] is speaking",
-    line: "“I'm between patients. What do you need from me?”",
-    you: "“I'm calling about Mr R.'s discharge script for atorvastatin.”",
-  },
-} as const;
+type Phase = "ready" | "live" | "grading" | "review";
+type Transcripts = Record<AgentId, Turn[]>;
 
-type Agent = keyof typeof AGENTS;
+const EMPTY: Transcripts = { patient: [], prescriber: [] };
 
-function formatClock(s: number) {
-  const m = Math.floor(s / 60);
-  return `${String(m).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
+function clock(s: number) {
+  return `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
 }
 
 const docLabel = "m-0 text-xs font-medium tracking-[0.05em] text-subtle uppercase";
 const roundBtn = "grid size-[52px] cursor-pointer place-items-center rounded-full border-0";
+const CATEGORY_LABEL = { ethical: "Ethical", legal: "Legal", clinical: "Complex clinical" } as const;
 
-export function ExamSession() {
-  const router = useRouter();
+export function ExamSession({ case: c }: { case: PublicCase }) {
+  const [phase, setPhase] = useState<Phase>("ready");
   const [remaining, setRemaining] = useState(PART_SECONDS);
-  const [agent, setAgent] = useState<Agent>("patient");
-  const [muted, setMuted] = useState(false);
-  const [talking, setTalking] = useState(false);
+  const [agent, setAgent] = useState<AgentId>("patient");
+  const [transcripts, setTranscripts] = useState<Transcripts>(EMPTY);
+  const [input, setInput] = useState("");
+  const [streaming, setStreaming] = useState(false);
   const [showTranscript, setShowTranscript] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [debrief, setDebrief] = useState<Debrief | null>(null);
 
-  useEffect(() => {
-    const id = setInterval(() => setRemaining((r) => Math.max(0, r - 1)), 1000);
-    return () => clearInterval(id);
+  // Refs mirror state so the timer-driven finish() always sends the latest transcript.
+  const transcriptsRef = useRef<Transcripts>(EMPTY);
+  const elapsedRef = useRef(0);
+  const abortRef = useRef<AbortController | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const elapsed = PART_SECONDS - remaining;
+  const agentInfo = c.agents.find((a) => a.id === agent) ?? c.agents[0];
+
+  const updateTranscripts = useCallback((fn: (t: Transcripts) => Transcripts) => {
+    transcriptsRef.current = fn(transcriptsRef.current);
+    setTranscripts(transcriptsRef.current);
   }, []);
 
-  // The orchestrator, not a model, ends the part when time runs out.
-  useEffect(() => {
-    if (remaining === 0) router.push("/debrief");
-  }, [remaining, router]);
+  /** The opening line is scripted: shown straight from the case, no model call. */
+  const openAgent = useCallback(
+    (id: AgentId) => {
+      setAgent(id);
+      const info = c.agents.find((a) => a.id === id);
+      if (info?.openingLine && transcriptsRef.current[id].length === 0) {
+        const line = info.openingLine;
+        updateTranscripts((t) => ({ ...t, [id]: [{ role: "actor", text: line, t: elapsedRef.current }] }));
+      }
+      inputRef.current?.focus();
+    },
+    [c.agents, updateTranscripts],
+  );
 
-  const a = AGENTS[agent];
-  const elapsedPct = ((PART_SECONDS - remaining) / PART_SECONDS) * 100;
+  function start() {
+    setPhase("live");
+    openAgent("patient");
+  }
+
+  const finish = useCallback(async () => {
+    abortRef.current?.abort();
+    setStreaming(false);
+    setPhase("grading");
+    setError(null);
+    try {
+      const res = await fetch("/api/session/grade", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ caseId: c.id, transcripts: transcriptsRef.current, timeUsed: elapsedRef.current }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error ?? `Grading failed (${res.status})`);
+      setDebrief(data as Debrief);
+      setPhase("review");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Grading failed");
+    }
+  }, [c.id]);
+
+  // The orchestrator, not a model, owns the clock and ends the part.
+  useEffect(() => {
+    if (phase !== "live") return;
+    const id = setInterval(() => {
+      const next = Math.max(0, PART_SECONDS - elapsedRef.current - 1);
+      elapsedRef.current = PART_SECONDS - next;
+      setRemaining(next);
+      if (next === 0) {
+        clearInterval(id);
+        void finish();
+      }
+    }, 1000);
+    return () => clearInterval(id);
+  }, [phase, finish]);
+
+  async function send(e: FormEvent) {
+    e.preventDefault();
+    const text = input.trim();
+    if (!text || streaming || phase !== "live") return;
+    setInput("");
+    setError(null);
+
+    const id = agent;
+    const transcript: Turn[] = [...transcriptsRef.current[id], { role: "candidate", text, t: elapsedRef.current }];
+    updateTranscripts((t) => ({ ...t, [id]: transcript }));
+
+    const controller = new AbortController();
+    abortRef.current = controller;
+    setStreaming(true);
+    try {
+      const res = await fetch("/api/session/turn", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ caseId: c.id, agent: id, transcript }),
+        signal: controller.signal,
+      });
+      if (!res.ok || !res.body) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error ?? `The actor didn't respond (${res.status})`);
+      }
+      const replyAt = elapsedRef.current;
+      updateTranscripts((t) => ({ ...t, [id]: [...t[id], { role: "actor", text: "", t: replyAt }] }));
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let reply = "";
+      for (;;) {
+        const { value, done } = await reader.read();
+        if (done) break;
+        reply += decoder.decode(value, { stream: true });
+        const soFar = reply;
+        updateTranscripts((t) => ({ ...t, [id]: [...t[id].slice(0, -1), { role: "actor", text: soFar, t: replyAt }] }));
+      }
+    } catch (err) {
+      if (!controller.signal.aborted) setError(err instanceof Error ? err.message : "Something went wrong");
+    } finally {
+      setStreaming(false);
+      inputRef.current?.focus();
+    }
+  }
+
+  function replay() {
+    transcriptsRef.current = EMPTY;
+    elapsedRef.current = 0;
+    setTranscripts(EMPTY);
+    setRemaining(PART_SECONDS);
+    setDebrief(null);
+    setError(null);
+    setAgent("patient");
+    setPhase("ready");
+  }
+
+  if (phase === "review" && debrief) {
+    return (
+      <div className="min-h-screen bg-canvas text-base leading-normal">
+        <SessionHeader c={c} phase={phase} remaining={remaining} elapsed={elapsed} notice={null} />
+        <DebriefReport debrief={debrief} onReplay={replay} replayHref={`/session/${c.id}`} />
+      </div>
+    );
+  }
+
+  const thread = transcripts[agent];
+  const lastActor = [...thread].reverse().find((t) => t.role === "actor");
+  const lastCandidate = [...thread].reverse().find((t) => t.role === "candidate");
+  const waiting = streaming && thread.at(-1)?.role === "candidate";
 
   return (
     <div className="flex min-h-screen flex-col bg-white text-base leading-normal">
-      {/* Top bar */}
-      <header className="border-b border-line-soft">
-        <div className="flex min-h-[68px] flex-wrap items-center justify-between gap-4 px-6">
-          <div className="flex items-center gap-4">
-            <Link href="/home" aria-label="Back to case map" className="grid size-11 place-items-center rounded-xl">
-              <LogoMark size={28} />
-            </Link>
-            <div className="flex flex-col leading-[1.25]">
-              <span className="text-lg font-semibold tracking-[-0.02em]">Mystery case · Complex clinical</span>
-              <span className="text-[13px] text-subtle">Community pharmacy, NSW</span>
-            </div>
-          </div>
-          <div className="flex items-center gap-4">
-            <span className="inline-flex items-center gap-2.5 rounded-full bg-ink py-1 pr-3.5 pl-1.5 text-[13px] font-semibold text-white">
-              <span className="grid size-9 place-items-center overflow-hidden rounded-full bg-white">
-                <Pip mood="exam" size={30} />
-              </span>
-              Exam mode · Pip&apos;s locked in
-            </span>
-            <div className="flex items-center gap-2.5">
-              <span aria-hidden="true" className="block h-1 w-[120px] rounded-sm bg-line-soft">
-                <span className="block h-1 rounded-sm bg-pink" style={{ width: `${elapsedPct}%` }} />
-              </span>
-              <span role="timer" aria-label="Time remaining" className="font-mono text-xl font-medium">
-                {formatClock(remaining)}
-              </span>
-            </div>
-          </div>
-        </div>
-      </header>
+      <SessionHeader c={c} phase={phase} remaining={remaining} elapsed={elapsed} notice={timeCheck(remaining)} />
 
       <main className="flex flex-1 flex-wrap items-stretch">
         {/* Case documents */}
@@ -96,158 +191,273 @@ export function ExamSession() {
         >
           <div className="flex flex-col gap-2">
             <h2 className={docLabel}>Question sheet</h2>
-            <p className="m-0 text-[15px]">
-              A man in his late sixties presents a new prescription from his hospital discharge. Manage the situation
-              as you would in practice. You may contact the prescriber.
-            </p>
+            <p className="m-0 text-[15px]">{c.questionSheet}</p>
           </div>
-          <div className="flex flex-col gap-2.5 rounded-xl border border-line bg-white p-4">
-            <div className="flex items-center justify-between gap-3">
+          {c.documents.prescription && (
+            <div className="flex flex-col gap-2.5 rounded-xl border border-line bg-white p-4">
               <h2 className={docLabel}>Prescription</h2>
-              <button
-                type="button"
-                aria-label="Enlarge prescription"
-                className="-my-2.5 -mr-2.5 grid size-11 cursor-pointer place-items-center rounded-[10px] border-0 bg-transparent"
-              >
-                <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-                  <path
-                    d="M11 3h4v4M7 15H3v-4M15 3l-5 5M3 15l5-5"
-                    stroke="#403A50"
-                    strokeWidth="1.6"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </button>
+              <span className="font-semibold">{c.documents.prescription.item}</span>
+              <span className="text-sm text-subtle">{c.documents.prescription.directions}</span>
+              <span className="border-t border-line-soft pt-2 text-[13px] text-subtle">{c.documents.prescription.footer}</span>
             </div>
-            <span className="font-semibold">Atorvastatin 40 mg tablets (brand)</span>
-            <span className="text-sm text-subtle">One tablet at night · Qty 30 · 5 repeats</span>
-            <span className="border-t border-line-soft pt-2 text-[13px] text-subtle">
-              [HOSPITAL] · Dr [PRESCRIBER] · Mr R. [SURNAME], 68
-            </span>
-          </div>
-          <div className="flex flex-col gap-2 rounded-xl border border-line bg-white p-4">
-            <h2 className={docLabel}>Dispensing history</h2>
-            {[
-              ["Atorvastatin 40 mg (generic)", "19 Oct"],
-              ["Atorvastatin 40 mg (generic)", "21 Sep"],
-            ].map(([drug, date], idx) => (
-              <div
-                key={date}
-                className={`flex justify-between gap-3 py-2 text-sm ${idx === 0 ? "border-b border-line-soft" : ""}`}
-              >
-                <span>{drug}</span>
-                <span className="font-mono text-subtle">{date}</span>
-              </div>
-            ))}
-          </div>
+          )}
+          {c.documents.dispensingHistory && c.documents.dispensingHistory.length > 0 && (
+            <div className="flex flex-col gap-2 rounded-xl border border-line bg-white p-4">
+              <h2 className={docLabel}>Dispensing history</h2>
+              {c.documents.dispensingHistory.map((d, idx, all) => (
+                <div
+                  key={`${d.item}-${d.date}`}
+                  className={`flex justify-between gap-3 py-2 text-sm ${idx < all.length - 1 ? "border-b border-line-soft" : ""}`}
+                >
+                  <span>{d.item}</span>
+                  <span className="font-mono text-subtle">{d.date}</span>
+                </div>
+              ))}
+            </div>
+          )}
+          {c.documents.notes && c.documents.notes.length > 0 && (
+            <div className="flex flex-col gap-2 rounded-xl border border-line bg-white p-4">
+              <h2 className={docLabel}>Notes</h2>
+              {c.documents.notes.map((n) => (
+                <p key={n} className="m-0 text-sm">{n}</p>
+              ))}
+            </div>
+          )}
           <p className="m-0 text-[13px] text-subtle">Open book: keep your own references beside you.</p>
+          {c.draft && (
+            <p className="m-0 rounded-xl bg-sun-tint px-3 py-2 text-[13px] text-sun-deep">
+              Draft case: not yet reviewed by a pharmacist.
+            </p>
+          )}
         </aside>
 
-        {/* Voice stage */}
-        <section aria-label="Voice role play" className="flex min-w-0 flex-[999_1_560px] flex-col">
-          <div className="flex justify-center px-6 pt-5">
-            <div role="group" aria-label="Who you are speaking with" className="inline-flex gap-1 rounded-xl bg-chip p-1">
-              {(Object.keys(AGENTS) as Agent[]).map((key) => {
-                const on = agent === key;
-                return (
-                  <button
-                    key={key}
-                    type="button"
-                    aria-pressed={on}
-                    onClick={() => setAgent(key)}
-                    className={`min-h-10 cursor-pointer rounded-[9px] border-0 px-4 text-sm font-medium ${
-                      on ? "bg-white text-ink shadow-[0_1px_2px_rgba(22,17,42,0.12)]" : "bg-transparent text-ink-2"
-                    }`}
-                  >
-                    {AGENTS[key].tab}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Orb */}
-          <div className="flex flex-1 flex-col items-center justify-center gap-8 px-6 py-10 text-center">
-            <div aria-hidden="true" className="relative grid size-60 place-items-center">
-              <span className="absolute inset-5 animate-ring rounded-full bg-pink opacity-25" />
-              <span className="absolute inset-5 animate-ring-late rounded-full bg-pink opacity-25" />
-              <span className="absolute inset-5 rounded-full bg-pink opacity-10" />
-              <span className="relative flex size-[148px] items-center justify-center gap-1.5 rounded-full bg-pink shadow-[0_24px_48px_-20px_rgba(230,80,150,0.45)]">
-                {[22, 46, 32, 54, 28].map((h, idx) => (
-                  <span
-                    key={idx}
-                    className={`w-1.5 rounded-[3px] bg-ink ${talking ? "" : "animate-bar"}`}
-                    style={{ height: talking ? 8 : h, animationDelay: `${idx * 0.15}s` }}
-                  />
-                ))}
-              </span>
-            </div>
-            <div className="flex flex-col items-center gap-3.5">
-              <span className="text-sm text-subtle">{talking ? "Listening to you…" : a.speaking}</span>
-              <p
-                aria-live="polite"
-                className="m-0 max-w-[30ch] text-[clamp(22px,2.4vw,30px)] leading-[1.35] tracking-[-0.02em] text-balance"
-              >
-                {a.line}
+        {/* Stage */}
+        <section aria-label="Role play" className="flex min-w-0 flex-[999_1_560px] flex-col">
+          {phase === "ready" && (
+            <div className="flex flex-1 flex-col items-center justify-center gap-6 px-6 py-10 text-center">
+              <Pip mood="exam" size={110} />
+              <h1 className="m-0 text-[clamp(26px,2.6vw,34px)] font-bold tracking-[-0.02em]">
+                Read the question sheet, then start.
+              </h1>
+              <p className="m-0 max-w-[46ch] text-muted">
+                You&apos;ll have 20 minutes. {c.agents.length > 1 ? "You can switch to the prescriber at any time. " : ""}
+                The examiner stays neutral and only gives time checks. Type what you would say out loud.
               </p>
+              <button
+                type="button"
+                onClick={start}
+                className="min-h-[60px] cursor-pointer rounded-[18px] border-2 border-ink bg-sun px-9 text-[19px] font-bold text-ink shadow-pop-md"
+              >
+                Start the clock
+              </button>
             </div>
-            <p className="m-0 text-sm text-subtle">You said: {a.you}</p>
-            {showTranscript && (
-              <div className="w-full max-w-[520px] rounded-2xl bg-canvas p-4 text-left text-sm">
-                <p className="m-0 mb-2 font-semibold">Transcript so far</p>
-                <p className="m-0 text-muted">You: {a.you}</p>
-                <p className="m-0 text-muted">
-                  {agent === "patient" ? "Mr R." : "GP"}: {a.line}
-                </p>
-              </div>
-            )}
-          </div>
+          )}
 
-          {/* Control dock */}
-          <div className="flex justify-center px-6 pb-8">
-            <div className="flex items-center gap-3 rounded-full border-[1.5px] border-line bg-white p-2.5 shadow-card">
-              <button
-                type="button"
-                aria-label={muted ? "Unmute microphone" : "Mute microphone"}
-                aria-pressed={muted}
-                onClick={() => setMuted(!muted)}
-                className={`${roundBtn} ${muted ? "bg-alert-tint" : "bg-chip"}`}
-              >
-                <MicIcon />
-              </button>
-              <button
-                type="button"
-                disabled={muted}
-                onPointerDown={() => setTalking(true)}
-                onPointerUp={() => setTalking(false)}
-                onPointerLeave={() => setTalking(false)}
-                className="inline-flex min-h-[60px] cursor-pointer items-center gap-2.5 rounded-full border-2 border-ink bg-sun px-[30px] text-[17px] font-bold text-ink shadow-pop disabled:cursor-not-allowed disabled:opacity-50"
-              >
-                <MicIcon filled width={18} height={18} />
-                {talking ? "Listening…" : "Hold to speak"}
-              </button>
-              <button
-                type="button"
-                aria-label={showTranscript ? "Hide transcript" : "Show transcript"}
-                aria-pressed={showTranscript}
-                onClick={() => setShowTranscript(!showTranscript)}
-                className={`${roundBtn} ${showTranscript ? "bg-pink-tint" : "bg-chip"}`}
-              >
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                  <path d="M4 5h12M4 10h12M4 15h7" stroke="#16112A" strokeWidth="1.6" strokeLinecap="round" />
-                </svg>
-              </button>
-              <Link
-                href="/debrief"
-                className="inline-flex min-h-[52px] items-center rounded-full bg-alert-tint px-5 font-semibold text-alert no-underline hover:text-alert"
-              >
-                Finish part
-              </Link>
+          {phase === "grading" && (
+            <div className="flex flex-1 flex-col items-center justify-center gap-5 px-6 py-10 text-center">
+              {error ? (
+                <>
+                  <Pip mood="thinking" size={110} />
+                  <p className="m-0 font-semibold text-alert">{error}</p>
+                  <button
+                    type="button"
+                    onClick={() => void finish()}
+                    className="min-h-[52px] cursor-pointer rounded-2xl border-2 border-ink bg-sun px-6 font-bold text-ink shadow-pop"
+                  >
+                    Try marking again
+                  </button>
+                </>
+              ) : (
+                <>
+                  <PipGrading />
+                  <h1 role="status" className="m-0 text-[clamp(24px,2.4vw,30px)] font-bold tracking-[-0.02em]">
+                    Time&apos;s up. Pip is marking your session…
+                  </h1>
+                  <p className="m-0 max-w-[44ch] text-muted">
+                    An independent grader is reading your transcript against the Board&apos;s criteria. This takes a moment.
+                  </p>
+                </>
+              )}
             </div>
-          </div>
+          )}
+
+          {phase === "live" && (
+            <>
+              {c.agents.length > 1 && (
+                <div className="flex justify-center px-6 pt-5">
+                  <div role="group" aria-label="Who you are speaking with" className="inline-flex gap-1 rounded-xl bg-chip p-1">
+                    {c.agents.map((a) => {
+                      const on = agent === a.id;
+                      return (
+                        <button
+                          key={a.id}
+                          type="button"
+                          aria-pressed={on}
+                          disabled={streaming}
+                          onClick={() => openAgent(a.id)}
+                          className={`min-h-10 cursor-pointer rounded-[9px] border-0 px-4 text-sm font-medium disabled:cursor-not-allowed ${
+                            on ? "bg-white text-ink shadow-[0_1px_2px_rgba(22,17,42,0.12)]" : "bg-transparent text-ink-2"
+                          }`}
+                        >
+                          {a.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* Orb and latest line */}
+              <div className="flex flex-1 flex-col items-center justify-center gap-7 px-6 py-8 text-center">
+                <div aria-hidden="true" className="relative grid size-[200px] place-items-center">
+                  {streaming && (
+                    <>
+                      <span className="absolute inset-4 animate-ring rounded-full bg-pink opacity-25" />
+                      <span className="absolute inset-4 animate-ring-late rounded-full bg-pink opacity-25" />
+                    </>
+                  )}
+                  <span className="absolute inset-4 rounded-full bg-pink opacity-10" />
+                  <span className="relative flex size-[124px] items-center justify-center gap-1.5 rounded-full bg-pink shadow-[0_24px_48px_-20px_rgba(230,80,150,0.45)]">
+                    {[18, 38, 26, 44, 22].map((h, idx) => (
+                      <span
+                        key={idx}
+                        className={`w-1.5 rounded-[3px] bg-ink ${streaming && !waiting ? "animate-bar" : ""}`}
+                        style={{ height: streaming && !waiting ? h : 8, animationDelay: `${idx * 0.15}s` }}
+                      />
+                    ))}
+                  </span>
+                </div>
+                <div className="flex flex-col items-center gap-3">
+                  <span className="text-sm text-subtle">
+                    {waiting ? `${agentInfo.name} is thinking…` : streaming ? `${agentInfo.name} is speaking` : agentInfo.name}
+                  </span>
+                  <p
+                    aria-live="polite"
+                    className="m-0 min-h-[1.35em] max-w-[34ch] text-[clamp(22px,2.4vw,30px)] leading-[1.35] tracking-[-0.02em] text-balance"
+                  >
+                    {lastActor ? `“${lastActor.text}”` : ""}
+                  </p>
+                </div>
+                {lastCandidate && <p className="m-0 max-w-[60ch] text-sm text-subtle">You said: “{lastCandidate.text}”</p>}
+                {error && <p className="m-0 text-sm font-semibold text-alert">{error}</p>}
+                {showTranscript && (
+                  <div className="flex max-h-[260px] w-full max-w-[600px] flex-col gap-1.5 overflow-y-auto rounded-2xl bg-canvas p-4 text-left text-sm">
+                    <p className="m-0 mb-1 font-semibold">Transcript · {agentInfo.label}</p>
+                    {thread.map((t, idx) => (
+                      <p key={idx} className="m-0 text-muted">
+                        <span className="font-mono text-xs text-subtle">{clock(t.t)}</span>{" "}
+                        <b className="text-ink">{t.role === "candidate" ? "You" : agentInfo.name}:</b> {t.text}
+                      </p>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Control dock */}
+              <div className="flex justify-center px-6 pb-8">
+                <form
+                  onSubmit={send}
+                  className="flex w-full max-w-[760px] flex-wrap items-center gap-2.5 rounded-[28px] border-[1.5px] border-line bg-white p-2.5 shadow-card"
+                >
+                  <label htmlFor="say" className="sr-only">
+                    What you say to {agentInfo.name}
+                  </label>
+                  <input
+                    id="say"
+                    ref={inputRef}
+                    autoFocus
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    autoComplete="off"
+                    placeholder={`Say something to ${agentInfo.name}…`}
+                    className="min-h-[52px] min-w-0 flex-[1_1_260px] rounded-full bg-chip px-5 text-base text-ink outline-none focus:ring-2 focus:ring-pink"
+                  />
+                  <button
+                    type="submit"
+                    disabled={streaming || !input.trim()}
+                    className="min-h-[52px] cursor-pointer rounded-full border-2 border-ink bg-sun px-6 text-base font-bold text-ink shadow-pop disabled:cursor-not-allowed disabled:opacity-50"
+                  >
+                    Say it
+                  </button>
+                  <button
+                    type="button"
+                    aria-label={showTranscript ? "Hide transcript" : "Show transcript"}
+                    aria-pressed={showTranscript}
+                    onClick={() => setShowTranscript(!showTranscript)}
+                    className={`${roundBtn} ${showTranscript ? "bg-pink-tint" : "bg-chip"}`}
+                  >
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                      <path d="M4 5h12M4 10h12M4 15h7" stroke="#16112A" strokeWidth="1.6" strokeLinecap="round" />
+                    </svg>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => void finish()}
+                    className="inline-flex min-h-[52px] cursor-pointer items-center rounded-full border-0 bg-alert-tint px-5 font-semibold text-alert"
+                  >
+                    Finish part
+                  </button>
+                </form>
+              </div>
+            </>
+          )}
         </section>
       </main>
     </div>
+  );
+}
+
+function SessionHeader({
+  c,
+  phase,
+  remaining,
+  elapsed,
+  notice,
+}: {
+  c: PublicCase;
+  phase: Phase;
+  remaining: number;
+  elapsed: number;
+  notice: string | null;
+}) {
+  return (
+    <header className="border-b border-line-soft bg-white">
+      <div className="flex min-h-[68px] flex-wrap items-center justify-between gap-4 px-6">
+        <div className="flex items-center gap-4">
+          <Link href="/home" aria-label="Back to case map" className="grid size-11 place-items-center rounded-xl">
+            <LogoMark size={38} />
+          </Link>
+          <div className="flex flex-col leading-[1.25]">
+            <span className="text-lg font-semibold tracking-[-0.02em]">
+              {phase === "review" ? c.title : `${CATEGORY_LABEL[c.category]} case`}
+            </span>
+            <span className="text-[13px] text-subtle">{c.setting}</span>
+          </div>
+        </div>
+        <div className="flex flex-wrap items-center gap-4">
+          {notice && phase === "live" && (
+            <span role="status" className="rounded-full bg-sun-tint px-3.5 py-1.5 text-[13px] font-semibold text-sun-deep">
+              Examiner: {notice}
+            </span>
+          )}
+          <span className="inline-flex items-center gap-2.5 rounded-full bg-ink py-1 pr-3.5 pl-1.5 text-[13px] font-semibold text-white">
+            <span className="grid size-9 place-items-center overflow-hidden rounded-full bg-white">
+              <Pip mood={phase === "review" ? "happy" : "exam"} size={30} />
+            </span>
+            {phase === "review" ? "Review mode · Pip's back" : "Exam mode · Pip's locked in"}
+          </span>
+          {phase !== "review" && (
+            <div className="flex items-center gap-2.5">
+              <span aria-hidden="true" className="block h-1 w-[120px] rounded-sm bg-line-soft">
+                <span className="block h-1 rounded-sm bg-pink" style={{ width: `${(elapsed / PART_SECONDS) * 100}%` }} />
+              </span>
+              <span role="timer" aria-label="Time remaining" className="font-mono text-xl font-medium">
+                {clock(remaining)}
+              </span>
+            </div>
+          )}
+        </div>
+      </div>
+    </header>
   );
 }

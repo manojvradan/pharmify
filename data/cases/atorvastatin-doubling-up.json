@@ -1,0 +1,90 @@
+{
+  "id": "atorvastatin-doubling-up",
+  "title": "Doubling up",
+  "category": "clinical",
+  "problemType": "Doubling up",
+  "setting": "Community pharmacy, NSW",
+  "questionSheet": "A man in his late sixties presents a new prescription from his hospital discharge. Manage the situation as you would in practice. You may contact the prescriber.",
+  "documents": {
+    "prescription": {
+      "item": "Atorvastatin 40 mg tablets (brand)",
+      "directions": "One tablet at night · Qty 30 · 5 repeats",
+      "footer": "[HOSPITAL] · Dr [PRESCRIBER] · Mr R. [SURNAME], 68"
+    },
+    "dispensingHistory": [
+      { "item": "Atorvastatin 40 mg (generic)", "date": "19 Oct" },
+      { "item": "Atorvastatin 40 mg (generic)", "date": "21 Sep" }
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient · Mr R.",
+      "name": "Mr R.",
+      "description": "A 68-year-old retired man, friendly and a little vague, with average health literacy. Just out of hospital and keen to get home. Answers what he is asked and does not volunteer much.",
+      "openingLine": "G'day. The hospital gave me this one for my cholesterol.",
+      "publicFacts": [
+        "He has just been discharged from hospital.",
+        "He says the hospital changed his cholesterol tablet."
+      ]
+    },
+    "prescriber": {
+      "label": "Call the GP",
+      "name": "Dr [GP]",
+      "description": "A busy GP between patients. Polite but short on time. Wants the pharmacist to get to the point and give a clear recommendation rather than an open question.",
+      "openingLine": "Dr [GP] speaking, I've only got a minute. What's up?",
+      "publicFacts": [
+        "You are Mr R.'s regular GP and prescribed his generic atorvastatin 40 mg.",
+        "You have not yet received the hospital discharge summary."
+      ]
+    }
+  },
+  "hiddenFacts": [
+    {
+      "id": "still-has-generic",
+      "agent": "patient",
+      "fact": "He still has the generic atorvastatin from his GP at home and has kept taking it.",
+      "triggers": ["still taking", "still got", "any home", "anything home", "got home", "home tablet", "home medicine", "old tablets", "before you went", "previous tablet", "current medicine", "currently take"],
+      "unlockHint": "“Are you still taking the tablets you had before you went in?”"
+    },
+    {
+      "id": "not-told-to-stop",
+      "agent": "patient",
+      "fact": "Nobody at the hospital told him to stop the old tablets.",
+      "triggers": ["told stop", "tell stop", "said stop", "hospital say old", "hospital tell old", "hospital mention old", "instructions old", "instructions stop"],
+      "unlockHint": "“Did anyone at the hospital tell you to stop the old ones?”"
+    },
+    {
+      "id": "takes-warfarin",
+      "agent": "patient",
+      "fact": "He takes warfarin and sometimes forgets doses.",
+      "triggers": ["other medicine", "any other", "anything else", "other tablet", "blood thinner", "warfarin", "other doctor", "buy yourself"],
+      "unlockHint": "“Are you taking any other medicines?”"
+    },
+    {
+      "id": "gp-did-not-intend-two",
+      "agent": "prescriber",
+      "fact": "You assumed the hospital only wrote the brand for convenience. You never intended him to take two statins and you are happy for him to continue one product only.",
+      "triggers": ["both brand", "both generic", "both tablet", "both statin", "take both", "two statin", "same drug", "same medicine", "duplicate", "duplication", "intend", "one product", "continue one"],
+      "unlockHint": "“He has both brand and generic atorvastatin 40 mg. I recommend he continues one product only. Can you confirm?”"
+    }
+  ],
+  "answerKey": {
+    "plantedProblem": "Doubling up: the hospital wrote brand atorvastatin 40 mg on discharge while the patient still takes generic atorvastatin 40 mg from his GP, so he could take both.",
+    "acceptableResolutions": [
+      "Explain that the brand and generic are the same medicine.",
+      "Confirm exactly what he takes now, including other medicines.",
+      "Clarify intent with the hospital or GP and make a clear recommendation to continue one product only.",
+      "Supply once clarified and counsel him not to take both."
+    ],
+    "unacceptableActions": [
+      "Dispensing without raising the duplication.",
+      "Telling him to take both."
+    ],
+    "counsellingPoints": ["Dose", "Timing", "Side effects", "What to watch for", "When to return"],
+    "codePrinciples": [],
+    "legal": [],
+    "modelAnswer": "Recognise both products are atorvastatin 40 mg. Take a full medication history, including other medicines (he takes warfarin). Contact the GP with a clear recommendation to continue one product only, confirm, supply accordingly, and counsel on taking one statin at night, muscle pain, and when to return."
+  },
+  "review": { "status": "draft", "version": "0.1" },
+  "sources": ["Vivascript MVP plan, worked example (original, needs pharmacist review)"]
+}

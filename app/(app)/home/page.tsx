@@ -13,6 +13,7 @@ const stats = [
 
 const categories = [
   {
+    key: "ethical",
     big: "Ethical",
     tag: "Tough calls",
     bg: "radial-gradient(circle, rgba(22,17,42,0.07) 1.6px, transparent 1.9px) 0 0 / 16px 16px, #FFE8F3",
@@ -22,6 +23,7 @@ const categories = [
     icon: "M12 3v18M7 21h10M4 7h16M6.5 7L4 13a3 3 0 005 0L6.5 7zM17.5 7L15 13a3 3 0 005 0l-2.5-6z",
   },
   {
+    key: "legal",
     big: "Legal",
     tag: "Know the rules",
     bg: "repeating-linear-gradient(0deg, transparent 0 21px, rgba(22,17,42,0.06) 21px 22.5px), #FFF4D6",
@@ -31,6 +33,7 @@ const categories = [
     icon: "M7 3h7l4 4v14H7zM14 3v4h4M10 12h5M10 16h5",
   },
   {
+    key: "clinical",
     big: "Complex clinical",
     tag: "More than one problem",
     bg: "linear-gradient(rgba(22,17,42,0.045) 1px, transparent 1px) 0 0 / 18px 18px, linear-gradient(90deg, rgba(22,17,42,0.045) 1px, transparent 1px) 0 0 / 18px 18px, #EFE6FF",
@@ -192,7 +195,7 @@ export default function HomePage() {
                     </span>
                   </div>
                   <Link
-                    href="/session"
+                    href={`/session?category=${c.key}`}
                     className="mt-auto inline-flex min-h-[52px] items-center justify-center gap-2.5 rounded-2xl border-[1.5px] border-ink bg-white text-base font-semibold text-ink no-underline hover:text-ink"
                   >
                     Start
