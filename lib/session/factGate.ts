@@ -5,7 +5,7 @@ import type { AgentId, CaseRecord, Turn } from "@/lib/cases/schema";
  *
  * It runs in our code, not in a model, so the actor never sees a fact until it is
  * unlocked and cannot leak it. This version matches trigger phrases after light
- * normalisation (lowercase, synonyms, crude stemming). It is deterministic and takes
+ * normalisation (lowercase, synonyms, crude stemming), with the words close together in one sentence. It is deterministic and takes
  * microseconds. An embedding matcher can replace `matches()` later without changing callers.
  */
 
@@ -57,7 +57,7 @@ const SYNONYMS: Record<string, string> = {
   thinners: "thinner",
 };
 
-function normalise(text: string): string[] {
+export function normalise(text: string): string[] {
   return text
     .toLowerCase()
     .replace(/[’']/g, "")
@@ -67,9 +67,38 @@ function normalise(text: string): string[] {
     .filter((w) => KEEP.has(w) || !STOPWORDS.has(w));
 }
 
-function matches(utterance: Set<string>, trigger: string): boolean {
-  const words = normalise(trigger);
-  return words.length > 0 && words.every((w) => utterance.has(w));
+/** Splits on sentence-ending punctuation and line breaks. Abbreviations like "Mr." only over-split, which is safe. */
+function sentencesOf(text: string): string[] {
+  return text.split(/[.!?;\n]+/).filter((s) => s.trim());
+}
+
+/**
+ * True when every word of the trigger appears close together in the sentence: within
+ * a window of the trigger's length plus one word, after normalising. "old tablets"
+ * matches "your old cholesterol tablets" but not "one tablet at night, and stop the old ones".
+ */
+function matches(sentence: string[], trigger: string): boolean {
+  const words = [...new Set(normalise(trigger))];
+  if (words.length === 0) return false;
+  const maxSpan = words.length; // (n - 1) between the outer words, plus one extra word
+  for (let i = 0; i < sentence.length; i++) {
+    if (!words.includes(sentence[i])) continue;
+    const seen = new Set<string>();
+    for (let j = i; j < sentence.length && j - i <= maxSpan; j++) {
+      if (words.includes(sentence[j])) seen.add(sentence[j]);
+      if (seen.size === words.length) return true;
+    }
+  }
+  return false;
+}
+
+/**
+ * Whether a piece of text touches a fact's triggers (same matcher as the gate). Used by
+ * the actor eval to flag replies that mention a fact before it was unlocked.
+ */
+export function mentionsTrigger(text: string, triggers: string[]): boolean {
+  const sentences = sentencesOf(text).map(normalise);
+  return triggers.some((t) => sentences.some((words) => matches(words, t)));
 }
 
 export type UnlockEvent = { factId: string; fact: string; turnIndex: number };
@@ -84,10 +113,11 @@ export function unlockedFacts(c: CaseRecord, agent: AgentId, transcript: Turn[])
   const events: UnlockEvent[] = [];
   transcript.forEach((turn, turnIndex) => {
     if (turn.role !== "candidate" || pending.length === 0) return;
-    const words = new Set(normalise(turn.text));
+    // A trigger must match inside one sentence, so words from unrelated sentences can't combine.
+    const sentences = sentencesOf(turn.text).map(normalise);
     for (let i = pending.length - 1; i >= 0; i--) {
       const f = pending[i];
-      if (f.triggers.some((t) => matches(words, t))) {
+      if (f.triggers.some((t) => sentences.some((words) => matches(words, t)))) {
         events.push({ factId: f.id, fact: f.fact, turnIndex });
         pending.splice(i, 1);
       }

@@ -43,14 +43,14 @@
       "id": "still-has-generic",
       "agent": "patient",
       "fact": "He still has the generic atorvastatin from his GP at home and has kept taking it.",
-      "triggers": ["still taking", "still got", "at home", "old tablets", "before you went", "previous tablet", "current medicine", "currently take"],
+      "triggers": ["still taking", "still got", "any home", "anything home", "got home", "home tablet", "home medicine", "old tablets", "before you went", "previous tablet", "current medicine", "currently take"],
       "unlockHint": "“Are you still taking the tablets you had before you went in?”"
     },
     {
       "id": "not-told-to-stop",
       "agent": "patient",
       "fact": "Nobody at the hospital told him to stop the old tablets.",
-      "triggers": ["told stop", "tell stop", "said stop", "hospital say", "hospital tell", "instructions", "stop old"],
+      "triggers": ["told stop", "tell stop", "said stop", "hospital say old", "hospital tell old", "hospital mention old", "instructions old", "instructions stop"],
       "unlockHint": "“Did anyone at the hospital tell you to stop the old ones?”"
     },
     {
@@ -64,7 +64,7 @@
       "id": "gp-did-not-intend-two",
       "agent": "prescriber",
       "fact": "You assumed the hospital only wrote the brand for convenience. You never intended him to take two statins and you are happy for him to continue one product only.",
-      "triggers": ["both", "two statin", "same drug", "same medicine", "duplicate", "duplication", "intend", "one product", "continue one"],
+      "triggers": ["both brand", "both generic", "both tablet", "both statin", "take both", "two statin", "same drug", "same medicine", "duplicate", "duplication", "intend", "one product", "continue one"],
       "unlockHint": "“He has both brand and generic atorvastatin 40 mg. I recommend he continues one product only. Can you confirm?”"
     }
   ],
