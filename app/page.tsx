@@ -67,8 +67,8 @@ export default function LandingPage() {
       <header>
         <div className={`${container} flex min-h-[76px] flex-wrap items-center justify-between gap-4`}>
           <Link href="#top" className="flex items-center gap-2.5 text-ink no-underline">
-            <LogoMark size={30} />
-            <span className="text-[22px] font-semibold tracking-[-0.02em]">pharmify</span>
+            <LogoMark size={38} />
+            <span className="text-[22px] font-semibold tracking-[-0.02em] text-brand">Pharmify</span>
           </Link>
           <nav aria-label="Main" className="flex flex-wrap items-center gap-[30px] text-[15px] font-medium">
             <a href="#how" className="text-ink-2 no-underline">How it plays</a>
@@ -339,7 +339,7 @@ export default function LandingPage() {
       <footer className="border-t border-line-soft">
         <div className={`${container} flex flex-wrap items-start justify-between gap-6 pt-10 pb-12 text-sm text-subtle`}>
           <div className="flex max-w-[52ch] flex-col gap-2">
-            <span className="text-lg font-semibold text-ink">pharmify</span>
+            <span className="text-lg font-semibold text-brand">Pharmify</span>
             <span>
               Independent exam practice. Not affiliated with or endorsed by Ahpra or the Pharmacy Board of Australia.
             </span>

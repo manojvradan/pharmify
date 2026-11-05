@@ -1,0 +1,62 @@
+{
+  "id": "telehealth-cannabis",
+  "title": "A posted cannabis script",
+  "category": "ethical",
+  "problemType": "Legally valid but possibly not clinically appropriate (high-risk medicine)",
+  "setting": "Community pharmacy, [STATE]",
+  "questionSheet": "A patient presents a prescription for a medicinal cannabis product written by a prescriber in a different city in the same state. Manage the situation as you would in practice. You may contact the prescriber.",
+  "documents": {
+    "prescription": {
+      "item": "[MEDICINAL CANNABIS PRODUCT, THC-CONTAINING]",
+      "directions": "[DIRECTIONS] · Qty [QTY]",
+      "footer": "Telehealth prescriber, [OTHER CITY] · Posted to patient"
+    },
+    "notes": ["Schedule 8 medicine: state requirements for dispensing apply."]
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient",
+      "name": "the patient",
+      "description": "An adult man, polite but guarded. Keeps answers short and changes the subject when asked about his health. Becomes uncomfortable if pressed hard, but answers direct, respectful questions.",
+      "openingLine": "Hi, I need this filled please.",
+      "publicFacts": [
+        "He had a telehealth appointment with the prescriber.",
+        "The prescription was posted to him.",
+        "If asked what it is for, he says it is for his mental health and does not want to go into it."
+      ]
+    },
+    "prescriber": {
+      "label": "Call the prescriber",
+      "name": "the prescriber",
+      "description": "A telehealth prescriber in another city. Professional and a little defensive about their prescribing. Responds well to a respectful, specific question about the indication and history; responds poorly to vague criticism.",
+      "openingLine": "Hello, this is the clinic. You're calling about one of my patients?",
+      "publicFacts": [
+        "You confirm you wrote the prescription after a telehealth consultation and posted it."
+      ]
+    }
+  },
+  "hiddenFacts": [],
+  "answerKey": {
+    "plantedProblem": "A legally valid prescription that may not be clinically appropriate: evidence for medicinal cannabis in depression and anxiety is lacking, and THC-containing products may be contraindicated in some mental health conditions such as psychosis. The pharmacist must decide whether supply is safe and appropriate.",
+    "acceptableResolutions": [
+      "Gather the patient's medical history, diagnosis, current symptoms and treatment goals before deciding.",
+      "Do not dispense until the prescriber has been contacted to confirm the indication, relevant history, and that benefits outweigh risks.",
+      "Raise concerns with the prescriber respectfully and collaboratively, keeping patient safety the focus.",
+      "Explain concerns to the patient in clear, appropriate language.",
+      "If dispensing, counsel on adverse effects, warning signs needing review, and when to stop; reassess at each dispensing.",
+      "If declining, facilitate access to a suitable healthcare professional.",
+      "Document the reasoning, decision and actions; comply with state Schedule 8 requirements."
+    ],
+    "unacceptableActions": [
+      "Dispensing without further investigation.",
+      "Refusing to dispense without speaking to the prescriber or arranging alternative care.",
+      "Ignoring possible withdrawal effects if therapy is interrupted."
+    ],
+    "counsellingPoints": ["Adverse effects", "Warning signs that need review", "When to stop", "Driving and safety", "When to return"],
+    "codePrinciples": ["Care 1b", "Care 1c", "Care 1d", "Care 2f", "Integrity 2d", "Collaboration 1c"],
+    "legal": ["State-specific requirements for dispensing Schedule 8 medicines."],
+    "modelAnswer": "Gather information on diagnosis, history, symptoms and goals. Identify the tension between acting in the patient's best interests and avoiding harm with a high-risk medicine lacking strong evidence. Withhold supply until the prescriber confirms the indication and history; the decision to supply stays with the pharmacist. Communicate concerns clearly to the patient and collaboratively with the prescriber. If supplying, counsel and reassess at each dispensing; if not, facilitate access to care. Document, and follow state S8 requirements."
+  },
+  "review": { "status": "draft", "version": "0.1" },
+  "sources": ["Provided worked ethical case (5-step framework). Confirm licence before publishing."]
+}

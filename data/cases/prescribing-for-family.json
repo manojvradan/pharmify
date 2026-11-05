@@ -1,0 +1,47 @@
+{
+  "id": "prescribing-for-family",
+  "title": "Prescribing for family",
+  "category": "ethical",
+  "problemType": "Personal relationship and professional objectivity",
+  "setting": "Rural community pharmacy, central Queensland",
+  "questionSheet": "You are a prescribing pharmacist and the only pharmacist in a rural town. It is Saturday afternoon. Your partner, Xiaoyu, has symptoms of a urinary tract infection. The nearest other prescriber is a 3-hour drive away and is closed. Manage the situation as you would in practice.",
+  "documents": {
+    "notes": [
+      "You are the only pharmacist in town.",
+      "Nearest alternate prescriber: 3-hour drive, currently closed."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Xiaoyu (your partner)",
+      "name": "Xiaoyu",
+      "description": "The pharmacist's partner. Uncomfortable and keen for treatment today. Assumes the pharmacist will just sort it out because the pharmacist is her partner, and is a little surprised if it is treated formally.",
+      "openingLine": "I think it's another UTI. Can you just give me something?",
+      "publicFacts": [
+        "She has symptoms of a urinary tract infection.",
+        "She would rather not drive three hours to another prescriber."
+      ]
+    }
+  },
+  "hiddenFacts": [],
+  "answerKey": {
+    "plantedProblem": "Prescribing to a family member: the personal relationship may compromise, or appear to compromise, professional objectivity, set against timely access to treatment and antibiotic stewardship.",
+    "acceptableResolutions": [
+      "Recognise the conflict with Integrity principle 3b and weigh it against timely care.",
+      "Given no timely alternative prescriber, prescribing can be justified if the decision stays objective and evidence-based.",
+      "Carry out and record a proper clinical assessment, as for any patient.",
+      "Document the indication, assessment, rationale, alternatives considered, guideline alignment and steps taken to minimise bias.",
+      "State that referral would be preferred if another prescriber were reasonably available."
+    ],
+    "unacceptableActions": [
+      "Prescribing informally without assessment or documentation.",
+      "Refusing all care without considering the harm of delay."
+    ],
+    "counsellingPoints": ["Dose", "Duration", "Side effects", "What to watch for", "When to seek further care"],
+    "codePrinciples": ["Care 1a", "Care 1b", "Care 1c", "Care 1f", "Integrity 3b"],
+    "legal": ["Prescribing within the pharmacist prescribing scope and protocol that applies in Queensland."],
+    "modelAnswer": "Identify the dual relationship as the ethical problem, with harms to the patient, to public trust and to antibiotic stewardship. With no timely alternative, prescribing is justified when the assessment and decision are objective, evidence-based and documented, including the steps taken to reduce bias. If another prescriber were reasonably available, referral would be the better option."
+  },
+  "review": { "status": "draft", "version": "0.1" },
+  "sources": ["Provided worked ethical case (5-step framework). Confirm licence before publishing."]
+}
