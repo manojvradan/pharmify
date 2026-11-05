@@ -362,7 +362,10 @@ export function ExamSession({ case: c, voice = false }: { case: PublicCase; voic
               </h1>
               <p className="m-0 max-w-[46ch] text-muted">
                 You&apos;ll have 20 minutes. {c.agents[1] ? `Use “${c.agents[1].label}” to talk to them at any time. ` : ""}
-                The examiner stays neutral and only gives time checks. Type what you would say out loud.
+                The examiner stays neutral and only gives time checks.{" "}
+                {voice
+                  ? "Hold the button and speak as you would in the room. Turn your sound on."
+                  : "Type what you would say out loud."}
               </p>
               <button
                 type="button"
