@@ -212,3 +212,25 @@
   .grading-tick { stroke-dashoffset: 0; }
   .grading-pencil { transform: translate(74px, 81.5px); }
 }
+
+/*
+ * Talking cast avatars (components/CastAvatar.tsx). `--mouth` runs from 0 (closed) to 1
+ * (wide open) and is set every frame by useTalkingMouth; only these transforms change.
+ * In SVG, px here means user units of the 120 x 122 drawing.
+ */
+.cast-smile {
+  opacity: calc(1 - var(--mouth, 0) * 4);
+}
+.cast-open {
+  transform: scaleY(var(--mouth, 0));
+  transform-box: fill-box;
+  transform-origin: 50% 35%;
+}
+.cast-jaw {
+  transform: translateY(calc(var(--mouth, 0) * 4.5px));
+}
+.cast-trunk {
+  transform: rotate(calc(var(--mouth, 0) * -9deg));
+  transform-box: view-box;
+  transform-origin: 58px 64px;
+}

@@ -12,6 +12,7 @@
     "patient": {
       "label": "Patient · Josh",
       "name": "Josh",
+      "avatar": "kiki-koala",
       "description": "A 28-year-old man, a bit embarrassed but direct. He expects to be judged, so he'll go quiet or leave if the pharmacist moralises, threatens to involve anyone, or refuses to talk about it. He opens up when spoken to plainly and without judgement.",
       "situation": "You are in the consultation room of a community pharmacy, talking privately to the pharmacist.",
       "openingLine": "Thanks for this. I just wanted to ask, is it safe to take MDMA if I'm on sertraline?",

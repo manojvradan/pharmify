@@ -15,6 +15,7 @@
     "patient": {
       "label": "Team leader · Priya",
       "name": "Priya",
+      "avatar": "dr-kip",
       "description": "The pharmacy team leader. Busy and under pressure to keep the efficiency gains the tool has brought. Initially a bit defensive about the tool, but reasonable and safety-minded when concerns are raised constructively and with specifics. Dismissive of vague complaints.",
       "situation": "You are the hospital pharmacy team leader. A ward pharmacist from your team has come to talk to you.",
       "standing": "professional",

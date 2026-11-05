@@ -16,6 +16,7 @@
     "patient": {
       "label": "Patient · Sarah",
       "name": "Sarah",
+      "avatar": "rosie-rabbit",
       "description": "A 40-year-old woman, softly spoken and a little flat. Her partner died a few months ago. Polite and cooperative, but she answers only what she is asked and doesn't volunteer information.",
       "openingLine": "Hi, I'm just here to pick up my tablets again.",
       "publicFacts": [
@@ -25,6 +26,7 @@
     "prescriber": {
       "label": "Call Dr Burton",
       "name": "Dr Burton",
+      "avatar": "dr-hoot",
       "description": "Sarah's GP. Courteous and open to a pharmacist's input, but expects a clear, referenced recommendation. Will ask the pharmacist what they recommend and which reference to check next time. Thanks the pharmacist for calling at the end.",
       "openingLine": "Dr Burton speaking.",
       "publicFacts": [

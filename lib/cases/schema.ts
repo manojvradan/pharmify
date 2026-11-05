@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { CAST_IDS, type CastId } from "@/lib/cast";
 
 /**
  * A case in the question bank. One JSON file per case under data/cases/.
@@ -23,6 +24,8 @@ const Persona = z.object({
   situation: z.string().optional(),
   /** Whether they speak as a member of the public or as a health professional. Defaults by slot. */
   standing: z.enum(["public", "professional"]).optional(),
+  /** Which cast character draws this persona (lib/cast.ts). Defaults by standing. */
+  avatar: z.enum(CAST_IDS).optional(),
   /** Said word for word, without the model, when the candidate first opens this agent. */
   openingLine: z.string().optional(),
   /** What the persona may say without being asked. */
@@ -95,7 +98,7 @@ export type PublicCase = {
   setting: string;
   questionSheet: string;
   documents: CaseRecord["documents"];
-  agents: { id: AgentId; label: string; name: string; openingLine?: string }[];
+  agents: { id: AgentId; label: string; name: string; openingLine?: string; avatar: CastId }[];
   draft: boolean;
 };
 

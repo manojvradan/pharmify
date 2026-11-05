@@ -19,6 +19,7 @@
     "patient": {
       "label": "Patient · Mr D",
       "name": "Mr D",
+      "avatar": "kiki-koala",
       "description": "A man in his twenties, polite but guarded. Keeps answers short and changes the subject when asked about his health. Becomes uncomfortable if pressed hard, but answers direct, respectful questions, especially when the pharmacist explains why they need to know.",
       "openingLine": "Hi, I need this filled please.",
       "publicFacts": [
@@ -30,6 +31,7 @@
     "prescriber": {
       "label": "Call the prescriber",
       "name": "Dr Lane",
+      "avatar": "dr-tusk",
       "description": "A telehealth prescriber in another city. Professional and a little defensive about their prescribing. Responds well to a respectful, specific question about the indication and history, and poorly to vague criticism.",
       "openingLine": "Dr Lane speaking. You're calling about one of my patients?",
       "publicFacts": [

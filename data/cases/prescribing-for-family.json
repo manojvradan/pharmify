@@ -15,6 +15,7 @@
     "patient": {
       "label": "Xiaoyu (your wife)",
       "name": "Xiaoyu",
+      "avatar": "penny-penguin",
       "description": "The pharmacist's wife, in her thirties. Uncomfortable and keen to be treated today. She assumes her husband will just sort it out, and is a little surprised, though cooperative, when he treats it like a proper consultation.",
       "situation": "You have come into the pharmacy where your husband is the pharmacist, to ask him for help.",
       "openingLine": "I think it's another UTI. Can you just give me something?",
