@@ -3,49 +3,213 @@ import { CONTACT_EMAIL, LegalPage } from "@/components/LegalPage";
 
 export const metadata: Metadata = { title: "Privacy policy" };
 
-// Placeholder: needs review against the Privacy Act 1988 (Cth) and the Australian Privacy Principles before launch.
+/*
+ * Written to cover Google's OAuth verification checks (what Google user data we access,
+ * how it's used, stored, shared, kept and deleted, plus the Limited Use statement) and
+ * the Australian Privacy Principles. Keep it in step with lib/db/schema.ts: if we start
+ * storing something new, it belongs in "What we collect". Still due a legal review.
+ */
 export default function PrivacyPage() {
+  const email = <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>;
   return (
     <LegalPage title="Privacy policy" updated="5 November 2026">
       <section>
-        <h2>Who we are</h2>
+        <h2>About this policy</h2>
         <p>
-          Pharmify is an independent practice tool for pharmacy interns preparing for oral exams. It is not affiliated
-          with Ahpra or the Pharmacy Board of Australia.
+          Pharmify (pharmify.au) is an independent practice tool that helps pharmacy interns in Australia rehearse
+          oral exams by role-playing cases with simulated patients and prescribers. This policy explains what personal
+          information we collect, how we use and protect it, who we share it with, and the choices you have. We handle
+          personal information in line with the Privacy Act 1988 (Cth) and the Australian Privacy Principles. Pharmify
+          is not affiliated with Ahpra or the Pharmacy Board of Australia.
         </p>
       </section>
+
       <section>
-        <h2>What we collect</h2>
+        <h2>Information we collect</h2>
+        <p>
+          <strong>Account information.</strong> When you create an account, our sign-in provider, Clerk, collects your
+          name and email address. If you sign up with an email address, Clerk also handles your sign-in codes or
+          password; we never see your password.
+        </p>
+        <p>
+          <strong>Information from Google.</strong> If you choose &ldquo;Continue with Google&rdquo;, we ask Google
+          only for the basic scopes <code>openid</code>, <code>email</code> and <code>profile</code>. This gives us your
+          name, email address, profile picture and a Google account identifier. We do not request access to your Gmail,
+          Google Drive, Calendar, Contacts or any other Google data.
+        </p>
+        <p>
+          <strong>Onboarding answers.</strong> Your exam sitting (month and year), your state or territory, and your
+          internship stage, plus whether you completed the microphone check.
+        </p>
+        <p>
+          <strong>Practice sessions.</strong> Which case you practised, what you typed or said to the simulated
+          characters, their replies, the facts you uncovered, the time you used, and the feedback report generated
+          at the end.
+        </p>
+        <p>
+          <strong>Service and usage data.</strong> Technical records of each session, such as start and end times and
+          how much AI processing it used, plus standard server logs (such as IP address, browser type and request times)
+          kept by our hosting provider for security and troubleshooting.
+        </p>
+        <p>
+          <strong>Pilot waitlist.</strong> If you join the pilot waitlist on our home page, we store the email address
+          you enter and when you signed up.
+        </p>
+      </section>
+
+      <section>
+        <h2>Microphone</h2>
+        <p>
+          The microphone check during onboarding runs entirely in your browser to confirm your microphone works. The
+          audio is not recorded, stored or sent to us.
+        </p>
+      </section>
+
+      <section>
+        <h2>How we use your information</h2>
         <ul>
-          <li>Your account details (name, email, and Google profile if you sign in with Google), held by our sign-in provider, Clerk.</li>
-          <li>Your onboarding answers, such as your state or territory, exam sitting and internship stage.</li>
-          <li>Your practice sessions: the transcript of what you say, the role-play replies, and the feedback report.</li>
-          <li>Basic usage data, such as when sessions start and end, used to keep the service running and costs in check.</li>
+          <li>To create your account, sign you in, and keep your account secure.</li>
+          <li>To run practice sessions: generating the simulated characters&apos; replies and your feedback report.</li>
+          <li>To show you your past sessions and feedback, and tailor cases to your state&apos;s rules.</li>
+          <li>To contact you about your account or the pilot, if you joined the waitlist.</li>
+          <li>To keep the service working, prevent misuse, and monitor costs and performance.</li>
+          <li>To improve our cases and feedback, using de-identified session data.</li>
+        </ul>
+        <p>
+          We do not sell your personal information, and we do not use it for advertising.
+        </p>
+      </section>
+
+      <section>
+        <h2>How we use Google user data</h2>
+        <p>
+          We use your Google name, email address and profile picture only to create and sign in to your Pharmify
+          account and to show your name and picture in the app. We do not use Google user data for advertising, sell
+          it, or transfer it to anyone except the service providers listed below that are needed to run the sign-in
+          and the app. We do not use Google user data to develop, improve or train generalised AI or machine learning
+          models.
+        </p>
+        <p>
+          Pharmify&apos;s use and transfer of information received from Google APIs will adhere to the{" "}
+          <a href="https://developers.google.com/terms/api-services-user-data-policy">
+            Google API Services User Data Policy
+          </a>
+          , including the Limited Use requirements.
+        </p>
+      </section>
+
+      <section>
+        <h2>Who we share it with</h2>
+        <p>
+          We share personal information only with service providers that process it on our behalf to run Pharmify:
+        </p>
+        <ul>
+          <li>
+            <strong>Clerk</strong>: account sign-up, sign-in and account management (name, email, Google profile).
+          </li>
+          <li>
+            <strong>Neon</strong>: our database, which stores your onboarding answers, sessions, feedback and usage
+            records.
+          </li>
+          <li>
+            <strong>Vercel</strong>: hosts the website and app and keeps server logs.
+          </li>
+          <li>
+            <strong>Anthropic</strong>: the AI provider that generates the characters&apos; replies and your feedback.
+            It receives the conversation from your practice session, not your name, email or Google data. Under its
+            commercial terms, it does not use this data to train its models.
+          </li>
+        </ul>
+        <p>
+          We may also disclose information if the law requires it. If Pharmify is ever sold or merged, your
+          information may transfer to the new owner under this policy, and we will tell you first.
+        </p>
+      </section>
+
+      <section>
+        <h2>Overseas storage</h2>
+        <p>
+          Our service providers may store and process your information outside Australia, including in the United
+          States. We choose providers that protect information to a standard comparable to the Australian Privacy
+          Principles.
+        </p>
+      </section>
+
+      <section>
+        <h2>How we protect it</h2>
+        <p>
+          All traffic is encrypted in transit (HTTPS), and our database provider encrypts data at rest. Access to
+          personal information is limited to the people who run Pharmify, and only when needed to operate or support
+          the service.
+        </p>
+      </section>
+
+      <section>
+        <h2>How long we keep it</h2>
+        <ul>
+          <li>Account, onboarding and session data: until you delete it or close your account.</li>
+          <li>Pilot waitlist emails: until the pilot ends or you ask us to remove you.</li>
+          <li>Server logs: for a limited period set by our hosting provider, typically no more than 30 days.</li>
         </ul>
       </section>
+
       <section>
-        <h2>How we use it</h2>
+        <h2>Deleting your data</h2>
         <p>
-          To run your practice sessions, mark them, show your history, and improve the cases. Session transcripts are
-          sent to our AI provider (Anthropic) to generate the role-play replies and your feedback. We don&apos;t sell
-          your data or use it for advertising.
+          You can ask us to delete your data at any time by emailing {email} from the address on your account. We will
+          delete your sessions, transcripts, feedback, usage records and onboarding answers, and close your account
+          with our sign-in provider (removing the Google information it holds), within 30 days. You can also remove
+          Pharmify&apos;s access to your Google account at any time from your{" "}
+          <a href="https://myaccount.google.com/connections">Google Account settings</a>.
         </p>
       </section>
+
       <section>
-        <h2>Where it&apos;s stored</h2>
+        <h2>Access and correction</h2>
         <p>
-          Data is stored with our service providers (Clerk, Neon and Vercel), which may hold it outside Australia.
+          You can ask for a copy of the personal information we hold about you, or ask us to correct it, by emailing{" "}
+          {email}. We will respond within 30 days.
         </p>
       </section>
+
       <section>
         <h2>Please don&apos;t enter real patient information</h2>
-        <p>All cases are fictional. Don&apos;t type or say anything that identifies a real person.</p>
-      </section>
-      <section>
-        <h2>Your choices</h2>
         <p>
-          You can ask to see, correct or delete your data at any time by emailing{" "}
-          <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+          All cases in Pharmify are fictional. Don&apos;t type or say anything during a session that could identify a
+          real patient or any other person.
+        </p>
+      </section>
+
+      <section>
+        <h2>Age</h2>
+        <p>Pharmify is intended for pharmacy students and interns aged 18 or over.</p>
+      </section>
+
+      <section>
+        <h2>Cookies</h2>
+        <p>
+          We use only the cookies needed to keep you signed in and the app working securely. We do not use advertising
+          or tracking cookies.
+        </p>
+      </section>
+
+      <section>
+        <h2>Changes to this policy</h2>
+        <p>
+          If we make significant changes, we will update the date at the top of this page and tell signed-in users in
+          the app or by email.
+        </p>
+      </section>
+
+      <section>
+        <h2>Contact and complaints</h2>
+        <p>
+          For privacy questions, requests or complaints, email {email}. We aim to respond within 30 days. If you are not
+          satisfied with our response, you can complain to the{" "}
+          <a href="https://www.oaic.gov.au/privacy/privacy-complaints">
+            Office of the Australian Information Commissioner
+          </a>
+          .
         </p>
       </section>
     </LegalPage>

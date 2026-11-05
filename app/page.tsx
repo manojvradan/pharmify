@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Pip } from "@/components/Pip";
 import { PilotSignup } from "@/components/PilotSignup";
+import { CONTACT_EMAIL } from "@/components/LegalPage";
 import { CheckCircle, LogoMark } from "@/components/icons";
 
 const container = "mx-auto max-w-[1160px] px-6";
@@ -348,7 +349,7 @@ export default function LandingPage() {
           <nav aria-label="Footer" className="flex gap-7">
             <Link href="/privacy" className="text-ink-2 no-underline">Privacy</Link>
             <Link href="/terms" className="text-ink-2 no-underline">Terms</Link>
-            <a href="mailto:[CONTACT EMAIL]" className="text-ink-2 no-underline">Contact</a>
+            <a href={`mailto:${CONTACT_EMAIL}`} className="text-ink-2 no-underline">Contact</a>
           </nav>
         </div>
       </footer>
