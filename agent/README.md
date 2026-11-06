@@ -19,7 +19,7 @@ Needs `LIVEKIT_URL`, `LIVEKIT_API_KEY`, `LIVEKIT_API_SECRET`, `ELEVENLABS_API_KE
 
 ```
 npm install
-npm run dev          # then start the app (npm run dev in ..) and tick "Hands-free" on a case
+npm run dev          # or `npm run dev:agent` from the app folder; then tick "Hands-free" on a case
 npm run typecheck
 ```
 

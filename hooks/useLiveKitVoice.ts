@@ -1,6 +1,9 @@
 "use client";
 
 import { type RemoteTrack, Room, RoomEvent, Track } from "livekit-client";
+
+/** How long to wait for the voice agent to join before giving up (LiveKit Cloud cold starts take up to ~20 s). */
+const AGENT_JOIN_TIMEOUT_MS = 25_000;
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { AgentId } from "@/lib/cases/schema";
 import { TOPIC_ENDED, TOPIC_SWITCH } from "@/lib/voice/agentTicket.shared";
@@ -114,7 +117,30 @@ export function useLiveKitVoice({ onLine, onEnded }: { onLine: (line: LiveLine) 
       });
       room.registerTextStreamHandler(TOPIC_ENDED, async () => onEndedRef.current());
 
+      // Resolves when the agent is in the room; rejects if it never comes (e.g. no agent worker running).
+      const agentJoined = new Promise<void>((resolve, reject) => {
+        const isIn = () => [...room.remoteParticipants.values()].some((p) => p.isAgent);
+        const timer = setTimeout(() => {
+          room.off(RoomEvent.ParticipantConnected, check);
+          reject(new Error("The voice agent didn't join"));
+        }, AGENT_JOIN_TIMEOUT_MS);
+        function check() {
+          if (!isIn()) return;
+          clearTimeout(timer);
+          room.off(RoomEvent.ParticipantConnected, check);
+          resolve();
+        }
+        room.on(RoomEvent.ParticipantConnected, check);
+        room.once(RoomEvent.Connected, check);
+      });
+
       await room.connect(data.url, data.token);
+      try {
+        await agentJoined;
+      } catch (err) {
+        disconnect();
+        throw err;
+      }
       await room.localParticipant.setMicrophoneEnabled(true, {
         echoCancellation: true,
         noiseSuppression: true,
