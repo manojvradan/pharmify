@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { CAST_IDS, type CastId } from "@/lib/cast";
+import { VOICE_KEYS, type VoiceKey } from "@/lib/voice/voices";
 
 /**
  * A case in the question bank. One JSON file per case under data/cases/.
@@ -26,6 +27,8 @@ const Persona = z.object({
   standing: z.enum(["public", "professional"]).optional(),
   /** Which cast character draws this persona (lib/cast.ts). Defaults by standing. */
   avatar: z.enum(CAST_IDS).optional(),
+  /** Which Australian voice they speak in (lib/voice/voices.ts). Defaults to the avatar's voice. */
+  voice: z.enum(VOICE_KEYS).optional(),
   /** Said word for word, without the model, when the candidate first opens this agent. */
   openingLine: z.string().optional(),
   /** What the persona may say without being asked. */
@@ -98,7 +101,7 @@ export type PublicCase = {
   setting: string;
   questionSheet: string;
   documents: CaseRecord["documents"];
-  agents: { id: AgentId; label: string; name: string; openingLine?: string; avatar: CastId }[];
+  agents: { id: AgentId; label: string; name: string; openingLine?: string; avatar: CastId; voice: VoiceKey }[];
   draft: boolean;
   /** Role play (clinical) or a spoken explanation (ethical, legal). See lib/cases/format.ts. */
   format: "roleplay" | "explain";

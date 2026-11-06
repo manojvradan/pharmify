@@ -20,6 +20,7 @@
       "label": "Patient · Mr D",
       "name": "Mr D",
       "avatar": "kiki-koala",
+      "voice": "au-young-man-2",
       "description": "A man in his twenties, polite but guarded. Keeps answers short and changes the subject when asked about his health. Becomes uncomfortable if pressed hard, but answers direct, respectful questions, especially when the pharmacist explains why they need to know.",
       "openingLine": "Hi, I need this filled please.",
       "publicFacts": [

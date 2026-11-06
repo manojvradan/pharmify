@@ -6,8 +6,8 @@ import { caseFormat } from "@/lib/cases/format";
 import { getOwnedSession } from "@/lib/session/store";
 import { issueAgentTicket } from "@/lib/voice/agentTicket";
 import { type AgentJobMetadata, VOICE_AGENT_NAME } from "@/lib/voice/agentTicket.shared";
-import { VOICES } from "@/lib/voice/elevenlabs";
 import { liveKitEnabled } from "@/lib/voice/livekit";
+import { voiceId } from "@/lib/voice/voices";
 
 const Body = z.object({ sessionId: z.uuid() });
 
@@ -39,7 +39,7 @@ export async function POST(req: Request) {
       id: a.id,
       name: a.name,
       openingLine: a.openingLine,
-      voiceId: VOICES[a.avatar],
+      voiceId: voiceId(a.voice),
     })),
   };
 

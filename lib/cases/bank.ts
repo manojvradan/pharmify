@@ -1,4 +1,5 @@
 import "server-only";
+import { AVATAR_VOICE } from "@/lib/voice/voices";
 import { PART_SECONDS_BY_FORMAT, caseFormat } from "./format";
 
 import aiTool from "@/data/cases/ai-risk-tool.json";
@@ -59,7 +60,8 @@ export function toPublic(c: CaseRecord): PublicCase {
     const p = getPersona(c, id);
     if (!p) continue;
     const standing = p.standing ?? (id === "patient" ? "public" : "professional");
-    agents.push({ id, label: p.label, name: p.name, openingLine: p.openingLine, avatar: p.avatar ?? defaultAvatar(standing) });
+    const avatar = p.avatar ?? defaultAvatar(standing);
+    agents.push({ id, label: p.label, name: p.name, openingLine: p.openingLine, avatar, voice: p.voice ?? AVATAR_VOICE[avatar] });
   }
   return {
     id: c.id,

@@ -64,8 +64,8 @@ export async function POST(req: Request) {
   const newlyUnlocked = unlocked.filter((u) => u.turnIndex === transcript.length - 1).map((u) => u.factId);
 
   // Opened before the model call so the connection is ready when the first words arrive.
-  const avatar = parsed.data.voice && voiceEnabled() ? toPublic(c).agents.find((a) => a.id === agent)?.avatar : undefined;
-  const speech: SpeechStream | null = avatar ? openSpeechStream(avatar) : null;
+  const voice = parsed.data.voice && voiceEnabled() ? toPublic(c).agents.find((a) => a.id === agent)?.voice : undefined;
+  const speech: SpeechStream | null = voice ? openSpeechStream(voice) : null;
 
   let reply;
   try {
