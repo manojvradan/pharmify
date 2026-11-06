@@ -8,6 +8,8 @@ import { startActorReply } from "@/lib/session/actorStream";
 import { canTakeTurn, elapsedSeconds } from "@/lib/session/clock";
 import { unlockedFacts } from "@/lib/session/factGate";
 import { appendTurns, getOwnedSession, loadTranscripts, recordUsage } from "@/lib/session/store";
+import { AGENT_TICKET_HEADER } from "@/lib/voice/agentTicket.shared";
+import { verifyAgentTicket } from "@/lib/voice/agentTicket";
 import { openSpeechStream, voiceEnabled, type SpeechStream } from "@/lib/voice/elevenlabs";
 import type { TurnEvent } from "@/lib/voice/format";
 
@@ -29,10 +31,12 @@ const Body = z.object({
  * after the whole reply and a second request.
  */
 export async function POST(req: Request) {
-  const { userId } = await auth();
-  if (!userId) return Response.json({ error: "Please sign in" }, { status: 401 });
-
   const parsed = Body.safeParse(await req.json().catch(() => null));
+  // The hands-free voice agent has no Clerk cookie: it sends a ticket for this one session instead.
+  const ticket = req.headers.get(AGENT_TICKET_HEADER);
+  const userId =
+    ticket && parsed.success ? verifyAgentTicket(ticket, parsed.data.sessionId) : (await auth()).userId;
+  if (!userId) return Response.json({ error: "Please sign in" }, { status: 401 });
   if (!parsed.success) return Response.json({ error: "Invalid request" }, { status: 400 });
   const { sessionId, agent, text } = parsed.data;
 

@@ -20,6 +20,8 @@
     "@clerk/nextjs": "^7.9.24",
     "@neondatabase/serverless": "^1.2.0",
     "drizzle-orm": "^0.45.4",
+    "livekit-client": "^2.23.0",
+    "livekit-server-sdk": "^2.19.2",
     "next": "16.4.3",
     "react": "19.3.0",
     "react-dom": "19.3.0",

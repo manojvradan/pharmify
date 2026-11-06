@@ -7,6 +7,7 @@ import { Pip } from "@/components/Pip";
 import { CaseDocuments, GradingPanel, SessionHeader, clock, timeCheck, type Phase } from "@/components/SessionChrome";
 import { PharmacyScene } from "@/components/PharmacyScene";
 import { useCharacterVoice } from "@/hooks/useCharacterVoice";
+import { type LiveLine, useLiveKitVoice } from "@/hooks/useLiveKitVoice";
 import { MIN_TAKE_MS, type MicError, useRecorder } from "@/hooks/useRecorder";
 import { useTalkingMouth } from "@/hooks/useTalkingMouth";
 import type { AgentId, PublicCase, Turn } from "@/lib/cases/schema";
@@ -25,8 +26,18 @@ const roundBtn = "grid size-[52px] cursor-pointer place-items-center rounded-ful
 /**
  * `voice`: characters speak their lines (ElevenLabs) and the candidate can hold to speak
  * instead of typing. Off when the server has no ELEVENLABS_API_KEY.
+ * `handsFree`: also offer hands-free voice (LiveKit agent): no button, the character hears
+ * when you've finished and can be interrupted. Off unless LiveKit is configured.
  */
-export function ExamSession({ case: c, voice = false }: { case: PublicCase; voice?: boolean }) {
+export function ExamSession({
+  case: c,
+  voice = false,
+  handsFree = false,
+}: {
+  case: PublicCase;
+  voice?: boolean;
+  handsFree?: boolean;
+}) {
   const [phase, setPhase] = useState<Phase>("ready");
   const [remaining, setRemaining] = useState(c.partSeconds);
   const [agent, setAgent] = useState<AgentId>("patient");
@@ -51,6 +62,13 @@ export function ExamSession({ case: c, voice = false }: { case: PublicCase; voic
     level: voiceLevel,
   } = useCharacterVoice();
   const recorder = useRecorder();
+  /** Chosen on the start screen; fixed once the session is live. */
+  const [handsFreeOn, setHandsFreeOn] = useState(false);
+  /** Hands-free lines by segment id, so a line still being said updates in place. */
+  const liveLinesRef = useRef(new Map<string, { agent: AgentId; index: number }>());
+  const agentRef = useRef<AgentId>("patient");
+  /** True once the hands-free room is joined (a ref so openAgent sees it straight away). */
+  const handsFreeLiveRef = useRef(false);
   /** True while the "Hold to speak" button is held, so a release during the mic prompt still stops it. */
   const holdingRef = useRef(false);
   /** The next live-transcription token, fetched ahead so pressing "Hold to speak" connects at once. */
@@ -72,10 +90,39 @@ export function ExamSession({ case: c, voice = false }: { case: PublicCase; voic
     setTranscripts(transcriptsRef.current);
   }, []);
 
+  const finishRef = useRef<() => void>(() => {});
+  const onLiveLine = useCallback(
+    (line: LiveLine) => {
+      const text = line.text.trim();
+      if (!text) return;
+      const known = liveLinesRef.current.get(line.id);
+      const id = known?.agent ?? agentRef.current;
+      updateTranscripts((t) => {
+        const thread = [...t[id]];
+        if (known && thread[known.index]) {
+          thread[known.index] = { ...thread[known.index], role: line.role, text };
+        } else {
+          liveLinesRef.current.set(line.id, { agent: id, index: thread.length });
+          thread.push({ role: line.role, text, t: elapsedRef.current });
+        }
+        return { ...t, [id]: thread };
+      });
+    },
+    [updateTranscripts],
+  );
+  // The agent says the server's clock has run out: end the part the same way the timer would.
+  const live = useLiveKitVoice({ onLine: onLiveLine, onEnded: () => finishRef.current() });
+
   /** The opening line is scripted: shown straight from the case, no model call. */
   const openAgent = useCallback(
     (id: AgentId) => {
       setAgent(id);
+      agentRef.current = id;
+      // Hands-free: the agent says the opening line itself, and it arrives as a transcript.
+      if (handsFreeLiveRef.current) {
+        live.switchTo(id);
+        return;
+      }
       const info = c.agents.find((a) => a.id === id);
       stopVoice();
       if (info?.openingLine && transcriptsRef.current[id].length === 0) {
@@ -85,6 +132,7 @@ export function ExamSession({ case: c, voice = false }: { case: PublicCase; voic
       }
       inputRef.current?.focus();
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- `live` methods are stable
     [c.agents, updateTranscripts, voice, playVoice, stopVoice],
   );
 
@@ -103,6 +151,17 @@ export function ExamSession({ case: c, voice = false }: { case: PublicCase; voic
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error ?? `Couldn't start the session (${res.status})`);
       sessionIdRef.current = data.sessionId;
+      if (handsFreeOn) {
+        try {
+          await live.connect(data.sessionId);
+          handsFreeLiveRef.current = true;
+        } catch (err) {
+          live.disconnect();
+          // Carry on with hold to speak rather than lose the session.
+          setHandsFreeOn(false);
+          setError(err instanceof Error ? `${err.message}. Using hold to speak instead.` : "Hands-free voice didn't start");
+        }
+      }
       if (voice) {
         const ctx = voiceContext();
         if (ctx) prepareLiveTranscription(ctx);
@@ -120,6 +179,8 @@ export function ExamSession({ case: c, voice = false }: { case: PublicCase; voic
   const finish = useCallback(async () => {
     abortRef.current?.abort();
     stopVoice();
+    live.disconnect();
+    handsFreeLiveRef.current = false;
     setStreaming(false);
     setPhase("grading");
     setError(null);
@@ -136,7 +197,11 @@ export function ExamSession({ case: c, voice = false }: { case: PublicCase; voic
     } catch (err) {
       setError(err instanceof Error ? err.message : "Grading failed");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- `live` methods are stable
   }, [stopVoice]);
+  useEffect(() => {
+    finishRef.current = () => void finish();
+  }, [finish]);
 
   // The orchestrator, not a model, owns the clock and ends the part.
   useEffect(() => {
@@ -332,6 +397,7 @@ export function ExamSession({ case: c, voice = false }: { case: PublicCase; voic
 
   function replay() {
     sessionIdRef.current = null;
+    liveLinesRef.current.clear();
     transcriptsRef.current = EMPTY;
     elapsedRef.current = 0;
     setTranscripts(EMPTY);
@@ -356,14 +422,22 @@ export function ExamSession({ case: c, voice = false }: { case: PublicCase; voic
   const lastCandidate = [...thread].reverse().find((t) => t.role === "candidate");
   const waiting = streaming && thread.at(-1)?.role === "candidate";
   // With voice, the character "talks" while the audio plays; without it, while the text streams in.
-  const talking = voice ? speaking : streaming && !waiting;
-  const status = transcribing
-    ? "Listening back…"
-    : talking
-      ? `${agentInfo.name} is speaking`
-      : waiting || (voice && streaming)
-        ? `${agentInfo.name} is thinking…`
-        : "";
+  const handsFreeLive = handsFreeOn && live.state !== "off";
+  const talking = handsFreeLive ? live.state === "speaking" : voice ? speaking : streaming && !waiting;
+  const status = handsFreeLive
+    ? {
+        connecting: `Bringing ${agentInfo.name} in…`,
+        listening: "Listening. Just talk.",
+        thinking: `${agentInfo.name} is thinking…`,
+        speaking: `${agentInfo.name} is speaking`,
+      }[live.state as "connecting" | "listening" | "thinking" | "speaking"]
+    : transcribing
+      ? "Listening back…"
+      : talking
+        ? `${agentInfo.name} is speaking`
+        : waiting || (voice && streaming)
+          ? `${agentInfo.name} is thinking…`
+          : "";
 
   return (
     <div className="flex min-h-screen flex-col bg-white text-base leading-normal">
@@ -383,10 +457,23 @@ export function ExamSession({ case: c, voice = false }: { case: PublicCase; voic
               <p className="m-0 max-w-[46ch] text-muted">
                 You&apos;ll have 20 minutes. {c.agents[1] ? `Use “${c.agents[1].label}” to talk to them at any time. ` : ""}
                 The examiner stays neutral and only gives time checks.{" "}
-                {voice
-                  ? "Hold the button and speak as you would in the room. Turn your sound on."
-                  : "Type what you would say out loud."}
+                {handsFreeOn
+                  ? "Just talk, as you would in the room: they'll answer when you finish, and you can cut in. Turn your sound on."
+                  : voice
+                    ? "Hold the button and speak as you would in the room. Turn your sound on."
+                    : "Type what you would say out loud."}
               </p>
+              {handsFree && voice && (
+                <label className="inline-flex cursor-pointer items-center gap-2.5 rounded-full bg-chip px-4 py-2 text-sm font-medium text-ink-2">
+                  <input
+                    type="checkbox"
+                    checked={handsFreeOn}
+                    onChange={(e) => setHandsFreeOn(e.target.checked)}
+                    className="size-4 accent-pink-deep"
+                  />
+                  Hands-free conversation (beta)
+                </label>
+              )}
               <button
                 type="button"
                 onClick={() => void start()}
@@ -440,7 +527,7 @@ export function ExamSession({ case: c, voice = false }: { case: PublicCase; voic
                   avatar={agentInfo.avatar}
                   name={agentInfo.name}
                   talking={talking}
-                  level={voice ? voiceLevel : undefined}
+                  level={handsFreeLive ? live.level : voice ? voiceLevel : undefined}
                 />
                 <div className="flex flex-col items-center gap-3">
                   <span className="text-sm text-subtle">
@@ -474,7 +561,13 @@ export function ExamSession({ case: c, voice = false }: { case: PublicCase; voic
                   onSubmit={send}
                   className="flex w-full max-w-[760px] flex-wrap items-center gap-2.5 rounded-[28px] border-[1.5px] border-line bg-white p-2.5 shadow-card"
                 >
-                  {voice && (
+                  {handsFreeLive ? (
+                    <p className="m-0 inline-flex min-h-[60px] flex-[1_1_220px] items-center justify-center gap-2.5 rounded-full bg-pink-tint px-7 text-[17px] font-bold text-ink">
+                      <MicIcon filled />
+                      {live.state === "connecting" ? "Connecting your mic…" : "Mic on. Talk any time."}
+                    </p>
+                  ) : null}
+                  {voice && !handsFreeLive && (
                     <button
                       type="button"
                       aria-label={typing ? "Speak instead" : "Type instead"}
@@ -485,7 +578,7 @@ export function ExamSession({ case: c, voice = false }: { case: PublicCase; voic
                       {typing ? <MicIcon /> : <KeyboardIcon />}
                     </button>
                   )}
-                  {typing ? (
+                  {handsFreeLive ? null : typing ? (
                     <>
                       <label htmlFor="say" className="sr-only">
                         What you say to {agentInfo.name}
