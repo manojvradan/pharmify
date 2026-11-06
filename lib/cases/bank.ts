@@ -1,4 +1,5 @@
 import "server-only";
+import { PART_SECONDS_BY_FORMAT, caseFormat } from "./format";
 
 import aiTool from "@/data/cases/ai-risk-tool.json";
 import atorvastatin from "@/data/cases/atorvastatin-doubling-up.json";
@@ -51,8 +52,10 @@ export function caseIds(): string[] {
 }
 
 export function toPublic(c: CaseRecord): PublicCase {
+  const format = caseFormat(c.category);
   const agents: PublicCase["agents"] = [];
-  for (const id of ["patient", "prescriber"] as const) {
+  // Explain cases have no one to talk to, so no characters reach the browser.
+  for (const id of format === "roleplay" ? (["patient", "prescriber"] as const) : []) {
     const p = getPersona(c, id);
     if (!p) continue;
     const standing = p.standing ?? (id === "patient" ? "public" : "professional");
@@ -67,6 +70,8 @@ export function toPublic(c: CaseRecord): PublicCase {
     documents: c.documents,
     agents,
     draft: c.review.status !== "reviewed",
+    format,
+    partSeconds: PART_SECONDS_BY_FORMAT[format],
   };
 }
 

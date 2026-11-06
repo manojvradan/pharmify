@@ -12,12 +12,15 @@ export function elapsedSeconds(startedAt: Date, now: Date = new Date()): number 
   return Math.max(0, Math.floor((now.getTime() - startedAt.getTime()) / 1000));
 }
 
-/** A candidate may still speak: inside the part, plus the grace period. */
-export function canTakeTurn(elapsed: number): boolean {
-  return elapsed <= PART_SECONDS + GRACE_SECONDS;
+/**
+ * A candidate may still speak: inside the part, plus the grace period. `limit` is the
+ * part length for this case's format (lib/cases/format.ts); Part C by default.
+ */
+export function canTakeTurn(elapsed: number, limit: number = PART_SECONDS, grace: number = GRACE_SECONDS): boolean {
+  return elapsed <= limit + grace;
 }
 
 /** What the debrief reports as time used: never more than the part allows. */
-export function timeUsedAt(elapsed: number): number {
-  return Math.min(elapsed, PART_SECONDS);
+export function timeUsedAt(elapsed: number, limit: number = PART_SECONDS): number {
+  return Math.min(elapsed, limit);
 }

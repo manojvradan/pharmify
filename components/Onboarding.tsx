@@ -224,7 +224,11 @@ export function Onboarding({ sittings, initial }: { sittings: string[]; initial:
               </div>
               <ul className="m-0 grid list-none gap-3 p-0 [grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr))]">
                 {[
-                  ["20 minutes", "A clock runs, and you can't go back once it ends.", "bg-pink-tint"],
+                  [
+                    "On the clock",
+                    "Clinical cases are a 20-minute role play. Ethical and legal cases: 5 minutes to explain what you'd do.",
+                    "bg-pink-tint",
+                  ],
                   ["Open book", "Keep your own references beside you.", "bg-sun-tint"],
                   ["No hints", "Pip locks in. Patients only answer what you ask.", "bg-lilac-tint"],
                   ["Debrief after", "See what to fix first, marked against the Board's criteria.", "bg-ok-tint"],

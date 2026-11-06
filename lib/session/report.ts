@@ -83,6 +83,8 @@ export type Debrief = {
   problemType: string;
   draft: boolean;
   timeUsed: number;
+  /** Role play or spoken answer. Missing on debriefs saved before spoken answers existed: treat as role play. */
+  format?: "roleplay" | "explain";
   report: GraderReport;
   /** From the fact gate, not the grader: deterministic. */
   facts: { id: string; fact: string; found: boolean; unlockHint: string }[];

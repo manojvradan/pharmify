@@ -2,6 +2,7 @@ import { auth } from "@clerk/nextjs/server";
 import { z } from "zod";
 import { anthropicErrorResponse } from "@/lib/anthropic";
 import { getCase } from "@/lib/cases/bank";
+import { PART_SECONDS_BY_FORMAT, caseFormat } from "@/lib/cases/format";
 import { elapsedSeconds, timeUsedAt } from "@/lib/session/clock";
 import { gradeSession } from "@/lib/session/grader";
 import { closeForGrading, getDebrief, getOwnedSession, loadTranscripts, recordUsage, saveDebrief } from "@/lib/session/store";
@@ -33,7 +34,7 @@ export async function POST(req: Request) {
   const c = getCase(session.caseId);
   if (!c) return Response.json({ error: "Unknown case" }, { status: 404 });
 
-  const timeUsed = session.timeUsed ?? timeUsedAt(elapsedSeconds(session.startedAt));
+  const timeUsed = session.timeUsed ?? timeUsedAt(elapsedSeconds(session.startedAt), PART_SECONDS_BY_FORMAT[caseFormat(c.category)]);
   await closeForGrading(session.id, timeUsed);
 
   try {

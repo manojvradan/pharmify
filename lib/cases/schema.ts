@@ -100,6 +100,10 @@ export type PublicCase = {
   documents: CaseRecord["documents"];
   agents: { id: AgentId; label: string; name: string; openingLine?: string; avatar: CastId }[];
   draft: boolean;
+  /** Role play (clinical) or a spoken explanation (ethical, legal). See lib/cases/format.ts. */
+  format: "roleplay" | "explain";
+  /** Length of the timed part, in seconds. */
+  partSeconds: number;
 };
 
 /** One line of a conversation with one agent. `t` is seconds since the part started. */

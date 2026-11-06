@@ -2,6 +2,10 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { AgentId } from "@/lib/cases/schema";
+import { SPEECH_SAMPLE_RATE } from "@/lib/voice/format";
+
+/** Plays streamed PCM as it arrives. Call `end()` once the last chunk is in. */
+export type VoiceStream = { push: (base64: string) => void; end: () => void };
 
 /** A few milliseconds of silent WAV, played inside a click so later playback is allowed (Safari). */
 function silentWav(): string {
@@ -24,8 +28,10 @@ function silentWav(): string {
 }
 
 /**
- * Plays what the character says, using /api/session/speak, and reports how loud it is
- * right now so the avatar's mouth can follow the audio.
+ * Plays what the character says and reports how loud it is right now, so the avatar's
+ * mouth can follow the audio. Two ways in: `stream()` plays PCM chunks from the voice turn
+ * stream as they arrive (fastest), and `play()` fetches a whole line from
+ * /api/session/speak (opening lines, and the fallback).
  *
  * Call `unlock()` from a click (Start, Hold to speak) before the first `play()`:
  * browsers only allow sound that follows a user gesture.
@@ -36,6 +42,9 @@ export function useCharacterVoice() {
   const analyserRef = useRef<AnalyserNode | null>(null);
   const bufRef = useRef<Float32Array<ArrayBuffer> | null>(null);
   const countRef = useRef(0);
+  /** Streamed chunks scheduled or playing; `streamGen` makes a stopped stream ignore late chunks. */
+  const sourcesRef = useRef(new Set<AudioBufferSourceNode>());
+  const streamGenRef = useRef(0);
   const [speaking, setSpeaking] = useState(false);
 
   const element = useCallback(() => {
@@ -73,12 +82,82 @@ export function useCharacterVoice() {
   }, [element]);
 
   const stop = useCallback(() => {
+    streamGenRef.current++;
+    for (const src of sourcesRef.current) {
+      src.onended = null;
+      try {
+        src.stop();
+      } catch {
+        // Not started yet.
+      }
+    }
+    sourcesRef.current.clear();
+    setSpeaking(false);
     const a = audioRef.current;
     if (!a) return;
     a.pause();
     a.removeAttribute("src");
     a.load();
   }, []);
+
+  /**
+   * Starts a streamed line. Returns null without Web Audio (or before `unlock()`), in
+   * which case use `play()` once the reply is saved.
+   */
+  const stream = useCallback((): VoiceStream | null => {
+    const ctx = ctxRef.current;
+    const analyser = analyserRef.current;
+    if (!ctx || !analyser) return null;
+    stop();
+    void ctx.resume();
+    const gen = streamGenRef.current;
+    let nextAt = 0;
+    let ended = false;
+    let carry: number | null = null; // a byte left over when a chunk splits a sample
+    const sources = sourcesRef.current;
+    const settle = () => {
+      if (ended && sources.size === 0 && gen === streamGenRef.current) setSpeaking(false);
+    };
+    return {
+      push(base64) {
+        if (gen !== streamGenRef.current) return;
+        const raw = atob(base64);
+        const start = carry === null ? 0 : 1;
+        const total = raw.length + (carry === null ? 0 : 1);
+        const n = total >> 1;
+        if (n === 0) {
+          carry = raw.length ? raw.charCodeAt(0) : carry;
+          return;
+        }
+        const byte = (i: number) => (i === 0 && carry !== null ? carry : raw.charCodeAt(i - start));
+        const buf = ctx.createBuffer(1, n, SPEECH_SAMPLE_RATE);
+        const out = buf.getChannelData(0);
+        for (let i = 0; i < n; i++) {
+          const v = byte(2 * i) | (byte(2 * i + 1) << 8);
+          out[i] = (v >= 0x8000 ? v - 0x10000 : v) / 0x8000;
+        }
+        carry = total % 2 ? raw.charCodeAt(raw.length - 1) : null;
+
+        const src = ctx.createBufferSource();
+        src.buffer = buf;
+        src.connect(analyser);
+        // A small lead on the first chunk absorbs network jitter between chunks.
+        const at = Math.max(ctx.currentTime + (nextAt === 0 ? 0.06 : 0.01), nextAt);
+        src.start(at);
+        nextAt = at + buf.duration;
+        sources.add(src);
+        src.onended = () => {
+          sources.delete(src);
+          settle();
+        };
+        setSpeaking(true);
+      },
+      end() {
+        ended = true;
+        settle();
+      },
+    };
+  }, [stop]);
 
   /** Speaks the agent's latest line. Resolves when playback starts (or fails quietly). */
   const play = useCallback(
@@ -115,5 +194,8 @@ export function useCharacterVoice() {
     [],
   );
 
-  return { play, stop, unlock, speaking, level, hasLevel: () => analyserRef.current !== null };
+  /** The unlocked AudioContext, shared with live transcription so the mic works without another gesture. */
+  const context = useCallback(() => ctxRef.current, []);
+
+  return { play, stream, stop, unlock, context, speaking, level, hasLevel: () => analyserRef.current !== null };
 }

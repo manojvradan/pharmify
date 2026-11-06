@@ -347,7 +347,8 @@ export function DebriefReport({
               {otherReplays.map((r) => (
                 <li key={`${r.time}-${r.youSaid}`} className="pl-1">
                   <b className="font-semibold">
-                    {r.agent === "prescriber" ? "Prescriber call" : "With the patient"}, {r.time}:
+                    {debrief.format === "explain" ? "In your answer" : r.agent === "prescriber" ? "Prescriber call" : "With the patient"},{" "}
+                    {r.time}:
                   </b>{" "}
                   you said “{r.youSaid}” Try “{r.tryInstead}”
                 </li>
