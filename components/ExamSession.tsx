@@ -7,11 +7,13 @@ import { Pip } from "@/components/Pip";
 import { CaseDocuments, GradingPanel, SessionHeader, clock, timeCheck, type Phase } from "@/components/SessionChrome";
 import { PharmacyScene } from "@/components/PharmacyScene";
 import { useCharacterVoice } from "@/hooks/useCharacterVoice";
-import { type MicError, useRecorder } from "@/hooks/useRecorder";
+import { MIN_TAKE_MS, type MicError, useRecorder } from "@/hooks/useRecorder";
 import { useTalkingMouth } from "@/hooks/useTalkingMouth";
 import type { AgentId, PublicCase, Turn } from "@/lib/cases/schema";
 import { CAST, type CastId } from "@/lib/cast";
 import type { Debrief } from "@/lib/session/report";
+import type { TurnEvent } from "@/lib/voice/format";
+import { prepareLiveTranscription } from "@/lib/voice/liveTranscriber";
 
 type Transcripts = Record<AgentId, Turn[]>;
 
@@ -39,10 +41,20 @@ export function ExamSession({ case: c, voice = false }: { case: PublicCase; voic
   const [typing, setTyping] = useState(!voice);
   const [transcribing, setTranscribing] = useState(false);
   // Destructured so effects and callbacks depend on the stable functions, not a new object each render.
-  const { play: playVoice, stop: stopVoice, unlock: unlockVoice, speaking, level: voiceLevel } = useCharacterVoice();
+  const {
+    play: playVoice,
+    stream: streamVoice,
+    stop: stopVoice,
+    unlock: unlockVoice,
+    context: voiceContext,
+    speaking,
+    level: voiceLevel,
+  } = useCharacterVoice();
   const recorder = useRecorder();
   /** True while the "Hold to speak" button is held, so a release during the mic prompt still stops it. */
   const holdingRef = useRef(false);
+  /** The next live-transcription token, fetched ahead so pressing "Hold to speak" connects at once. */
+  const nextTokenRef = useRef<{ url: Promise<string>; at: number } | null>(null);
 
   // Refs mirror state so the timer-driven finish() always sends the latest transcript.
   const transcriptsRef = useRef<Transcripts>(EMPTY);
@@ -91,6 +103,11 @@ export function ExamSession({ case: c, voice = false }: { case: PublicCase; voic
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error ?? `Couldn't start the session (${res.status})`);
       sessionIdRef.current = data.sessionId;
+      if (voice) {
+        const ctx = voiceContext();
+        if (ctx) prepareLiveTranscription(ctx);
+        prefetchToken();
+      }
       setPhase("live");
       openAgent("patient");
     } catch (err) {
@@ -144,6 +161,32 @@ export function ExamSession({ case: c, voice = false }: { case: PublicCase; voic
     void say(text);
   }
 
+  function fetchToken(): Promise<string> {
+    const url = fetch("/api/session/listen/token", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ sessionId: sessionIdRef.current }),
+    }).then(async (res) => {
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || typeof data.url !== "string") throw new Error(data.error ?? `No token (${res.status})`);
+      return data.url as string;
+    });
+    url.catch(() => {}); // a failed prefetch just means this take is uploaded instead
+    return url;
+  }
+
+  function prefetchToken() {
+    nextTokenRef.current = { url: fetchToken(), at: Date.now() };
+  }
+
+  /** Tokens are single use and last 15 minutes: use the prefetched one if it's fresh, and fetch the next. */
+  function takeToken(): Promise<string> {
+    const next = nextTokenRef.current;
+    const url = next && Date.now() - next.at < 10 * 60_000 ? next.url : fetchToken();
+    prefetchToken();
+    return url;
+  }
+
   /** Sends one thing the candidate said (typed or transcribed) and plays the reply. */
   async function say(text: string) {
     if (streaming || phase !== "live") return;
@@ -157,11 +200,13 @@ export function ExamSession({ case: c, voice = false }: { case: PublicCase; voic
     const controller = new AbortController();
     abortRef.current = controller;
     setStreaming(true);
+    // With voice, the reply's audio comes in the same stream as its text and plays as it arrives.
+    const audio = voice ? streamVoice() : null;
     try {
       const res = await fetch("/api/session/turn", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ sessionId: sessionIdRef.current, agent: id, text }),
+        body: JSON.stringify({ sessionId: sessionIdRef.current, agent: id, text, voice: Boolean(audio) }),
         signal: controller.signal,
       });
       if (!res.ok || !res.body) {
@@ -183,16 +228,44 @@ export function ExamSession({ case: c, voice = false }: { case: PublicCase; voic
       updateTranscripts((t) => ({ ...t, [id]: [...t[id], { role: "actor", text: "", t: replyAt }] }));
       const reader = res.body.getReader();
       const decoder = new TextDecoder();
+      const events = res.headers.get("Content-Type")?.startsWith("application/x-ndjson") ?? false;
       let reply = "";
+      let lineBuf = "";
+      let voiced = false;
+      const showReply = () => {
+        const soFar = reply;
+        updateTranscripts((t) => ({ ...t, [id]: [...t[id].slice(0, -1), { role: "actor", text: soFar, t: replyAt }] }));
+      };
       for (;;) {
         const { value, done } = await reader.read();
         if (done) break;
-        reply += decoder.decode(value, { stream: true });
-        const soFar = reply;
-        updateTranscripts((t) => ({ ...t, [id]: [...t[id].slice(0, -1), { role: "actor", text: soFar, t: replyAt }] }));
+        const chunk = decoder.decode(value, { stream: true });
+        if (!events) {
+          reply += chunk;
+          showReply();
+          continue;
+        }
+        lineBuf += chunk;
+        const lines = lineBuf.split("\n");
+        lineBuf = lines.pop() ?? "";
+        let textChanged = false;
+        for (const line of lines) {
+          if (!line) continue;
+          const e = JSON.parse(line) as TurnEvent;
+          if ("t" in e) {
+            reply += e.t;
+            textChanged = true;
+          } else if ("a" in e) {
+            voiced = true;
+            audio?.push(e.a);
+          }
+        }
+        if (textChanged) showReply();
       }
-      // The reply is saved before the stream closes, so the server can voice it now.
-      if (voice && reply.trim() && sessionIdRef.current) void playVoice(sessionIdRef.current, id);
+      audio?.end();
+      // No streamed audio (no Web Audio, or the voice stream failed): the reply is saved
+      // before the stream closes, so the server can voice it now.
+      if (voice && !voiced && reply.trim() && sessionIdRef.current) void playVoice(sessionIdRef.current, id);
     } catch (err) {
       if (!controller.signal.aborted) setError(err instanceof Error ? err.message : "Something went wrong");
     } finally {
@@ -208,7 +281,9 @@ export function ExamSession({ case: c, voice = false }: { case: PublicCase; voic
     stopVoice();
     setError(null);
     try {
-      await recorder.start();
+      const ctx = voiceContext();
+      // Live transcription while they talk; the recording is the fallback.
+      await recorder.start(ctx && sessionIdRef.current ? { ctx, url: takeToken } : undefined);
       // Let go while the browser was still asking for the mic: discard this take.
       if (!holdingRef.current) await recorder.stop();
     } catch (err) {
@@ -223,22 +298,28 @@ export function ExamSession({ case: c, voice = false }: { case: PublicCase; voic
 
   async function holdEnd() {
     holdingRef.current = false;
+    // Set before stopping: stop() waits for the last words from live transcription.
+    setTranscribing(true);
     const take = await recorder.stop();
-    if (!take) return;
-    if (take.ms < 400) {
-      setError("Hold the button down while you talk, then let go.");
+    if (!take || take.ms < MIN_TAKE_MS) {
+      setTranscribing(false);
+      if (take) setError("Hold the button down while you talk, then let go.");
       return;
     }
-    setTranscribing(true);
     try {
-      const form = new FormData();
-      form.append("sessionId", sessionIdRef.current ?? "");
-      form.append("audio", take.audio);
-      const res = await fetch("/api/session/listen", { method: "POST", body: form });
-      const data = await res.json().catch(() => ({}));
-      if (res.status === 409 && data.ended) return void finish();
-      if (!res.ok) throw new Error(data.error ?? `Couldn't hear that (${res.status})`);
-      const text = String(data.text ?? "").trim();
+      let text = take.text;
+      if (text === null) {
+        // Live transcription wasn't available for this take: upload the recording.
+        const form = new FormData();
+        form.append("sessionId", sessionIdRef.current ?? "");
+        form.append("audio", take.audio);
+        const res = await fetch("/api/session/listen", { method: "POST", body: form });
+        const data = await res.json().catch(() => ({}));
+        if (res.status === 409 && data.ended) return void finish();
+        if (!res.ok) throw new Error(data.error ?? `Couldn't hear that (${res.status})`);
+        text = String(data.text ?? "");
+      }
+      text = text.trim();
       if (!text) throw new Error("Didn't catch that. Try again, a little closer to the mic.");
       setTranscribing(false);
       await say(text);
@@ -278,10 +359,10 @@ export function ExamSession({ case: c, voice = false }: { case: PublicCase; voic
   const talking = voice ? speaking : streaming && !waiting;
   const status = transcribing
     ? "Listening back…"
-    : waiting || (voice && streaming)
-      ? `${agentInfo.name} is thinking…`
-      : talking
-        ? `${agentInfo.name} is speaking`
+    : talking
+      ? `${agentInfo.name} is speaking`
+      : waiting || (voice && streaming)
+        ? `${agentInfo.name} is thinking…`
         : "";
 
   return (
