@@ -8,7 +8,7 @@
  *   npm run dev     run locally against the app on localhost (reads ../.env.local)
  *   lk agent deploy build and deploy to LiveKit Cloud (see README.md)
  */
-import { type JobContext, type JobProcess, ServerOptions, cli, defineAgent, inference, llm, voice } from "@livekit/agents";
+import { type JobContext, type JobProcess, ServerOptions, cli, defineAgent, inference, llm, log, voice } from "@livekit/agents";
 import * as elevenlabs from "@livekit/agents-plugin-elevenlabs";
 import * as silero from "@livekit/agents-plugin-silero";
 import { ReadableStream } from "node:stream/web";
@@ -24,6 +24,39 @@ import {
 
 /** Same low-latency voice model as the app's own voice mode (lib/voice/elevenlabs.ts). */
 const TTS_MODEL = "eleven_flash_v2_5";
+/** How long to wait for the app to start answering a turn before apologising instead. */
+const TURN_TIMEOUT_MS = 20_000;
+/** Said when a turn fails, so the candidate hears something rather than silence. */
+const RETRY_LINE = "Sorry, I didn't quite catch that. Could you say it again?";
+
+type Logger = ReturnType<typeof log>;
+
+/** A one-line reply, for when the app can't give one. */
+function line(text: string): ReadableStream<string> {
+  return new ReadableStream<string>({
+    start(controller) {
+      controller.enqueue(text);
+      controller.close();
+    },
+  });
+}
+
+/** Checks the dispatch metadata the app's /api/livekit/token wrote, so a bad job fails with a clear error. */
+function parseJob(raw: string): AgentJobMetadata {
+  const job = JSON.parse(raw || "null") as Partial<AgentJobMetadata> | null;
+  if (
+    !job ||
+    typeof job.sessionId !== "string" ||
+    typeof job.ticket !== "string" ||
+    typeof job.apiBase !== "string" ||
+    !Array.isArray(job.characters) ||
+    job.characters.length === 0 ||
+    !job.characters.every((c) => typeof c?.id === "string" && typeof c.voiceId === "string" && typeof c.name === "string")
+  ) {
+    throw new Error("Job metadata is missing or malformed (dispatch it through /api/livekit/token)");
+  }
+  return job as AgentJobMetadata;
+}
 
 function elevenLabsKey(): string {
   const k = process.env.ELEVENLABS_API_KEY ?? process.env.ELEVEN_API_KEY;
@@ -52,8 +85,9 @@ class Character extends voice.Agent {
   job: AgentJobMetadata;
   opened = false;
   onEnded: () => void;
+  logger: Logger;
 
-  constructor(info: CharacterInfo, job: AgentJobMetadata, onEnded: () => void) {
+  constructor(info: CharacterInfo, job: AgentJobMetadata, onEnded: () => void, logger: Logger) {
     super({
       // Not sent to any model; the app holds the character's real instructions.
       instructions: `You are ${info.name}.`,
@@ -62,6 +96,7 @@ class Character extends voice.Agent {
     this.info = info;
     this.job = job;
     this.onEnded = onEnded;
+    this.logger = logger.child({ character: info.id });
   }
 
   /** The scripted opening line, the first time the candidate turns to this character. */
@@ -79,32 +114,57 @@ class Character extends voice.Agent {
       ?.textContent?.trim();
     if (!said) return null;
 
-    const res = await fetch(`${this.job.apiBase}/api/session/turn`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", [AGENT_TICKET_HEADER]: this.job.ticket },
-      body: JSON.stringify({ sessionId: this.job.sessionId, agent: this.info.id, text: said }),
-    });
+    // Times out only the wait for the app to start answering; the reply itself may stream for longer.
+    const abort = new AbortController();
+    const timer = setTimeout(() => abort.abort(new Error("turn timed out")), TURN_TIMEOUT_MS);
+    const startedAt = performance.now();
+    let res: Response;
+    try {
+      res = await fetch(`${this.job.apiBase}/api/session/turn`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", [AGENT_TICKET_HEADER]: this.job.ticket },
+        body: JSON.stringify({ sessionId: this.job.sessionId, agent: this.info.id, text: said }),
+        signal: abort.signal,
+      });
+    } catch (err) {
+      this.logger.error({ err, ms: Math.round(performance.now() - startedAt) }, "turn request failed");
+      return line(RETRY_LINE);
+    } finally {
+      clearTimeout(timer);
+    }
+    const ms = Math.round(performance.now() - startedAt);
     if (res.status === 409) {
       // The server's clock ran out: tell the browser, which ends the part and grades it.
+      this.logger.info("part over (server clock)");
       this.onEnded();
       return null;
     }
     if (!res.ok || !res.body) {
-      console.error(`[agent] turn failed ${res.status}: ${(await res.text().catch(() => "")).slice(0, 200)}`);
-      return null;
+      this.logger.error({ status: res.status, ms, body: (await res.text().catch(() => "")).slice(0, 200) }, "turn failed");
+      return line(RETRY_LINE);
     }
+    this.logger.debug({ ms }, "turn answering");
     // Cancelling this stream (the candidate interrupted) cancels the request, which stops the model.
     const reader = res.body.getReader();
+    const logger = this.logger;
     const decoder = new TextDecoder();
     return new ReadableStream<string>({
       async pull(controller) {
-        const { value, done } = await reader.read();
-        if (done) {
+        let chunk: ReadableStreamReadResult<Uint8Array>;
+        try {
+          chunk = await reader.read();
+        } catch (err) {
+          // The reply broke off mid-stream: end the line with what was said rather than fail the turn.
+          logger.error({ err }, "turn stream broke off");
+          controller.close();
+          return;
+        }
+        if (chunk.done) {
           const rest = decoder.decode();
           if (rest) controller.enqueue(rest);
           controller.close();
         } else {
-          controller.enqueue(decoder.decode(value, { stream: true }));
+          controller.enqueue(decoder.decode(chunk.value, { stream: true }));
         }
       },
       cancel(reason) {
@@ -119,11 +179,14 @@ export default defineAgent({
     proc.userData.vad = await silero.VAD.load();
   },
   entry: async (ctx: JobContext) => {
-    const job = JSON.parse(ctx.job.metadata) as AgentJobMetadata;
+    const job = parseJob(ctx.job.metadata);
+    const logger = log().child({ sessionId: job.sessionId, jobId: ctx.job.id });
     const ended = () => {
-      void ctx.room.localParticipant?.sendText("ended", { topic: TOPIC_ENDED });
+      ctx.room.localParticipant?.sendText("ended", { topic: TOPIC_ENDED }).catch((err) => logger.warn({ err }, "couldn't send ended"));
     };
-    const characters = new Map<CharacterId, Character>(job.characters.map((c) => [c.id, new Character(c, job, ended)]));
+    const characters = new Map<CharacterId, Character>(
+      job.characters.map((c) => [c.id, new Character(c, job, ended, logger)]),
+    );
     const first = characters.get("patient") ?? [...characters.values()][0];
     if (!first) throw new Error(`Session ${job.sessionId} has no characters`);
 
@@ -155,6 +218,7 @@ export default defineAgent({
 
     await session.start({ agent: first, room: ctx.room });
     await ctx.connect();
+    logger.info({ characters: job.characters.map((c) => c.id) }, "joined session room");
   },
 });
 

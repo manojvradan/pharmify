@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { MicError } from "@/hooks/useRecorder";
+import { closeAudioContext } from "@/lib/voice/audioContext";
 
 /** Long enough to keep sentences whole, short enough that one failed upload loses little. */
 const SEGMENT_MS = 45_000;
@@ -97,7 +98,7 @@ export function useSegmentRecorder() {
     await Promise.all(pendingRef.current);
     streamRef.current?.getTracks().forEach((t) => t.stop());
     streamRef.current = null;
-    void ctxRef.current?.close();
+    closeAudioContext(ctxRef.current);
     ctxRef.current = null;
     analyserRef.current = null;
     setRecording(false);
@@ -119,7 +120,8 @@ export function useSegmentRecorder() {
       if (timerRef.current) clearInterval(timerRef.current);
       if (recRef.current?.state === "recording") recRef.current.stop();
       streamRef.current?.getTracks().forEach((t) => t.stop());
-      void ctxRef.current?.close();
+      closeAudioContext(ctxRef.current);
+      ctxRef.current = null;
     },
     [],
   );

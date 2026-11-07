@@ -1,3 +1,4 @@
+import { resumeAudioContext } from "./audioContext";
 import { MIC_SAMPLE_RATE } from "./format";
 
 /**
@@ -97,8 +98,11 @@ export class LiveTranscriber {
   ) {}
 
   async start(): Promise<void> {
+    if (this.ctx.state === "closed") throw new Error("AudioContext is closed");
     await loadWorklet(this.ctx);
+    // It may have closed while the worklet loaded.
     if (this.done) return;
+    if ((this.ctx.state as AudioContextState) === "closed") throw new Error("AudioContext is closed");
     this.source = this.ctx.createMediaStreamSource(this.stream);
     this.node = new AudioWorkletNode(this.ctx, "pcm16-downsampler");
     // A silent path to the speakers keeps the worklet running in every browser.
@@ -109,7 +113,7 @@ export class LiveTranscriber {
       if (e.data.last) this.flushed?.(e.data.pcm);
       else this.sendAudio(e.data.pcm, false);
     };
-    void this.ctx.resume();
+    resumeAudioContext(this.ctx);
 
     this.url.then(
       (url) => {

@@ -111,7 +111,16 @@ export function ExamSession({
     [updateTranscripts],
   );
   // The agent says the server's clock has run out: end the part the same way the timer would.
-  const live = useLiveKitVoice({ onLine: onLiveLine, onEnded: () => finishRef.current() });
+  const live = useLiveKitVoice({
+    onLine: onLiveLine,
+    onEnded: () => finishRef.current(),
+    // Mid-session drop: carry on with hold to speak, as when it fails to start.
+    onLost: () => {
+      handsFreeLiveRef.current = false;
+      setHandsFreeOn(false);
+      setError("Hands-free voice dropped. Using hold to speak instead.");
+    },
+  });
 
   /** The opening line is scripted: shown straight from the case, no model call. */
   const openAgent = useCallback(

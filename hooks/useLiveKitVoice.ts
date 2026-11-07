@@ -7,6 +7,7 @@ const AGENT_JOIN_TIMEOUT_MS = 25_000;
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { AgentId } from "@/lib/cases/schema";
 import { TOPIC_ENDED, TOPIC_SWITCH } from "@/lib/voice/agentTicket.shared";
+import { closeAudioContext, resumeAudioContext } from "@/lib/voice/audioContext";
 
 /** One line in the live transcript, as the agent publishes it. `id` repeats while a line is still being said. */
 export type LiveLine = { id: string; role: "candidate" | "actor"; text: string; final: boolean };
@@ -20,7 +21,16 @@ export type AgentState = "connecting" | "listening" | "thinking" | "speaking";
  * and can be interrupted. Lines come back as transcripts for the screen; the saved
  * transcript is the server's, written by /api/session/turn as in every other mode.
  */
-export function useLiveKitVoice({ onLine, onEnded }: { onLine: (line: LiveLine) => void; onEnded: () => void }) {
+export function useLiveKitVoice({
+  onLine,
+  onEnded,
+  onLost,
+}: {
+  onLine: (line: LiveLine) => void;
+  onEnded: () => void;
+  /** The room dropped or the agent left mid-session (not a `disconnect()` call). */
+  onLost: () => void;
+}) {
   const roomRef = useRef<Room | null>(null);
   const audioElRef = useRef<HTMLMediaElement | null>(null);
   const ctxRef = useRef<AudioContext | null>(null);
@@ -30,9 +40,11 @@ export function useLiveKitVoice({ onLine, onEnded }: { onLine: (line: LiveLine) 
   // Kept in refs so the room's handlers always call the latest callbacks.
   const onLineRef = useRef(onLine);
   const onEndedRef = useRef(onEnded);
+  const onLostRef = useRef(onLost);
   useEffect(() => {
     onLineRef.current = onLine;
     onEndedRef.current = onEnded;
+    onLostRef.current = onLost;
   });
 
   const disconnect = useCallback(() => {
@@ -52,8 +64,9 @@ export function useLiveKitVoice({ onLine, onEnded }: { onLine: (line: LiveLine) 
   const connect = useCallback(
     async (sessionId: string) => {
       if (roomRef.current) return;
+      if (ctxRef.current?.state === "closed") ctxRef.current = null;
       if (!ctxRef.current && typeof AudioContext !== "undefined") ctxRef.current = new AudioContext();
-      void ctxRef.current?.resume();
+      resumeAudioContext(ctxRef.current);
       setState("connecting");
 
       const res = await fetch("/api/livekit/token", {
@@ -93,8 +106,15 @@ export function useLiveKitVoice({ onLine, onEnded }: { onLine: (line: LiveLine) 
         const s = changed["lk.agent.state"];
         if (s === "listening" || s === "thinking" || s === "speaking") setState(s);
       });
-      room.on(RoomEvent.Disconnected, () => {
-        if (roomRef.current === room) disconnect();
+      // Only a drop we didn't ask for: disconnect() clears roomRef first.
+      const lost = () => {
+        if (roomRef.current !== room) return;
+        disconnect();
+        onLostRef.current();
+      };
+      room.on(RoomEvent.Disconnected, lost);
+      room.on(RoomEvent.ParticipantDisconnected, (p) => {
+        if (p.isAgent && agentInRoom) lost();
       });
 
       room.registerTextStreamHandler("lk.transcription", async (reader, from) => {
@@ -118,6 +138,7 @@ export function useLiveKitVoice({ onLine, onEnded }: { onLine: (line: LiveLine) 
       room.registerTextStreamHandler(TOPIC_ENDED, async () => onEndedRef.current());
 
       // Resolves when the agent is in the room; rejects if it never comes (e.g. no agent worker running).
+      let agentInRoom = false;
       const agentJoined = new Promise<void>((resolve, reject) => {
         const isIn = () => [...room.remoteParticipants.values()].some((p) => p.isAgent);
         const timer = setTimeout(() => {
@@ -126,6 +147,7 @@ export function useLiveKitVoice({ onLine, onEnded }: { onLine: (line: LiveLine) 
         }, AGENT_JOIN_TIMEOUT_MS);
         function check() {
           if (!isIn()) return;
+          agentInRoom = true;
           clearTimeout(timer);
           room.off(RoomEvent.ParticipantConnected, check);
           resolve();
@@ -169,7 +191,8 @@ export function useLiveKitVoice({ onLine, onEnded }: { onLine: (line: LiveLine) 
   useEffect(
     () => () => {
       disconnect();
-      void ctxRef.current?.close();
+      closeAudioContext(ctxRef.current);
+      ctxRef.current = null;
     },
     [disconnect],
   );

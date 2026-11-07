@@ -38,4 +38,13 @@ lk agent logs
 LiveKit injects its own URL and keys. The web app needs `LIVEKIT_URL`, `LIVEKIT_API_KEY`,
 `LIVEKIT_API_SECRET` and `AGENT_TICKET_SECRET` in Vercel for "Hands-free" to appear.
 
+The agent calls back to the origin that issued the room token. Set `AGENT_API_BASE` in
+Vercel production to the canonical domain (e.g. `https://pharmify.app`) so that's stable.
+Preview deployments behind Vercel Deployment Protection reject the agent's calls (it has
+no Vercel cookie): there the candidate hears "Sorry, I didn't quite catch that" and the
+logs show `turn failed` with status 401.
+
+Before deploying a change, boot it in production mode: `node --env-file=../.env.local src/agent.ts start`
+should log `registered worker`. Roll back with `lk agent rollback`; see `lk agent versions`.
+
 `src/protocol.ts` is a copy of `lib/voice/agentTicket.shared.ts`: keep them in step.

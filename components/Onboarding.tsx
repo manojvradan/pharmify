@@ -11,6 +11,7 @@ import {
   sittingLabel,
   type ProfileUpdate,
 } from "@/lib/onboarding";
+import { closeAudioContext } from "@/lib/voice/audioContext";
 
 /**
  * Five steps from the "Onboarding" design board: welcome, exam sitting, state and
@@ -341,7 +342,7 @@ function MicCheck({ ok, onHeard, onSkip, h1 }: { ok: boolean; onHeard: () => voi
     stop.current = () => {
       cancelAnimationFrame(raf);
       stream.getTracks().forEach((t) => t.stop());
-      void ctx.close();
+      closeAudioContext(ctx);
     };
     setMic("listening");
     tick();
