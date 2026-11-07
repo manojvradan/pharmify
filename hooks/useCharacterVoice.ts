@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { AgentId } from "@/lib/cases/schema";
 import { SPEECH_SAMPLE_RATE } from "@/lib/voice/format";
+import { closeAudioContext, resumeAudioContext } from "@/lib/voice/audioContext";
 
 /** Plays streamed PCM as it arrives. Call `end()` once the last chunk is in. */
 export type VoiceStream = { push: (base64: string) => void; end: () => void };
@@ -59,6 +60,13 @@ export function useCharacterVoice() {
   }, []);
 
   const unlock = useCallback(() => {
+    if (ctxRef.current?.state === "closed") {
+      // A closed context (after an unmount or Fast Refresh) can't be reused, and the old
+      // element stays wired to it, so start over with both.
+      ctxRef.current = null;
+      analyserRef.current = null;
+      audioRef.current = null;
+    }
     const a = element();
     if (!ctxRef.current && typeof AudioContext !== "undefined") {
       try {
@@ -74,7 +82,7 @@ export function useCharacterVoice() {
         // No Web Audio: the voice still plays, and the mouth falls back to flapping.
       }
     }
-    void ctxRef.current?.resume();
+    resumeAudioContext(ctxRef.current);
     if (a.paused && !a.src) {
       a.src = silentWav();
       a.play().catch(() => {});
@@ -107,9 +115,9 @@ export function useCharacterVoice() {
   const stream = useCallback((): VoiceStream | null => {
     const ctx = ctxRef.current;
     const analyser = analyserRef.current;
-    if (!ctx || !analyser) return null;
+    if (!ctx || ctx.state === "closed" || !analyser) return null;
     stop();
-    void ctx.resume();
+    resumeAudioContext(ctx);
     const gen = streamGenRef.current;
     let nextAt = 0;
     let ended = false;
@@ -189,13 +197,17 @@ export function useCharacterVoice() {
   useEffect(
     () => () => {
       audioRef.current?.pause();
-      void ctxRef.current?.close();
+      // The element is tied to this context for good, so drop it too.
+      audioRef.current = null;
+      closeAudioContext(ctxRef.current);
+      ctxRef.current = null;
+      analyserRef.current = null;
     },
     [],
   );
 
   /** The unlocked AudioContext, shared with live transcription so the mic works without another gesture. */
-  const context = useCallback(() => ctxRef.current, []);
+  const context = useCallback(() => (ctxRef.current?.state === "closed" ? null : ctxRef.current), []);
 
   return { play, stream, stop, unlock, context, speaking, level, hasLevel: () => analyserRef.current !== null };
 }

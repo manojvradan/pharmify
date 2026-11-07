@@ -6,6 +6,7 @@ import { ExplainSession } from "@/components/ExplainSession";
 import { Pip } from "@/components/Pip";
 import { caseIds, getCase, toPublic } from "@/lib/cases/bank";
 import { voiceEnabled } from "@/lib/voice/elevenlabs";
+import { liveKitEnabled } from "@/lib/voice/livekit";
 
 export function generateStaticParams() {
   return caseIds().map((caseId) => ({ caseId }));
@@ -28,7 +29,7 @@ async function CaseSession({ params }: { params: PageProps<"/session/[caseId]">[
   return pub.format === "explain" ? (
     <ExplainSession case={pub} voice={voiceEnabled()} />
   ) : (
-    <ExamSession case={pub} voice={voiceEnabled()} />
+    <ExamSession case={pub} voice={voiceEnabled()} handsFree={liveKitEnabled()} />
   );
 }
 

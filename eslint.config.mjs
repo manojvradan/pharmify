@@ -7,6 +7,8 @@ const eslintConfig = defineConfig([
   ...nextTs,
   // Override default ignores of eslint-config-next.
   globalIgnores([
+    // The voice agent is its own package (agent/package.json), checked with its own tsc.
+    "agent/**",
     // Default ignores of eslint-config-next:
     ".next/**",
     "out/**",

@@ -1,6 +1,6 @@
 import "server-only";
-import type { CastId } from "@/lib/cast";
 import { MIC_SAMPLE_RATE, SPEECH_SAMPLE_RATE } from "./format";
+import { type VoiceKey, voiceId } from "./voices";
 
 /**
  * ElevenLabs text-to-speech and speech-to-text. Voice is optional: without
@@ -13,21 +13,6 @@ const API = "https://api.elevenlabs.io/v1";
 const TTS_MODEL = process.env.ELEVENLABS_TTS_MODEL ?? "eleven_flash_v2_5";
 const STT_MODEL = process.env.ELEVENLABS_STT_MODEL ?? "scribe_v1";
 
-/**
- * One voice per cast member, from ElevenLabs' default voices. Swap any of these for a
- * Voice Library voice (Australian accents are there) by pasting its voice ID.
- */
-export const VOICES: Record<CastId, string> = {
-  "bertie-bear": "pqHfZKP75CvOlQylNhV4", // Bill: older, warm male
-  "kiki-koala": "cgSgspJ2msm6clMCkdW9", // Jessica: young female
-  "wally-wombat": "IKne3meq5aSn9XLyUdCD", // Charlie: Australian male, casual
-  "rosie-rabbit": "pFZP5JQG7iQjIQuC4Bku", // Lily: warm older female
-  "penny-penguin": "EXAVITQu4vr4xnSDxMaL", // Sarah: soft female
-  "felix-fox": "iP95p4xoKVk53GoZ742B", // Chris: friendly male
-  "dr-hoot": "JBFqnCBsd6RMkjVDRZzb", // George: calm, measured male
-  "dr-kip": "TX3LPaxmHKxFdv7VOQHJ", // Liam: brisk male
-  "dr-tusk": "nPczCjzI2devNBz1zQrb", // Brian: deep, firm male
-};
 
 export function voiceEnabled(): boolean {
   return Boolean(process.env.ELEVENLABS_API_KEY);
@@ -39,9 +24,9 @@ function key(): string {
   return k;
 }
 
-/** Streams MP3 audio of `text` in the cast member's voice. */
-export async function speak(text: string, avatar: CastId, signal?: AbortSignal): Promise<Response> {
-  return fetch(`${API}/text-to-speech/${VOICES[avatar]}/stream?output_format=mp3_44100_64`, {
+/** Streams MP3 audio of `text` in the character's voice. */
+export async function speak(text: string, voice: VoiceKey, signal?: AbortSignal): Promise<Response> {
+  return fetch(`${API}/text-to-speech/${voiceId(voice)}/stream?output_format=mp3_44100_64`, {
     method: "POST",
     headers: { "xi-api-key": key(), "Content-Type": "application/json", Accept: "audio/mpeg" },
     body: JSON.stringify({ text, model_id: TTS_MODEL, language_code: "en" }),
@@ -122,9 +107,9 @@ export type SpeechStream = {
  * repeated words ("...might have it. Have it? I've tried..."), so it is not used.
  * Open it before the model call so the connection is ready when the words arrive.
  */
-export function openSpeechStream(avatar: CastId): SpeechStream {
+export function openSpeechStream(voice: VoiceKey): SpeechStream {
   const url =
-    `wss://api.elevenlabs.io/v1/text-to-speech/${VOICES[avatar]}/stream-input` +
+    `wss://api.elevenlabs.io/v1/text-to-speech/${voiceId(voice)}/stream-input` +
     `?model_id=${TTS_MODEL}&output_format=pcm_${SPEECH_SAMPLE_RATE}&language_code=en&inactivity_timeout=30`;
   const ws = new WebSocket(url);
   const outbox: string[] = [];

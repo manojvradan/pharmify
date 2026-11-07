@@ -1,0 +1,19 @@
+{
+  "name": "pharmify-voice-agent",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --env-file-if-exists=../.env.local src/agent.ts dev",
+    "start": "node src/agent.ts start",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@livekit/agents": "^1.9.5",
+    "@livekit/agents-plugin-elevenlabs": "^1.9.5",
+    "@livekit/agents-plugin-silero": "^1.9.5"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2"
+  }
+}

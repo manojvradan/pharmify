@@ -27,14 +27,14 @@ export async function GET(req: Request) {
   if (session.status !== "live") return Response.json({ error: "This session has ended" }, { status: 409 });
   const c = getCase(session.caseId);
   const persona = c && getPersona(c, agent);
-  const avatar = c && toPublic(c).agents.find((a) => a.id === agent)?.avatar;
-  if (!c || !persona || !avatar) return Response.json({ error: "Unknown case or agent" }, { status: 404 });
+  const voice = c && toPublic(c).agents.find((a) => a.id === agent)?.voice;
+  if (!c || !persona || !voice) return Response.json({ error: "Unknown case or agent" }, { status: 404 });
 
   const said = (await loadTranscripts(sessionId))[agent].filter((t) => t.role === "actor");
   const text = said.at(-1)?.text ?? persona.openingLine;
   if (!text) return Response.json({ error: "Nothing to say yet" }, { status: 404 });
 
-  const res = await speak(text, avatar, req.signal);
+  const res = await speak(text, voice, req.signal);
   if (!res.ok || !res.body) {
     console.error("[voice] text-to-speech failed", res.status, (await res.text()).slice(0, 300));
     return Response.json({ error: "Couldn't play the voice" }, { status: 502 });
