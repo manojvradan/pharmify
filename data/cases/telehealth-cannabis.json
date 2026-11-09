@@ -22,6 +22,7 @@
       "avatar": "kiki-koala",
       "voice": "au-young-man-2",
       "description": "A man in his twenties, polite but guarded. Keeps answers short and changes the subject when asked about his health. Becomes uncomfortable if pressed hard, but answers direct, respectful questions, especially when the pharmacist explains why they need to know.",
+      "bio": {"Full name": "Liam Davies", "Date of birth": "5 December 2000", "Age": "25", "Address": "Unit 3, 18 Cardiff Road, Hamilton NSW 2303", "Phone": "0491 570 737", "Occupation": "Apprentice electrician"},
       "openingLine": "Hi, I need this filled please.",
       "publicFacts": [
         "He had a telehealth appointment with the prescriber.",
@@ -34,6 +35,7 @@
       "name": "Dr Lane",
       "avatar": "dr-tusk",
       "description": "A telehealth prescriber in another city. Professional and a little defensive about their prescribing. Responds well to a respectful, specific question about the indication and history, and poorly to vague criticism.",
+      "bio": {"Full name": "Dr Alex Lane", "Role": "Doctor working for a telehealth service", "Workplace": "A telehealth clinic based in Sydney"},
       "openingLine": "Dr Lane speaking. You're calling about one of my patients?",
       "publicFacts": [
         "You wrote the prescription after a telehealth consultation and posted it to the patient."

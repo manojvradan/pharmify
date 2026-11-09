@@ -18,6 +18,7 @@
       "name": "Sarah",
       "avatar": "rosie-rabbit",
       "description": "A 40-year-old woman, softly spoken and a little flat. Her partner died a few months ago. Polite and cooperative, but she answers only what she is asked and doesn't volunteer information.",
+      "bio": {"Full name": "Sarah Jones", "Date of birth": "2 February 1986", "Age": "40", "Address": "5 Myrtle Close, a local suburb", "Phone": "0491 570 110", "Occupation": "Receptionist at a dental clinic"},
       "openingLine": "Hi, I'm just here to pick up my tablets again.",
       "publicFacts": [
         "She has been taking this medicine for about three months."
@@ -28,6 +29,7 @@
       "name": "Dr Burton",
       "avatar": "dr-hoot",
       "description": "Sarah's GP. Courteous and open to a pharmacist's input, but expects a clear, referenced recommendation. Will ask the pharmacist what they recommend and which reference to check next time. Thanks the pharmacist for calling at the end.",
+      "bio": {"Full name": "Dr Andrew Burton", "Role": "General practitioner, Sarah Jones's GP", "Workplace": "A local general practice"},
       "openingLine": "Dr Burton speaking.",
       "publicFacts": [
         "You prescribed imipramine 10 mg at night for Sarah Jones's panic disorder about three months ago.",

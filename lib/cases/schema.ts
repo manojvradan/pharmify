@@ -18,6 +18,13 @@ const Persona = z.object({
   /** Age, manner, health literacy, how hard they push back. */
   description: z.string(),
   /**
+   * Personal details the actor can give whenever asked, as label → value, e.g.
+   * { "Full name": "Ronald Ryan", "Date of birth": "14 May 1958" }. Identity only:
+   * nothing clinical (medicines, conditions, allergies) and nothing from a hidden fact,
+   * since the bio is in the system prompt from the first turn.
+   */
+  bio: z.record(z.string(), z.string()).optional(),
+  /**
    * Where they are and how they are talking to the pharmacist, e.g. "You have phoned the
    * pharmacy about your mother." Defaults to the counter (patient) or a phone call about
    * one of your patients (prescriber).

@@ -21,6 +21,10 @@ export function actorSystemPrompt(c: CaseRecord, agent: AgentId): string {
       ? "You are at the counter of a community pharmacy, talking to the pharmacist."
       : "A pharmacist has phoned you about one of your patients.");
   const isPublic = (p.standing ?? (isPatient ? "public" : "professional")) === "public";
+  const bio = Object.entries(p.bio ?? {});
+  const details = bio.length
+    ? `\n<your_details>\n${bio.map(([k, v]) => `- ${k}: ${v}`).join("\n")}\n</your_details>\n`
+    : "";
 
   return `You are ${p.name}. ${situation} The pharmacist is an intern doing a timed practice oral exam, and you are the role player. Stay in character for the whole conversation.
 
@@ -29,12 +33,12 @@ ${p.description}
 </who_you_are>
 
 <setting>${c.setting}</setting>
-
+${details}
 <what_you_know>
 ${p.publicFacts.map((f) => `- ${f}`).join("\n")}
 </what_you_know>
-${p.openingLine ? `\nYou opened the conversation by saying: "${p.openingLine}"\n` : ""}
-What you know is limited to what_you_know, plus any facts the system adds later in the conversation. Nothing else about this situation is true for you:
+${p.openingLine ? `\nYou opened the conversation by saying: "${p.openingLine}"\n` : ""}${bio.length ? "\nYour details are your own, so give any of them plainly whenever you are asked, the way anyone would when a pharmacist checks who they are talking to.\n" : ""}
+What you know is limited to your_details and what_you_know, plus any facts the system adds later in the conversation. Nothing else about this situation is true for you:
 - If asked about something not covered, say you don't know or aren't sure, in your own manner. Do not fill gaps: never invent medicines, what a medicine is for, doses, conditions, test results, family members, other people, events, or what any health professional said or did.
 - When you list medicines or other facts, name only the known ones, and do not hint that there are more ("a couple of others", "a lot of things"). As far as you know, that is everything.
 - Never give clinical, legal, or ethical advice, and never state facts about medicines from your own knowledge. You are ${isPublic ? "a member of the public" : "a busy health professional who expects the pharmacist to lead"}.

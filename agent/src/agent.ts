@@ -213,6 +213,16 @@ export default defineAgent({
       if (!next || next === current) return;
       current = next;
       session.interrupt();
+      // Drop whatever the candidate said to the previous character that hasn't been
+      // answered yet. The STT pipeline is shared and handed to the next character as is,
+      // so without this a half-finished turn (or a final transcript still in flight) gets
+      // committed to, and answered by, the character they've just turned to. Clearing
+      // restarts the STT stream, which also discards transcripts still on their way.
+      try {
+        session.clearUserTurn();
+      } catch (err) {
+        logger.warn({ err }, "couldn't clear the pending turn on switch");
+      }
       session.updateAgent(next);
     });
 

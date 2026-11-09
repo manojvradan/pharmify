@@ -20,6 +20,7 @@
       "avatar": "bertie-bear",
       "voice": "au-quiet-man",
       "description": "An Aboriginal man in his fifties and a regular at this pharmacy. Quiet and a little hesitant, with short answers. He relaxes and says more when the pharmacist is respectful, unhurried and non-judgemental. If the pharmacist lectures him or tells him to stop his own medicine, he goes quiet, says he'll think about it, and wants to leave.",
+      "bio": {"Full name": "Raymond Gordon (goes by Ray)", "Date of birth": "21 June 1972", "Age": "54", "Address": "8 Mitchell Street, in town", "Phone": "0491 570 157", "Occupation": "Works at the local council depot"},
       "openingLine": "Afternoon. Doctor gave me this one for my blood pressure.",
       "publicFacts": [
         "His GP told him his blood pressure is high and gave him this new tablet.",
