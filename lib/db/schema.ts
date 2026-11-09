@@ -1,5 +1,6 @@
 import { sql } from "drizzle-orm";
 import { index, integer, jsonb, pgEnum, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import type { Pending } from "@/lib/bot/route";
 import type { Debrief } from "@/lib/session/report";
 
 /**
@@ -97,6 +98,22 @@ export const profiles = pgTable("profiles", {
   onboardedAt: timestamp("onboarded_at", { withTimezone: true }),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
+/**
+ * WhatsApp bot: what it is waiting on for each person (e.g. a ticket draft to confirm).
+ * Keyed by phone number; the allowed numbers are in WHATSAPP_ALLOWED_NUMBERS.
+ */
+export const botThreads = pgTable("bot_threads", {
+  phone: text("phone").primaryKey(),
+  pending: jsonb("pending").$type<Pending>(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
+/** WhatsApp message ids already handled, so Meta's retries of the same webhook are ignored. */
+export const botMessages = pgTable("bot_messages", {
+  id: text("id").primaryKey(),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 });
 
 /** Pilot waitlist from the landing page. Not tied to a Clerk user. */
