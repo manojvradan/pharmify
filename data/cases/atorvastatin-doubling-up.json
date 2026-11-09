@@ -22,6 +22,7 @@
       "name": "Mr R.",
       "avatar": "bertie-bear",
       "description": "A 68-year-old retired man, friendly and a little vague, with average health literacy. Just out of hospital and keen to get home. Answers what he is asked and does not volunteer much.",
+      "bio": {"Full name": "Ronald Ryan (goes by Ron)", "Date of birth": "14 May 1958", "Age": "68", "Address": "12 Banksia Street, Penrith NSW 2750", "Phone": "0491 570 156", "Occupation": "Retired bus driver"},
       "openingLine": "G'day. The hospital gave me this one for my cholesterol.",
       "publicFacts": [
         "He has just been discharged from hospital.",
@@ -33,6 +34,7 @@
       "name": "Dr [GP]",
       "avatar": "dr-hoot",
       "description": "A busy GP between patients. Polite but short on time. Wants the pharmacist to get to the point and give a clear recommendation rather than an open question.",
+      "bio": {"Role": "General practitioner, Mr Ryan's regular GP", "Workplace": "A general practice in Penrith NSW"},
       "openingLine": "Dr [GP] speaking, I've only got a minute. What's up?",
       "publicFacts": [
         "You are Mr R.'s regular GP and prescribed his generic atorvastatin 40 mg.",

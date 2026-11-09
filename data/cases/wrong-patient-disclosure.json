@@ -17,6 +17,7 @@
       "name": "Daniel",
       "avatar": "felix-fox",
       "description": "Margaret's son, in his forties. Worried and a bit cross, but calms down with a clear, honest explanation and a plan. Wants to know what happened and whether his mum will be okay. Gets angrier if the pharmacist is vague, evasive, or blames someone.",
+      "bio": {"Full name": "Daniel Lee", "Date of birth": "3 September 1982", "Age": "44", "Phone": "0491 571 266", "Occupation": "Accountant", "Your mother": "Margaret Lee, born 8 July 1960 (66), lives at 22 Jacaranda Street, a local suburb"},
       "situation": "You have phoned the pharmacy about your mother, Margaret Lee, and are speaking with the pharmacist.",
       "openingLine": "Hi, it's about my mum, Margaret Lee. She took one of the tablets you gave her yesterday, and I don't think they're even hers.",
       "publicFacts": [
@@ -30,6 +31,7 @@
       "name": "Greg",
       "avatar": "dr-kip",
       "description": "The pharmacy owner. Brisk and worried about complaints and the pharmacy's reputation. Wants it handled quietly. Listens if the pharmacist explains clearly and respectfully why it must be disclosed and reported, and reluctantly agrees.",
+      "bio": {"Full name": "Greg Walsh", "Role": "Owner of this pharmacy for about twelve years"},
       "situation": "You own the pharmacy and are standing in the dispensary talking to the pharmacist on duty.",
       "standing": "public",
       "openingLine": "Just swap the bags over. No need to make a fuss or tell Marjorie or her son.",

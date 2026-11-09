@@ -61,6 +61,11 @@ describe.each(CASES.map((c) => [c.id, c] as const))("actor leak checks: %s", (_i
     }
   });
 
+  it.each(agents)("the %s system prompt carries every bio detail", (agent) => {
+    const prompt = actorSystemPrompt(c, agent);
+    for (const [k, v] of Object.entries(getPersona(c, agent)?.bio ?? {})) expect(prompt).toContain(`- ${k}: ${v}`);
+  });
+
   it("no hidden fact belongs to an agent the case doesn't have", () => {
     for (const f of c.hiddenFacts) expect(getPersona(c, f.agent), f.id).toBeDefined();
   });

@@ -513,7 +513,8 @@ export function ExamSession({
                           key={a.id}
                           type="button"
                           aria-pressed={on}
-                          disabled={streaming}
+                          // Not while a hold-to-speak take is still being transcribed: it belongs to this character.
+                          disabled={streaming || transcribing}
                           onClick={() => openAgent(a.id)}
                           className={`min-h-10 cursor-pointer rounded-[9px] border-0 px-4 text-sm font-medium disabled:cursor-not-allowed ${
                             on ? "bg-white text-ink shadow-[0_1px_2px_rgba(22,17,42,0.12)]" : "bg-transparent text-ink-2"

@@ -15,6 +15,13 @@
       "when": 1793876176195,
       "tag": "0001_profiles",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1794216544064,
+      "tag": "0002_mature_captain_cross",
+      "breakpoints": true
     }
   ]
 }

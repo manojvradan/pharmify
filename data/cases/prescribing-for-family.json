@@ -18,6 +18,7 @@
       "avatar": "penny-penguin",
       "voice": "au-young-woman",
       "description": "The pharmacist's wife, in her thirties. Uncomfortable and keen to be treated today. She assumes her husband will just sort it out, and is a little surprised, though cooperative, when he treats it like a proper consultation.",
+      "bio": {"Full name": "Xiaoyu Chen (you kept your own surname)", "Date of birth": "12 April 1992", "Age": "34", "Occupation": "Primary school teacher in town"},
       "situation": "You have come into the pharmacy where your husband is the pharmacist, to ask him for help.",
       "openingLine": "I think it's another UTI. Can you just give me something?",
       "publicFacts": [

@@ -22,6 +22,7 @@
       "name": "Mr Kells",
       "avatar": "wally-wombat",
       "description": "A man in his thirties, in a hurry and impatient. Short, vague answers. Pushes to have it filled and gets irritated by questions, but is never violent. If told calmly that it can't be filled today, he grumbles, asks for the script back, and leaves.",
+      "bio": {"Full name": "Jordan Kells", "Date of birth": "17 March 1992", "Age": "34", "Address": "You give a street in a nearby suburb but are vague about the number", "Occupation": "Casual labouring work"},
       "openingLine": "Can you fill this quickly? I've got somewhere to be.",
       "publicFacts": [
         "He wants the prescription filled now.",
@@ -33,6 +34,7 @@
       "name": "Dr Burton",
       "avatar": "dr-hoot",
       "description": "The local GP, reached through the practice's published number. Helpful and concerned once they understand why the pharmacist is calling.",
+      "bio": {"Full name": "Dr Andrew Burton", "Role": "General practitioner", "Workplace": "The local general practice, on its published landline"},
       "openingLine": "Dr Burton speaking, how can I help?",
       "publicFacts": [
         "You are a GP at the local practice."

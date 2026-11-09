@@ -18,6 +18,7 @@
       "avatar": "dr-kip",
       "voice": "au-woman-professional",
       "description": "The pharmacy team leader. Busy and under pressure to keep the efficiency gains the tool has brought. Initially a bit defensive about the tool, but reasonable and safety-minded when concerns are raised constructively and with specifics. Dismissive of vague complaints.",
+      "bio": {"Full name": "Priya Raman", "Role": "Pharmacy team leader at this hospital", "Years in the job": "About four years as team leader"},
       "situation": "You are the hospital pharmacy team leader. A ward pharmacist from your team has come to talk to you.",
       "standing": "professional",
       "openingLine": "Hi. The new risk tool's been great for the team's numbers. What did you want to talk about?",
