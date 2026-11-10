@@ -128,9 +128,6 @@ export default function HomePage() {
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div className="flex flex-col gap-0.5">
           <h1 className="m-0 text-[clamp(26px,2.6vw,32px)] font-bold tracking-[-0.015em]">Ready for an interview?</h1>
-          <p className="m-0 text-muted">
-            Clinical cases are a 20-minute role play. Ethical and legal cases: read the case, then talk for 5 minutes about what you&apos;d do.
-          </p>
         </div>
         <span className="inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2.5 text-sm font-bold text-white">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">

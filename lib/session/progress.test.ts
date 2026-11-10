@@ -71,6 +71,16 @@ describe("computeProgress", () => {
     expect(p.daily[6]).toMatchObject({ day: "2026-11-06", count: 1 });
   });
 
+  it("counts the streak back from today, or from yesterday if today isn't played yet", () => {
+    const played = (days: number[]) => days.map((d) => ({ category: "clinical" as const, startedAt: daysAgo(d), debrief: debrief(true, []) }));
+    expect(computeProgress(played([0, 1, 2]), now).streak).toEqual({ days: 3, today: true });
+    expect(computeProgress(played([1, 2]), now).streak).toEqual({ days: 2, today: false });
+    expect(computeProgress(played([0, 2, 3]), now).streak).toEqual({ days: 1, today: true });
+    expect(computeProgress(played([2, 3]), now).streak).toEqual({ days: 0, today: false });
+    // An unfinished interview doesn't count.
+    expect(computeProgress([{ category: "clinical", startedAt: daysAgo(0), debrief: null }], now).streak).toEqual({ days: 0, today: false });
+  });
+
   it("keeps only the last 10 results", () => {
     const many = Array.from({ length: 12 }, (_, i) => ({ category: "clinical" as const, startedAt: daysAgo(12 - i), debrief: debrief(i >= 10, []) }));
     const p = computeProgress(many, now);

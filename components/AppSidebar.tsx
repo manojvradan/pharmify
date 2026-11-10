@@ -2,10 +2,10 @@
 
 import { UserButton, useUser } from "@clerk/nextjs";
 import Link from "next/link";
-import { Suspense } from "react";
+import { Suspense, useSyncExternalStore, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
 import { SESSION_SIZE } from "@/lib/flashcards";
-import { CardsIcon, DocIcon, Flame, HomeIcon, LogoMark } from "@/components/icons";
+import { CardsIcon, DocIcon, HomeIcon, LogoMark } from "@/components/icons";
 
 const items = [
   { href: "/home", label: "Home", Icon: HomeIcon },
@@ -13,10 +13,42 @@ const items = [
   { href: "/debrief", label: "History", Icon: DocIcon },
 ];
 
+const COLLAPSED_KEY = "pharmify.sidebar.collapsed";
+const COLLAPSE_EVENT = "pharmify-sidebar";
+
+/** Whether the sidebar is folded to an icon rail. Remembered per browser; expanded on the server. */
+function useCollapsed(): [boolean, () => void] {
+  const collapsed = useSyncExternalStore(
+    (onChange) => {
+      window.addEventListener(COLLAPSE_EVENT, onChange);
+      window.addEventListener("storage", onChange);
+      return () => {
+        window.removeEventListener(COLLAPSE_EVENT, onChange);
+        window.removeEventListener("storage", onChange);
+      };
+    },
+    () => {
+      try {
+        return localStorage.getItem(COLLAPSED_KEY) === "1";
+      } catch {
+        return false;
+      }
+    },
+    () => false,
+  );
+  const toggle = () => {
+    try {
+      localStorage.setItem(COLLAPSED_KEY, collapsed ? "0" : "1");
+    } catch {}
+    window.dispatchEvent(new Event(COLLAPSE_EVENT));
+  };
+  return [collapsed, toggle];
+}
+
 /** The main nav. `pathname` is null while the route is still prerendering: no item is highlighted yet. */
 function Nav({ pathname }: { pathname: string | null }) {
   return (
-      <nav aria-label="Main" className="flex flex-col gap-1.5 text-base font-bold">
+      <nav aria-label="Main" className="flex flex-col gap-1 text-[15px] font-bold">
         {items.map(({ href, label, Icon, badge }) => {
           const active = pathname !== null && (pathname === href || (href !== "/home" && pathname.startsWith(`${href}/`)));
           return (
@@ -24,15 +56,16 @@ function Nav({ pathname }: { pathname: string | null }) {
               key={label}
               href={href}
               aria-current={active ? "page" : undefined}
-              className={`flex min-h-12 items-center gap-3 rounded-[14px] px-4 no-underline ${
+              title={label}
+              className={`flex min-h-11 items-center gap-3 rounded-[14px] px-3.5 no-underline group-data-[collapsed=true]/sidebar:justify-center group-data-[collapsed=true]/sidebar:px-0 ${
                 active ? "bg-pink-tint text-pink-deep hover:text-pink-deep" : "text-ink-2 hover:text-ink"
               }`}
             >
               <Icon color={active ? "#16112A" : "#403A50"} />
-              {label}
+              <span className="group-data-[collapsed=true]/sidebar:sr-only">{label}</span>
               {badge && (
                 <span
-                  className={`ml-auto rounded-full px-[9px] py-px text-[13px] text-ink ${
+                  className={`ml-auto rounded-full px-[9px] py-px text-[13px] text-ink group-data-[collapsed=true]/sidebar:hidden ${
                     active ? "border-[1.5px] border-ink bg-white" : "bg-sun"
                   }`}
                 >
@@ -57,9 +90,9 @@ function Profile() {
   const name = user?.fullName || user?.firstName || "Your account";
   const email = user?.primaryEmailAddress?.emailAddress;
   return (
-    <div className="flex min-h-14 items-center gap-3 rounded-[14px] px-2">
+    <div className="flex min-h-14 items-center gap-3 rounded-[14px] px-2 group-data-[collapsed=true]/sidebar:justify-center group-data-[collapsed=true]/sidebar:px-0">
       <UserButton appearance={{ elements: { avatarBox: "size-9" } }} />
-      <div className="flex min-w-0 flex-col leading-tight">
+      <div className="flex min-w-0 flex-col leading-tight group-data-[collapsed=true]/sidebar:hidden">
         <span className="truncate text-[15px] font-bold text-ink">{name}</span>
         {email && <span className="truncate text-[13px] text-subtle">{email}</span>}
       </div>
@@ -69,32 +102,47 @@ function Profile() {
 
 /**
  * Side by side with the page (wide screens), it stays put while the page scrolls, with
- * the streak and profile pinned to the bottom. When it wraps above the page on narrow
- * screens it scrolls away normally.
+ * the streak and profile pinned to the bottom, and folds to an icon rail with the button
+ * by the logo. When it wraps above the page on narrow screens it scrolls away normally.
+ * `streak` is rendered on the server (components/StreakCard.tsx).
  */
-export function AppSidebar() {
+export function AppSidebar({ streak }: { streak: ReactNode }) {
+  const [collapsed, toggle] = useCollapsed();
   return (
     <aside
       aria-label="App"
-      className="box-border flex flex-[1_1_240px] flex-col gap-7 border-r border-line-soft bg-white px-[18px] py-6 min-[820px]:sticky min-[820px]:top-0 min-[820px]:h-screen min-[820px]:self-start min-[820px]:overflow-y-auto"
+      data-collapsed={collapsed}
+      className={`group/sidebar box-border flex flex-[1_1_100%] flex-col gap-6 border-r border-line-soft bg-white px-3.5 py-5 transition-[flex-basis] duration-300 ease-out min-[820px]:sticky min-[820px]:top-0 min-[820px]:h-screen min-[820px]:self-start min-[820px]:overflow-x-hidden min-[820px]:overflow-y-auto ${
+        collapsed ? "min-[820px]:flex-[0_0_72px] min-[820px]:px-2.5" : "min-[820px]:flex-[0_0_208px]"
+      }`}
     >
-      <Link href="/" className="flex items-center gap-2.5 px-2 text-ink no-underline">
-        <LogoMark size={38} />
-        <span className="text-[22px] font-bold tracking-[-0.02em] text-brand">Pharmify</span>
-      </Link>
+      <div className="flex items-center justify-between gap-2 group-data-[collapsed=true]/sidebar:flex-col">
+        <Link href="/" className="flex items-center gap-2 px-1.5 text-ink no-underline" aria-label="Pharmify home">
+          <LogoMark size={34} />
+          <span className="text-xl font-bold tracking-[-0.02em] text-brand group-data-[collapsed=true]/sidebar:hidden">Pharmify</span>
+        </Link>
+        <button
+          type="button"
+          onClick={toggle}
+          aria-expanded={!collapsed}
+          aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+          title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+          className="hidden size-8 flex-none cursor-pointer place-items-center rounded-lg border-0 bg-transparent text-ink-2 hover:bg-chip min-[820px]:grid"
+        >
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <rect x="2.5" y="3.5" width="15" height="13" rx="3" stroke="currentColor" strokeWidth="1.6" />
+            <path d="M8 3.5v13" stroke="currentColor" strokeWidth="1.6" />
+            <path d={collapsed ? "M11.5 8l2 2-2 2" : "M14 8l-2 2 2 2"} stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+      </div>
 
       <Suspense fallback={<Nav pathname={null} />}>
         <ActiveNav />
       </Suspense>
 
       <div className="mt-auto flex flex-col gap-3">
-        <div className="flex items-center gap-3 rounded-[18px] bg-sun-tint p-4">
-          <Flame size={48} className="flex-none" />
-          <div className="flex flex-col leading-[1.3]">
-            <span className="text-lg font-bold">3-day streak</span>
-            <span className="text-[13px] text-muted">Play today to keep it</span>
-          </div>
-        </div>
+        {streak}
         <div className="border-t border-line-soft pt-3">
           <Profile />
         </div>
