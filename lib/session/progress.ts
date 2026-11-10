@@ -26,7 +26,18 @@ export type Progress = {
   /** The skill most often marked "partly" or "no". */
   workOn: { skill: string; sessions: number } | null;
   byCategory: Record<Category, { played: number; passed: number }>;
+  /** Interviews per day for the last 7 days (Sydney time), oldest first; the last is today. */
+  daily: { day: string; label: string; count: number }[];
+  /** The last 10 results, oldest first. */
+  recent: { pass: boolean; title: string }[];
+  /** How each skill was marked across all graded interviews, in the report's order. */
+  skills: { skill: string; yes: number; partly: number; no: number }[];
 };
+
+/** Days are counted in Sydney time: candidates are in Australia, and the server runs in UTC. */
+const TZ = "Australia/Sydney";
+const dayKey = new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" });
+const dayName = new Intl.DateTimeFormat("en-AU", { timeZone: TZ, weekday: "short" });
 
 export function computeProgress(
   sessions: { category: Category | undefined; startedAt: Date; debrief: Debrief | null }[],
@@ -46,12 +57,24 @@ export function computeProgress(
   let factsFound = 0;
   let factsTotal = 0;
 
+  const days = Array.from({ length: 7 }, (_, i) => {
+    const d = new Date(now.getTime() - (6 - i) * 24 * 60 * 60 * 1000);
+    return { day: dayKey.format(d), label: dayName.format(d), count: 0 };
+  });
+  const skillMarks = new Map<string, { yes: number; partly: number; no: number }>(
+    SKILLS.map((sk) => [SKILL_LABEL[sk], { yes: 0, partly: 0, no: 0 }]),
+  );
+  const graded: { at: number; pass: boolean; title: string }[] = [];
+
   for (const s of sessions) {
     if (!s.debrief) continue;
     const r = s.debrief.report;
     const pass = r.result === "pass";
     done++;
     if (s.startedAt.getTime() >= weekAgo) doneThisWeek++;
+    const today = days.find((d) => d.day === dayKey.format(s.startedAt));
+    if (today) today.count++;
+    graded.push({ at: s.startedAt.getTime(), pass: r.result === "pass", title: s.debrief.caseTitle });
     if (pass) passed++;
     if (s.category) {
       byCategory[s.category].played++;
@@ -63,6 +86,8 @@ export function computeProgress(
       else missedCount.set(f.fact, (missedCount.get(f.fact) ?? 0) + 1);
     }
     for (const sk of r.skills) {
+      const marks = skillMarks.get(SKILL_LABEL[sk.skill]);
+      if (marks && (sk.result === "yes" || sk.result === "partly" || sk.result === "no")) marks[sk.result]++;
       if (sk.result === "partly" || sk.result === "no") {
         const label = SKILL_LABEL[sk.skill];
         skillGaps.set(label, (skillGaps.get(label) ?? 0) + 1);
@@ -83,5 +108,11 @@ export function computeProgress(
     mostMissed: missed ? { fact: missed[0], missed: missed[1] } : null,
     workOn: gap ? { skill: gap[0], sessions: gap[1] } : null,
     byCategory,
+    daily: days,
+    recent: graded
+      .sort((a, b) => a.at - b.at)
+      .slice(-10)
+      .map(({ pass, title }) => ({ pass, title })),
+    skills: [...skillMarks.entries()].map(([skill, m]) => ({ skill, ...m })),
   };
 }
