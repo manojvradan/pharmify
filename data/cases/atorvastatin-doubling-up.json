@@ -9,7 +9,11 @@
     "prescription": {
       "item": "Atorvastatin 40 mg tablets (brand)",
       "directions": "One tablet at night · Qty 30 · 5 repeats",
-      "footer": "[HOSPITAL] · Dr [PRESCRIBER] · Mr R. [SURNAME], 68"
+      "footer": "Penrith Hospital discharge · Dr A. Okafor · Ronald Ryan, 68",
+      "prescriber": "Dr A. Okafor",
+      "prescriberDetail": "Discharge prescriber · Penrith Hospital, NSW",
+      "pbs": true,
+      "brandSubstitutionNotPermitted": true
     },
     "dispensingHistory": [
       { "item": "Atorvastatin 40 mg (generic)", "date": "19 Oct" },

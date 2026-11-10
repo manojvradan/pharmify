@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { CAST_IDS, type CastId } from "@/lib/cast";
 import { VOICE_KEYS, type VoiceKey } from "@/lib/voice/voices";
+import type { PrescriptionForm } from "./prescription";
 
 /**
  * A case in the question bank. One JSON file per case under data/cases/.
@@ -70,6 +71,22 @@ export const CaseRecord = z.object({
         item: z.string(),
         directions: z.string(),
         footer: z.string(),
+        /*
+         * Optional details for the full script form in the session. Anything left out is filled
+         * from elsewhere (lib/cases/prescription.ts): the patient's name, age and address from
+         * their bio, and quantity and repeats from `directions`.
+         */
+        prescriber: z.string().optional(),
+        /** Under the prescriber's name, e.g. "Discharge prescriber · Penrith Hospital, NSW". */
+        prescriberDetail: z.string().optional(),
+        patientName: z.string().optional(),
+        patientAge: z.string().optional(),
+        patientAddress: z.string().optional(),
+        date: z.string().optional(),
+        quantity: z.string().optional(),
+        repeats: z.string().optional(),
+        pbs: z.boolean().optional(),
+        brandSubstitutionNotPermitted: z.boolean().optional(),
       })
       .optional(),
     dispensingHistory: z.array(z.object({ item: z.string(), date: z.string() })).optional(),
@@ -107,7 +124,8 @@ export type PublicCase = {
   category: CaseRecord["category"];
   setting: string;
   questionSheet: string;
-  documents: CaseRecord["documents"];
+  /** The prescription arrives as the full script form (lib/cases/prescription.ts). */
+  documents: Omit<CaseRecord["documents"], "prescription"> & { prescription?: PrescriptionForm };
   agents: { id: AgentId; label: string; name: string; openingLine?: string; avatar: CastId; voice: VoiceKey }[];
   draft: boolean;
   /** Role play (clinical) or a spoken explanation (ethical, legal). See lib/cases/format.ts. */
