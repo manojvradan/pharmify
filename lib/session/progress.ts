@@ -32,6 +32,8 @@ export type Progress = {
   recent: { pass: boolean; title: string }[];
   /** How each skill was marked across all graded interviews, in the report's order. */
   skills: { skill: string; yes: number; partly: number; no: number }[];
+  /** Consecutive days (Sydney) with a finished interview, ending today or yesterday; `today` once today counts. */
+  streak: { days: number; today: boolean };
 };
 
 /** Days are counted in Sydney time: candidates are in Australia, and the server runs in UTC. */
@@ -65,6 +67,7 @@ export function computeProgress(
     SKILLS.map((sk) => [SKILL_LABEL[sk], { yes: 0, partly: 0, no: 0 }]),
   );
   const graded: { at: number; pass: boolean; title: string }[] = [];
+  const playedDays = new Set<string>();
 
   for (const s of sessions) {
     if (!s.debrief) continue;
@@ -75,6 +78,7 @@ export function computeProgress(
     const today = days.find((d) => d.day === dayKey.format(s.startedAt));
     if (today) today.count++;
     graded.push({ at: s.startedAt.getTime(), pass: r.result === "pass", title: s.debrief.caseTitle });
+    playedDays.add(dayKey.format(s.startedAt));
     if (pass) passed++;
     if (s.category) {
       byCategory[s.category].played++;
@@ -114,5 +118,18 @@ export function computeProgress(
       .slice(-10)
       .map(({ pass, title }) => ({ pass, title })),
     skills: [...skillMarks.entries()].map(([skill, m]) => ({ skill, ...m })),
+    streak: streakOf(playedDays, now),
   };
+}
+
+/**
+ * The run of consecutive played days ending today, or ending yesterday if today hasn't been
+ * played yet (the streak is still alive until the day is over).
+ */
+function streakOf(played: Set<string>, now: Date): { days: number; today: boolean } {
+  const day = (offset: number) => dayKey.format(new Date(now.getTime() - offset * 24 * 60 * 60 * 1000));
+  const today = played.has(day(0));
+  let days = 0;
+  for (let i = today ? 0 : 1; played.has(day(i)); i++) days++;
+  return { days, today };
 }
