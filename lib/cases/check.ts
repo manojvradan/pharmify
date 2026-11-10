@@ -65,3 +65,40 @@ export function checkCase(raw: unknown, existingIds: Iterable<string> = []): { r
   }
   return { record: c, problems };
 }
+
+const words = (s: string) => s.split(/\s+/).filter(Boolean).length;
+
+/**
+ * Minimums for a new question's answer scheme, by type. Stricter than the bank's own checks
+ * (some older cases are terser): the WhatsApp bot holds every draft to these before it can
+ * be approved, and the model is told the same rules.
+ */
+export const ANSWER_SCHEME_MINIMUMS = {
+  all: { acceptableResolutions: 3, unacceptableActions: 2 },
+  clinical: { modelAnswerWords: 200, counsellingPoints: 5 },
+  ethical: { modelAnswerWords: 150, codePrinciples: 2 },
+  legal: { modelAnswerWords: 150, legal: 2 },
+} as const;
+
+/** What's missing from a case's answer scheme for its type. Empty means it's complete. */
+export function answerSchemeProblems(c: CaseRecord): string[] {
+  const k = c.answerKey;
+  const min = ANSWER_SCHEME_MINIMUMS;
+  const problems: string[] = [];
+  const need = (have: number, want: number, what: string) => {
+    if (have < want) problems.push(`answer scheme: needs at least ${want} ${what} (has ${have})`);
+  };
+  need(k.acceptableResolutions.length, min.all.acceptableResolutions, "acceptable resolutions");
+  need(k.unacceptableActions.length, min.all.unacceptableActions, "unacceptable actions");
+  if (c.category === "clinical") {
+    need(words(k.modelAnswer), min.clinical.modelAnswerWords, "words in the model answer for a complex clinical case");
+    need(k.counsellingPoints.length, min.clinical.counsellingPoints, "specific counselling points");
+  } else if (c.category === "ethical") {
+    need(words(k.modelAnswer), min.ethical.modelAnswerWords, "words in the model answer");
+    need(k.codePrinciples.length, min.ethical.codePrinciples, "Code of Conduct / Code of Ethics principles");
+  } else {
+    need(words(k.modelAnswer), min.legal.modelAnswerWords, "words in the model answer");
+    need(k.legal.length, min.legal.legal, "specific legal requirements (legislation, regulations or standards)");
+  }
+  return problems;
+}

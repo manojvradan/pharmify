@@ -16,8 +16,9 @@ describe("case drafting (live)", () => {
     const started = Date.now();
     const d = await draftCase({ source: { kind: "text", text: QUESTION }, sentBy: "eval" });
     console.log(`drafted in ${Math.round((Date.now() - started) / 1000)} s`);
-    console.log(JSON.stringify({ id: d.record.id, category: d.record.category, assumptions: d.assumptions, problems: d.problems }, null, 2));
-    console.log(JSON.stringify(d.record.hiddenFacts.map((f) => ({ id: f.id, agent: f.agent, triggers: f.triggers })), null, 2));
+    const k = d.record.answerKey;
+    console.log(JSON.stringify({ id: d.record.id, category: d.record.category, categoryReason: d.categoryReason, problems: d.problems }, null, 2));
+    console.log(JSON.stringify({ modelAnswerWords: k.modelAnswer.split(/\s+/).length, acceptable: k.acceptableResolutions.length, unacceptable: k.unacceptableActions.length, counselling: k.counsellingPoints }, null, 2));
     expect(d.problems).toEqual([]);
     expect(d.record.category).toBe("clinical");
     expect(d.record.agents.prescriber).toBeDefined();

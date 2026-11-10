@@ -9,7 +9,7 @@ import glp1 from "@/data/cases/glp1-shortage.json";
 import { anthropic } from "@/lib/anthropic";
 import { CAST } from "@/lib/cast";
 import { caseIds } from "@/lib/cases/bank";
-import { checkCase } from "@/lib/cases/check";
+import { ANSWER_SCHEME_MINIMUMS as MIN, answerSchemeProblems, checkCase } from "@/lib/cases/check";
 import { CaseRecord } from "@/lib/cases/schema";
 import { VOICE_LIBRARY } from "@/lib/voice/voices";
 import { downloadMedia } from "./whatsapp";
@@ -27,12 +27,14 @@ export type CaseSource =
 /** The model writes everything except review status and sources, which the bot sets. */
 const DraftCase = CaseRecord.omit({ review: true, sources: true });
 const DraftOutput = z.object({
+  /** One or two sentences on why the case is legal, ethical or complex clinical. Shown to the sender. */
+  categoryReason: z.string(),
   case: DraftCase,
   /** Details the model had to make up because the document didn't say. Shown in the preview to check. */
   assumptions: z.array(z.string()),
 });
 
-export type CaseDraft = { record: CaseRecord; assumptions: string[]; problems: string[] };
+export type CaseDraft = { record: CaseRecord; categoryReason: string; assumptions: string[]; problems: string[] };
 
 const DOCX = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
 const IMAGE_TYPES = ["image/jpeg", "image/png", "image/gif", "image/webp"] as const;
@@ -95,6 +97,25 @@ ${voiceList}
 - answerKey: plantedProblem, acceptableResolutions, unacceptableActions, counsellingPoints, codePrinciples, legal, modelAnswer. Grader-only.
 </fields>
 
+<category>
+Decide the category from what the question actually tests, the way the Board's oral exam does, and explain it in categoryReason (one or two plain sentences):
+- "clinical" (complex clinical): a patient-care problem that needs clinical reasoning and usually a conversation with the patient and prescriber: interactions, duplication, dosing, contraindications, adverse effects, monitoring, choosing or switching therapy.
+- "ethical": a professional or ethical dilemma: confidentiality, consent, conscientious objection, conflicts of interest, fairness in supply, honesty and open disclosure, professional boundaries, duty of care to someone other than the patient.
+- "legal": the problem is mainly whether something is lawful and what the law requires: prescription validity, scheduling and S8/S4D rules, forgery, record keeping, supply without a prescription, notification and reporting duties.
+If the document names a category, use it unless the content clearly tests something else; then follow the content and say so in categoryReason. If a question mixes them, pick the one the answer mostly turns on.
+</category>
+
+<answer_scheme>
+Every answer scheme must be comprehensive enough to mark a candidate against, never a sketch. All categories:
+- plantedProblem: exactly what the candidate must identify, specifically.
+- acceptableResolutions: at least ${MIN.all.acceptableResolutions} concrete actions a passing candidate takes.
+- unacceptableActions: at least ${MIN.all.unacceptableActions} things that would fail or cause harm.
+- modelAnswer: what an excellent candidate says and does, as connected steps an examiner can mark against, not a summary.
+Complex clinical (modelAnswer at least ${MIN.clinical.modelAnswerWords} words): gather the information needed (the specific questions to ask the patient), identify and explain the problem (mechanism and clinical significance), the references to check (e.g. AMH, eTG, APF), contact the prescriber with a specific recommendation (medicine, dose, duration, and an alternative), counselling, monitoring and follow-up, and documentation. counsellingPoints: at least ${MIN.clinical.counsellingPoints}, each specific to this case (what to take or stop and when, side effects to watch for, when to seek help), never one-word headings.
+Ethical (modelAnswer at least ${MIN.ethical.modelAnswerWords} words): name the dilemma, the people affected, the options and their consequences, the decision with its justification, how to communicate it, and documentation. codePrinciples: at least ${MIN.ethical.codePrinciples}, citing the Pharmacy Board's Code of Conduct or the PSA Code of Ethics. Add legal points where the law bears on it.
+Legal (modelAnswer at least ${MIN.legal.modelAnswerWords} words): the legal issue, what the law requires and allows, the steps to take, who to notify or report to, documentation, and how to prevent it recurring. legal: at least ${MIN.legal.legal}, naming the legislation, regulation or standard (the state's, when the setting gives one, e.g. the Poisons and Therapeutic Goods Regulation 2008 (NSW)).
+</answer_scheme>
+
 <triggers>
 A code matcher, not a model, unlocks hidden facts. A trigger matches when all of its words appear close together (within the trigger's length plus one word) in one sentence the intern says to that agent, after: lowercasing; dropping filler words (a, the, is, you, your, do, did, have, what, how, when, any, it, to, of, for, on, in, and, about, there, that, this, with, can, would, will...); and folding synonyms (medication/meds/medicines → medicine; pills/tabs/tablets → tablet; taking/took/using/use → take; told/said/say → tell; previous/before → old; gp/doctors → doctor; stopped → stop).
 So:
@@ -138,7 +159,7 @@ export async function draftCase(
       : [
           {
             role: "user",
-            content: `Here is a case record:\n${JSON.stringify(input.previous)}\n\nApply this change and keep everything else as it is (keep the id unless the change is about it):\n${input.feedback}`,
+            content: `Here is a case record:\n${JSON.stringify(input.previous)}\n\nApply this change and keep everything else as it is (keep the id unless the change is about it). If the change is to the category, also rework the format and answer scheme to that category's rules:\n${input.feedback}`,
           },
         ];
   const existing = caseIds().filter((id) => "source" in input || id !== input.previous.id);
@@ -150,8 +171,10 @@ export async function draftCase(
   let last: CaseDraft | undefined;
   for (let attempt = 0; attempt < ATTEMPTS; attempt++) {
     const out = await callModel(messages);
-    const { record, problems } = checkCase({ ...out.case, ...meta }, existing);
-    if (record) last = { record, assumptions: out.assumptions, problems };
+    const checked = checkCase({ ...out.case, ...meta }, existing);
+    const record = checked.record;
+    const problems = record ? [...checked.problems, ...answerSchemeProblems(record)] : checked.problems;
+    if (record) last = { record, categoryReason: out.categoryReason, assumptions: out.assumptions, problems };
     if (record && problems.length === 0) return last!;
     messages.push(
       { role: "assistant", content: JSON.stringify(out) },
@@ -162,20 +185,37 @@ export async function draftCase(
   return last;
 }
 
+const TYPE_LABEL = { clinical: "Complex clinical", ethical: "Ethical", legal: "Legal" } as const;
+
 /** The WhatsApp message that goes with a draft: what it is, what to check, and the preview link. */
 export function caseSummary(d: CaseDraft, previewUrl: string): string {
   const c = d.record;
-  const people = [c.agents.patient, c.agents.prescriber].filter((p) => p).map((p) => `${p!.label} (${p!.name})`);
+  const k = c.answerKey;
+  const people = [c.agents.patient, c.agents.prescriber].filter((p) => p).map((p) => p!.name);
+  const scheme = [
+    `model answer (${k.modelAnswer.split(/\s+/).filter(Boolean).length} words)`,
+    `${k.acceptableResolutions.length} things to do`,
+    `${k.unacceptableActions.length} things to avoid`,
+    k.counsellingPoints.length ? `${k.counsellingPoints.length} counselling points` : "",
+    k.codePrinciples.length ? `${k.codePrinciples.length} Code principles` : "",
+    k.legal.length ? `${k.legal.length} legal points` : "",
+  ].filter(Boolean);
   const lines = [
     `📝 *${c.title}*`,
-    `_${c.category} · ${c.problemType}_`,
     "",
-    `*Planted problem:* ${c.answerKey.plantedProblem}`,
-    `*Characters:* ${people.join(", ")}`,
-    `*Hidden facts:* ${c.hiddenFacts.length}`,
+    `📂 *Type: ${TYPE_LABEL[c.category]}*`,
+    d.categoryReason,
+    "",
+    `🎯 *What the candidate has to spot:* ${k.plantedProblem}`,
+    "",
+    c.category === "clinical"
+      ? `🗣 *They'll talk to:* ${people.join(" and ")} (${c.hiddenFacts.length} things they only say if asked)`
+      : "🗣 *Format:* the candidate reads the case and talks for 5 minutes",
+    `✅ *Answer scheme:* ${scheme.join(", ")}`,
   ];
-  if (d.assumptions.length) lines.push("", "*Things I filled in, please check:*", ...d.assumptions.map((a) => `• ${a}`));
-  if (d.problems.length) lines.push("", "⚠️ *Still failing checks, so it can't go live yet:*", ...d.problems.map((p) => `• ${p}`));
-  lines.push("", `👀 Full preview: ${previewUrl}`);
+  if (d.assumptions.length) lines.push("", "*I had to fill these in, please check:*", ...d.assumptions.map((a) => `• ${a}`));
+  if (d.problems.length) lines.push("", "⚠️ *Not ready yet, still missing:*", ...d.problems.map((p) => `• ${p}`));
+  lines.push("", `👀 See everything (case papers, characters, full answer scheme):\n${previewUrl}`);
+  lines.push("", 'Wrong type? Just reply, e.g. "this is ethical".');
   return lines.join("\n");
 }

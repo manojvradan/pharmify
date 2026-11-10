@@ -120,6 +120,8 @@ export const botCaseDrafts = pgTable("bot_case_drafts", {
   phone: text("phone").notNull(),
   token: text("token").notNull(),
   record: jsonb("record").$type<CaseRecord>().notNull(),
+  /** Why the model filed it as legal, ethical or complex clinical. */
+  categoryReason: text("category_reason"),
   /** Details the model made up because the document didn't say. */
   assumptions: jsonb("assumptions").$type<string[]>().notNull(),
   /** Check failures left after drafting; publishing is refused until this is empty. */
