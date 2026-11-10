@@ -44,7 +44,7 @@ export function FlashcardDeck() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div className="flex flex-col gap-0.5">
           <h1 className="m-0 text-[clamp(28px,3vw,38px)] font-bold tracking-[-0.015em]">Code of Ethics flashcards</h1>
-          <p className="m-0 text-muted">A few cards a day. Say your answer out loud, then flip.</p>
+          <p className="m-0 text-muted">Say it out loud, then flip.</p>
         </div>
         <div className="flex flex-wrap gap-2.5">
           <span className={`${pillStat} bg-white`}>

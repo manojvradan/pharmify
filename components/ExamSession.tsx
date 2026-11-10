@@ -63,7 +63,8 @@ export function ExamSession({
   } = useCharacterVoice();
   const recorder = useRecorder();
   /** Chosen on the start screen; fixed once the session is live. */
-  const [handsFreeOn, setHandsFreeOn] = useState(false);
+  // Hands-free is the default wherever it's available; the start screen can turn it off.
+  const [handsFreeOn, setHandsFreeOn] = useState(handsFree && voice);
   /** Hands-free lines by segment id, so a line still being said updates in place. */
   const liveLinesRef = useRef(new Map<string, { agent: AgentId; index: number }>());
   const agentRef = useRef<AgentId>("patient");
@@ -468,21 +469,14 @@ export function ExamSession({
                 Hands-free conversation (beta)
               </label>
             )}
-            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2.5">
-              <button
-                type="button"
-                onClick={() => void start()}
-                disabled={starting}
-                className="min-h-14 cursor-pointer rounded-full border-2 border-ink bg-sun px-8 text-lg font-bold text-ink shadow-pop disabled:cursor-wait disabled:opacity-70"
-              >
-                {starting ? "Starting…" : "Start the clock"}
-              </button>
-              <span className="text-[13px] text-subtle">
-                {Math.round(c.partSeconds / 60)} minutes
-                {c.agents[1] ? ` · ${c.agents[1].label} any time` : ""} · Open book
-                {handsFreeOn ? " · Just talk" : voice ? " · Hold to speak" : " · Type what you'd say"}
-              </span>
-            </div>
+            <button
+              type="button"
+              onClick={() => void start()}
+              disabled={starting}
+              className="min-h-14 cursor-pointer rounded-full border-2 border-ink bg-sun px-8 text-lg font-bold text-ink shadow-pop disabled:cursor-wait disabled:opacity-70"
+            >
+              {starting ? "Starting…" : "Start the clock"}
+            </button>
             {c.draft && (
               <span className="rounded-full bg-sun-tint px-3 py-1 text-[13px] text-sun-deep">Draft case: not yet reviewed by a pharmacist</span>
             )}
@@ -499,7 +493,7 @@ export function ExamSession({
           {phase === "live" && (
             <>
               {c.agents.length > 1 && (
-                <div className="relative z-[9] flex animate-fade-up justify-center px-6 pt-[18px]">
+                <div className="relative z-[9] flex animate-fade-up justify-center px-6">
                   <div role="group" aria-label="Who you are speaking with" className="inline-flex gap-1 rounded-xl border border-line bg-white p-1">
                     {c.agents.map((a) => {
                       const on = agent === a.id;
@@ -527,7 +521,7 @@ export function ExamSession({
               )}
 
               {/* Orb and latest line */}
-              <div className="flex w-full max-w-[620px] flex-1 flex-col items-center justify-center gap-[22px] px-6 py-6 text-center">
+              <div className="flex w-full max-w-[620px] flex-col items-center gap-[22px] px-6 text-center">
                 {/* Keyed by who it is, so each switch replays the rise-in. */}
                 <SpeakerAvatar
                   key={agent}
@@ -563,7 +557,7 @@ export function ExamSession({
               </div>
 
               {/* Control dock */}
-              <div className="relative z-[9] flex w-full animate-fade-up-late justify-center px-6 pb-[26px]">
+              <div className="relative z-[9] flex w-full animate-fade-up-late justify-center px-6">
                 <form
                   onSubmit={send}
                   className="flex w-full max-w-[760px] flex-wrap items-center gap-2.5 rounded-[28px] border-[1.5px] border-line bg-white p-2.5 shadow-card"

@@ -19,6 +19,12 @@ describe("prescriptionForm", () => {
     expect([f.quantity, f.patientName]).toEqual(["60", "R. Ryan"]);
   });
 
+  it("takes the prescriber from the prescriber character when the case doesn't name one", () => {
+    const f = prescriptionForm(base, {}, { "Full name": "Dr Andrew Burton", Role: "General practitioner", Workplace: "A local general practice" });
+    expect([f.prescriber, f.prescriberDetail]).toEqual(["Dr Andrew Burton", "General practitioner · A local general practice"]);
+    expect(prescriptionForm({ ...base, prescriber: "Dr A. Okafor" }, {}, { "Full name": "Dr X" }).prescriber).toBe("Dr A. Okafor");
+  });
+
   it("keeps directions with no quantity as they are", () => {
     const f = prescriptionForm({ ...base, directions: "Take ONE tablet ONCE a day" });
     expect([f.instructions, f.quantity]).toEqual(["Take ONE tablet ONCE a day", undefined]);

@@ -15,7 +15,12 @@ const REPEATS = /\b(\d+)\s*repeats?\b/i;
  * Fills the script form: structured fields win, then the patient's bio (name, age, address),
  * then quantity and repeats read out of `directions` ("One tablet at night · Qty 30 · 5 repeats").
  */
-export function prescriptionForm(p: Prescription, patientBio: Record<string, string> = {}): PrescriptionForm {
+export function prescriptionForm(
+  p: Prescription,
+  patientBio: Record<string, string> = {},
+  /** The prescriber character's bio: who signed the script when the case doesn't say. */
+  prescriberBio: Record<string, string> = {},
+): PrescriptionForm {
   const parts = p.directions.split(/\s*·\s*/);
   const qty = p.directions.match(QTY)?.[1];
   const repeats = p.directions.match(REPEATS)?.[1];
@@ -23,6 +28,8 @@ export function prescriptionForm(p: Prescription, patientBio: Record<string, str
   const age = p.patientAge ?? (patientBio.Age ? `${patientBio.Age} years` : undefined);
   return {
     ...p,
+    prescriber: p.prescriber ?? prescriberBio["Full name"],
+    prescriberDetail: p.prescriberDetail ?? ([prescriberBio.Role, prescriberBio.Workplace].filter(Boolean).join(" · ") || undefined),
     instructions,
     // "Ronald Ryan (goes by Ron)" is how the actor knows them; a script has the legal name.
     patientName: p.patientName ?? patientBio["Full name"]?.replace(/\s*\(.*\)\s*$/, ""),

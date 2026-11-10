@@ -221,7 +221,6 @@ export function Onboarding({ sittings, initial }: { sittings: string[]; initial:
                 <h1 tabIndex={-1} className={h1}>
                   How interviews work
                 </h1>
-                <p className="mt-1.5 mb-0 text-muted">Just like the real Part C.</p>
               </div>
               <ul className="m-0 grid list-none gap-3 p-0 [grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr))]">
                 {[

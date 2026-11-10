@@ -46,7 +46,7 @@ export function toPublic(c: CaseRecord): PublicCase {
     questionSheet: c.questionSheet,
     documents: {
       ...c.documents,
-      prescription: c.documents.prescription && prescriptionForm(c.documents.prescription, c.agents.patient.bio),
+      prescription: c.documents.prescription && prescriptionForm(c.documents.prescription, c.agents.patient.bio, c.agents.prescriber?.bio),
     },
     agents,
     draft: c.review.status !== "reviewed",

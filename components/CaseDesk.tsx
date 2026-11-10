@@ -382,7 +382,7 @@ export function CaseDesk({
     <main
       ref={stageRef}
       className="relative flex-1 overflow-hidden bg-canvas bg-[radial-gradient(#E3DEEA_1px,transparent_1px)] bg-size-[22px_22px]"
-      style={{ minHeight: live ? 832 : Math.max(640, briefLayout.bottom + 40) }}
+      style={{ minHeight: live ? 720 : Math.max(640, briefLayout.bottom + 40) }}
     >
       {!live ? (
         <section
@@ -413,7 +413,8 @@ export function CaseDesk({
               </button>
             </div>
           </section>
-          <section aria-label="Role play" className="absolute inset-x-0 bottom-0 flex flex-col items-center" style={{ top: BAND_H }}>
+          {/* Tabs, character and controls sit together as one group in the middle of the desk. */}
+          <section aria-label="Role play" className="absolute inset-x-0 bottom-0 flex flex-col items-center justify-center gap-7 py-6" style={{ top: BAND_H }}>
             {children}
           </section>
           {zoom && <div aria-hidden="true" onClick={() => setZoom(false)} className="absolute inset-0 z-[18] bg-ink/35" />}
