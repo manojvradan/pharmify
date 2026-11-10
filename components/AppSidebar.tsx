@@ -10,7 +10,7 @@ import { CardsIcon, DocIcon, Flame, HomeIcon, LogoMark } from "@/components/icon
 const items = [
   { href: "/home", label: "Home", Icon: HomeIcon },
   { href: "/flashcards", label: "Flashcards", Icon: CardsIcon, badge: String(SESSION_SIZE) },
-  { href: "/debrief", label: "Debriefs", Icon: DocIcon },
+  { href: "/debrief", label: "History", Icon: DocIcon },
 ];
 
 /** The main nav. `pathname` is null while the route is still prerendering: no item is highlighted yet. */
