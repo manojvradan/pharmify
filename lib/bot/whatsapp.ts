@@ -49,6 +49,7 @@ export type Incoming = {
   | { kind: "text"; text: string }
   | { kind: "button"; buttonId: string }
   | { kind: "document"; mediaId: string; filename?: string; mimeType?: string; caption?: string }
+  | { kind: "image"; mediaId: string; mimeType?: string; caption?: string }
   | { kind: "other"; type: string }
 );
 
@@ -64,6 +65,7 @@ const Message = z.object({
   document: z
     .object({ id: z.string(), filename: z.string().optional(), mime_type: z.string().optional(), caption: z.string().optional() })
     .optional(),
+  image: z.object({ id: z.string(), mime_type: z.string().optional(), caption: z.string().optional() }).optional(),
 });
 const Payload = z.object({
   entry: z.array(
@@ -102,6 +104,8 @@ export function parseWebhook(body: unknown): Incoming[] {
             mimeType: m.document.mime_type,
             caption: m.document.caption,
           });
+        else if (m.type === "image" && m.image)
+          out.push({ ...base, kind: "image", mediaId: m.image.id, mimeType: m.image.mime_type, caption: m.image.caption });
         else out.push({ ...base, kind: "other", type: m.type });
       }
     }
@@ -116,6 +120,21 @@ async function send(to: string, message: Record<string, unknown>): Promise<void>
     body: JSON.stringify({ messaging_product: "whatsapp", recipient_type: "individual", to, ...message }),
   });
   if (!res.ok) throw new Error(`WhatsApp send failed (${res.status}): ${(await res.text()).slice(0, 300)}`);
+}
+
+/** Larger files are refused before downloading; a question sheet is never this big. */
+const MEDIA_MAX_BYTES = 20 * 1024 * 1024;
+
+/** Downloads a file someone sent: Meta gives a short-lived URL for the media id, which needs the token too. */
+export async function downloadMedia(mediaId: string): Promise<{ bytes: Buffer; mimeType: string }> {
+  const auth = { Authorization: `Bearer ${env("WHATSAPP_TOKEN")}` };
+  const metaRes = await fetch(`https://graph.facebook.com/${GRAPH_VERSION}/${mediaId}`, { headers: auth });
+  const meta = (await metaRes.json().catch(() => null)) as { url?: string; mime_type?: string; file_size?: number } | null;
+  if (!metaRes.ok || !meta?.url) throw new Error(`Couldn't find that file on WhatsApp (${metaRes.status})`);
+  if ((meta.file_size ?? 0) > MEDIA_MAX_BYTES) throw new Error("That file is over 20 MB. Send a smaller one.");
+  const fileRes = await fetch(meta.url, { headers: auth });
+  if (!fileRes.ok) throw new Error(`Couldn't download that file (${fileRes.status})`);
+  return { bytes: Buffer.from(await fileRes.arrayBuffer()), mimeType: meta.mime_type ?? "application/octet-stream" };
 }
 
 /** WhatsApp's limits: 4096 characters for a text, 1024 for a message with buttons, 20 for a button title. */

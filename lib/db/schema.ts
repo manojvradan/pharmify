@@ -1,6 +1,7 @@
 import { sql } from "drizzle-orm";
 import { index, integer, jsonb, pgEnum, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 import type { Pending } from "@/lib/bot/route";
+import type { CaseRecord } from "@/lib/cases/schema";
 import type { Debrief } from "@/lib/session/report";
 
 /**
@@ -107,6 +108,25 @@ export const profiles = pgTable("profiles", {
 export const botThreads = pgTable("bot_threads", {
   phone: text("phone").primaryKey(),
   pending: jsonb("pending").$type<Pending>(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
+/**
+ * WhatsApp bot: questions drafted from a document, waiting to be approved. The preview page
+ * (/preview/[id]?t=token) shows one to whoever has the link; `token` is the secret in it.
+ */
+export const botCaseDrafts = pgTable("bot_case_drafts", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  phone: text("phone").notNull(),
+  token: text("token").notNull(),
+  record: jsonb("record").$type<CaseRecord>().notNull(),
+  /** Details the model made up because the document didn't say. */
+  assumptions: jsonb("assumptions").$type<string[]>().notNull(),
+  /** Check failures left after drafting; publishing is refused until this is empty. */
+  problems: jsonb("problems").$type<string[]>().notNull(),
+  status: text("status", { enum: ["draft", "published", "discarded"] }).notNull().default("draft"),
+  prUrl: text("pr_url"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
 });
 

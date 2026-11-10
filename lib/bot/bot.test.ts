@@ -26,12 +26,42 @@ describe("route", () => {
     expect(route(text("tickets are great"), null)).toEqual({ type: "help" });
   });
 
-  it.each(["add question", "Add a question please", "new case"])("%s is a question", (msg) => {
-    expect(route(text(msg), null)).toEqual({ type: "question" });
+  it.each(["add question", "Add a question please", "new case"])("%s on its own asks for the question", (msg) => {
+    expect(route(text(msg), null)).toEqual({ type: "question-await" });
   });
 
-  it("a document is a question", () => {
-    expect(route({ id: "w1", from: "1", kind: "document", mediaId: "m" }, null)).toEqual({ type: "question" });
+  it("add question with pasted text drafts from the text", () => {
+    const pasted = "A 72-year-old woman presents a prescription for clarithromycin. She takes simvastatin 80 mg at night.";
+    expect(route(text(`add question: ${pasted}`), null)).toEqual({ type: "question-new", source: { kind: "text", text: pasted } });
+  });
+
+  it("a document or photo is a question to draft, even mid-ticket", () => {
+    expect(route({ id: "w1", from: "1", kind: "document", mediaId: "m", filename: "q.pdf", mimeType: "application/pdf" }, ticket)).toEqual({
+      type: "question-new",
+      source: { kind: "media", mediaId: "m", filename: "q.pdf", mimeType: "application/pdf", caption: undefined },
+    });
+    expect(route({ id: "w1", from: "1", kind: "image", mediaId: "p", caption: "add question" }, null)).toEqual({
+      type: "question-new",
+      source: { kind: "media", mediaId: "p", filename: undefined, mimeType: undefined, caption: "add question" },
+    });
+  });
+
+  it("after 'add question', the next text is the question", () => {
+    expect(route(text("Mrs P brings in a script for…"), { kind: "question-await" })).toEqual({
+      type: "question-new",
+      source: { kind: "text", text: "Mrs P brings in a script for…" },
+    });
+    expect(route(text("cancel"), { kind: "question-await" })).toEqual({ type: "cancel" });
+  });
+
+  it("with a question draft open: approve publishes, anything else revises", () => {
+    const q: Pending = { kind: "question", draftId: "d" };
+    expect(route(text("approve"), q)).toEqual({ type: "question-approve" });
+    expect(route(text("yes"), q)).toEqual({ type: "question-approve" });
+    expect(route(button(BUTTON.approveQuestion), q)).toEqual({ type: "question-approve" });
+    expect(route(text("make the patient 75"), q)).toEqual({ type: "question-revise", feedback: "make the patient 75" });
+    expect(route(button(BUTTON.cancel), q)).toEqual({ type: "cancel" });
+    expect(route(button(BUTTON.approveQuestion), ticket)).toEqual({ type: "stale-button" });
   });
 
   it("with a draft open: yes creates, cancel drops, anything else revises", () => {
