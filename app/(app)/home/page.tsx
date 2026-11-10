@@ -42,7 +42,8 @@ const categories: {
   },
 ];
 
-const tile = "flex flex-col gap-0.5 rounded-[18px] border border-line bg-white px-[18px] py-3.5";
+const tile =
+  "flex flex-col gap-0.5 rounded-[18px] border border-line bg-white px-[18px] py-3.5 transition-[transform,box-shadow] duration-300 ease-out motion-safe:hover:-translate-y-0.5 hover:shadow-[0_12px_28px_-18px_rgba(22,17,42,0.3)]";
 
 
 const label = "text-[13px] font-semibold text-muted";
@@ -71,7 +72,7 @@ async function ProgressTiles() {
         <span className={big}>{pct(p.passed, p.done)}%</span>
         <Meter part={p.passed} whole={p.done} />
       </div>
-      <div className="flex flex-col gap-0.5 rounded-[18px] bg-sun-tint px-[18px] py-3.5">
+      <div className="flex flex-col gap-0.5 rounded-[18px] bg-sun-tint px-[18px] py-3.5 transition-[transform,box-shadow] duration-300 ease-out motion-safe:hover:-translate-y-0.5 hover:shadow-[0_12px_28px_-18px_rgba(22,17,42,0.3)]">
         <span className={label}>Work on next</span>
         <span className="text-2xl leading-[1.2] font-bold tracking-[-0.02em]">{p.workOn?.skill ?? "Keep it up"}</span>
       </div>
@@ -143,14 +144,22 @@ export default function HomePage() {
       {/* Quick play */}
       <section
         aria-label="Quick play"
-        className="relative flex flex-wrap items-center gap-7 overflow-hidden rounded-[28px] bg-pink px-8 py-[22px] text-ink"
+        className="group relative flex flex-wrap items-center gap-7 overflow-hidden rounded-[28px] bg-pink px-8 py-[22px] text-ink transition-[transform,box-shadow] duration-300 ease-out motion-safe:hover:-translate-y-1 hover:shadow-[0_18px_36px_-18px_rgba(22,17,42,0.35)]"
       >
-        <span aria-hidden="true" className="absolute -top-[90px] -right-[60px] size-[260px] rounded-full bg-white opacity-[0.18]" />
-        <span aria-hidden="true" className="absolute right-[230px] -bottom-[70px] size-[140px] rounded-full bg-white opacity-[0.14]" />
+        {/* Bubbles drift on their own; on hover they glide further across the card. */}
+        <span aria-hidden="true" className="absolute -top-[90px] -right-[60px] size-[260px] transition-transform duration-[1200ms] ease-out motion-safe:group-hover:translate-x-[-70px] motion-safe:group-hover:translate-y-[24px]">
+          <span className="block size-full animate-bubble-a rounded-full bg-white opacity-[0.18]" />
+        </span>
+        <span aria-hidden="true" className="absolute right-[230px] -bottom-[70px] size-[140px] transition-transform duration-[1200ms] ease-out motion-safe:group-hover:translate-x-[60px] motion-safe:group-hover:translate-y-[-30px]">
+          <span className="block size-full animate-bubble-b rounded-full bg-white opacity-[0.14]" />
+        </span>
+        <span aria-hidden="true" className="absolute top-[18px] right-[34%] size-[46px] transition-transform duration-[1200ms] ease-out motion-safe:group-hover:translate-x-[-40px] motion-safe:group-hover:translate-y-[40px]">
+          <span className="block size-full animate-bubble-c rounded-full bg-white opacity-[0.16]" />
+        </span>
         <div className="relative size-[132px] flex-none">
-          <span aria-hidden="true" className="absolute -inset-[7px] rounded-full border-2 border-dashed border-white opacity-70" />
+          <span aria-hidden="true" className="absolute -inset-[7px] rounded-full border-2 border-dashed border-white opacity-70 group-hover:animate-ring-spin" />
           <div className="absolute inset-0 overflow-hidden rounded-full border-[3px] border-white bg-[#FFE3F1]">
-            <div className="absolute top-[-4px] left-[9px]">
+            <div className="absolute top-[-4px] left-[9px] origin-bottom group-hover:animate-wiggle">
               <Pip mood="happy" size={110} />
             </div>
           </div>
@@ -190,7 +199,7 @@ export default function HomePage() {
         </div>
         <Link
           href="/session"
-          className="relative inline-flex min-h-[58px] items-center justify-center gap-3 rounded-[18px] border-2 border-ink bg-sun px-[30px] text-[21px] font-bold text-ink no-underline shadow-pop-lg hover:text-ink"
+          className="relative inline-flex min-h-[58px] items-center justify-center gap-3 rounded-[18px] border-2 border-ink bg-sun px-[30px] text-[21px] font-bold text-ink no-underline shadow-pop-lg transition-transform duration-200 hover:text-ink motion-safe:hover:-translate-y-0.5 motion-safe:active:translate-y-0.5"
         >
           <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
             <path d="M5 3.5v11l9-5.5z" fill="#16112A" stroke="#16112A" strokeWidth="1.5" strokeLinejoin="round" />
@@ -222,14 +231,21 @@ export default function HomePage() {
             return (
               <article
                 key={c.big}
-                className="flex flex-col overflow-hidden rounded-3xl border-[1.5px] border-line bg-white shadow-card"
+                className="group flex flex-col overflow-hidden rounded-3xl border-[1.5px] border-line bg-white shadow-card transition-[transform,box-shadow] duration-300 ease-out motion-safe:hover:-translate-y-1 hover:shadow-[0_18px_36px_-18px_rgba(22,17,42,0.35)]"
               >
                 <div
                   className="relative box-border flex h-[188px] flex-col justify-between gap-3 overflow-hidden border-b-[1.5px] border-line px-5 pt-[18px] pb-5"
                   style={{ background: c.bg }}
                 >
+                  {/* Two soft bubbles, as on the quick-play card: they drift, and glide a little on hover. */}
+                  <span aria-hidden="true" className="absolute -top-10 -right-8 size-[120px] transition-transform duration-[1200ms] ease-out motion-safe:group-hover:-translate-x-6 motion-safe:group-hover:translate-y-3">
+                    <span className="block size-full animate-bubble-a rounded-full bg-white opacity-35" />
+                  </span>
+                  <span aria-hidden="true" className="absolute right-[38%] -bottom-6 size-[64px] transition-transform duration-[1200ms] ease-out motion-safe:group-hover:translate-x-5 motion-safe:group-hover:-translate-y-4">
+                    <span className="block size-full animate-bubble-b rounded-full bg-white opacity-30" />
+                  </span>
                   <div className="relative flex items-center justify-between gap-2.5">
-                    <span aria-hidden="true" className="grid size-11 place-items-center rounded-xl border border-line bg-white">
+                    <span aria-hidden="true" className="grid size-11 place-items-center rounded-xl border border-line bg-white transition-transform duration-300 ease-out motion-safe:group-hover:-rotate-8 motion-safe:group-hover:scale-110">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <path d={c.icon} stroke="#16112A" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
@@ -247,7 +263,7 @@ export default function HomePage() {
                   </Suspense>
                   <Link
                     href={`/session?category=${c.key}`}
-                    className="mt-auto inline-flex min-h-[52px] items-center justify-center gap-2.5 rounded-2xl border-[1.5px] border-ink bg-white text-base font-semibold text-ink no-underline hover:text-ink"
+                    className="mt-auto inline-flex min-h-[52px] items-center justify-center gap-2.5 rounded-2xl border-[1.5px] border-ink bg-white text-base font-semibold text-ink no-underline transition-colors duration-200 group-hover:bg-ink group-hover:text-white hover:text-white"
                   >
                     Start
                   </Link>
@@ -261,9 +277,11 @@ export default function HomePage() {
       {/* Flashcards promo */}
       <section
         aria-label="Code of Ethics flashcards"
-        className="flex flex-wrap items-center gap-5 rounded-3xl bg-ink px-6 py-3.5 text-white"
+        className="group flex flex-wrap items-center gap-5 rounded-3xl bg-ink px-6 py-3.5 text-white transition-[transform,box-shadow] duration-300 ease-out motion-safe:hover:-translate-y-1 hover:shadow-[0_18px_36px_-18px_rgba(22,17,42,0.35)]"
       >
-        <Pip mood="thinking" size={54} />
+        <span className="origin-bottom group-hover:animate-wiggle">
+          <Pip mood="thinking" size={54} />
+        </span>
         <div className="flex flex-[1_1_300px] flex-col gap-1">
           <span className="text-[13px] font-bold tracking-[0.06em] text-sun uppercase">Study tool</span>
           <h2 className="m-0 text-[21px] font-bold tracking-[-0.02em]">Code of Ethics flashcards</h2>
