@@ -109,7 +109,7 @@
   }
   /* Exam session desk: the character rises in on every switch, the patient walks up to the
      counter, the question sheet docks as a band, and the captions fade up after them. */
-  --animate-scene-in: scene-in 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) 0.15s both;
+  --animate-scene-in: scene-in 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
   --animate-walk-in: walk-in 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.35s both;
   --animate-band-in: band-in 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.25s both;
   --animate-fade-up: fade-up 0.5s ease-out 0.9s both;
