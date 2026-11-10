@@ -2,6 +2,14 @@
 @layer theme, base, clerk, components, utilities;
 @import "tailwindcss";
 
+/*
+ * "The Log in page is showing" for the auth tab switch (components/AuthTabs.tsx).
+ * Cache Components keeps a page you left in the DOM, hidden by React's <Activity> with an
+ * inline `display: none !important`, so a plain :has(.auth-sign-in) stays true after you
+ * switch back to Create account. Only the pane that isn't hidden counts.
+ */
+@custom-variant auth-on-sign-in (.group\/auth:has(> .auth-sign-in:not([style*="none"])) &);
+
 @theme inline {
   --font-sans: var(--font-figtree), system-ui, -apple-system, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;

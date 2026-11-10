@@ -107,7 +107,9 @@ export const clerkAppearance = {
   },
   elements: {
     rootBox: "w-full",
-    cardBox: "w-full max-w-none shadow-none border-0 rounded-none bg-transparent",
+    // overflow-visible: the card has no padding here, so Clerk's overflow:hidden would clip
+    // the "Last used" badge that sits on the top edge of the first social button.
+    cardBox: "w-full max-w-none shadow-none border-0 rounded-none bg-transparent overflow-visible",
     card: "bg-transparent shadow-none border-0 p-0 gap-[22px]",
     header: "hidden",
     footer: "bg-none bg-transparent [&>*:first-child]:hidden",
