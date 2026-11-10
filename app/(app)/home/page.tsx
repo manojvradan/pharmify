@@ -141,7 +141,7 @@ export default function HomePage() {
       {/* Quick play */}
       <section
         aria-label="Quick play"
-        className="group relative flex flex-wrap items-center gap-7 overflow-hidden rounded-[28px] bg-pink px-8 py-[22px] text-ink transition-[transform,box-shadow] duration-[550ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:hover:-translate-y-[3px] hover:shadow-[0_18px_36px_-18px_rgba(22,17,42,0.35)]"
+        className="group relative flex flex-wrap items-center gap-7 overflow-hidden rounded-[28px] bg-pink px-8 py-[22px] text-ink"
       >
         {/* Bubbles drift on their own; on hover they glide further across the card. */}
         <span aria-hidden="true" className="absolute -top-[90px] -right-[60px] size-[260px] transition-transform duration-[1200ms] ease-out motion-safe:group-hover:translate-x-[-70px] motion-safe:group-hover:translate-y-[24px]">
@@ -228,7 +228,7 @@ export default function HomePage() {
             return (
               <article
                 key={c.big}
-                className="group flex flex-col overflow-hidden rounded-3xl border-[1.5px] border-line bg-white shadow-card transition-[transform,box-shadow] duration-[550ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:hover:-translate-y-[3px] hover:shadow-[0_18px_36px_-18px_rgba(22,17,42,0.35)]"
+                className="group flex flex-col overflow-hidden rounded-3xl border-[1.5px] border-line bg-white shadow-card"
               >
                 <div
                   className="relative box-border flex h-[188px] flex-col justify-between gap-3 overflow-hidden border-b-[1.5px] border-line px-5 pt-[18px] pb-5"
@@ -260,7 +260,7 @@ export default function HomePage() {
                   </Suspense>
                   <Link
                     href={`/session?category=${c.key}`}
-                    className="mt-auto inline-flex min-h-[52px] items-center justify-center gap-2.5 rounded-2xl border-[1.5px] border-ink bg-white text-base font-semibold text-ink no-underline transition-colors duration-200 group-hover:bg-ink group-hover:text-white hover:text-white"
+                    className="mt-auto inline-flex min-h-[52px] items-center justify-center gap-2.5 rounded-2xl border-[1.5px] border-ink bg-white text-base font-semibold text-ink no-underline transition-colors duration-200 hover:bg-ink hover:text-white focus-visible:bg-ink focus-visible:text-white"
                   >
                     Start
                   </Link>
@@ -274,7 +274,7 @@ export default function HomePage() {
       {/* Flashcards promo */}
       <section
         aria-label="Code of Ethics flashcards"
-        className="group flex flex-wrap items-center gap-5 rounded-3xl bg-ink px-6 py-3.5 text-white transition-[transform,box-shadow] duration-[550ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:hover:-translate-y-[3px] hover:shadow-[0_18px_36px_-18px_rgba(22,17,42,0.35)]"
+        className="group flex flex-wrap items-center gap-5 rounded-3xl bg-ink px-6 py-3.5 text-white"
       >
         <span className="origin-bottom group-hover:animate-wiggle">
           <Pip mood="thinking" size={54} />

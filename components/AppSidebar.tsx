@@ -1,6 +1,6 @@
 "use client";
 
-import { UserButton, useUser } from "@clerk/nextjs";
+import { UserButton, useClerk, useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import { Suspense, useSyncExternalStore, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
@@ -100,6 +100,25 @@ function Profile() {
   );
 }
 
+/** Signs out and goes back to the landing page. Icon only when the sidebar is collapsed. */
+function LogOut() {
+  const { signOut } = useClerk();
+  return (
+    <button
+      type="button"
+      onClick={() => void signOut({ redirectUrl: "/" })}
+      title="Log out"
+      className="flex min-h-10 w-full cursor-pointer items-center gap-3 rounded-[12px] border-0 bg-transparent px-3.5 text-[15px] font-bold text-ink-2 hover:bg-chip hover:text-ink group-data-[collapsed=true]/sidebar:justify-center group-data-[collapsed=true]/sidebar:px-0"
+    >
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" className="flex-none">
+        <path d="M8 3.5H5A1.5 1.5 0 003.5 5v10A1.5 1.5 0 005 16.5h3" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+        <path d="M12.5 6.5L16 10l-3.5 3.5M16 10H8" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+      <span className="group-data-[collapsed=true]/sidebar:sr-only">Log out</span>
+    </button>
+  );
+}
+
 /**
  * Side by side with the page (wide screens), it stays put while the page scrolls, with
  * the streak and profile pinned to the bottom, and folds to an icon rail with the button
@@ -143,8 +162,9 @@ export function AppSidebar({ streak }: { streak: ReactNode }) {
 
       <div className="mt-auto flex flex-col gap-3">
         {streak}
-        <div className="border-t border-line-soft pt-3">
+        <div className="flex flex-col gap-1 border-t border-line-soft pt-3">
           <Profile />
+          <LogOut />
         </div>
       </div>
     </aside>
