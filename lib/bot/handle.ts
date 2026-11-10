@@ -1,11 +1,16 @@
 import "server-only";
 
-import { eq } from "drizzle-orm";
+import { randomBytes } from "node:crypto";
+import { and, eq } from "drizzle-orm";
 import { db, schema } from "@/lib/db";
+import { type CaseDraft, caseSummary, draftCase } from "./cases";
+import { publishCase } from "./github";
 import { createIssue } from "./linear";
 import { BUTTON, HELP_TEXT, type Pending, route } from "./route";
 import { draftTicket, ticketPreview, type TicketDraft } from "./tickets";
 import { type Incoming, sendButtons, sendText } from "./whatsapp";
+
+const SITE_URL = process.env.SITE_URL ?? "https://pharmify.au";
 
 /** True the first time a message id is seen. Meta retries a webhook it thinks failed. */
 async function firstTime(messageId: string): Promise<boolean> {
@@ -33,10 +38,46 @@ async function showTicket(to: string, draft: TicketDraft): Promise<void> {
   ]);
 }
 
+async function getDraft(phone: string, id: string) {
+  const [row] = await db()
+    .select()
+    .from(schema.botCaseDrafts)
+    .where(and(eq(schema.botCaseDrafts.id, id), eq(schema.botCaseDrafts.phone, phone)));
+  return row;
+}
+
+/** Saves a draft (new, or replacing the open one) and sends its summary, preview link and buttons. */
+async function showQuestion(to: string, draft: CaseDraft, existingId?: string): Promise<void> {
+  const values = { record: draft.record, assumptions: draft.assumptions, problems: draft.problems, updatedAt: new Date() };
+  let row: { id: string; token: string };
+  if (existingId) {
+    [row] = await db().update(schema.botCaseDrafts).set(values).where(eq(schema.botCaseDrafts.id, existingId)).returning();
+  } else {
+    [row] = await db()
+      .insert(schema.botCaseDrafts)
+      .values({ ...values, phone: to, token: randomBytes(18).toString("base64url") })
+      .returning();
+  }
+  await setPending(to, { kind: "question", draftId: row.id });
+  await sendText(to, caseSummary(draft, `${SITE_URL}/preview/${row.id}?t=${row.token}`));
+  const ok = draft.problems.length === 0;
+  await sendButtons(
+    to,
+    ok ? "Put this question live? Or reply with what to change." : "Reply with what to change, and I'll fix it and check again.",
+    ok
+      ? [
+          { id: BUTTON.approveQuestion, title: "Approve" },
+          { id: BUTTON.cancel, title: "Discard" },
+        ]
+      : [{ id: BUTTON.cancel, title: "Discard" }],
+  );
+}
+
 /** Handles one message from an allowed number. Errors are reported back in the chat. */
 export async function handleMessage(msg: Incoming): Promise<void> {
   if (!(await firstTime(msg.id))) return;
   const to = msg.from;
+  const who = msg.name ?? "the team";
   try {
     const pending = await getPending(to);
     const intent = route(msg, pending);
@@ -52,10 +93,7 @@ export async function handleMessage(msg: Incoming): Promise<void> {
       }
       case "ticket-revise": {
         if (pending?.kind !== "ticket") return;
-        const draft = await draftTicket(pending.request, {
-          previous: pending.draft as TicketDraft,
-          feedback: intent.feedback,
-        });
+        const draft = await draftTicket(pending.request, { previous: pending.draft as TicketDraft, feedback: intent.feedback });
         await setPending(to, { ...pending, draft });
         return void (await showTicket(to, draft));
       }
@@ -66,15 +104,58 @@ export async function handleMessage(msg: Incoming): Promise<void> {
         const issue = await createIssue({ title: pending.draft.title, description: pending.draft.description });
         return void (await sendText(to, `✅ Created ${issue.identifier}: ${issue.title}\n${issue.url}`));
       }
+
+      case "question-await":
+        await setPending(to, { kind: "question-await" });
+        return void (await sendText(to, "Send me the question: a PDF, Word doc or photo, or paste the text."));
+      case "question-new": {
+        await sendText(to, "📝 Got it. Drafting the question now; this takes a minute or two.");
+        const draft = await draftCase({ source: intent.source, sentBy: msg.name });
+        return void (await showQuestion(to, draft));
+      }
+      case "question-revise": {
+        if (pending?.kind !== "question") return;
+        const row = await getDraft(to, pending.draftId);
+        if (!row || row.status !== "draft") return void (await setPending(to, null));
+        await sendText(to, "✏️ Updating the draft…");
+        const draft = await draftCase({ previous: row.record, feedback: intent.feedback });
+        return void (await showQuestion(to, draft, row.id));
+      }
+      case "question-approve": {
+        if (pending?.kind !== "question") return;
+        const row = await getDraft(to, pending.draftId);
+        if (!row || row.status !== "draft") return void (await sendText(to, "That one's already been dealt with."));
+        if (row.problems.length > 0) {
+          return void (await sendText(to, "This draft still fails the checks, so I can't put it live. Reply with what to change."));
+        }
+        // Cleared first, so a double tap can't publish twice.
+        await setPending(to, null);
+        const result = await publishCase(row.record, who);
+        await db()
+          .update(schema.botCaseDrafts)
+          .set({ status: "published", prUrl: result.prUrl, updatedAt: new Date() })
+          .where(eq(schema.botCaseDrafts.id, row.id));
+        return void (await sendText(
+          to,
+          result.merged
+            ? `🚀 Approved! "${row.record.title}" is merged and will be live in about 2 minutes, marked as a draft case.\n${result.prUrl}`
+            : `Opened a pull request for "${row.record.title}", but couldn't merge it${result.mergeError ? ` (${result.mergeError})` : ""}. Merge it on GitHub to put it live:\n${result.prUrl}`,
+        ));
+      }
+
       case "cancel":
         await setPending(to, null);
+        if (pending?.kind === "question") {
+          await db()
+            .update(schema.botCaseDrafts)
+            .set({ status: "discarded", updatedAt: new Date() })
+            .where(and(eq(schema.botCaseDrafts.id, pending.draftId), eq(schema.botCaseDrafts.status, "draft")));
+        }
         return void (await sendText(to, pending ? "Okay, dropped it." : "Nothing to cancel."));
       case "stale-button":
         return void (await sendText(to, "That one's already been dealt with."));
-      case "question":
-        return void (await sendText(to, "Adding questions is coming soon. For now I can make Linear tickets: start a message with \"ticket\"."));
       case "unsupported":
-        return void (await sendText(to, "I can only read text messages (and documents, soon). Say \"help\" to see what I can do."));
+        return void (await sendText(to, 'I can read text, documents and photos. Say "help" to see what I can do.'));
     }
   } catch (err) {
     console.error("[whatsapp] handling failed", err);

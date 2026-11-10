@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "npm run cases:index",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
@@ -14,7 +15,8 @@
     "db:migrate": "node --env-file=.env.local ./node_modules/drizzle-kit/bin.cjs migrate",
     "db:studio": "node --env-file=.env.local ./node_modules/drizzle-kit/bin.cjs studio",
     "test:db": "vitest run --config vitest.db.config.ts",
-    "dev:agent": "npm --prefix agent run dev"
+    "dev:agent": "npm --prefix agent run dev",
+    "cases:index": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/gen-case-index.mts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.4.0",
@@ -23,6 +25,7 @@
     "drizzle-orm": "^0.45.4",
     "livekit-client": "^2.23.0",
     "livekit-server-sdk": "^2.19.2",
+    "mammoth": "^1.11.0",
     "next": "16.4.3",
     "react": "19.3.0",
     "react-dom": "19.3.0",

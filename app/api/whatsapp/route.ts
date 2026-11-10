@@ -2,8 +2,25 @@ import { after } from "next/server";
 import { handleMessage } from "@/lib/bot/handle";
 import { allowedNumbers, normaliseNumber, parseWebhook, validSignature } from "@/lib/bot/whatsapp";
 
-/** Drafting with the model happens after the response, within this limit. */
-export const maxDuration = 60;
+function mask(n: string): string {
+  const d = normaliseNumber(n);
+  return d.length > 6 ? `${d.slice(0, 4)}…${d.slice(-3)}` : `${d.length} digits`;
+}
+
+/** The keys of a payload, nested, with no values: enough to see what Meta changed. */
+function shape(v: unknown, depth = 0): string {
+  if (depth > 6) return "…";
+  if (Array.isArray(v)) return `[${v.length ? shape(v[0], depth + 1) : ""}]`;
+  if (v && typeof v === "object") {
+    return `{${Object.entries(v)
+      .map(([k, x]) => `${k}:${shape(x, depth + 1)}`)
+      .join(",")}}`;
+  }
+  return typeof v;
+}
+
+/** Drafting with the model happens after the response, within this limit (a case can take a few minutes). */
+export const maxDuration = 300;
 
 /** Meta's one-off check when the webhook URL is saved: echo the challenge if the token matches. */
 export function GET(req: Request) {
@@ -35,7 +52,15 @@ export async function POST(req: Request) {
   }
 
   const allowed = allowedNumbers();
-  const messages = parseWebhook(body).filter((m) => allowed.has(normaliseNumber(m.from)));
+  const parsed = parseWebhook(body);
+  const messages = parsed.filter((m) => allowed.has(normaliseNumber(m.from)));
+  // Say why nothing happened, without logging whole numbers or message text.
+  for (const m of parsed) {
+    if (!messages.includes(m)) console.warn(`[whatsapp] ignored ${m.kind} from ${mask(m.from)} (not in WHATSAPP_ALLOWED_NUMBERS)`);
+  }
+  if (parsed.length === 0 && raw.includes('"messages"')) {
+    console.warn(`[whatsapp] couldn't read a message from this webhook; shape: ${shape(body)}`);
+  }
   if (messages.length > 0) {
     after(async () => {
       // In order, so a quick "yes" after a draft is handled after the draft.
