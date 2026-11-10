@@ -34,15 +34,16 @@
       ]
     },
     "prescriber": {
-      "label": "Call the GP",
-      "name": "Dr [GP]",
+      "label": "Call Dr Okafor",
+      "name": "Dr Okafor",
       "avatar": "dr-hoot",
-      "description": "A busy GP between patients. Polite but short on time. Wants the pharmacist to get to the point and give a clear recommendation rather than an open question.",
-      "bio": {"Role": "General practitioner, Mr Ryan's regular GP", "Workplace": "A general practice in Penrith NSW"},
-      "openingLine": "Dr [GP] speaking, I've only got a minute. What's up?",
+      "description": "The hospital doctor who discharged Mr Ryan, busy on the ward. Polite but short on time. Wants the pharmacist to get to the point and give a clear recommendation rather than an open question.",
+      "situation": "A community pharmacist has phoned you on the ward about a patient you discharged.",
+      "bio": {"Full name": "Dr Amara Okafor", "Role": "Hospital doctor who discharged Mr Ryan", "Workplace": "Penrith Hospital, NSW"},
+      "openingLine": "Dr Okafor speaking, I've only got a minute. What's up?",
       "publicFacts": [
-        "You are Mr R.'s regular GP and prescribed his generic atorvastatin 40 mg.",
-        "You have not yet received the hospital discharge summary."
+        "You discharged Mr Ryan from Penrith Hospital and wrote his discharge prescription for atorvastatin 40 mg.",
+        "You don't have his GP's records in front of you."
       ]
     }
   },
@@ -71,7 +72,7 @@
     {
       "id": "gp-did-not-intend-two",
       "agent": "prescriber",
-      "fact": "You assumed the hospital only wrote the brand for convenience. You never intended him to take two statins and you are happy for him to continue one product only.",
+      "fact": "You wrote the brand because it is what the hospital stocks. You didn't know he still had generic atorvastatin from his GP at home. You never intended him to take two statins and you are happy for him to continue one product only.",
       "triggers": ["both brand", "both generic", "both tablet", "both statin", "take both", "two statin", "same drug", "same medicine", "duplicate", "duplication", "intend", "one product", "continue one"],
       "unlockHint": "“He has both brand and generic atorvastatin 40 mg. I recommend he continues one product only. Can you confirm?”"
     }
@@ -91,7 +92,7 @@
     "counsellingPoints": ["Dose", "Timing", "Side effects", "What to watch for", "When to return"],
     "codePrinciples": [],
     "legal": [],
-    "modelAnswer": "Recognise both products are atorvastatin 40 mg. Take a full medication history, including other medicines (he takes warfarin). Contact the GP with a clear recommendation to continue one product only, confirm, supply accordingly, and counsel on taking one statin at night, muscle pain, and when to return."
+    "modelAnswer": "Recognise both products are atorvastatin 40 mg. Take a full medication history, including other medicines (he takes warfarin). Contact the prescriber (Dr Okafor at the hospital, or his GP) with a clear recommendation to continue one product only, confirm, supply accordingly, and counsel on taking one statin at night, muscle pain, and when to return."
   },
   "review": { "status": "draft", "version": "0.1" },
   "sources": ["Vivascript MVP plan, worked example (original, needs pharmacist review)"]
