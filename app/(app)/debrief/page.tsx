@@ -3,14 +3,26 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { Pip } from "@/components/Pip";
 import { getCase } from "@/lib/cases/bank";
-import { getViewerSessions } from "@/lib/session/viewer";
+import { ProgressOverview } from "@/components/ProgressCharts";
+import { getViewerProgress, getViewerSessions } from "@/lib/session/viewer";
 
-export const metadata: Metadata = { title: "Debriefs" };
+export const metadata: Metadata = { title: "History" };
 
 const dateFormat = new Intl.DateTimeFormat("en-AU", { day: "numeric", month: "short", hour: "numeric", minute: "2-digit" });
 
 function clock(s: number) {
   return `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
+}
+
+/** The charts: a week of interviews, recent results, hidden facts and skills. Nothing until the first debrief. */
+async function Overview() {
+  const p = await getViewerProgress();
+  if (!p || p.done === 0) return null;
+  return (
+    <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 xl:grid-cols-3">
+      <ProgressOverview p={p} />
+    </div>
+  );
 }
 
 async function SessionList() {
@@ -79,8 +91,12 @@ async function SessionList() {
 export default function DebriefsPage() {
   return (
     <main className="box-border flex min-w-0 flex-[999_1_560px] flex-col gap-5 px-[clamp(16px,3vw,36px)] pt-6 pb-8">
-      <div className="mx-auto flex w-full max-w-[920px] flex-col gap-5">
-        <h1 className="m-0 text-[clamp(26px,2.6vw,32px)] font-bold tracking-[-0.015em]">Your debriefs</h1>
+      <div className="mx-auto flex w-full max-w-[1100px] flex-col gap-5">
+        <h1 className="m-0 text-[clamp(26px,2.6vw,32px)] font-bold tracking-[-0.015em]">Your history</h1>
+        <Suspense fallback={null}>
+          <Overview />
+        </Suspense>
+        <h2 className="m-0 mt-2 text-xl font-bold tracking-[-0.015em]">Past interviews</h2>
         <Suspense fallback={<p className="m-0 text-muted">Loading your interviews…</p>}>
           <SessionList />
         </Suspense>
