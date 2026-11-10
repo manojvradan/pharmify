@@ -235,13 +235,7 @@ export function ExplainSession({ case: c, voice = false }: { case: PublicCase; v
                 Read the case, then explain what you would do.
               </h1>
               <p className="m-0 max-w-[50ch] text-muted">
-                Take as long as you need to read. When you start, you&apos;ll have {minutes} minutes to talk through how you
-                would handle it and why. No one will reply or interrupt; the examiner only gives a one-minute warning.
-              </p>
-              <p className="m-0 max-w-[50ch] text-[15px] text-subtle">
-                {mode === "speak"
-                  ? "Speak as you would to the examiner. Your answer is recorded and transcribed for marking."
-                  : "Type your answer as you would say it."}
+                {minutes} minutes, no one replies.{mode === "speak" ? " Your answer is recorded for marking." : ""}
               </p>
               <button
                 type="button"
@@ -290,9 +284,6 @@ export function ExplainSession({ case: c, voice = false }: { case: PublicCase; v
                         <span key={i} className="block h-1.5 w-1.5 rounded-full bg-pink" />
                       ))}
                     </div>
-                    <p className="m-0 max-w-[44ch] text-muted">
-                      Talk through what you would do and why. Pip is listening, not replying.
-                    </p>
                   </div>
                   {heard.length > 0 && (
                     <div className="w-full max-w-[640px] rounded-2xl bg-canvas p-4 text-left text-sm text-muted">

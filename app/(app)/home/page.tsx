@@ -368,7 +368,6 @@ export default function HomePage() {
       <section aria-labelledby="cats" className="flex flex-col gap-3">
         <div className="flex flex-wrap items-baseline justify-between gap-3">
           <h2 id="cats" className="m-0 text-2xl font-bold tracking-[-0.015em]">Pick a category</h2>
-          <span className="text-[15px] text-muted">Choose the type of interview.</span>
         </div>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(min(280px,100%),1fr))] gap-5">
           {categories.map((c) => {

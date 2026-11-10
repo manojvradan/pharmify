@@ -68,6 +68,37 @@
   --shadow-pop-white: 0 4px 0 #ffffff;
 
   --animate-float: pip-float 4s ease-in-out infinite;
+  /* Exam session desk: the character rises in on every switch, the patient walks up to the
+     counter, the question sheet docks as a band, and the captions fade up after them. */
+  --animate-scene-in: scene-in 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) 0.15s both;
+  --animate-walk-in: walk-in 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.35s both;
+  --animate-band-in: band-in 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.25s both;
+  --animate-fade-up: fade-up 0.5s ease-out 0.9s both;
+  --animate-fade-up-late: fade-up 0.5s ease-out 1.1s both;
+
+  @keyframes scene-in {
+    from {
+      opacity: 0;
+      transform: translateY(28px) scale(0.97);
+    }
+  }
+  @keyframes walk-in {
+    from {
+      transform: translateX(140px);
+    }
+  }
+  @keyframes band-in {
+    from {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+  }
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+  }
   /* Landing page: the slow sunburst behind the story, and the "Pip's on duty!" badge. */
   --animate-rays: rays-spin 60s linear infinite;
   --animate-badge: badge-float 4s ease-in-out infinite;
@@ -162,6 +193,11 @@
     scroll-behavior: auto;
   }
   .animate-float,
+  .animate-scene-in,
+  .animate-walk-in,
+  .animate-band-in,
+  .animate-fade-up,
+  .animate-fade-up-late,
   .animate-rays,
   .animate-badge,
   .animate-ring,

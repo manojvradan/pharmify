@@ -3,8 +3,8 @@
 import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
 import { CastAvatar } from "@/components/CastAvatar";
 import { DebriefReport } from "@/components/DebriefReport";
-import { Pip } from "@/components/Pip";
-import { CaseDocuments, GradingPanel, SessionHeader, clock, timeCheck, type Phase } from "@/components/SessionChrome";
+import { CaseDesk } from "@/components/CaseDesk";
+import { GradingPanel, SessionHeader, clock, timeCheck, type Phase } from "@/components/SessionChrome";
 import { PharmacyScene } from "@/components/PharmacyScene";
 import { useCharacterVoice } from "@/hooks/useCharacterVoice";
 import { type LiveLine, useLiveKitVoice } from "@/hooks/useLiveKitVoice";
@@ -63,7 +63,8 @@ export function ExamSession({
   } = useCharacterVoice();
   const recorder = useRecorder();
   /** Chosen on the start screen; fixed once the session is live. */
-  const [handsFreeOn, setHandsFreeOn] = useState(false);
+  // Hands-free is the default wherever it's available; the start screen can turn it off.
+  const [handsFreeOn, setHandsFreeOn] = useState(handsFree && voice);
   /** Hands-free lines by segment id, so a line still being said updates in place. */
   const liveLinesRef = useRef(new Map<string, { agent: AgentId; index: number }>());
   const agentRef = useRef<AgentId>("patient");
@@ -452,60 +453,48 @@ export function ExamSession({
     <div className="flex min-h-screen flex-col bg-white text-base leading-normal">
       <SessionHeader c={c} phase={phase} remaining={remaining} elapsed={elapsed} notice={timeCheck(remaining, c.partSeconds)} />
 
-      <main className="flex flex-1 flex-wrap items-stretch">
-        <CaseDocuments c={c} />
-
-        {/* Stage */}
-        <section aria-label="Role play" className="flex min-w-0 flex-[999_1_560px] flex-col">
-          {phase === "ready" && (
-            <div className="flex flex-1 flex-col items-center justify-center gap-6 px-6 py-10 text-center">
-              <Pip mood="exam" size={110} />
-              <h1 className="m-0 text-[clamp(26px,2.6vw,34px)] font-bold tracking-[-0.02em]">
-                Read the question sheet, then start.
-              </h1>
-              <p className="m-0 max-w-[46ch] text-muted">
-                You&apos;ll have 20 minutes. {c.agents[1] ? `Use “${c.agents[1].label}” to talk to them at any time. ` : ""}
-                The examiner stays neutral and only gives time checks.{" "}
-                {handsFreeOn
-                  ? "Just talk, as you would in the room: they'll answer when you finish, and you can cut in. Turn your sound on."
-                  : voice
-                    ? "Hold the button and speak as you would in the room. Turn your sound on."
-                    : "Type what you would say out loud."}
+      <CaseDesk
+        c={c}
+        live={phase !== "ready"}
+        brief={
+          <>
+            {handsFree && voice && (
+              <label className="inline-flex cursor-pointer items-center gap-2.5 rounded-full bg-white px-4 py-2 text-sm font-medium text-ink-2 shadow-card">
+                <input
+                  type="checkbox"
+                  checked={handsFreeOn}
+                  onChange={(e) => setHandsFreeOn(e.target.checked)}
+                  className="size-4 accent-pink-deep"
+                />
+                Hands-free conversation (beta)
+              </label>
+            )}
+            <button
+              type="button"
+              onClick={() => void start()}
+              disabled={starting}
+              className="min-h-14 cursor-pointer rounded-full border-2 border-ink bg-sun px-8 text-lg font-bold text-ink shadow-pop disabled:cursor-wait disabled:opacity-70"
+            >
+              {starting ? "Starting…" : "Start the clock"}
+            </button>
+            {c.draft && (
+              <span className="rounded-full bg-sun-tint px-3 py-1 text-[13px] text-sun-deep">Draft case: not yet reviewed by a pharmacist</span>
+            )}
+            {error && (
+              <p role="alert" className="m-0 font-semibold text-alert">
+                {error}
               </p>
-              {handsFree && voice && (
-                <label className="inline-flex cursor-pointer items-center gap-2.5 rounded-full bg-chip px-4 py-2 text-sm font-medium text-ink-2">
-                  <input
-                    type="checkbox"
-                    checked={handsFreeOn}
-                    onChange={(e) => setHandsFreeOn(e.target.checked)}
-                    className="size-4 accent-pink-deep"
-                  />
-                  Hands-free conversation (beta)
-                </label>
-              )}
-              <button
-                type="button"
-                onClick={() => void start()}
-                disabled={starting}
-                className="min-h-[60px] cursor-pointer rounded-[18px] border-2 border-ink bg-sun px-9 text-[19px] font-bold text-ink shadow-pop-md disabled:cursor-wait disabled:opacity-70"
-              >
-                {starting ? "Starting…" : "Start the clock"}
-              </button>
-              {error && (
-                <p role="alert" className="m-0 font-semibold text-alert">
-                  {error}
-                </p>
-              )}
-            </div>
-          )}
-
+            )}
+          </>
+        }
+      >
           {phase === "grading" && <GradingPanel error={error} onRetry={() => void finish()} />}
 
           {phase === "live" && (
             <>
               {c.agents.length > 1 && (
-                <div className="flex justify-center px-6 pt-5">
-                  <div role="group" aria-label="Who you are speaking with" className="inline-flex gap-1 rounded-xl bg-chip p-1">
+                <div className="relative z-[9] flex animate-fade-up justify-center px-6">
+                  <div role="group" aria-label="Who you are speaking with" className="inline-flex gap-1 rounded-xl border border-line bg-white p-1">
                     {c.agents.map((a) => {
                       const on = agent === a.id;
                       return (
@@ -517,7 +506,7 @@ export function ExamSession({
                           disabled={streaming || transcribing}
                           onClick={() => openAgent(a.id)}
                           className={`min-h-10 cursor-pointer rounded-[9px] border-0 px-4 text-sm font-medium disabled:cursor-not-allowed ${
-                            on ? "bg-white text-ink shadow-[0_1px_2px_rgba(22,17,42,0.12)]" : "bg-transparent text-ink-2"
+                            on ? "bg-ink text-white" : "bg-transparent text-ink-2"
                           }`}
                         >
                           <span className="inline-flex items-center gap-2">
@@ -532,20 +521,22 @@ export function ExamSession({
               )}
 
               {/* Orb and latest line */}
-              <div className="flex flex-1 flex-col items-center justify-center gap-7 px-6 py-8 text-center">
+              <div className="flex w-full max-w-[620px] flex-col items-center gap-[22px] px-6 text-center">
+                {/* Keyed by who it is, so each switch replays the rise-in. */}
                 <SpeakerAvatar
+                  key={agent}
                   avatar={agentInfo.avatar}
                   name={agentInfo.name}
                   talking={talking}
                   level={handsFreeLive ? live.level : voice ? voiceLevel : undefined}
                 />
-                <div className="flex flex-col items-center gap-3">
+                <div className="flex animate-fade-up-late flex-col items-center gap-2.5">
                   <span className="text-sm text-subtle">
                     {status}
                   </span>
                   <p
                     aria-live="polite"
-                    className="m-0 min-h-[1.35em] max-w-[34ch] text-[clamp(22px,2.4vw,30px)] leading-[1.35] tracking-[-0.02em] text-balance"
+                    className="m-0 min-h-[1.35em] max-w-[30ch] text-[clamp(20px,2.2vw,27px)] leading-[1.35] tracking-[-0.02em] text-balance"
                   >
                     {lastActor ? `“${lastActor.text}”` : ""}
                   </p>
@@ -566,7 +557,7 @@ export function ExamSession({
               </div>
 
               {/* Control dock */}
-              <div className="flex justify-center px-6 pb-8">
+              <div className="relative z-[9] flex w-full animate-fade-up-late justify-center px-6">
                 <form
                   onSubmit={send}
                   className="flex w-full max-w-[760px] flex-wrap items-center gap-2.5 rounded-[28px] border-[1.5px] border-line bg-white p-2.5 shadow-card"
@@ -663,8 +654,7 @@ export function ExamSession({
               </div>
             </>
           )}
-        </section>
-      </main>
+      </CaseDesk>
     </div>
   );
 }
@@ -716,11 +706,13 @@ function SpeakerAvatar({
 
   if (CAST[avatar].kind === "patient") {
     return (
-      <div ref={ref} className="relative w-full max-w-[680px]">
-        <div className="overflow-hidden rounded-[28px] border-[3px] border-white shadow-[0_20px_40px_-24px_rgba(22,17,42,0.45),0_0_0_1.5px_#E5E1EC]">
+      <div ref={ref} className="relative w-full max-w-[620px] animate-scene-in">
+        <div className="overflow-hidden rounded-[24px] border-[3px] border-white shadow-[0_20px_40px_-24px_rgba(22,17,42,0.45),0_0_0_1.5px_#E5E1EC]">
           <PharmacyScene className="block">
-            <g className={bob}>
-              <CastAvatar key={avatar} id={avatar} size={216} decorative />
+            <g className="animate-walk-in">
+              <g className={bob}>
+                <CastAvatar key={avatar} id={avatar} size={216} decorative />
+              </g>
             </g>
           </PharmacyScene>
         </div>
@@ -730,20 +722,20 @@ function SpeakerAvatar({
   }
 
   return (
-    <div ref={ref} className="relative grid size-[200px] place-items-center">
+    <div ref={ref} className="relative grid size-[260px] animate-scene-in place-items-center">
+      {/* Rings pulse out from the call while the prescriber is talking. */}
       {talking && (
         <>
-          <span aria-hidden="true" className="absolute inset-4 animate-ring rounded-full bg-pink opacity-25" />
-          <span aria-hidden="true" className="absolute inset-4 animate-ring-late rounded-full bg-pink opacity-25" />
+          <span aria-hidden="true" className="absolute inset-3.5 animate-ring rounded-full bg-[#9ED9B3] opacity-35" />
+          <span aria-hidden="true" className="absolute inset-3.5 animate-ring-late rounded-full bg-[#9ED9B3] opacity-35" />
         </>
       )}
-      <span aria-hidden="true" className="absolute inset-4 rounded-full bg-pink opacity-10" />
       <span
         aria-hidden="true"
-        className="relative grid size-[152px] place-items-end justify-center overflow-hidden rounded-full border-[3px] border-white bg-pink-tint shadow-[0_24px_48px_-20px_rgba(230,80,150,0.45)]"
+        className="relative grid size-[232px] place-items-end justify-center overflow-hidden rounded-full border-[3px] border-white bg-[#E7F6EC] shadow-[0_20px_40px_-24px_rgba(22,17,42,0.45)]"
       >
-        <span className={`block translate-y-1.5 ${bob}`}>
-          <CastAvatar key={avatar} id={avatar} size={150} decorative className="block" />
+        <span className={`-mb-1.5 block ${bob}`}>
+          <CastAvatar key={avatar} id={avatar} size={226} decorative className="block" />
         </span>
       </span>
       {tag}

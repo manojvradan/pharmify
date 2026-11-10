@@ -67,7 +67,6 @@ export function CaseDocuments({ c }: { c: PublicCase }) {
           ))}
         </div>
       )}
-      <p className="m-0 text-[13px] text-subtle">Open book: keep your own references beside you.</p>
       {c.draft && (
         <p className="m-0 rounded-xl bg-sun-tint px-3 py-2 text-[13px] text-sun-deep">
           Draft case: not yet reviewed by a pharmacist.

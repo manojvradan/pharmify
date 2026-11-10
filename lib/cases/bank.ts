@@ -4,6 +4,7 @@ import { PART_SECONDS_BY_FORMAT, caseFormat } from "./format";
 
 import { defaultAvatar } from "@/lib/cast";
 import { RAW_CASES } from "./index.generated";
+import { prescriptionForm } from "./prescription";
 import { CaseRecord, type AgentId, type PublicCase } from "./schema";
 
 /**
@@ -43,7 +44,10 @@ export function toPublic(c: CaseRecord): PublicCase {
     category: c.category,
     setting: c.setting,
     questionSheet: c.questionSheet,
-    documents: c.documents,
+    documents: {
+      ...c.documents,
+      prescription: c.documents.prescription && prescriptionForm(c.documents.prescription, c.agents.patient.bio, c.agents.prescriber?.bio),
+    },
     agents,
     draft: c.review.status !== "reviewed",
     format,
