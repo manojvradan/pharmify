@@ -8,7 +8,9 @@ import type { PublicCase } from "@/lib/cases/schema";
  * sits centred with the case papers laid out under it to read. Once it starts, the question
  * sheet docks as a band along the top and the papers slide to the edges of the desk, where
  * they can be dragged (mouse, touch, or arrow keys) out of the way of the role play in the
- * middle. The prescription has a "Read" button that brings it to the centre at full size.
+ * middle. The prescription has a "Read" button that brings it to the centre at full size,
+ * and any paper can be minimised to a tray in the bottom corner. When the interview ends
+ * (`papers` false) they all clear off the desk.
  */
 
 type DocId = "rx" | "hist" | "notes";
@@ -20,6 +22,7 @@ const DOCS: Record<DocId, { w: number; liveScale: number; tilt: number }> = {
   hist: { w: 270, liveScale: 1, tilt: 1.5 },
   notes: { w: 290, liveScale: 1, tilt: -0.8 },
 };
+const DOC_NAME: Record<DocId, string> = { rx: "Prescription", hist: "Dispensing history", notes: "Notes" };
 const BAND_H = 58;
 const EASE = "cubic-bezier(.2,.8,.2,1)";
 const label = "text-[10.5px] font-semibold tracking-[0.08em] text-subtle uppercase";
@@ -150,12 +153,15 @@ const DragDots = () => (
 export function CaseDesk({
   c,
   live,
+  papers = true,
   brief,
   children,
 }: {
   c: PublicCase;
   /** False before the clock starts (papers laid out to read), true once it's running. */
   live: boolean;
+  /** False once the interview is over (grading), so the papers clear off the desk. */
+  papers?: boolean;
   /** Under the question sheet before the clock starts: the start button and options. */
   brief: ReactNode;
   /** The role play, in the middle of the desk once the clock is running. */
@@ -177,8 +183,22 @@ export function CaseDesk({
   const [top, setTop] = useState<DocId>("rx");
   const [drag, setDrag] = useState<DocId | null>(null);
   const [zoom, setZoom] = useState(false);
+  /** Papers minimised to the tray, in the order they went in. */
+  const [mini, setMini] = useState<DocId[]>([]);
   const [qOpen, setQOpen] = useState(false);
   const reduced = useReducedMotion();
+  // A replay goes back to the brief: start the next run with every paper out and none zoomed.
+  const [wasLive, setWasLive] = useState(live);
+  if (live !== wasLive) {
+    setWasLive(live);
+    if (!live) {
+      setMini([]);
+      setZoom(false);
+    }
+  }
+  /** Whether a paper is on the desk right now (always, before the clock starts). */
+  const shown = (id: DocId) => !live || (papers && !mini.includes(id));
+  const zoomed = zoom && shown("rx");
   const stopDrag = useRef<(() => void) | null>(null);
 
   // Track the desk's size and each paper's height, so the layout fits any screen.
@@ -266,7 +286,7 @@ export function CaseDesk({
   })();
 
   const down = (id: DocId) => (e: PointerEvent<HTMLDivElement>) => {
-    if (!live || zoom || e.button !== 0) return;
+    if (!live || zoomed || e.button !== 0) return;
     if ((e.target as HTMLElement).closest("button")) return;
     const start = { x: e.clientX, y: e.clientY, o: at(id) };
     const move = (ev: globalThis.PointerEvent) => {
@@ -311,24 +331,52 @@ export function CaseDesk({
       const b = briefLayout.out[id] ?? { x: 0, y: 0, s: 1, tilt: 0 };
       return { left: b.x, top: b.y, transform: `rotate(${b.tilt}deg) scale(${b.s})`, zIndex: id === "rx" ? 5 : 4, cursor: "default", transition: moving };
     }
-    if (id === "rx" && zoom) {
+    if (id === "rx" && zoomed) {
       const s = Math.min(1, (size.w - 16) / DOCS.rx.w);
       return { left: Math.max(8, (size.w - DOCS.rx.w * s) / 2), top: BAND_H + 38, transform: `scale(${s})`, zIndex: 20, cursor: "default", transition: moving };
     }
     const p = at(id);
     const s = liveScale(id);
+    if (!shown(id)) {
+      // Minimised or cleared away: drops and fades where it sat, and can't be grabbed.
+      return {
+        left: p.x,
+        top: p.y,
+        transform: `translateY(28px) rotate(${DOCS[id].tilt}deg) scale(${s * 0.92})`,
+        zIndex: 6,
+        opacity: 0,
+        visibility: "hidden" as const,
+        pointerEvents: "none" as const,
+        transition: reduced ? "none" : `opacity .3s, transform .4s ${EASE}, visibility 0s .4s`,
+      };
+    }
     return {
       left: p.x,
       top: p.y,
       transform: drag === id ? `rotate(0deg) scale(${s * 1.03})` : `rotate(${DOCS[id].tilt}deg) scale(${s})`,
       zIndex: top === id ? 7 : 6,
       cursor: drag === id ? "grabbing" : "grab",
-      transition: moving,
+      opacity: 1,
+      visibility: "visible" as const,
+      transition: drag === id || reduced ? "none" : `${moving}, opacity .3s`,
     };
   };
 
+  const minimise = (id: DocId) => {
+    if (id === "rx") setZoom(false);
+    setMini((m) => (m.includes(id) ? m : [...m, id]));
+  };
+  const restore = (id: DocId) => {
+    setMini((m) => m.filter((x) => x !== id));
+    setTop(id);
+    // Hand focus back to the paper so keyboard users land where they were.
+    requestAnimationFrame(() => docRefs.current[id]?.focus());
+  };
+
+  const chromeButton = "min-h-[1.9em] cursor-pointer rounded-md border border-[#D9D3E2] bg-white px-[0.7em] text-ink";
+
   const chrome = (id: DocId, title: string) => {
-    const big = id === "rx" && !zoom;
+    const big = id === "rx" && !zoomed;
     return (
       <div
         aria-hidden={!live}
@@ -339,19 +387,35 @@ export function CaseDesk({
           <DragDots />
           {title}
         </span>
-        {id === "rx" && live && (
-          <button
-            type="button"
-            onClick={() => {
-              setTop("rx");
-              setZoom((z) => !z);
-            }}
-            aria-pressed={zoom}
-            className="min-h-[1.9em] cursor-pointer rounded-md border border-[#D9D3E2] bg-white px-[0.7em] text-ink"
-            style={{ font: "inherit" }}
-          >
-            {zoom ? "Shrink" : "Read"}
-          </button>
+        {live && (
+          <span className="inline-flex items-center gap-[0.4em]">
+            {id === "rx" && (
+              <button
+                type="button"
+                onClick={() => {
+                  setTop("rx");
+                  setZoom((z) => !z);
+                }}
+                aria-pressed={zoomed}
+                className={chromeButton}
+                style={{ font: "inherit" }}
+              >
+                {zoomed ? "Shrink" : "Read"}
+              </button>
+            )}
+            <button
+              type="button"
+              onClick={() => minimise(id)}
+              aria-label={`Minimise ${DOC_NAME[id]}`}
+              title="Minimise"
+              className={`${chromeButton} inline-grid place-items-center`}
+              style={{ font: "inherit" }}
+            >
+              <svg width="0.8em" height="0.8em" viewBox="0 0 10 10" aria-hidden="true">
+                <path d="M1.5 5h7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+              </svg>
+            </button>
+          </span>
         )}
       </div>
     );
@@ -364,7 +428,9 @@ export function CaseDesk({
         docRefs.current[id] = el;
       }}
       role="group"
-      tabIndex={live ? 0 : -1}
+      tabIndex={live && shown(id) ? 0 : -1}
+      aria-hidden={!shown(id) || undefined}
+      inert={!shown(id)}
       aria-label={`${title}. ${live ? `Drag or use the arrow keys to move${id === "rx" ? "; Enter to read it full size" : ""}.` : ""}`}
       onPointerDown={down(id)}
       onKeyDown={key(id)}
@@ -417,7 +483,26 @@ export function CaseDesk({
           <section aria-label="Role play" className="absolute inset-x-0 bottom-0 flex flex-col items-center justify-center gap-7 py-6" style={{ top: BAND_H }}>
             {children}
           </section>
-          {zoom && <div aria-hidden="true" onClick={() => setZoom(false)} className="absolute inset-0 z-[18] bg-ink/35" />}
+          {zoomed && <div aria-hidden="true" onClick={() => setZoom(false)} className="absolute inset-0 z-[18] bg-ink/35" />}
+          {papers && mini.length > 0 && (
+            <nav aria-label="Minimised papers" className="absolute bottom-4 left-4 z-[9] flex flex-wrap gap-2">
+              {mini.map((id) => (
+                <button
+                  key={id}
+                  type="button"
+                  onClick={() => restore(id)}
+                  aria-label={`Open ${DOC_NAME[id]}`}
+                  className="inline-flex min-h-10 animate-fade-up cursor-pointer items-center gap-2 rounded-xl border border-line bg-white px-3.5 text-sm font-semibold text-ink shadow-card hover:border-ink"
+                >
+                  <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+                    <rect x="2.5" y="1.5" width="9" height="11" rx="1.5" fill="none" stroke="currentColor" strokeWidth="1.4" />
+                    <path d="M5 5h4M5 7.5h4M5 10h2.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+                  </svg>
+                  {DOC_NAME[id]}
+                </button>
+              ))}
+            </nav>
+          )}
         </>
       )}
 

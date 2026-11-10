@@ -456,6 +456,7 @@ export function ExamSession({
       <CaseDesk
         c={c}
         live={phase !== "ready"}
+        papers={phase === "ready" || phase === "live"}
         brief={
           <>
             {handsFree && voice && (
