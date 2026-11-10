@@ -6,7 +6,7 @@ import { db, schema } from "@/lib/db";
 import { type CaseDraft, caseSummary, draftCase } from "./cases";
 import { publishCase } from "./github";
 import { createIssue } from "./linear";
-import { BUTTON, HELP_TEXT, type Pending, route } from "./route";
+import { ASK_QUESTION, ASK_SUGGESTION, BUTTON, HELP_TEXT, type Pending, route } from "./route";
 import { draftTicket, ticketPreview, type TicketDraft } from "./tickets";
 import { type Incoming, sendButtons, sendText } from "./whatsapp";
 
@@ -32,8 +32,8 @@ async function setPending(phone: string, pending: Pending): Promise<void> {
 
 async function showTicket(to: string, draft: TicketDraft): Promise<void> {
   await sendText(to, ticketPreview(draft));
-  await sendButtons(to, "Create this ticket? Or reply with what to change.", [
-    { id: BUTTON.createTicket, title: "Create ticket" },
+  await sendButtons(to, "Send this to the dev team? Or reply with anything you'd like to change.", [
+    { id: BUTTON.createTicket, title: "Send it" },
     { id: BUTTON.cancel, title: "Cancel" },
   ]);
 }
@@ -48,7 +48,7 @@ async function getDraft(phone: string, id: string) {
 
 /** Saves a draft (new, or replacing the open one) and sends its summary, preview link and buttons. */
 async function showQuestion(to: string, draft: CaseDraft, existingId?: string): Promise<void> {
-  const values = { record: draft.record, assumptions: draft.assumptions, problems: draft.problems, updatedAt: new Date() };
+  const values = { record: draft.record, categoryReason: draft.categoryReason, assumptions: draft.assumptions, problems: draft.problems, updatedAt: new Date() };
   let row: { id: string; token: string };
   if (existingId) {
     [row] = await db().update(schema.botCaseDrafts).set(values).where(eq(schema.botCaseDrafts.id, existingId)).returning();
@@ -83,9 +83,13 @@ export async function handleMessage(msg: Incoming): Promise<void> {
     const intent = route(msg, pending);
     switch (intent.type) {
       case "help":
-        return void (await sendText(to, HELP_TEXT));
-      case "ticket-empty":
-        return void (await sendText(to, 'What should the ticket be about? e.g. "ticket: add a dark mode"'));
+        return void (await sendButtons(to, HELP_TEXT, [
+          { id: BUTTON.menuSuggest, title: "Suggest a feature" },
+          { id: BUTTON.menuQuestion, title: "Add a question" },
+        ]));
+      case "ticket-await":
+        await setPending(to, { kind: "ticket-await" });
+        return void (await sendText(to, ASK_SUGGESTION));
       case "ticket-new": {
         const draft = await draftTicket(intent.request);
         await setPending(to, { kind: "ticket", request: intent.request, draft });
@@ -99,17 +103,17 @@ export async function handleMessage(msg: Incoming): Promise<void> {
       }
       case "ticket-confirm": {
         if (pending?.kind !== "ticket") return;
-        // Cleared first, so a double tap on "Create ticket" can't file it twice.
+        // Cleared first, so a double tap on "Send it" can't file it twice.
         await setPending(to, null);
         const issue = await createIssue({ title: pending.draft.title, description: pending.draft.description });
-        return void (await sendText(to, `✅ Created ${issue.identifier}: ${issue.title}\n${issue.url}`));
+        return void (await sendText(to, `✅ Sent to the dev team! It's on their list as ${issue.identifier}: "${issue.title}".`));
       }
 
       case "question-await":
         await setPending(to, { kind: "question-await" });
-        return void (await sendText(to, "Send me the question: a PDF, Word doc or photo, or paste the text."));
+        return void (await sendText(to, ASK_QUESTION));
       case "question-new": {
-        await sendText(to, "📝 Got it. Drafting the question now; this takes a minute or two.");
+        await sendText(to, "📝 Got it! I'm turning it into a practice case and writing the answer scheme. This takes a minute or two.");
         const draft = await draftCase({ source: intent.source, sentBy: msg.name });
         return void (await showQuestion(to, draft));
       }
@@ -138,8 +142,8 @@ export async function handleMessage(msg: Incoming): Promise<void> {
         return void (await sendText(
           to,
           result.merged
-            ? `🚀 Approved! "${row.record.title}" is merged and will be live in about 2 minutes, marked as a draft case.\n${result.prUrl}`
-            : `Opened a pull request for "${row.record.title}", but couldn't merge it${result.mergeError ? ` (${result.mergeError})` : ""}. Merge it on GitHub to put it live:\n${result.prUrl}`,
+            ? `🚀 Approved! "${row.record.title}" will be in the question bank in about 2 minutes, marked as not yet reviewed by a pharmacist.`
+            : `I saved "${row.record.title}", but couldn't put it live automatically, so the dev team needs to finish it off (send them this link):\n${result.prUrl}`,
         ));
       }
 

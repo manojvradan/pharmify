@@ -20,7 +20,7 @@ const SYSTEM = `You turn WhatsApp messages into Linear tickets for Pharmify, a w
 Write the ticket from what the requester said:
 - title: short and specific, imperative mood, under 70 characters, no prefix like "Feature:".
 - kind: feature (something new or changed), bug (something broken), or task (anything else).
-- description: Markdown. Start with a "## Request" section quoting the requester's words exactly. Then "## Details": a few bullet points restating what they want, in plain terms an engineer can act on. Add "## Open questions" only if something important is genuinely unclear.
+- description: Markdown. Start with a "## Request" section quoting the requester's words exactly. The requester is a pharmacist, not a developer: keep the wording plain. Then "## Details": a few bullet points restating what they want, in plain terms an engineer can act on. Add "## Open questions" only if something important is genuinely unclear.
 
 Only use what the requester said. Do not invent requirements, designs, acceptance criteria, or technical approaches they didn't mention.`;
 
@@ -46,5 +46,6 @@ export function ticketPreview(d: TicketDraft): string {
     .replace(/^#{1,6}\s+(.+)$/gm, "*$1*")
     .replace(/\*\*(.+?)\*\*/g, "*$1*")
     .trim();
-  return `🎫 *${d.title}*\n_${d.kind}_\n\n${body}`;
+  const kind = { feature: "New feature or change", bug: "Something's not working", task: "Other" }[d.kind];
+  return `💡 Here's your suggestion, written up for the dev team:\n\n*${d.title}*\n_${kind}_\n\n${body}`;
 }

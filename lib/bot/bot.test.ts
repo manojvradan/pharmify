@@ -1,6 +1,6 @@
 import { createHmac } from "node:crypto";
 import { describe, expect, it } from "vitest";
-import { BUTTON, type Pending, route } from "./route";
+import { BUTTON, HELP_TEXT, type Pending, route } from "./route";
 import { ticketPreview } from "./tickets";
 import { allowedNumbers, type Incoming, normaliseNumber, parseWebhook, validSignature } from "./whatsapp";
 
@@ -18,8 +18,32 @@ describe("route", () => {
     expect(route(text(msg), null)).toEqual({ type: "ticket-new", request });
   });
 
-  it("a bare keyword asks what the ticket is about", () => {
-    expect(route(text("ticket"), null)).toEqual({ type: "ticket-empty" });
+  it("a bare keyword asks for the suggestion", () => {
+    expect(route(text("ticket"), null)).toEqual({ type: "ticket-await" });
+    expect(route(text("suggest"), null)).toEqual({ type: "ticket-await" });
+  });
+
+  it("suggest: starts a suggestion with the text", () => {
+    expect(route(text("Suggest: a dark mode"), null)).toEqual({ type: "ticket-new", request: "a dark mode" });
+  });
+
+  it("the menu: buttons and 1 / 2 pick an option, and the next message is the content", () => {
+    expect(route(button(BUTTON.menuSuggest), null)).toEqual({ type: "ticket-await" });
+    expect(route(button(BUTTON.menuQuestion), null)).toEqual({ type: "question-await" });
+    expect(route(text("1"), null)).toEqual({ type: "ticket-await" });
+    expect(route(text("2."), null)).toEqual({ type: "question-await" });
+    expect(route(text("let me pause the timer"), { kind: "ticket-await" })).toEqual({ type: "ticket-new", request: "let me pause the timer" });
+    expect(route(text("cancel"), { kind: "ticket-await" })).toEqual({ type: "cancel" });
+  });
+
+  it("hi and help show the menu", () => {
+    expect(route(text("hi"), null)).toEqual({ type: "help" });
+    expect(route(text("Help"), null)).toEqual({ type: "help" });
+  });
+
+  it("the menu fits WhatsApp's 1024-character limit for a message with buttons", () => {
+    expect(HELP_TEXT.length).toBeLessThanOrEqual(1024);
+    expect(HELP_TEXT).not.toMatch(/linear|ticket|coming soon/i);
   });
 
   it("doesn't treat words that merely start with a keyword as one", () => {
@@ -137,6 +161,8 @@ describe("whatsapp", () => {
   });
 
   it("shows Markdown headings as WhatsApp bold", () => {
-    expect(ticketPreview({ kind: "feature", title: "T", description: "## Request\n**hi**" })).toBe("🎫 *T*\n_feature_\n\n*Request*\n*hi*");
+    expect(ticketPreview({ kind: "feature", title: "T", description: "## Request\n**hi**" })).toBe(
+      "💡 Here's your suggestion, written up for the dev team:\n\n*T*\n_New feature or change_\n\n*Request*\n*hi*",
+    );
   });
 });

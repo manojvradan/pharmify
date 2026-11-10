@@ -1,0 +1,1 @@
+ALTER TABLE "bot_case_drafts" ADD COLUMN "category_reason" text;

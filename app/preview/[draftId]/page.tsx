@@ -86,9 +86,15 @@ async function Preview({ params, searchParams }: PageProps<"/preview/[draftId]">
           </p>
         </div>
 
+        <div className="flex flex-col gap-1 rounded-2xl border-[1.5px] border-line bg-white p-5">
+          <h2 className="m-0 text-lg font-bold">Type: {CATEGORY_LABEL[c.category]}</h2>
+          {row.categoryReason && <p className="m-0 text-[15px] text-ink-2">{row.categoryReason}</p>}
+          <p className="m-0 text-sm text-subtle">Wrong type? Reply on WhatsApp, e.g. &ldquo;this is ethical&rdquo;.</p>
+        </div>
+
         {row.problems.length > 0 && (
           <div className="flex flex-col gap-2 rounded-2xl border-[1.5px] border-alert bg-alert-tint p-5">
-            <h2 className="m-0 text-lg font-bold text-alert-deep">Still failing checks: can&apos;t be approved yet</h2>
+            <h2 className="m-0 text-lg font-bold text-alert-deep">Not ready yet: still missing</h2>
             <List items={row.problems} />
           </div>
         )}
@@ -161,7 +167,7 @@ async function Preview({ params, searchParams }: PageProps<"/preview/[draftId]">
           })}
         </Section>
 
-        <Section title="Answer key (grader only)">
+        <Section title="Answer scheme (used for marking; candidates never see it)">
           <div className={card}>
             <h3 className={label}>Planted problem</h3>
             <p className="m-0 text-[15px]">{c.answerKey.plantedProblem}</p>

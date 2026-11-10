@@ -2,7 +2,7 @@ import { readdirSync, readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { caseIds, getCase } from "./bank";
 import { CASE_INDEX_PATH, renderCaseIndex } from "./caseIndex";
-import { checkCase } from "./check";
+import { answerSchemeProblems, checkCase } from "./check";
 
 describe("checkCase", () => {
   it.each(caseIds())("%s passes", (id) => {
@@ -31,5 +31,25 @@ describe("checkCase", () => {
 describe("case index", () => {
   it("is up to date with data/cases (run `npm run cases:index`)", () => {
     expect(readFileSync(CASE_INDEX_PATH, "utf8")).toBe(renderCaseIndex(readdirSync("data/cases")));
+  });
+});
+
+describe("answerSchemeProblems", () => {
+  it("asks a terse clinical case for a fuller scheme", () => {
+    const c = structuredClone(getCase("atorvastatin-doubling-up")!);
+    c.answerKey.modelAnswer = "Contact the GP.";
+    c.answerKey.counsellingPoints = ["Dose"];
+    const problems = answerSchemeProblems(c);
+    expect(problems.some((p) => p.includes("words in the model answer"))).toBe(true);
+    expect(problems.some((p) => p.includes("counselling points"))).toBe(true);
+  });
+
+  it("asks an ethical case for Code principles and a legal case for legal requirements", () => {
+    const ethical = structuredClone(getCase("glp1-shortage")!);
+    ethical.answerKey.codePrinciples = [];
+    expect(answerSchemeProblems(ethical).some((p) => p.includes("Code of Conduct"))).toBe(true);
+    const legal = structuredClone(getCase("forged-s8-prescription")!);
+    legal.answerKey.legal = [];
+    expect(answerSchemeProblems(legal).some((p) => p.includes("legal requirements"))).toBe(true);
   });
 });
