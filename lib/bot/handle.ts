@@ -134,7 +134,15 @@ export async function handleMessage(msg: Incoming): Promise<void> {
         }
         // Cleared first, so a double tap can't publish twice.
         await setPending(to, null);
-        const result = await publishCase(row.record, who);
+        let result;
+        try {
+          result = await publishCase(row.record, who);
+        } catch (err) {
+          // Publishing failed (GitHub down, token permissions…): keep the draft open so
+          // tapping Approve again retries, instead of making them send the question again.
+          await setPending(to, { kind: "question", draftId: row.id });
+          throw err;
+        }
         await db()
           .update(schema.botCaseDrafts)
           .set({ status: "published", prUrl: result.prUrl, updatedAt: new Date() })
