@@ -45,6 +45,10 @@ function useCollapsed(): [boolean, () => void] {
   return [collapsed, toggle];
 }
 
+/** Text beside an icon: stays on one line in place and fades out as the sidebar folds (wide screens only). */
+const FADE =
+  "whitespace-nowrap transition-opacity duration-200 delay-100 min-[820px]:group-data-[collapsed=true]/sidebar:pointer-events-none min-[820px]:group-data-[collapsed=true]/sidebar:opacity-0 min-[820px]:group-data-[collapsed=true]/sidebar:delay-0";
+
 /** The main nav. `pathname` is null while the route is still prerendering: no item is highlighted yet. */
 function Nav({ pathname }: { pathname: string | null }) {
   return (
@@ -57,15 +61,17 @@ function Nav({ pathname }: { pathname: string | null }) {
               href={href}
               aria-current={active ? "page" : undefined}
               title={label}
-              className={`flex min-h-11 items-center gap-3 rounded-[14px] px-3.5 no-underline group-data-[collapsed=true]/sidebar:justify-center group-data-[collapsed=true]/sidebar:px-0 ${
+              className={`flex min-h-11 items-center gap-3 rounded-[14px] px-3.5 no-underline ${
                 active ? "bg-pink-tint text-pink-deep hover:text-pink-deep" : "text-ink-2 hover:text-ink"
               }`}
             >
-              <Icon color={active ? "#16112A" : "#403A50"} />
-              <span className="group-data-[collapsed=true]/sidebar:sr-only">{label}</span>
+              <span className="flex-none">
+                <Icon color={active ? "#16112A" : "#403A50"} />
+              </span>
+              <span className={FADE}>{label}</span>
               {badge && (
                 <span
-                  className={`ml-auto rounded-full px-[9px] py-px text-[13px] text-ink group-data-[collapsed=true]/sidebar:hidden ${
+                  className={`ml-auto rounded-full px-[9px] py-px text-[13px] text-ink ${FADE} ${
                     active ? "border-[1.5px] border-ink bg-white" : "bg-sun"
                   }`}
                 >
@@ -90,9 +96,11 @@ function Profile() {
   const name = user?.fullName || user?.firstName || "Your account";
   const email = user?.primaryEmailAddress?.emailAddress;
   return (
-    <div className="flex min-h-14 items-center gap-3 rounded-[14px] px-2 group-data-[collapsed=true]/sidebar:justify-center group-data-[collapsed=true]/sidebar:px-0">
-      <UserButton appearance={{ elements: { avatarBox: "size-9" } }} />
-      <div className="flex min-w-0 flex-col leading-tight group-data-[collapsed=true]/sidebar:hidden">
+    <div className="flex min-h-14 items-center gap-3 rounded-[14px] px-1.5">
+      <span className="flex-none">
+        <UserButton appearance={{ elements: { avatarBox: "size-9" } }} />
+      </span>
+      <div className={`flex min-w-0 flex-col leading-tight ${FADE}`}>
         <span className="truncate text-[15px] font-bold text-ink">{name}</span>
         {email && <span className="truncate text-[13px] text-subtle">{email}</span>}
       </div>
@@ -108,22 +116,23 @@ function LogOut() {
       type="button"
       onClick={() => void signOut({ redirectUrl: "/" })}
       title="Log out"
-      className="flex min-h-10 w-full cursor-pointer items-center gap-3 rounded-[12px] border-0 bg-transparent px-3.5 text-[15px] font-bold text-ink-2 hover:bg-chip hover:text-ink group-data-[collapsed=true]/sidebar:justify-center group-data-[collapsed=true]/sidebar:px-0"
+      className="flex min-h-10 w-full cursor-pointer items-center gap-3 rounded-[12px] border-0 bg-transparent px-3.5 text-[15px] font-bold text-ink-2 hover:bg-chip hover:text-ink"
     >
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" className="flex-none">
         <path d="M8 3.5H5A1.5 1.5 0 003.5 5v10A1.5 1.5 0 005 16.5h3" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
         <path d="M12.5 6.5L16 10l-3.5 3.5M16 10H8" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
-      <span className="group-data-[collapsed=true]/sidebar:sr-only">Log out</span>
+      <span className={FADE}>Log out</span>
     </button>
   );
 }
 
 /**
  * Side by side with the page (wide screens), it stays put while the page scrolls, with
- * the streak and profile pinned to the bottom, and folds to an icon rail with the button
- * by the logo. When it wraps above the page on narrow screens it scrolls away normally.
- * `streak` is rendered on the server (components/StreakCard.tsx).
+ * the streak and profile pinned to the bottom, and folds to a 72px icon rail. Nothing moves
+ * while it folds: icons keep their position (they line up on the rail's centre), labels stay
+ * on one line and fade, and the edge clips them. On narrow screens it wraps above the page,
+ * always expanded. `streak` is rendered on the server (components/StreakCard.tsx).
  */
 export function AppSidebar({ streak }: { streak: ReactNode }) {
   const [collapsed, toggle] = useCollapsed();
@@ -131,30 +140,16 @@ export function AppSidebar({ streak }: { streak: ReactNode }) {
     <aside
       aria-label="App"
       data-collapsed={collapsed}
-      className={`group/sidebar box-border flex flex-[1_1_100%] flex-col gap-6 border-r border-line-soft bg-white px-3.5 py-5 transition-[flex-basis] duration-300 ease-out min-[820px]:sticky min-[820px]:top-0 min-[820px]:h-screen min-[820px]:self-start min-[820px]:overflow-x-hidden min-[820px]:overflow-y-auto ${
-        collapsed ? "min-[820px]:flex-[0_0_72px] min-[820px]:px-2.5" : "min-[820px]:flex-[0_0_208px]"
+      className={`group/sidebar box-border flex flex-[1_1_100%] flex-col gap-6 overflow-x-hidden border-r border-line-soft bg-white px-3 py-5 transition-[flex-basis] duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] min-[820px]:sticky min-[820px]:top-0 min-[820px]:h-screen min-[820px]:self-start min-[820px]:overflow-y-auto ${
+        collapsed ? "min-[820px]:flex-[0_0_72px]" : "min-[820px]:flex-[0_0_208px]"
       }`}
     >
-      <div className="flex items-center justify-between gap-2 group-data-[collapsed=true]/sidebar:flex-col">
-        <Link href="/" className="flex items-center gap-2 px-1.5 text-ink no-underline" aria-label="Pharmify home">
+      <Link href="/" className="flex items-center gap-2 px-[7px] text-ink no-underline" aria-label="Pharmify home">
+        <span className="flex-none">
           <LogoMark size={34} />
-          <span className="text-xl font-bold tracking-[-0.02em] text-brand group-data-[collapsed=true]/sidebar:hidden">Pharmify</span>
-        </Link>
-        <button
-          type="button"
-          onClick={toggle}
-          aria-expanded={!collapsed}
-          aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-          title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-          className="hidden size-8 flex-none cursor-pointer place-items-center rounded-lg border-0 bg-transparent text-ink-2 hover:bg-chip min-[820px]:grid"
-        >
-          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <rect x="2.5" y="3.5" width="15" height="13" rx="3" stroke="currentColor" strokeWidth="1.6" />
-            <path d="M8 3.5v13" stroke="currentColor" strokeWidth="1.6" />
-            <path d={collapsed ? "M11.5 8l2 2-2 2" : "M14 8l-2 2 2 2"} stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </button>
-      </div>
+        </span>
+        <span className={`text-xl font-bold tracking-[-0.02em] text-brand ${FADE}`}>Pharmify</span>
+      </Link>
 
       <Suspense fallback={<Nav pathname={null} />}>
         <ActiveNav />
@@ -165,6 +160,27 @@ export function AppSidebar({ streak }: { streak: ReactNode }) {
         <div className="flex flex-col gap-1 border-t border-line-soft pt-3">
           <Profile />
           <LogOut />
+          <button
+            type="button"
+            onClick={toggle}
+            aria-expanded={!collapsed}
+            title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+            className="hidden min-h-10 w-full cursor-pointer items-center gap-3 rounded-[12px] border-0 bg-transparent px-3.5 text-[15px] font-bold text-ink-2 hover:bg-chip hover:text-ink min-[820px]:flex"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              aria-hidden="true"
+              className={`flex-none transition-transform duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${collapsed ? "rotate-180" : ""}`}
+            >
+              <rect x="2.5" y="3.5" width="15" height="13" rx="3" stroke="currentColor" strokeWidth="1.6" />
+              <path d="M8 3.5v13" stroke="currentColor" strokeWidth="1.6" />
+              <path d="M14 8l-2 2 2 2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            <span className={FADE}>{collapsed ? "Expand" : "Collapse"}</span>
+          </button>
         </div>
       </div>
     </aside>
