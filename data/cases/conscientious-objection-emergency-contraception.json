@@ -1,0 +1,86 @@
+{
+  "id": "conscientious-objection-emergency-contraception",
+  "title": "Objection after hours",
+  "agents": {
+    "patient": {
+      "bio": {},
+      "name": "Ms J.",
+      "label": "Patient · Ms J.",
+      "voice": "au-young-woman",
+      "avatar": "kiki-koala",
+      "description": "A 21-year-old university student, embarrassed and anxious. She keeps her voice low and has clearly worked up the courage to ask. She has average health literacy and isn't sure how emergency contraception works or how long it stays effective. If she feels judged or turned away she would be distressed and humiliated, and probably wouldn't seek help elsewhere tonight. She responds well to privacy, a calm non-judgemental manner and clear information.",
+      "openingLine": "Um, hi, sorry. Could I talk to you somewhere a bit more private? I need the morning-after pill.",
+      "publicFacts": [
+        "She is 21 and a university student.",
+        "She had unprotected sex about 60 hours ago.",
+        "She has no car and the buses have stopped for the night.",
+        "She has come in just before closing."
+      ]
+    }
+  },
+  "review": {
+    "status": "draft",
+    "version": "0.1"
+  },
+  "setting": "Community pharmacy, regional Victoria, Saturday evening",
+  "sources": [
+    "Drafted with the WhatsApp bot from a document sent by Dina"
+  ],
+  "category": "ethical",
+  "answerKey": {
+    "legal": [
+      "Emergency contraception (levonorgestrel 1.5 mg and ulipristal 30 mg) is a Pharmacist Only Medicine (Schedule 3), so the pharmacist must personally assess her and supply under the Drugs, Poisons and Controlled Substances Act 1981 and Regulations 2017 (Vic).",
+      "The Code of Ethics states that it never permits a breach of the law. Patient confidentiality must also be maintained under privacy legislation (Privacy Act 1988 (Cth) and the Health Records Act 2001 (Vic))."
+    ],
+    "modelAnswer": "1. Name the dilemma: I hold a sincere conscientious objection to emergency contraception, but this patient has a time-critical need. She is 60 hours after unprotected sex, the medicine works less well with time, and I am the only pharmacist available. The people affected are the patient, me (moral distress and integrity), my employer and colleagues, who were never told about my objection, and public trust in the profession.\n\n2. Act first on respect and privacy: take her to the consulting area and stay calm and non-judgemental. I would not share my personal beliefs with her or let them colour the information I give (Care 2a, 2c, 2j; Integrity 1c).\n\n3. Weigh the options and their consequences. (a) Refuse and tell her to come back Monday: this exceeds the 72 to 120 hour window, risks an unintended pregnancy and breaches Collaboration 2e, so it is unacceptable. (b) Refer to the pharmacy 40 minutes away: with no car or buses and the clock running, this referral is not real access, so the objection would become a barrier to care. I would still check quickly whether any colleague could attend in time, but none is rostered. (c) Supply myself after a proper assessment: this protects her, at a personal moral cost to me.\n\n4. Decide and justify. The Code says objection must never delay or obstruct timely care, and that in some situations the duty of care outweighs the right to object. I also failed to give advance notice to my employer (Integrity 2f), so the lack of a backup is partly of my own making and cannot be passed on to her. I would therefore complete a full Pharmacist Only assessment and supply the most suitable option, choosing ulipristal or levonorgestrel based on timing, other medicines, breastfeeding and weight.\n\n5. Counsel her: take the dose now; return if she vomits within 3 hours; do a pregnancy test if her period is more than 7 days late; consider STI testing; arrange ongoing contraception with a GP.\n\n6. Document the assessment, the supply and my reasoning.\n\n7. Prevent recurrence: on Monday, disclose my objection to the owner and colleagues and agree a plan, such as roster cover or a confirmed referral pathway, so no patient meets this barrier again. I would also seek support from a mentor or the PSA for my own moral distress (Care 4a).",
+    "codePrinciples": [
+      "Care principle 1a, 1b and 1f: fulfil the duty of care to the patient first and foremost, prioritise her health and wellbeing, and act to prevent harm.",
+      "Care principle 2a, 2c, 2g and 2j: respect her dignity and autonomy, protect her privacy and confidentiality, give timely care responsive to her needs, and keep a safe, respectful environment.",
+      "Integrity principle 2f: disclose any conscientious objection with advance notice to the employer and relevant colleagues, and notify the patient promptly and respectfully. This was not done here.",
+      "Integrity principle 1c and 1f: act in a truthful, non-misleading way and give accurate, balanced, evidence-based information.",
+      "Collaboration principle 2e: when exercising conscientious objection, take all reasonable steps to give timely access to an alternative provider, so that care is not delayed, obstructed or adversely affected.",
+      "Collaboration principle 1g: do not discriminate against patients.",
+      "Code of Ethics, 'Moral injury or distress and conscientious objection': objection must not be a barrier to timely and safe access to care, and in certain situations, such as emergencies, the duty of care to the patient may outweigh the right to conscientiously object.",
+      "Competency principle 2c: keep accurate records of professional assessments and decisions.",
+      "Ahpra and National Boards shared Code of Conduct: practitioners may conscientiously object but must not impede a patient's access to care, and must inform patients and employers of the objection."
+    ],
+    "plantedProblem": "Conscientious objection that conflicts with a time-critical need for care. The pharmacist's right to object to emergency contraception clashes with the duty to give safe, timely, non-discriminatory care. The case adds three aggravating facts: the pharmacist never gave the employer advance notice, no colleague can take over, and no realistic alternative can be reached in time (60 hours elapsed, the effect of emergency contraception falls with time, no transport, everything else closed). Under the Code, an objection must never become a barrier to timely care, and in situations like this the duty of care may outweigh the right to object.",
+    "counsellingPoints": [
+      "Emergency contraception works best the sooner it is taken; at about 60 hours, take the supplied dose straight away tonight rather than waiting.",
+      "Ulipristal is licensed for up to 120 hours after unprotected sex, and levonorgestrel for up to 72 hours. The pharmacist will help choose the most suitable one for her situation.",
+      "If she vomits within about 3 hours of taking the tablet, she should come back or seek advice, as a repeat dose may be needed.",
+      "Her next period may be early or late; if it is more than 7 days late, unusually light, or she has lower abdominal pain, she should do a pregnancy test and see a doctor.",
+      "Emergency contraception does not protect against sexually transmitted infections; consider STI testing with a GP or sexual health clinic.",
+      "Discuss ongoing contraception with a GP. If starting hormonal contraception after ulipristal, she should wait 5 days and use condoms in the meantime."
+    ],
+    "unacceptableActions": [
+      "Refusing and telling her to come back on Monday or to 'go somewhere else' with no realistic way for her to get care in time.",
+      "Expressing moral disapproval, lecturing or shaming her, or giving misleading information (for example, that it is too late or that emergency contraception causes abortion) to discourage her.",
+      "Delaying the decision until the pharmacy closes so that the objection becomes a barrier by default.",
+      "Breaching her privacy by discussing her request within earshot of other customers.",
+      "Continuing to keep the objection from the employer after the event."
+    ],
+    "acceptableResolutions": [
+      "Recognise the dilemma explicitly and name both sides: the pharmacist's moral integrity and right to object, against the patient's wellbeing, autonomy and timely access to a time-sensitive medicine.",
+      "Treat her respectfully and confidentially: use a private area, take a non-judgemental tone, and do not express personal beliefs to her or let them shape the advice given.",
+      "Test whether a genuinely accessible alternative exists in time, for example another pharmacist who could attend, or a phone call to the other pharmacy with a confirmed way for her to get there. Conclude that a referral which in practice leaves her without care is not acceptable.",
+      "Because no timely alternative exists, ensure she is supplied tonight: complete a proper Pharmacist Only assessment and supply suitable emergency contraception, or otherwise guarantee supply, putting her care ahead of the objection as the Code allows when the duty of care outweighs it.",
+      "Give accurate, balanced, evidence-based information on her options, including that both products work better the sooner they are taken, and that ulipristal is licensed for up to 120 hours while levonorgestrel is licensed for up to 72 hours. Also cover follow-up, such as a pregnancy test if her period is late, STI testing and ongoing contraception.",
+      "Document the consultation, the assessment and the reasoning for the decision.",
+      "Afterwards, disclose the conscientious objection to the pharmacy owner and colleagues, and work with them on a roster or referral system so that no patient faces this barrier again."
+    ]
+  },
+  "documents": {
+    "notes": [
+      "Time since unprotected intercourse: about 60 hours (patient report).",
+      "Pharmacy closes in 30 minutes. You are the only pharmacist on duty tonight.",
+      "Nearest pharmacy open tonight: about 40 minutes' drive away. The patient has no car and no buses are running.",
+      "Local GP clinic closed until Monday morning.",
+      "In stock: levonorgestrel 1.5 mg and ulipristal acetate 30 mg emergency contraception (Pharmacist Only Medicines).",
+      "Your conscientious objection has not been disclosed to the pharmacy owner or your colleagues."
+    ]
+  },
+  "hiddenFacts": [],
+  "problemType": "Conscientious objection and timely access to care",
+  "questionSheet": "You are the only pharmacist on duty at a small regional community pharmacy on a Saturday evening. The pharmacy closes in 30 minutes. A 21-year-old woman asks you privately for the 'morning-after pill'. She tells you she had unprotected sex about 60 hours ago. You hold a sincere personal moral objection to supplying emergency contraception. You have never told the pharmacy owner or your colleagues about it, and no other pharmacist is rostered on tonight. The nearest other pharmacy open this evening is about 40 minutes' drive away. She tells you she has no car and that buses have stopped for the night. The local GP clinic is closed until Monday. Both levonorgestrel and ulipristal emergency contraception are in stock. Explain what you would do and why, referring to your professional and ethical obligations."
+}
