@@ -1,6 +1,6 @@
 import "server-only";
 
-import { and, asc, desc, eq, inArray } from "drizzle-orm";
+import { and, asc, desc, eq, inArray, sql } from "drizzle-orm";
 import { db, schema } from "@/lib/db";
 import type { AgentId, CaseRecord, Turn } from "@/lib/cases/schema";
 import type { Debrief } from "./report";
@@ -115,6 +115,8 @@ export type SessionSummary = {
   startedAt: Date;
   timeUsed: number | null;
   debrief: Debrief | null;
+  /** How many things the candidate said: an unfinished session with none has nothing to mark. */
+  said: number;
 };
 
 /** The user's sessions, newest first, with their debriefs where graded. */
@@ -127,6 +129,7 @@ export async function listSessions(userId: string, limit = 50): Promise<SessionS
       startedAt: sessions.startedAt,
       timeUsed: sessions.timeUsed,
       debrief: debriefs.debrief,
+      said: sql<number>`(select count(*)::int from ${turns} where ${turns.sessionId} = ${sessions.id} and ${turns.role} = 'candidate')`,
     })
     .from(sessions)
     .leftJoin(debriefs, eq(debriefs.sessionId, sessions.id))
