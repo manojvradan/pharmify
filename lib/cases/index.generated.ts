@@ -4,6 +4,7 @@ import case_atorvastatin_doubling_up from "@/data/cases/atorvastatin-doubling-up
 import case_bush_medicine from "@/data/cases/bush-medicine.json";
 import case_clarithromycin_warfarin_simvastatin_interaction from "@/data/cases/clarithromycin-warfarin-simvastatin-interaction.json";
 import case_conscientious_objection_ecp from "@/data/cases/conscientious-objection-ecp.json";
+import case_conscientious_objection_emergency_contraception from "@/data/cases/conscientious-objection-emergency-contraception.json";
 import case_forged_s8_prescription from "@/data/cases/forged-s8-prescription.json";
 import case_glp1_shortage from "@/data/cases/glp1-shortage.json";
 import case_imipramine_panic_disorder from "@/data/cases/imipramine-panic-disorder.json";
@@ -18,6 +19,7 @@ export const RAW_CASES: unknown[] = [
   case_bush_medicine,
   case_clarithromycin_warfarin_simvastatin_interaction,
   case_conscientious_objection_ecp,
+  case_conscientious_objection_emergency_contraception,
   case_forged_s8_prescription,
   case_glp1_shortage,
   case_imipramine_panic_disorder,
