@@ -1,0 +1,278 @@
+{
+  "id": "clarithromycin-warfarin-simvastatin-interaction",
+  "title": "Antibiotic interaction",
+  "agents": {
+    "patient": {
+      "bio": {},
+      "name": "Mr Nguyen",
+      "label": "Patient · Mr Nguyen",
+      "description": "A 71-year-old retired man, friendly and cooperative, with average health literacy. He answers honestly but only what he is directly asked, and volunteers almost nothing about his conditions, medicines or supplements. He does not think of his over-the-counter painkillers or supplements as 'medicines' unless asked about them specifically. If the pharmacist explains the risks with his warfarin or his cholesterol tablet, he becomes worried and readily agrees to the pharmacist calling the doctor. He relaxes if things are explained calmly and clearly. He gets a bit confused and impatient if the pharmacist uses jargon or just hands the script over without explanation.",
+      "openingLine": "G'day. The doctor's given me this antibiotic for my chest. Can I get it filled today?",
+      "publicFacts": [
+        "The doctor gave him the antibiotic for a chest infection.",
+        "He would like to get it filled today."
+      ]
+    },
+    "prescriber": {
+      "bio": {},
+      "name": "Dr Patel",
+      "label": "Call Dr Patel",
+      "description": "The GP who prescribed the clarithromycin. Busy between patients but fair, and listens if the pharmacist is clear and brief. Asks the pharmacist directly what antibiotic they suggest instead, and what monitoring is needed. Agrees to change the antibiotic only if the pharmacist identifies BOTH interactions: clarithromycin with warfarin and clarithromycin with simvastatin. If the pharmacist raises only the warfarin interaction, says, 'I'll just monitor the INR then,' and wants to keep the clarithromycin. If only one interaction is raised, prefers to keep the clarithromycin and is not persuaded until both are explained. Accepts an evidence-based alternative and an INR check within a few days once both interactions are explained.",
+      "openingLine": "Dr Patel speaking. I've got a patient waiting, so what can I do for you?",
+      "publicFacts": [
+        "You saw Mr Nguyen today for a chest infection and prescribed clarithromycin 500 mg twice daily for 7 days.",
+        "You know he is on warfarin for atrial fibrillation and takes medicines for blood pressure and cholesterol."
+      ]
+    }
+  },
+  "review": {
+    "status": "draft",
+    "version": "0.1"
+  },
+  "setting": "Community pharmacy, NSW",
+  "sources": [
+    "Drafted with the WhatsApp bot from a document sent by Dina"
+  ],
+  "category": "clinical",
+  "answerKey": {
+    "legal": [
+      "Record the clinical intervention and the prescriber's agreement to the change, as part of professional practice standards for dispensing."
+    ],
+    "modelAnswer": "Introduce yourself, confirm the patient's full name (Harold Nguyen) and date of birth, and get his consent to ask some questions. Gather information: his symptoms (cough with green sputum for 4 days, no fever today), whether he has had clarithromycin before (first time), and his allergies (none). Ask about his conditions (atrial fibrillation for 3 years, high cholesterol, hypertension) and his regular medicines (warfarin 5 mg at night, simvastatin 40 mg at night, perindopril 5 mg daily, bisoprolol 2.5 mg daily). Ask when his INR was last checked (a few months ago, 'fine'). Ask specifically about OTC and complementary products: ibuprofen most days for knee pain, fish oil and ginkgo biloba. Identify the problems and check them in AMH, the eTG and the product information. Clarithromycin strongly inhibits CYP3A4, which markedly raises simvastatin levels and the risk of myopathy and rhabdomyolysis, so the combination should be avoided. Clarithromycin also potentiates warfarin, raising the INR and the bleeding risk, made worse by acute infection. On top of this, daily ibuprofen with warfarin adds bleeding and GI risk; with perindopril it adds kidney injury risk and reduces BP control in a 71-year-old. Ginkgo, and possibly fish oil, add to warfarin's bleeding risk. Explain the concerns calmly to Mr Nguyen and get his agreement to phone Dr Patel. Do not dispense clarithromycin. Call Dr Patel and clearly state both interactions. Recommend an alternative per current eTG for mild community-acquired pneumonia: amoxicillin 1 g orally 8-hourly for 5 days, or doxycycline 100 mg orally 12-hourly for 5 days if amoxicillin is unsuitable or atypical cover is wanted. Recommend an INR check within a few days of starting the antibiotic. Raise the ibuprofen, which the doctor did not know about, and recommend stopping it and using regular paracetamol, along with stopping the ginkgo. If the doctor wants clarithromycin regardless, the fallback is to withhold simvastatin during the course and closely monitor the INR, though switching is preferred. Once a new prescription or confirmed change is received, dispense and counsel. Cover the antibiotic course, the INR check in 3 to 5 days, bleeding signs and when to seek urgent help, stopping ibuprofen and using paracetamol (maximum 4 g a day), stopping ginkgo, continuing his other medicines, reporting muscle pain, and returning if the infection worsens or is not improving after 2 to 3 days. Document the interactions found, the conversation with Dr Patel, the agreed changes, the counselling and the follow-up plan in the patient's dispensing record. Consider notifying his usual GP if Dr Patel is not his regular doctor.",
+    "codePrinciples": [
+      "Pharmacy Board Code of Conduct: Providing good care (assessing the patient and preventing medication-related harm).",
+      "Pharmacy Board Code of Conduct: Working with other practitioners (communicating effectively with the prescriber).",
+      "PSA Code of Ethics: Care (the patient's wellbeing is the primary concern)."
+    ],
+    "plantedProblem": "Clarithromycin has two clinically significant interactions. First, with warfarin: CYP3A4 inhibition, plus effects on gut flora and vitamin K, raises the INR and the bleeding risk. Second, with simvastatin 40 mg: strong CYP3A4 inhibition raises simvastatin levels markedly, risking myopathy and rhabdomyolysis, so the combination should be avoided. Two further issues compound the bleeding risk: daily OTC ibuprofen (with warfarin: bleeding and GI risk; with perindopril: reduced BP control and kidney injury risk in a 71-year-old) and ginkgo biloba (with warfarin: bleeding risk; fish oil may add to it).",
+    "counsellingPoints": [
+      "Take the new antibiotic (e.g. amoxicillin 1 g three times a day) for the full prescribed course, and stop clarithromycin if any was already supplied or taken.",
+      "Have your INR checked within 3 to 5 days of starting the antibiotic, as infection and antibiotics can change warfarin's effect.",
+      "Watch for signs of bleeding: unusual bruising, nosebleeds, bleeding gums, blood in urine, black or tarry stools, or vomiting blood. Seek urgent medical help if these occur.",
+      "Stop taking ibuprofen. Use paracetamol for knee pain instead (e.g. 1 g up to four times a day, maximum 4 g a day) and avoid other anti-inflammatories such as naproxen, diclofenac or aspirin.",
+      "Stop the ginkgo biloba, and check with the pharmacist or doctor before starting any new supplement or herbal product while on warfarin.",
+      "Keep taking simvastatin, warfarin, perindopril and bisoprolol as usual unless the doctor says otherwise. Report any unexplained muscle pain, weakness or dark urine.",
+      "Return or see the doctor if you get a fever, worsening breathlessness, chest pain, or no improvement in your cough after 2 to 3 days on the antibiotic."
+    ],
+    "unacceptableActions": [
+      "Dispensing clarithromycin without identifying either interaction (overall fail).",
+      "Raising only the warfarin interaction and accepting 'just monitor the INR' while the patient continues simvastatin with clarithromycin.",
+      "Telling the patient to stop warfarin or change his doses himself.",
+      "Failing to address daily ibuprofen use with warfarin and perindopril.",
+      "Recommending another NSAID or aspirin for his knee pain."
+    ],
+    "acceptableResolutions": [
+      "Introduce self, confirm the patient's full name and date of birth, and obtain consent to ask questions and contact the prescriber.",
+      "Take a full history: symptoms, first time on the antibiotic, conditions, all prescription medicines, OTC and complementary medicines, allergies, and when the INR was last checked.",
+      "Identify both the clarithromycin–warfarin interaction (raised INR, bleeding) and the clarithromycin–simvastatin interaction (CYP3A4 inhibition, rhabdomyolysis; avoid the combination).",
+      "Identify the OTC ibuprofen with warfarin and perindopril, and ginkgo (with or without fish oil) with warfarin, as bleeding and kidney risks.",
+      "Do not dispense clarithromycin. Contact Dr Patel and recommend an alternative per current eTG for mild community-acquired pneumonia, e.g. amoxicillin 1 g orally 8-hourly for 5 days, or doxycycline 100 mg orally 12-hourly for 5 days.",
+      "Recommend an INR check within a few days of starting any antibiotic.",
+      "Recommend stopping the ibuprofen in favour of regular paracetamol, and discuss stopping the ginkgo.",
+      "Counsel on the new antibiotic, signs of bleeding, and signs of worsening infection. Document the intervention."
+    ]
+  },
+  "documents": {
+    "prescription": {
+      "pbs": true,
+      "item": "Clarithromycin 500 mg tablets",
+      "footer": "Dr S. Patel · Harold Nguyen, 71",
+      "repeats": "0",
+      "quantity": "14",
+      "directions": "One tablet twice daily for 7 days · Qty 14 · No repeats",
+      "patientAge": "71",
+      "prescriber": "Dr S. Patel",
+      "patientName": "Harold Nguyen",
+      "prescriberDetail": "General practitioner, NSW"
+    }
+  },
+  "hiddenFacts": [
+    {
+      "id": "symptoms",
+      "fact": "You have had a cough with green sputum for 4 days. You don't have a fever today.",
+      "agent": "patient",
+      "triggers": [
+        "symptoms",
+        "cough",
+        "sputum",
+        "phlegm",
+        "mucus",
+        "fever",
+        "temperature",
+        "long sick",
+        "long unwell",
+        "chest infection",
+        "feeling",
+        "coughing up"
+      ],
+      "unlockHint": "“Can you tell me about your symptoms and how long you've had them?”"
+    },
+    {
+      "id": "first-time-antibiotic",
+      "fact": "This is the first time you have been on this antibiotic.",
+      "agent": "patient",
+      "triggers": [
+        "first time",
+        "had before",
+        "taken before",
+        "antibiotic before",
+        "clarithromycin before",
+        "this antibiotic before",
+        "new medicine",
+        "tried before",
+        "used before"
+      ],
+      "unlockHint": "“Have you taken this antibiotic before?”"
+    },
+    {
+      "id": "conditions",
+      "fact": "You have had atrial fibrillation (an irregular heartbeat) for 3 years. You also have high cholesterol and high blood pressure.",
+      "agent": "patient",
+      "triggers": [
+        "medical conditions",
+        "health conditions",
+        "conditions",
+        "health problems",
+        "medical history",
+        "heart",
+        "irregular heartbeat",
+        "atrial fibrillation",
+        "blood pressure",
+        "cholesterol",
+        "see doctor for"
+      ],
+      "unlockHint": "“Do you have any other medical conditions?”"
+    },
+    {
+      "id": "regular-medicines",
+      "fact": "You take warfarin 5 mg at night, simvastatin 40 mg at night, perindopril 5 mg daily and bisoprolol 2.5 mg daily.",
+      "agent": "patient",
+      "triggers": [
+        "other medicine",
+        "regular medicine",
+        "any other",
+        "anything else",
+        "current medicine",
+        "blood thinner",
+        "warfarin",
+        "statin",
+        "simvastatin",
+        "cholesterol tablet",
+        "blood pressure tablet",
+        "prescription medicine",
+        "other tablet"
+      ],
+      "unlockHint": "“What other medicines do you take regularly?”"
+    },
+    {
+      "id": "inr-history",
+      "fact": "Your INR was last checked a few months ago and the doctor said it was fine.",
+      "agent": "patient",
+      "triggers": [
+        "inr",
+        "blood test",
+        "last test",
+        "blood checked",
+        "last checked",
+        "warfarin level",
+        "monitoring",
+        "warfarin test",
+        "blood tests"
+      ],
+      "unlockHint": "“When was your INR last checked, and what was it?”"
+    },
+    {
+      "id": "ibuprofen-use",
+      "fact": "You take ibuprofen for knee pain most days, bought over the counter.",
+      "agent": "patient",
+      "triggers": [
+        "over counter",
+        "buy yourself",
+        "pain relief",
+        "painkiller",
+        "pain killer",
+        "anti-inflammatory",
+        "ibuprofen",
+        "nurofen",
+        "knee pain",
+        "aches pains",
+        "supermarket",
+        "without prescription",
+        "for pain"
+      ],
+      "unlockHint": "“Do you take anything for pain, or anything you buy over the counter?”"
+    },
+    {
+      "id": "supplements",
+      "fact": "You take fish oil and ginkgo biloba supplements.",
+      "agent": "patient",
+      "triggers": [
+        "supplements",
+        "vitamins",
+        "herbal",
+        "natural",
+        "complementary",
+        "fish oil",
+        "ginkgo",
+        "health food",
+        "alternative medicine",
+        "herbs",
+        "chinese medicine"
+      ],
+      "unlockHint": "“Do you take any vitamins, supplements or herbal products?”"
+    },
+    {
+      "id": "allergies",
+      "fact": "You have no allergies to any medicines.",
+      "agent": "patient",
+      "triggers": [
+        "allergies",
+        "allergic",
+        "allergy",
+        "reaction",
+        "rash",
+        "penicillin",
+        "bad reaction",
+        "side effects before"
+      ],
+      "unlockHint": "“Do you have any allergies, for example to penicillin?”"
+    },
+    {
+      "id": "unaware-ibuprofen",
+      "fact": "You did not know Mr Nguyen takes ibuprofen most days for his knee. Now that you know, you agree he should stop it and use paracetamol instead.",
+      "agent": "prescriber",
+      "triggers": [
+        "ibuprofen",
+        "nurofen",
+        "anti-inflammatory",
+        "nsaid",
+        "knee pain",
+        "pain relief",
+        "painkiller",
+        "over counter",
+        "buys himself",
+        "otc"
+      ],
+      "unlockHint": "“He takes over-the-counter ibuprofen most days with his warfarin and perindopril. I recommend he stops it and uses paracetamol. Do you agree?”"
+    },
+    {
+      "id": "accepts-alternative",
+      "fact": "Once both the warfarin and simvastatin interactions have been explained, you are happy to change to the pharmacist's suggested alternative, such as amoxicillin or doxycycline. You also agree to an INR check within a few days.",
+      "agent": "prescriber",
+      "triggers": [
+        "alternative antibiotic",
+        "amoxicillin",
+        "doxycycline",
+        "different antibiotic",
+        "switch antibiotic",
+        "change antibiotic",
+        "instead clarithromycin",
+        "another antibiotic",
+        "suggest instead"
+      ],
+      "unlockHint": "“Because of both interactions, I recommend amoxicillin instead, with an INR check in 3 to 5 days. Are you happy with that?”"
+    }
+  ],
+  "problemType": "Drug interaction",
+  "questionSheet": "Mr Harold Nguyen, a 71-year-old man, presents a valid prescription for clarithromycin 500 mg tablets, one twice daily for 7 days, from his GP, Dr Patel. Dr Patel can be contacted by phone. Manage the situation as you would in practice. You may contact the prescriber."
+}
