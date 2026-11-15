@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
+import { GetFeedbackButton } from "@/components/GetFeedbackButton";
 import { Pip } from "@/components/Pip";
 import { getCase } from "@/lib/cases/bank";
 import { ProgressOverview } from "@/components/ProgressCharts";
@@ -14,14 +15,42 @@ function clock(s: number) {
   return `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
 }
 
-/** The charts: a week of interviews, recent results, hidden facts and skills. Nothing until the first debrief. */
+const stat = "flex flex-col gap-0.5 rounded-[18px] border border-line bg-white px-[18px] py-3.5";
+
+/**
+ * Statistics: a summary row as soon as there's any interview, then the charts (a week of
+ * interviews, recent results, hidden facts, skills) once at least one has been marked.
+ */
 async function Overview() {
-  const p = await getViewerProgress();
-  if (!p || p.done === 0) return null;
+  const [sessions, p] = await Promise.all([getViewerSessions(), getViewerProgress()]);
+  if (!sessions || sessions.length === 0) return null;
+  const marked = sessions.filter((s) => s.debrief);
+  const passed = marked.filter((s) => s.debrief?.report.result === "pass").length;
+  const times = marked.map((s) => s.timeUsed).filter((t): t is number => t != null);
+  const avg = times.length ? Math.round(times.reduce((a, b) => a + b, 0) / times.length) : null;
+  const summary = [
+    { label: "Interviews started", value: String(sessions.length) },
+    { label: "Marked", value: String(marked.length), note: marked.length < sessions.length ? `${sessions.length - marked.length} not finished` : undefined },
+    { label: "Passed", value: String(passed), note: marked.length ? `of ${marked.length} marked` : undefined },
+    { label: "Average time used", value: avg == null ? "–" : clock(avg) },
+  ];
   return (
-    <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 xl:grid-cols-3">
-      <ProgressOverview p={p} />
-    </div>
+    <>
+      <div className="grid grid-cols-2 gap-3.5 lg:grid-cols-4">
+        {summary.map((s) => (
+          <div key={s.label} className={stat}>
+            <span className="text-[13px] font-semibold text-muted">{s.label}</span>
+            <span className="text-[28px] leading-[1.1] font-bold tracking-[-0.02em] tabular-nums">{s.value}</span>
+            {s.note && <span className="text-[13px] text-muted">{s.note}</span>}
+          </div>
+        ))}
+      </div>
+      {p && p.done > 0 && (
+        <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 xl:grid-cols-3">
+          <ProgressOverview p={p} />
+        </div>
+      )}
+    </>
   );
 }
 
@@ -64,7 +93,13 @@ async function SessionList() {
                 {r && ` · ${r.headline}`}
               </span>
             </span>
-            <span className={`flex-none rounded-full px-2.5 py-[3px] text-[13px] font-bold ${status.cls}`}>{status.label}</span>
+            {!s.debrief && s.said > 0 ? (
+              <GetFeedbackButton sessionId={s.id} />
+            ) : (
+              <span className={`flex-none rounded-full px-2.5 py-[3px] text-[13px] font-bold ${status.cls}`}>
+                {!s.debrief && s.said === 0 ? "Nothing said" : status.label}
+              </span>
+            )}
           </>
         );
         return (
