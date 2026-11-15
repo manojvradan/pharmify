@@ -118,7 +118,8 @@
     "modelAnswer": "Identify the tension between the pharmacist's autonomy to act on their beliefs and the patient's right to timely care, with possible moral injury on one side and harm from delay on the other. Refusing to hire them would be discriminatory, forcing supply risks moral injury, and unrestricted objection risks gaps in care. Allow the objection within a structured system: never roster them as the sole pharmacist, agree a prompt and respectful hand-over to a colleague, consult the team, communicate and document the plan. Review it for access and staff fairness, and consider asking about objections during recruitment."
   },
   "review": {
-    "status": "draft",
+    "status": "reviewed",
+    "date": "2026-11-13",
     "version": "0.1"
   },
   "sources": [

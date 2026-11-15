@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import { CasePicker } from "@/components/CasePicker";
 import { listPublicCases } from "@/lib/cases/bank";
 
-export const metadata: Metadata = { title: "Surprise interview" };
+export const metadata: Metadata = { title: "Surprise case" };
 
 export default function SessionPickerPage() {
   const cases = listPublicCases().map(({ id, category }) => ({ id, category }));

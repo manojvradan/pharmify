@@ -131,6 +131,20 @@ export function HomeIcon({ color = "#403A50", ...props }: IconProps & { color?: 
   );
 }
 
+export function HangerIcon({ color = "#403A50", ...props }: IconProps & { color?: string }) {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" {...props}>
+      <path
+        d="M8 5.5a2 2 0 113 1.7c-.6.4-1 .9-1 1.6V10M10 10L2.5 15h15z"
+        stroke={color}
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export function CardsIcon({ color = "#403A50", ...props }: IconProps & { color?: string }) {
   return (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" {...props}>

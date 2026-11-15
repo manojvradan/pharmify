@@ -1,3 +1,6 @@
+import type { ReactNode } from "react";
+import type { ItemId, Outfit } from "@/lib/pip/items";
+
 export type PipMood = "happy" | "celebrate" | "thinking" | "exam";
 
 type PipProps = {
@@ -7,6 +10,8 @@ type PipProps = {
   top?: string;
   bottom?: string;
   className?: string;
+  /** Wardrobe items to wear (lib/pip/items.ts). */
+  outfit?: Outfit;
 };
 
 const SMILE_EYES = "M44 77 Q49 70 54 77 M66 77 Q71 70 76 77";
@@ -79,8 +84,10 @@ export function Pip({
   top = "#FFFFFF",
   bottom = "#EC6F9E",
   className,
+  outfit,
 }: PipProps) {
   const m = MOODS[mood];
+  const worn = (id: ItemId) => outfit?.[ACCESSORY_SLOT[id]] === id;
   return (
     <svg
       width={size}
@@ -192,6 +199,116 @@ export function Pip({
         strokeLinecap="round"
         strokeLinejoin="round"
       />
+
+      {/* Wardrobe: neck, then eyes, then head, so hats sit over everything */}
+      {(["bowtie", "bands", "medal", "hearts", "monocle", "goggles", "halo", "wig", "propeller", "crown"] as const).map(
+        (id) => worn(id) && <g key={id}>{ACCESSORIES[id]}</g>,
+      )}
     </svg>
   );
 }
+
+const ACCESSORY_SLOT: Record<ItemId, keyof Outfit> = {
+  halo: "hat",
+  wig: "hat",
+  propeller: "hat",
+  crown: "hat",
+  hearts: "glasses",
+  monocle: "glasses",
+  goggles: "glasses",
+  bowtie: "neck",
+  bands: "neck",
+  medal: "neck",
+};
+
+const ACCESSORIES: Record<ItemId, ReactNode> = {
+  bowtie: (
+    <>
+      <path d="M60 111 L46 103 L46 119 Z M60 111 L74 103 L74 119 Z" fill="#FF8CC6" stroke={LINE} strokeWidth="2.5" strokeLinejoin="round" />
+      <circle cx="60" cy="111" r="4" fill="#EC6F9E" stroke={LINE} strokeWidth="2.5" />
+    </>
+  ),
+  bands: (
+    <>
+      <rect x="53" y="104" width="6.5" height="17" rx="1.5" fill="#FFFFFF" stroke={LINE} strokeWidth="2" />
+      <rect x="60.5" y="104" width="6.5" height="17" rx="1.5" fill="#FFFFFF" stroke={LINE} strokeWidth="2" />
+    </>
+  ),
+  medal: (
+    <>
+      <path d="M50 100 L58 118 M70 100 L62 118" stroke="#A9C8F5" strokeWidth="5" strokeLinecap="round" />
+      <g transform="translate(60 127) rotate(30)">
+        <rect x="-5.5" y="-11" width="11" height="22" rx="5.5" fill="#FFFFFF" />
+        <path d="M-5.5 0 V5.5 A5.5 5.5 0 0 0 5.5 5.5 V0 Z" fill="#FF8CC6" />
+        <rect x="-5.5" y="-11" width="11" height="22" rx="5.5" stroke={LINE} strokeWidth="2.5" />
+        <path d="M-5.5 0 H5.5" stroke={LINE} strokeWidth="2" />
+      </g>
+    </>
+  ),
+  hearts: (
+    <>
+      <path
+        d="M49 83 C37 75 38 66 44 66 C47 66 49 69 49 71 C49 69 51 66 54 66 C60 66 61 75 49 83 Z M71 83 C59 75 60 66 66 66 C69 66 71 69 71 71 C71 69 73 66 76 66 C82 66 83 75 71 83 Z"
+        fill="#FF8CC6"
+        fillOpacity="0.45"
+        stroke={LINE}
+        strokeWidth="2.5"
+        strokeLinejoin="round"
+      />
+      <path d="M57 70 Q60 67 63 70" stroke={LINE} strokeWidth="2.5" strokeLinecap="round" />
+    </>
+  ),
+  monocle: (
+    <>
+      <circle cx="71" cy="74" r="10" fill="#DCEBFF" fillOpacity="0.45" stroke={LINE} strokeWidth="3" />
+      <path d="M81 77 Q91 92 84 110" stroke="#FFC94D" strokeWidth="2.5" strokeLinecap="round" />
+    </>
+  ),
+  goggles: (
+    <>
+      <path d="M24 73 H96" stroke={LINE} strokeWidth="6" strokeLinecap="round" />
+      <rect x="37" y="64" width="21" height="19" rx="8" fill="#8FD8C0" fillOpacity="0.6" stroke={LINE} strokeWidth="3" />
+      <rect x="62" y="64" width="21" height="19" rx="8" fill="#8FD8C0" fillOpacity="0.6" stroke={LINE} strokeWidth="3" />
+    </>
+  ),
+  halo: (
+    <>
+      <ellipse cx="60" cy="22" rx="24" ry="6.5" stroke={LINE} strokeWidth="8" />
+      <ellipse cx="60" cy="22" rx="24" ry="6.5" stroke="#FFD54D" strokeWidth="4.5" />
+    </>
+  ),
+  wig: (
+    <>
+      {[
+        [26, 60, 8],
+        [94, 60, 8],
+        [31, 47, 9],
+        [89, 47, 9],
+        [41, 37, 10],
+        [79, 37, 10],
+        [60, 32, 11],
+      ].map(([cx, cy, r]) => (
+        <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r={r} fill="#FFFFFF" stroke={LINE} strokeWidth="2.5" />
+      ))}
+    </>
+  ),
+  propeller: (
+    <>
+      <path d="M28 56 Q36 30 60 29 V56 Z" fill="#FF8CC6" stroke={LINE} strokeWidth="2.5" strokeLinejoin="round" />
+      <path d="M92 56 Q84 30 60 29 V56 Z" fill="#FFC94D" stroke={LINE} strokeWidth="2.5" strokeLinejoin="round" />
+      <path d="M24 56 H96" stroke={LINE} strokeWidth="4" strokeLinecap="round" />
+      <path d="M60 29 V20" stroke={LINE} strokeWidth="2.5" />
+      <ellipse cx="50" cy="19" rx="10" ry="3.5" fill="#A9C8F5" stroke={LINE} strokeWidth="2" />
+      <ellipse cx="70" cy="19" rx="10" ry="3.5" fill="#A9C8F5" stroke={LINE} strokeWidth="2" />
+      <circle cx="60" cy="19" r="3" fill="#FFC94D" stroke={LINE} strokeWidth="2" />
+    </>
+  ),
+  crown: (
+    <>
+      <path d="M36 50 L40 24 L51 37 L60 19 L69 37 L80 24 L84 50 Z" fill="#FFC94D" stroke={LINE} strokeWidth="3" strokeLinejoin="round" />
+      <circle cx="60" cy="42" r="3.5" fill="#FF8CC6" stroke={LINE} strokeWidth="1.8" />
+      <circle cx="46" cy="44" r="2.6" fill="#A9C8F5" stroke={LINE} strokeWidth="1.6" />
+      <circle cx="74" cy="44" r="2.6" fill="#A9C8F5" stroke={LINE} strokeWidth="1.6" />
+    </>
+  ),
+};

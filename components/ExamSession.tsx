@@ -489,12 +489,16 @@ export function ExamSession({
           </>
         }
       >
-          {phase === "grading" && <GradingPanel error={error} onRetry={() => void finish()} />}
+          {phase === "grading" && (
+            <div className="flex flex-1 items-center">
+              <GradingPanel error={error} onRetry={() => void finish()} />
+            </div>
+          )}
 
           {phase === "live" && (
             <>
               {c.agents.length > 1 && (
-                <div className="relative z-[9] flex animate-fade-up justify-center px-6">
+                <div className="relative z-[9] flex flex-none animate-fade-up justify-center px-6">
                   <div role="group" aria-label="Who you are speaking with" className="inline-flex gap-1 rounded-xl border border-line bg-white p-1">
                     {c.agents.map((a) => {
                       const on = agent === a.id;
@@ -521,17 +525,23 @@ export function ExamSession({
                 </div>
               )}
 
-              {/* Orb and latest line */}
-              <div className="flex w-full max-w-[620px] flex-col items-center gap-[22px] px-6 text-center">
-                {/* Keyed by who it is, so each switch replays the rise-in. */}
-                <SpeakerAvatar
-                  key={agent}
-                  avatar={agentInfo.avatar}
-                  name={agentInfo.name}
-                  talking={talking}
-                  level={handsFreeLive ? live.level : voice ? voiceLevel : undefined}
-                />
-                <div className="flex animate-fade-up-late flex-col items-center gap-2.5">
+              {/* Character and latest line: fills the space between the tabs and the controls. */}
+              <div className="flex min-h-0 w-full max-w-[1100px] flex-1 flex-col items-center gap-5 px-6 text-center">
+                {/* Sized to the stage (a size container), not to its own content. */}
+                <div className="relative min-h-[200px] w-full flex-1 [container-type:size]">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    {/* Keyed by who it is, so each switch replays the rise-in. */}
+                    <SpeakerAvatar
+                      key={agent}
+                      avatar={agentInfo.avatar}
+                      name={agentInfo.name}
+                      talking={talking}
+                      level={handsFreeLive ? live.level : voice ? voiceLevel : undefined}
+                    />
+                  </div>
+                </div>
+                {/* Room for the status and a two-line reply whoever is speaking, so the stage stays put. */}
+                <div className="flex min-h-[118px] flex-none animate-fade-up-late flex-col items-center gap-2.5">
                   <span className="text-sm text-subtle">
                     {status}
                   </span>
@@ -558,7 +568,7 @@ export function ExamSession({
               </div>
 
               {/* Control dock */}
-              <div className="relative z-[9] flex w-full animate-fade-up-late justify-center px-6">
+              <div className="relative z-[9] flex w-full flex-none animate-fade-up-late justify-center px-6">
                 <form
                   onSubmit={send}
                   className="flex w-full max-w-[760px] flex-wrap items-center gap-2.5 rounded-[28px] border-[1.5px] border-line bg-white p-2.5 shadow-card"
@@ -707,7 +717,8 @@ function SpeakerAvatar({
 
   if (CAST[avatar].kind === "patient") {
     return (
-      <div ref={ref} className="relative w-full max-w-[620px] animate-scene-in">
+      // As wide as the stage allows while the whole scene (640×340, plus border) still fits its height.
+      <div ref={ref} className="relative w-[min(100cqw,calc((100cqh-14px)*640/340),1000px)] animate-scene-in">
         <div className="overflow-hidden rounded-[24px] border-[3px] border-white shadow-[0_20px_40px_-24px_rgba(22,17,42,0.45),0_0_0_1.5px_#E5E1EC]">
           <PharmacyScene className="block">
             <g className="animate-walk-in">
@@ -723,20 +734,21 @@ function SpeakerAvatar({
   }
 
   return (
-    <div ref={ref} className="relative grid size-[260px] animate-scene-in place-items-center">
+    // As large as the stage's height allows (the name tag hangs below), up to 440px.
+    <div ref={ref} className="relative grid size-[min(100cqw,calc(100cqh-14px),440px)] animate-scene-in place-items-center">
       {/* Rings pulse out from the call while the prescriber is talking. */}
       {talking && (
         <>
-          <span aria-hidden="true" className="absolute inset-3.5 animate-ring rounded-full bg-[#9ED9B3] opacity-35" />
-          <span aria-hidden="true" className="absolute inset-3.5 animate-ring-late rounded-full bg-[#9ED9B3] opacity-35" />
+          <span aria-hidden="true" className="absolute inset-[5.5%] animate-ring rounded-full bg-[#9ED9B3] opacity-35" />
+          <span aria-hidden="true" className="absolute inset-[5.5%] animate-ring-late rounded-full bg-[#9ED9B3] opacity-35" />
         </>
       )}
       <span
         aria-hidden="true"
-        className="relative grid size-[232px] place-items-end justify-center overflow-hidden rounded-full border-[3px] border-white bg-[#E7F6EC] shadow-[0_20px_40px_-24px_rgba(22,17,42,0.45)]"
+        className="relative grid size-[89%] place-items-end justify-center overflow-hidden rounded-full border-[3px] border-white bg-[#E7F6EC] shadow-[0_20px_40px_-24px_rgba(22,17,42,0.45)]"
       >
-        <span className={`-mb-1.5 block ${bob}`}>
-          <CastAvatar key={avatar} id={avatar} size={226} decorative className="block" />
+        <span className={`-mb-[2%] block w-[97%] ${bob}`}>
+          <CastAvatar key={avatar} id={avatar} size={226} decorative className="block h-auto w-full" />
         </span>
       </span>
       {tag}

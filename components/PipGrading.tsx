@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Pip } from "@/components/Pip";
+import { MyPip } from "@/components/MyPip";
 
 /** What the grader is doing, cycled under Pip. Order follows the real grading pass. */
 const STEPS = [
@@ -33,7 +33,7 @@ export function PipGrading() {
     <div className="flex flex-col items-center gap-4">
       <div className="relative h-[176px] w-[230px]" aria-hidden="true">
         <div className="grading-nod absolute top-0 left-0">
-          <Pip mood="exam" size={132} />
+          <MyPip mood="exam" size={132} />
         </div>
 
         {/* The exam sheet Pip is marking, held up in front. */}

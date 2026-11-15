@@ -187,7 +187,7 @@ function Script() {
       <div className="relative flex flex-wrap gap-x-[22px] gap-y-2.5 border-b-2 border-[#4A2233] px-[26px] py-3 text-sm">
         <div className="flex flex-col"><span className={fieldLabel}>Patient</span><span className="text-[17px]" style={mono}>You</span></div>
         <div className="flex flex-col"><span className={fieldLabel}>Date</span><span className="text-[17px]" style={mono}>Daily</span></div>
-        <span className="inline-flex items-center gap-2"><Tick />Voice interviews</span>
+        <span className="inline-flex items-center gap-2"><Tick />Voice cases</span>
         <span className="inline-flex items-center gap-2"><Tick />Hints not permitted</span>
       </div>
       <div className="relative flex flex-1">
@@ -196,7 +196,7 @@ function Script() {
         </div>
         <div className="flex min-w-0 flex-1 flex-col gap-3 bg-[#F6EEFF] px-[22px] py-[18px]">
           <div>
-            <span className="block text-[clamp(20px,2.4vw,26px)] leading-[1.1] text-[#6E1F35]" style={display}>Mock oral interview, 20 min</span>
+            <span className="block text-[clamp(20px,2.4vw,26px)] leading-[1.1] text-[#6E1F35]" style={display}>Mock oral case, 20 min</span>
             <span className="text-base" style={mono}>Daily, out loud</span>
           </div>
           <div className="flex justify-between gap-2 rounded-xl border-[2.5px] border-[#4A2233] bg-[#C9B3F2] px-3.5 py-2.5 text-sm" style={mono}>
@@ -267,7 +267,7 @@ export function LandingStory() {
         const el = sectionRef.current;
         if (!el) return;
         const r = el.getBoundingClientRect();
-        const total = r.height - Math.min(window.innerHeight, 860);
+        const total = r.height - window.innerHeight;
         if (total <= 0) return;
         const next = clamp(-r.top / total);
         setP((prev) => (Math.abs(next - prev) > 0.002 ? next : prev));
@@ -287,7 +287,7 @@ export function LandingStory() {
   const go = useCallback((target: number) => {
     const el = sectionRef.current;
     if (!el) return;
-    const total = el.offsetHeight - Math.min(window.innerHeight, 860);
+    const total = el.offsetHeight - window.innerHeight;
     const top = el.getBoundingClientRect().top + window.scrollY;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     window.scrollTo({ top: top + total * target, behavior: reduced ? "auto" : "smooth" });
@@ -331,10 +331,12 @@ export function LandingStory() {
         className="relative h-[2600px]"
         style={{ background: f.bg }}
       >
-        <div className="sticky top-0 h-[min(100svh,860px)] overflow-hidden">
+        <div className="sticky top-0 h-svh overflow-hidden">
+          {/* Spun square: it only covers its inscribed circle, so its half-side must reach the farthest
+              corner from its centre (70%, 50%), which is at most ~0.86 of the viewport's longer side. */}
           <div
             aria-hidden="true"
-            className="absolute top-1/2 left-[70%] -mt-[1000px] -ml-[1000px] size-[2000px] animate-rays bg-[repeating-conic-gradient(from_0deg,rgba(255,255,255,0.45)_0_7.5deg,transparent_7.5deg_15deg)]"
+            className="absolute top-1/2 left-[70%] size-[max(2000px,175vmax)] -translate-1/2 animate-rays bg-[repeating-conic-gradient(from_0deg,rgba(255,255,255,0.45)_0_7.5deg,transparent_7.5deg_15deg)]"
           />
           <div
             aria-hidden="true"
@@ -361,7 +363,7 @@ export function LandingStory() {
               </Panel>
               <Panel op={f.opB} dir={1}>
                 <Kicker>Pip prescribes</Kicker>
-                <Headline>Daily mock interviews.</Headline>
+                <Headline>Daily mock cases.</Headline>
                 <p className="m-0 max-w-[38ch] text-[17px] sm:text-[19px]">
                   Twenty minutes, out loud, with patients and prescribers who stay in character. A debrief after every
                   case.

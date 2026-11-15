@@ -26,13 +26,13 @@ export type Progress = {
   /** The skill most often marked "partly" or "no". */
   workOn: { skill: string; sessions: number } | null;
   byCategory: Record<Category, { played: number; passed: number }>;
-  /** Interviews per day for the last 7 days (Sydney time), oldest first; the last is today. */
+  /** Cases per day for the last 7 days (Sydney time), oldest first; the last is today. */
   daily: { day: string; label: string; count: number }[];
   /** The last 10 results, oldest first. */
   recent: { pass: boolean; title: string }[];
-  /** How each skill was marked across all graded interviews, in the report's order. */
+  /** How each skill was marked across all graded cases, in the report's order. */
   skills: { skill: string; yes: number; partly: number; no: number }[];
-  /** Consecutive days (Sydney) with a finished interview, ending today or yesterday; `today` once today counts. */
+  /** Consecutive days (Sydney) with a finished case, ending today or yesterday; `today` once today counts. */
   streak: { days: number; today: boolean };
 };
 

@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 /**
- * Marks an interview that was left unfinished, from whatever was said, then opens its
+ * Marks a case that was left unfinished, from whatever was said, then opens its
  * debrief. Same marking as finishing normally (/api/session/grade), which also closes it.
  */
 export function GetFeedbackButton({ sessionId }: { sessionId: string }) {

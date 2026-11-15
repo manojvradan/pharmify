@@ -119,7 +119,8 @@
     "modelAnswer": "The tool improves efficiency, but staff report missed high-risk patients being harmed. The dilemma is reliance on an organisational system versus his duty of care, and accountability can't be delegated to technology. Relying solely on the list risks preventable harm, and refusing the tool conflicts with policy and loses its benefits. Use the list as a guide while applying clinical judgement to find other at-risk patients, track the tool's misses, and raise concerns constructively and with evidence through the team leader and formal reporting. Document risks and actions, and push for validation, staff training and protocols that keep judgement central."
   },
   "review": {
-    "status": "draft",
+    "status": "reviewed",
+    "date": "2026-11-13",
     "version": "0.1"
   },
   "sources": [

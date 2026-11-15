@@ -93,7 +93,7 @@
     "legal": ["Ahpra shared Code of Conduct: care must be culturally safe for Aboriginal and Torres Strait Islander peoples, as defined by patients and communities."],
     "modelAnswer": "Explore the bush medicine respectfully, accepting he may not know or be able to share details. The dilemma is preventing harm from a possible interaction versus delivering culturally safe care that respects his autonomy. Strongly advising him to stop disrespects his self-determination, and ignoring it neglects a core competency. So give balanced information on the new medicine and what is known about the bush medicine, explain ways to reduce risk, and support his informed choice. Monitor his blood pressure and clinical response, involve the GP with consent, document the discussion, and use it to build the team's confidence with culturally safe care."
   },
-  "review": { "status": "draft", "version": "0.1" },
+  "review": { "status": "reviewed", "date": "2026-11-13", "version": "0.1" },
   "sources": [
     "PSA Code of Ethics case study (provided by the user, 5-step framework). Confirm licence before publishing.",
     "Prescription details (amlodipine 5 mg) added for the role play; needs pharmacist review."

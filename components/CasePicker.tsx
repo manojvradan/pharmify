@@ -2,7 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo } from "react";
-import { Pip } from "@/components/Pip";
+import { MyPip } from "@/components/MyPip";
 
 /** Pip picks a random case, optionally within ?category=, then opens it. */
 export function CasePicker({ cases }: { cases: { id: string; category: string }[] }) {
@@ -19,7 +19,7 @@ export function CasePicker({ cases }: { cases: { id: string; category: string }[
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-white px-6 text-center">
-      <Pip mood="thinking" size={110} />
+      <MyPip mood="thinking" size={110} />
       <p className="m-0 text-xl font-bold">{empty ? "No cases in that category yet." : "Pip is picking a case…"}</p>
     </div>
   );

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Pip } from "@/components/Pip";
+import { MyPip } from "@/components/MyPip";
 import { CODE_OF_ETHICS, DOMAINS, SESSION_SIZE, type Domain } from "@/lib/flashcards";
 
 const ALL = CODE_OF_ETHICS.cards;
@@ -74,7 +74,7 @@ export function FlashcardDeck() {
         <div className="flex min-w-0 flex-[999_1_480px] flex-col gap-5">
           {finished ? (
             <div className="flex min-h-[340px] flex-col items-center justify-center gap-4 rounded-[32px] border-[1.5px] border-line bg-white p-10 text-center shadow-card">
-              <Pip mood="celebrate" size={110} />
+              <MyPip mood="celebrate" size={110} />
               <p className="m-0 text-[clamp(24px,2.6vw,34px)] font-bold tracking-[-0.02em]">All done for today.</p>
               <p className="m-0 text-muted">Come back tomorrow to keep the streak going.</p>
               <button
@@ -159,7 +159,7 @@ export function FlashcardDeck() {
         {/* Side panel */}
         <aside aria-label="Study tips and decks" className="flex min-w-0 flex-[1_1_260px] flex-col gap-4">
           <div className="flex items-center gap-3.5 rounded-3xl border-[1.5px] border-line bg-white p-5">
-            <Pip mood={flipped ? "happy" : "thinking"} size={70} />
+            <MyPip mood={flipped ? "happy" : "thinking"} size={70} />
             <p className="m-0 text-[15px] leading-[1.4] font-bold">
               {flipped
                 ? "How close were you? Be honest, it helps the cards come back at the right time."

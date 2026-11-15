@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
 import { GetFeedbackButton } from "@/components/GetFeedbackButton";
-import { Pip } from "@/components/Pip";
+import { MyPip } from "@/components/MyPip";
 import { getCase } from "@/lib/cases/bank";
 import { ProgressOverview } from "@/components/ProgressCharts";
 import { getViewerProgress, getViewerSessions } from "@/lib/session/viewer";
@@ -18,8 +18,8 @@ function clock(s: number) {
 const stat = "flex flex-col gap-0.5 rounded-[18px] border border-line bg-white px-[18px] py-3.5";
 
 /**
- * Statistics: a summary row as soon as there's any interview, then the charts (a week of
- * interviews, recent results, hidden facts, skills) once at least one has been marked.
+ * Statistics: a summary row as soon as there's any case, then the charts (a week of
+ * cases, recent results, hidden facts, skills) once at least one has been marked.
  */
 async function Overview() {
   const [sessions, p] = await Promise.all([getViewerSessions(), getViewerProgress()]);
@@ -29,7 +29,7 @@ async function Overview() {
   const times = marked.map((s) => s.timeUsed).filter((t): t is number => t != null);
   const avg = times.length ? Math.round(times.reduce((a, b) => a + b, 0) / times.length) : null;
   const summary = [
-    { label: "Interviews started", value: String(sessions.length) },
+    { label: "Cases started", value: String(sessions.length) },
     { label: "Marked", value: String(marked.length), note: marked.length < sessions.length ? `${sessions.length - marked.length} not finished` : undefined },
     { label: "Passed", value: String(passed), note: marked.length ? `of ${marked.length} marked` : undefined },
     { label: "Average time used", value: avg == null ? "–" : clock(avg) },
@@ -59,14 +59,14 @@ async function SessionList() {
   if (sessions.length === 0) {
     return (
       <div className="flex flex-col items-center gap-4 rounded-3xl border-[1.5px] border-line bg-white px-6 py-12 text-center">
-        <Pip mood="happy" size={90} />
+        <MyPip mood="happy" size={90} />
         <p className="m-0 text-xl font-bold">No debriefs yet</p>
-        <p className="m-0 max-w-[40ch] text-muted">Finish an interview and Pip&apos;s marking shows up here.</p>
+        <p className="m-0 max-w-[40ch] text-muted">Finish a case and Pip&apos;s marking shows up here.</p>
         <Link
           href="/session"
           className="inline-flex min-h-12 items-center rounded-[14px] border-2 border-ink bg-sun px-6 font-bold text-ink no-underline shadow-pop hover:text-ink"
         >
-          Start an interview
+          Start a case
         </Link>
       </div>
     );
@@ -131,8 +131,8 @@ export default function DebriefsPage() {
         <Suspense fallback={null}>
           <Overview />
         </Suspense>
-        <h2 className="m-0 mt-2 text-xl font-bold tracking-[-0.015em]">Past interviews</h2>
-        <Suspense fallback={<p className="m-0 text-muted">Loading your interviews…</p>}>
+        <h2 className="m-0 mt-2 text-xl font-bold tracking-[-0.015em]">Past cases</h2>
+        <Suspense fallback={<p className="m-0 text-muted">Loading your cases…</p>}>
           <SessionList />
         </Suspense>
       </div>

@@ -15,7 +15,7 @@ import { closeAudioContext } from "@/lib/voice/audioContext";
 
 /**
  * Five steps from the "Onboarding" design board: welcome, exam sitting, state and
- * internship, mic check, how interviews work. Answers are saved as each step is left,
+ * internship, mic check, how cases work. Answers are saved as each step is left,
  * so leaving halfway loses nothing.
  */
 
@@ -160,7 +160,7 @@ export function Onboarding({ sittings, initial }: { sittings: string[]; initial:
                 Hi, I&apos;m Pip.
               </h1>
               <p className="m-0 max-w-[40ch] text-[17px] text-muted">
-                I&apos;ll be your coach. A few quick questions and you&apos;ll be ready for your first interview.
+                I&apos;ll be your coach. A few quick questions and you&apos;ll be ready for your first case.
               </p>
             </div>
           )}
@@ -219,7 +219,7 @@ export function Onboarding({ sittings, initial }: { sittings: string[]; initial:
             <div className="flex flex-col gap-[18px]">
               <div>
                 <h1 tabIndex={-1} className={h1}>
-                  How interviews work
+                  How cases work
                 </h1>
               </div>
               <ul className="m-0 grid list-none gap-3 p-0 [grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr))]">
@@ -272,7 +272,7 @@ export function Onboarding({ sittings, initial }: { sittings: string[]; initial:
                     Go to dashboard
                   </button>
                   <button type="button" disabled={busy} onClick={() => finish("/session")} className={primary}>
-                    Start my first interview
+                    Start my first case
                   </button>
                 </>
               ) : (
@@ -363,7 +363,7 @@ function MicCheck({ ok, onHeard, onSkip, h1 }: { ok: boolean; onHeard: () => voi
         Let&apos;s check your mic
       </h1>
       <p className="m-0 max-w-[42ch] text-muted">
-        Interviews are spoken out loud. Say: <b className="text-ink">“Good morning, how can I help you today?”</b>
+        Cases are spoken out loud. Say: <b className="text-ink">“Good morning, how can I help you today?”</b>
       </p>
       <div className={`grid size-[120px] place-items-center rounded-full ${ok || mic === "listening" ? "bg-pink-tint" : "bg-chip"}`}>
         <MicIcon filled={mic === "listening"} width={44} height={44} />

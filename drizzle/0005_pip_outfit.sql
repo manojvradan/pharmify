@@ -1,0 +1,1 @@
+ALTER TABLE "profiles" ADD COLUMN "pip_outfit" jsonb DEFAULT '{}'::jsonb NOT NULL;

@@ -36,6 +36,13 @@
       "when": 1794279161894,
       "tag": "0004_hesitant_loki",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1794544033756,
+      "tag": "0005_pip_outfit",
+      "breakpoints": true
     }
   ]
 }

@@ -130,7 +130,8 @@
     "modelAnswer": "Recognise the red flags: an unknown patient in a hurry, and an S8 item in a different pen. The prescription is invalid anyway, because S4 and S8 medicines can't share a prescription under the Medicine, Poisons and Therapeutic Goods Regulation. Check SafeScript and verify with Dr Burton using the practice's published number, not the one on the script. Decline supply calmly without accusing him ('I'm unable to fill this today'), and don't confront or detain him; keep the script only if it's safe. Report to NSW Police and the Pharmaceutical Regulatory Unit, notify the practice, and document everything including a description. Prevent recurrence with an S8 verification SOP, routine SafeScript checks, staff training, e-prescriptions and a duress protocol."
   },
   "review": {
-    "status": "draft",
+    "status": "reviewed",
+    "date": "2026-11-13",
     "version": "0.1"
   },
   "sources": [

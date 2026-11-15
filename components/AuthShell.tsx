@@ -40,7 +40,7 @@ export function AuthShell({ children }: { children: ReactNode }) {
             Your oral exam, rehearsed out loud.
           </h1>
           <p className="m-0 text-[17px] text-plum">
-            Voice interviews with patients and prescribers who stay in character, marked against the Board&apos;s
+            Voice cases with patients and prescribers who stay in character, marked against the Board&apos;s
             criteria.
           </p>
         </div>
