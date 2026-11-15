@@ -3,9 +3,11 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { DebriefReport } from "@/components/DebriefReport";
+import { getCase } from "@/lib/cases/bank";
+import { rewardFor } from "@/lib/pip/store";
 import { getDebrief, getOwnedSession } from "@/lib/session/store";
 
-export const metadata: Metadata = { title: "Interview results" };
+export const metadata: Metadata = { title: "Case results" };
 
 async function SavedDebrief({ params }: { params: PageProps<"/debrief/[sessionId]">["params"] }) {
   const { sessionId } = await params;
@@ -15,7 +17,11 @@ async function SavedDebrief({ params }: { params: PageProps<"/debrief/[sessionId
   const session = await getOwnedSession(userId, sessionId);
   const debrief = session && (await getDebrief(session.id));
   if (!session || !debrief) notFound();
-  return <DebriefReport debrief={debrief} replayHref={`/session/${session.caseId}`} />;
+  const reward = debrief.report.result === "pass" ? await rewardFor(userId, session.id) : [];
+  // A case reviewed since this debrief was saved no longer shows the draft note.
+  const c = getCase(session.caseId);
+  const draft = c ? c.review.status !== "reviewed" : debrief.draft;
+  return <DebriefReport debrief={{ ...debrief, draft, reward }} replayHref={`/session/${session.caseId}`} />;
 }
 
 export default function DebriefPage({ params }: PageProps<"/debrief/[sessionId]">) {

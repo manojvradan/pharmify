@@ -77,7 +77,7 @@ describe("computeProgress", () => {
     expect(computeProgress(played([1, 2]), now).streak).toEqual({ days: 2, today: false });
     expect(computeProgress(played([0, 2, 3]), now).streak).toEqual({ days: 1, today: true });
     expect(computeProgress(played([2, 3]), now).streak).toEqual({ days: 0, today: false });
-    // An unfinished interview doesn't count.
+    // An unfinished case doesn't count.
     expect(computeProgress([{ category: "clinical", startedAt: daysAgo(0), debrief: null }], now).streak).toEqual({ days: 0, today: false });
   });
 

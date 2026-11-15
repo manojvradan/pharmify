@@ -2,6 +2,7 @@ import { sql } from "drizzle-orm";
 import { index, integer, jsonb, pgEnum, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 import type { Pending } from "@/lib/bot/route";
 import type { CaseRecord } from "@/lib/cases/schema";
+import type { Outfit } from "@/lib/pip/items";
 import type { Debrief } from "@/lib/session/report";
 
 /**
@@ -97,6 +98,8 @@ export const profiles = pgTable("profiles", {
   internshipStage: text("internship_stage"),
   micCheckedAt: timestamp("mic_checked_at", { withTimezone: true }),
   onboardedAt: timestamp("onboarded_at", { withTimezone: true }),
+  /** What Pip is wearing. Items owned are worked out from passed sessions (lib/pip/rewards.ts), not stored. */
+  pipOutfit: jsonb("pip_outfit").$type<Outfit>().notNull().default({}),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
 });

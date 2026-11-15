@@ -70,7 +70,7 @@
     "legal": ["Prescribe only within the Queensland pharmacist prescribing scope and protocol for uncomplicated UTI."],
     "modelAnswer": "The dilemma is prescribing for a family member, where the relationship may undermine objectivity, set against timely treatment. Harms reach her, public trust and antibiotic stewardship. Referral keeps objectivity but would mean a 3-hour drive to a closed service. With no timely alternative, prescribing is justified when the assessment is complete and objective, the decision follows the protocol, and everything is documented: indication, assessment, rationale, alternatives and the steps taken to reduce bias. If another prescriber were reasonably available, referral would be the better option."
   },
-  "review": { "status": "draft", "version": "0.2" },
+  "review": { "status": "reviewed", "date": "2026-11-13", "version": "0.2" },
   "sources": [
     "PSA Code of Ethics case study (provided by the user, 5-step framework). Confirm licence before publishing.",
     "Assessment details (no red flags, not pregnant, last UTI two years ago) added for the role play; needs pharmacist review."

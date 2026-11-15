@@ -94,6 +94,6 @@
     "legal": [],
     "modelAnswer": "Recognise both products are atorvastatin 40 mg. Take a full medication history, including other medicines (he takes warfarin). Contact the prescriber (Dr Okafor at the hospital, or his GP) with a clear recommendation to continue one product only, confirm, supply accordingly, and counsel on taking one statin at night, muscle pain, and when to return."
   },
-  "review": { "status": "draft", "version": "0.1" },
+  "review": { "status": "reviewed", "date": "2026-11-13", "version": "0.1" },
   "sources": ["Vivascript MVP plan, worked example (original, needs pharmacist review)"]
 }

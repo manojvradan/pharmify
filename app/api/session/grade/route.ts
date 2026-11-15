@@ -7,6 +7,7 @@ import { elapsedSeconds, timeUsedAt } from "@/lib/session/clock";
 import { gradeSession } from "@/lib/session/grader";
 import { closeForGrading, getDebrief, getOwnedSession, loadTranscripts, recordUsage, saveDebrief } from "@/lib/session/store";
 import { GRADER_MODEL } from "@/lib/anthropic";
+import { claimReward, rewardFor } from "@/lib/pip/store";
 
 const Body = z.object({ sessionId: z.uuid() });
 
@@ -29,7 +30,7 @@ export async function POST(req: Request) {
   const headers = { "Cache-Control": "no-store" };
 
   const existing = await getDebrief(session.id);
-  if (existing) return Response.json(existing, { headers });
+  if (existing) return Response.json({ ...existing, reward: await rewardFor(userId, session.id) }, { headers });
 
   const c = getCase(session.caseId);
   if (!c) return Response.json({ error: "Unknown case" }, { status: 404 });
@@ -41,7 +42,9 @@ export async function POST(req: Request) {
     const { debrief, usage } = await gradeSession(c, await loadTranscripts(session.id), timeUsed);
     await saveDebrief(session.id, debrief, GRADER_MODEL);
     await recordUsage(userId, session.id, usage);
-    return Response.json(debrief, { headers });
+    // A pass wins a wardrobe item, and Pip puts it on straight away.
+    const reward = debrief.report.result === "pass" ? await claimReward(userId, session.id) : [];
+    return Response.json({ ...debrief, reward }, { headers });
   } catch (err) {
     return anthropicErrorResponse(err, "grader");
   }

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { Pip } from "@/components/Pip";
+import { MyPip } from "@/components/MyPip";
+import { RewardCard } from "@/components/RewardCard";
 import type { Debrief } from "@/lib/session/report";
 import { FAIL_CONDITIONS, SKILLS } from "@/lib/session/report";
 
@@ -132,7 +133,7 @@ export function DebriefReport({
           <div className="flex flex-wrap items-center gap-7 px-9 py-8">
             <div className="relative size-28 flex-none overflow-hidden rounded-full bg-pink-tint">
               <div className="absolute top-[-2px] left-[7px]">
-                <Pip mood={passed ? "celebrate" : "thinking"} size={98} />
+                <MyPip mood={passed ? "celebrate" : "thinking"} size={98} />
               </div>
             </div>
             <div className="flex flex-[1_1_320px] flex-col gap-2">
@@ -166,6 +167,8 @@ export function DebriefReport({
             )}
           </div>
         </section>
+
+        {debrief.reward && debrief.reward.length > 0 && <RewardCard reward={debrief.reward} />}
 
         {/* 2. Fix this first */}
         <section aria-labelledby="fix" className="flex flex-col gap-3">

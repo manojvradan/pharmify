@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { LogoMark } from "@/components/icons";
-import { Pip } from "@/components/Pip";
+import { MyPip } from "@/components/MyPip";
 import { PipGrading } from "@/components/PipGrading";
 import type { PublicCase } from "@/lib/cases/schema";
 
@@ -82,7 +82,7 @@ export function GradingPanel({ error, onRetry }: { error: string | null; onRetry
     <div className="flex flex-1 flex-col items-center justify-center gap-5 px-6 py-10 text-center">
       {error ? (
         <>
-          <Pip mood="thinking" size={110} />
+          <MyPip mood="thinking" size={110} />
           <p className="m-0 font-semibold text-alert">{error}</p>
           <button
             type="button"
@@ -143,12 +143,6 @@ export function SessionHeader({
               Examiner: {notice}
             </span>
           )}
-          <span className="inline-flex items-center gap-2.5 rounded-full bg-ink py-1 pr-3.5 pl-1.5 text-[13px] font-semibold text-white">
-            <span className="grid size-9 place-items-center overflow-hidden rounded-full bg-white">
-              <Pip mood={phase === "review" ? "happy" : "exam"} size={30} />
-            </span>
-            {phase === "review" ? "Review mode · Pip's back" : "Exam mode · Pip's locked in"}
-          </span>
           {phase !== "review" && (
             <div className="flex items-center gap-2.5">
               <span aria-hidden="true" className="block h-1 w-[120px] rounded-sm bg-line-soft">

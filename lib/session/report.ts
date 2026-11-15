@@ -1,4 +1,5 @@
 import { z } from "zod";
+import type { ItemId } from "@/lib/pip/items";
 
 /** The Board's four fail conditions, as named in the candidate guide. */
 export const FAIL_CONDITIONS = [
@@ -88,4 +89,6 @@ export type Debrief = {
   report: GraderReport;
   /** From the fact gate, not the grader: deterministic. */
   facts: { id: string; fact: string; found: boolean; unlockHint: string }[];
+  /** Wardrobe items this pass won (lib/pip/rewards.ts). Not stored: added when the debrief is served. */
+  reward?: ItemId[];
 };

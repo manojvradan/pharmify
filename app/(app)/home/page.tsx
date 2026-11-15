@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
-import { Pip } from "@/components/Pip";
+import { MyPip } from "@/components/MyPip";
 import { Meter, pct } from "@/components/ProgressCharts";
 import type { Category } from "@/lib/session/progress";
 import { getViewerProgress } from "@/lib/session/viewer";
@@ -11,7 +11,6 @@ export const metadata: Metadata = { title: "Home" };
 const categories: {
   key: Category;
   big: string;
-  tag: string;
   bg: string;
   bar: string;
   icon: string;
@@ -19,7 +18,6 @@ const categories: {
   {
     key: "ethical",
     big: "Ethical",
-    tag: "Tough calls",
     bg: "radial-gradient(circle, rgba(22,17,42,0.07) 1.6px, transparent 1.9px) 0 0 / 16px 16px, #FFE8F3",
     bar: "#FF8CC6",
     icon: "M12 3v18M7 21h10M4 7h16M6.5 7L4 13a3 3 0 005 0L6.5 7zM17.5 7L15 13a3 3 0 005 0l-2.5-6z",
@@ -27,7 +25,6 @@ const categories: {
   {
     key: "legal",
     big: "Legal",
-    tag: "Know the rules",
     bg: "repeating-linear-gradient(0deg, transparent 0 21px, rgba(22,17,42,0.06) 21px 22.5px), #FFF4D6",
     bar: "#FFC94D",
     icon: "M7 3h7l4 4v14H7zM14 3v4h4M10 12h5M10 16h5",
@@ -35,7 +32,6 @@ const categories: {
   {
     key: "clinical",
     big: "Complex clinical",
-    tag: "More than one problem",
     bg: "linear-gradient(rgba(22,17,42,0.045) 1px, transparent 1px) 0 0 / 18px 18px, linear-gradient(90deg, rgba(22,17,42,0.045) 1px, transparent 1px) 0 0 / 18px 18px, #EFE6FF",
     bar: "#B99CF5",
     icon: "M9.5 4.5l-5 5a4.6 4.6 0 006.5 6.5l5-5a4.6 4.6 0 00-6.5-6.5zM7 7l6.5 6.5M18 15v6M15 18h6",
@@ -49,21 +45,27 @@ const tile =
 const label = "text-[13px] font-semibold text-muted";
 const big = "text-[28px] leading-[1.1] font-bold tracking-[-0.02em]";
 
+function ProgressSection({ children }: { children: React.ReactNode }) {
+  return (
+    <section aria-labelledby="prog" className="flex flex-col gap-3">
+      <div className="flex flex-wrap items-baseline justify-between gap-3">
+        <h2 id="prog" className="m-0 text-2xl font-bold tracking-[-0.015em]">Your progress</h2>
+        <Link href="/debrief" className="text-[15px] font-bold">See your history</Link>
+      </div>
+      <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 xl:grid-cols-3">{children}</div>
+    </section>
+  );
+}
+
 /** The dashboard's one-row summary; the charts are on the history page. */
 async function ProgressTiles() {
   const p = await getViewerProgress();
-  if (!p || p.done === 0) {
-    return (
-      <div className={`${tile} col-span-full`}>
-        <span className={label}>No interviews yet</span>
-        <span className="text-xl leading-[1.3] font-bold">Your progress shows up here after your first debrief.</span>
-      </div>
-    );
-  }
+  // Nothing to show before the first debrief, so the section stays out of the way.
+  if (!p || p.done === 0) return null;
   return (
-    <>
+    <ProgressSection>
       <div className={tile}>
-        <span className={label}>Interviews done</span>
+        <span className={label}>Cases done</span>
         <span className={big}>{p.done}</span>
         <span className="text-[13px] text-muted">{p.doneThisWeek} this week</span>
       </div>
@@ -76,14 +78,14 @@ async function ProgressTiles() {
         <span className={label}>Work on next</span>
         <span className="text-2xl leading-[1.2] font-bold tracking-[-0.02em]">{p.workOn?.skill ?? "Keep it up"}</span>
       </div>
-    </>
+    </ProgressSection>
   );
 }
 
 function ProgressTilesFallback() {
   return (
     <>
-      {["Interviews done", "Pass rate", "Work on next"].map((name) => (
+      {["Cases done", "Pass rate", "Work on next"].map((name) => (
         <div key={name} className={tile} aria-busy="true">
           <span className={label}>{name}</span>
           <span className="h-[31px] w-16 animate-pulse rounded-lg bg-line-soft motion-reduce:animate-none" />
@@ -113,29 +115,14 @@ async function CategoryCounts({ category, bar }: { category: Category; bar: stri
   return <CategoryBar played={c.played} passed={c.passed} bar={bar} />;
 }
 
-function Chip({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-sm font-semibold">
-      {children}
-    </span>
-  );
-}
-
 export default function HomePage() {
   return (
     <main className="box-border flex min-w-0 flex-[999_1_560px] flex-col gap-5 px-[clamp(16px,3vw,36px)] pt-6 pb-8">
       {/* Greeting */}
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div className="flex flex-col gap-0.5">
-          <h1 className="m-0 text-[clamp(26px,2.6vw,32px)] font-bold tracking-[-0.015em]">Ready for an interview?</h1>
+          <h1 className="m-0 text-[clamp(26px,2.6vw,32px)] font-bold tracking-[-0.015em]">Ready for a case?</h1>
         </div>
-        <span className="inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2.5 text-sm font-bold text-white">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <rect x="2" y="3" width="12" height="11" rx="2" stroke="#FFC94D" strokeWidth="1.6" />
-            <path d="M2 6.5h12M5.5 1.5v3M10.5 1.5v3" stroke="#FFC94D" strokeWidth="1.6" strokeLinecap="round" />
-          </svg>
-          [XX] days to your sitting
-        </span>
       </div>
 
       {/* Quick play */}
@@ -157,42 +144,16 @@ export default function HomePage() {
           <span aria-hidden="true" className="absolute -inset-[7px] rounded-full border-2 border-dashed border-white opacity-70 group-hover:animate-ring-spin" />
           <div className="absolute inset-0 overflow-hidden rounded-full border-[3px] border-white bg-[#FFE3F1]">
             <div className="absolute top-[-4px] left-[9px] origin-bottom group-hover:animate-wiggle">
-              <Pip mood="happy" size={110} />
+              <MyPip mood="happy" size={110} />
             </div>
           </div>
         </div>
         <div className="relative flex flex-[1_1_340px] flex-col gap-2">
           <span className="self-start rounded-full bg-ink px-3 py-[5px] font-mono text-[13px] text-white">QUICK PLAY</span>
           <h2 className="m-0 text-[clamp(30px,3.2vw,42px)] leading-none font-bold tracking-[-0.02em]">
-            Surprise interview
+            Surprise case
           </h2>
           <p className="m-0 max-w-[46ch] font-semibold text-plum">Pip picks a random case from any category</p>
-          <div className="flex flex-wrap gap-2">
-            <Chip>
-              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <circle cx="8" cy="8.5" r="5.5" stroke="#16112A" strokeWidth="1.6" />
-                <path d="M8 6v2.7l1.8 1.1" stroke="#16112A" strokeWidth="1.6" strokeLinecap="round" />
-              </svg>
-              5–20 min
-            </Chip>
-            <Chip>
-              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <circle cx="5.5" cy="5.5" r="2.3" stroke="#16112A" strokeWidth="1.5" />
-                <circle cx="11" cy="6" r="2" stroke="#16112A" strokeWidth="1.5" />
-                <path
-                  d="M1.5 13c.6-2.4 2.2-3.6 4-3.6s3.4 1.2 4 3.6M10 9.6c1.8 0 3.3 1 3.9 3.4"
-                  stroke="#16112A"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                />
-              </svg>
-              Patient + prescriber
-            </Chip>
-            <Chip>
-              <span aria-hidden="true" className="font-bold">?</span>
-              Hidden facts inside
-            </Chip>
-          </div>
         </div>
         <Link
           href="/session"
@@ -201,22 +162,14 @@ export default function HomePage() {
           <svg width="20" height="20" viewBox="0 0 18 18" fill="none" aria-hidden="true">
             <path d="M5 3.5v11l9-5.5z" fill="#16112A" stroke="#16112A" strokeWidth="1.5" strokeLinejoin="round" />
           </svg>
-          Start interview
+          Start case
         </Link>
       </section>
 
       {/* Progress */}
-      <section aria-labelledby="prog" className="flex flex-col gap-3">
-        <div className="flex flex-wrap items-baseline justify-between gap-3">
-          <h2 id="prog" className="m-0 text-2xl font-bold tracking-[-0.015em]">Your progress</h2>
-          <Link href="/debrief" className="text-[15px] font-bold">See your history</Link>
-        </div>
-        <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 xl:grid-cols-3">
-          <Suspense fallback={<ProgressTilesFallback />}>
-            <ProgressTiles />
-          </Suspense>
-        </div>
-      </section>
+      <Suspense fallback={<ProgressSection><ProgressTilesFallback /></ProgressSection>}>
+        <ProgressTiles />
+      </Suspense>
 
       {/* Categories */}
       <section aria-labelledby="cats" className="flex flex-col gap-3">
@@ -247,7 +200,6 @@ export default function HomePage() {
                         <path d={c.icon} stroke="#16112A" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </span>
-                    <span className="rounded-full bg-white px-2.5 py-1 text-[13px] font-semibold">{c.tag}</span>
                   </div>
                   <h3 className="relative m-0 flex flex-col leading-[0.95]">
                     <span className="max-w-[9ch] text-[clamp(32px,2.8vw,42px)] font-bold tracking-[-0.02em]">{c.big}</span>
@@ -274,23 +226,23 @@ export default function HomePage() {
       {/* Flashcards promo */}
       <section
         aria-label="Code of Ethics flashcards"
-        className="group flex flex-wrap items-center gap-5 rounded-3xl bg-ink px-6 py-3.5 text-white"
+        className="group flex flex-wrap items-center gap-5 rounded-3xl border-[1.5px] border-sun-soft bg-sun-tint px-6 py-3.5 text-ink"
       >
         <span className="origin-bottom group-hover:animate-wiggle">
-          <Pip mood="thinking" size={54} />
+          <MyPip mood="thinking" size={54} />
         </span>
         <div className="flex flex-[1_1_300px] flex-col gap-1">
-          <span className="text-[13px] font-bold tracking-[0.06em] text-sun uppercase">Study tool</span>
+          <span className="text-[13px] font-bold tracking-[0.06em] text-sun-deep uppercase">Study tool</span>
           <h2 className="m-0 text-[21px] font-bold tracking-[-0.02em]">Code of Ethics flashcards</h2>
         </div>
         <div className="flex items-center gap-4">
           <span className="flex flex-col items-end leading-[1.2]">
             <span className="text-[28px] font-bold">12</span>
-            <span className="text-[13px] text-on-ink-muted">due today</span>
+            <span className="text-[13px] text-muted">due today</span>
           </span>
           <Link
             href="/flashcards"
-            className="inline-flex min-h-[52px] items-center rounded-2xl border-2 border-white bg-pink px-6 font-semibold text-ink no-underline shadow-pop-white hover:text-ink"
+            className="inline-flex min-h-[52px] items-center rounded-2xl border-2 border-ink bg-pink px-6 font-semibold text-ink no-underline shadow-pop hover:text-ink"
           >
             Review cards
           </Link>

@@ -211,7 +211,8 @@
     "modelAnswer": "Take a full history: she has had no response after three months of imipramine 10 mg for panic disorder, has never tried psychological therapy, takes diltiazem, and misuses her GTN spray. Call Dr Burton, confirm her identity, and recommend switching to an SSRI. A TCA is first line only after a prior response, and 10 mg is subtherapeutic. Cite AMH. Note the diltiazem interaction, but don't make it the main reason. Recommend tapering imipramine (about 25% a day), a 2 to 4 day washout, then for example sertraline 25 mg in the morning, increasing to 50 mg after a week, plus CBT. Counsel her on the plan, the delay before it works, not stopping suddenly, and correct GTN use with ambulance advice."
   },
   "review": {
-    "status": "draft",
+    "status": "reviewed",
+    "date": "2026-11-13",
     "version": "0.1"
   },
   "sources": [

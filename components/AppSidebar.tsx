@@ -5,11 +5,12 @@ import Link from "next/link";
 import { Suspense, useSyncExternalStore, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
 import { SESSION_SIZE } from "@/lib/flashcards";
-import { CardsIcon, DocIcon, HomeIcon, LogoMark } from "@/components/icons";
+import { CardsIcon, DocIcon, HangerIcon, HomeIcon, LogoMark } from "@/components/icons";
 
 const items = [
   { href: "/home", label: "Home", Icon: HomeIcon },
   { href: "/flashcards", label: "Flashcards", Icon: CardsIcon, badge: String(SESSION_SIZE) },
+  { href: "/pip", label: "My Pip", Icon: HangerIcon },
   { href: "/debrief", label: "History", Icon: DocIcon },
 ];
 
@@ -114,7 +115,12 @@ function LogOut() {
   return (
     <button
       type="button"
-      onClick={() => void signOut({ redirectUrl: "/" })}
+      onClick={() => {
+        try {
+          localStorage.removeItem("pharmify.pip.outfit"); // the next person to sign in has their own Pip
+        } catch {}
+        void signOut({ redirectUrl: "/" });
+      }}
       title="Log out"
       className="flex min-h-10 w-full cursor-pointer items-center gap-3 rounded-[12px] border-0 bg-transparent px-3.5 text-[15px] font-bold text-ink-2 hover:bg-chip hover:text-ink"
     >

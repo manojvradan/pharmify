@@ -1,7 +1,7 @@
 import type { Progress } from "@/lib/session/progress";
 
 /**
- * The progress charts: a week of interviews, recent results, hidden facts, and skills.
+ * The progress charts: a week of cases, recent results, hidden facts, and skills.
  * Shown in full on the history page (/debrief); the dashboard keeps a one-line summary.
  */
 
@@ -32,18 +32,18 @@ export function Meter({ part, whole }: { part: number; whole: number }) {
   );
 }
 
-/** Interviews per day for the last week, as small columns; the busiest day is labelled. */
+/** Cases per day for the last week, as small columns; the busiest day is labelled. */
 function WeekColumns({ days }: { days: { day: string; label: string; count: number }[] }) {
   const max = Math.max(1, ...days.map((d) => d.count));
   const busiest = days.reduce((a, b) => (b.count > a.count ? b : a), days[0]);
   return (
     <div
       role="img"
-      aria-label={`Interviews per day, last 7 days: ${days.map((d) => `${d.label} ${d.count}`).join(", ")}`}
+      aria-label={`Cases per day, last 7 days: ${days.map((d) => `${d.label} ${d.count}`).join(", ")}`}
       className="mt-2 flex items-end gap-1.5"
     >
       {days.map((d, i) => (
-        <div key={d.day} className="group relative flex flex-1 flex-col items-center gap-1" title={`${d.label}: ${d.count} interview${d.count === 1 ? "" : "s"}`}>
+        <div key={d.day} className="group relative flex flex-1 flex-col items-center gap-1" title={`${d.label}: ${d.count} case${d.count === 1 ? "" : "s"}`}>
           <span className="h-4 text-[11px] leading-4 font-semibold text-muted tabular-nums">
             {d === busiest && d.count > 0 ? d.count : ""}
           </span>
@@ -92,7 +92,7 @@ function ResultStrip({ recent }: { recent: { pass: boolean; title: string }[] })
 }
 
 /**
- * How often each skill was solid ("yes") across the graded interviews, weakest first. The
+ * How often each skill was solid ("yes") across the graded cases, weakest first. The
  * skill to work on next is in the accent colour; the rest are grey context.
  */
 function SkillBars({ skills, focus, done }: { skills: { skill: string; yes: number; partly: number; no: number }[]; focus: string | null; done: number }) {
@@ -103,7 +103,7 @@ function SkillBars({ skills, focus, done }: { skills: { skill: string; yes: numb
     <div className={`${tile} col-span-full gap-3`}>
       <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
         <span className="text-[15px] font-bold">Skills</span>
-        <span className="text-[13px] text-muted">How often each was solid across your {done} interview{done === 1 ? "" : "s"}</span>
+        <span className="text-[13px] text-muted">How often each was solid across your {done} case{done === 1 ? "" : "s"}</span>
       </div>
       <ul className="m-0 flex list-none flex-col gap-2.5 p-0">
         {rows.map((r) => {
@@ -143,7 +143,7 @@ export function ProgressOverview({ p }: { p: Progress }) {
   return (
     <>
       <div className={tile}>
-        <span className={label}>Interviews done</span>
+        <span className={label}>Cases done</span>
         <span className={big}>{p.done}</span>
         <span className="text-[13px] text-muted">{p.doneThisWeek} this week</span>
         <WeekColumns days={p.daily} />

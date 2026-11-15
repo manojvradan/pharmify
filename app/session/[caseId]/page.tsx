@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { ExamSession } from "@/components/ExamSession";
 import { ExplainSession } from "@/components/ExplainSession";
-import { Pip } from "@/components/Pip";
+import { MyPip } from "@/components/MyPip";
 import { caseIds, getCase, toPublic } from "@/lib/cases/bank";
 import { voiceEnabled } from "@/lib/voice/elevenlabs";
 import { liveKitEnabled } from "@/lib/voice/livekit";
@@ -38,7 +38,7 @@ export default function CaseSessionPage({ params }: PageProps<"/session/[caseId]
     <Suspense
       fallback={
         <main className="flex min-h-screen flex-col items-center justify-center gap-4 bg-white text-muted">
-          <Pip mood="exam" size={90} />
+          <MyPip mood="exam" size={90} />
           <p className="m-0">Setting up the exam room…</p>
         </main>
       }

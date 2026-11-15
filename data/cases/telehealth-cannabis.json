@@ -157,7 +157,8 @@
     "modelAnswer": "The prescription is legally valid but may not be clinically appropriate. Gather his diagnosis, history, symptoms and goals: here, anxiety and insomnia, no prior cannabis use, and a brother with schizophrenia. The dilemma is acting in his best interests while avoiding harm with a high-risk medicine that lacks strong evidence. Don't supply until you've spoken to the prescriber about the indication, previous treatments and the family history of psychosis; the decision to supply remains yours. Communicate concerns clearly to him and collaboratively with the prescriber. If supplying, counsel and reassess at each dispensing; if not, help him access appropriate care. Document everything and follow S8 requirements."
   },
   "review": {
-    "status": "draft",
+    "status": "reviewed",
+    "date": "2026-11-13",
     "version": "0.2"
   },
   "sources": [

@@ -72,7 +72,7 @@
     "legal": ["There is no legal requirement to report him to police, and no ethical justification for doing so."],
     "modelAnswer": "Recognise the serotonergic interaction between MDMA and an SSRI and the risk of serotonin toxicity. The dilemma is perceived endorsement of illicit drug use versus his safety. Harm-reduction advice is within scope and is not encouragement, so give clear, evidence-based, non-judgemental information. Make sure he can recognise the signs of serotonin toxicity and knows when to seek urgent help, advise against stopping sertraline suddenly, and refer him to AOD support services. Afterwards, make sure you know your local AOD referral pathways."
   },
-  "review": { "status": "draft", "version": "0.1" },
+  "review": { "status": "reviewed", "date": "2026-11-13", "version": "0.1" },
   "sources": [
     "PSA Code of Ethics case study (provided by the user, 5-step framework). Confirm licence before publishing.",
     "Australian Medicines Handbook: adverse effects of antidepressants (serotonin toxicity).",

@@ -9,7 +9,7 @@ import type { PublicCase } from "@/lib/cases/schema";
  * sheet docks as a band along the top and the papers slide to the edges of the desk, where
  * they can be dragged (mouse, touch, or arrow keys) out of the way of the role play in the
  * middle. The prescription has a "Read" button that brings it to the centre at full size,
- * and any paper can be minimised to a tray in the bottom corner. When the interview ends
+ * and any paper can be minimised to a tray in the bottom corner. When the case ends
  * (`papers` false) they all clear off the desk.
  */
 
@@ -160,7 +160,7 @@ export function CaseDesk({
   c: PublicCase;
   /** False before the clock starts (papers laid out to read), true once it's running. */
   live: boolean;
-  /** False once the interview is over (grading), so the papers clear off the desk. */
+  /** False once the case is over (grading), so the papers clear off the desk. */
   papers?: boolean;
   /** Under the question sheet before the clock starts: the start button and options. */
   brief: ReactNode;
@@ -448,7 +448,7 @@ export function CaseDesk({
     <main
       ref={stageRef}
       className="relative flex-1 overflow-hidden bg-canvas bg-[radial-gradient(#E3DEEA_1px,transparent_1px)] bg-size-[22px_22px]"
-      style={{ minHeight: live ? 720 : Math.max(640, briefLayout.bottom + 40) }}
+      style={{ minHeight: live ? 780 : Math.max(640, briefLayout.bottom + 40) }}
     >
       {!live ? (
         <section
@@ -479,8 +479,9 @@ export function CaseDesk({
               </button>
             </div>
           </section>
-          {/* Tabs, character and controls sit together as one group in the middle of the desk. */}
-          <section aria-label="Role play" className="absolute inset-x-0 bottom-0 flex flex-col items-center justify-center gap-7 py-6" style={{ top: BAND_H }}>
+          {/* Tabs pinned to the top and controls to the bottom; the character's stage fills the
+              space between, so switching characters never moves either. */}
+          <section aria-label="Role play" className="absolute inset-x-0 bottom-0 flex flex-col items-center gap-5 py-5" style={{ top: BAND_H }}>
             {children}
           </section>
           {zoomed && <div aria-hidden="true" onClick={() => setZoom(false)} className="absolute inset-0 z-[18] bg-ink/35" />}

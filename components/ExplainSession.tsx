@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { DebriefReport } from "@/components/DebriefReport";
-import { Pip } from "@/components/Pip";
+import { MyPip } from "@/components/MyPip";
 import { CaseDocuments, GradingPanel, SessionHeader, timeCheck, type Phase } from "@/components/SessionChrome";
 import type { MicError } from "@/hooks/useRecorder";
 import { useSegmentRecorder } from "@/hooks/useSegmentRecorder";
@@ -230,7 +230,7 @@ export function ExplainSession({ case: c, voice = false }: { case: PublicCase; v
         <section aria-label="Your answer" className="flex min-w-0 flex-[999_1_560px] flex-col">
           {phase === "ready" && (
             <div className="flex flex-1 flex-col items-center justify-center gap-6 px-6 py-10 text-center">
-              <Pip mood="exam" size={110} />
+              <MyPip mood="exam" size={110} />
               <h1 className="m-0 text-[clamp(26px,2.6vw,34px)] font-bold tracking-[-0.02em]">
                 Read the case, then explain what you would do.
               </h1>
@@ -271,7 +271,7 @@ export function ExplainSession({ case: c, voice = false }: { case: PublicCase; v
                   <div className="relative grid size-[180px] place-items-center">
                     <span aria-hidden="true" className="absolute inset-3 animate-ring rounded-full bg-pink opacity-25" />
                     <span className="relative grid size-[150px] place-items-center rounded-full border-[3px] border-white bg-pink-tint shadow-[0_24px_48px_-20px_rgba(230,80,150,0.45)]">
-                      <Pip mood="exam" size={120} />
+                      <MyPip mood="exam" size={120} />
                     </span>
                   </div>
                   <div className="flex flex-col items-center gap-3">
