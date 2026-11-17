@@ -3,7 +3,7 @@ import "server-only";
 import { randomBytes } from "node:crypto";
 import { and, eq } from "drizzle-orm";
 import { db, schema } from "@/lib/db";
-import { type CaseDraft, caseSummary, draftCase } from "./cases";
+import { type CaseDraft, caseSummary, draftCase, draftProblemsNow } from "./cases";
 import { publishCase } from "./github";
 import { createIssue } from "./linear";
 import { ASK_QUESTION, ASK_SUGGESTION, BUTTON, HELP_TEXT, type Pending, route } from "./route";
@@ -131,6 +131,14 @@ export async function handleMessage(msg: Incoming): Promise<void> {
         if (!row || row.status !== "draft") return void (await sendText(to, "That one's already been dealt with."));
         if (row.problems.length > 0) {
           return void (await sendText(to, "This draft still fails the checks, so I can't put it live. Reply with what to change."));
+        }
+        const now = draftProblemsNow(row.record);
+        if (now.length > 0) {
+          await db().update(schema.botCaseDrafts).set({ problems: now, updatedAt: new Date() }).where(eq(schema.botCaseDrafts.id, row.id));
+          return void (await sendText(
+            to,
+            ["The checks have changed since this draft was made, so it needs updating before it can go live:", ...now.map((p) => `• ${p}`), "", "Reply with what to change, or just say \"fix it\"."].join("\n"),
+          ));
         }
         // Cleared first, so a double tap can't publish twice.
         await setPending(to, null);

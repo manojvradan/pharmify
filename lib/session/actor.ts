@@ -3,7 +3,7 @@ import "server-only";
 import type Anthropic from "@anthropic-ai/sdk";
 import { getPersona } from "@/lib/cases/bank";
 import type { AgentId, CaseRecord, Turn } from "@/lib/cases/schema";
-import { unlockedFacts } from "./factGate";
+import { needsPatientNamed, patientFullName, patientNamedAt, unlockedFacts } from "./factGate";
 
 /**
  * The actor's system prompt. It depends only on the case and the agent, so it is
@@ -22,6 +22,8 @@ export function actorSystemPrompt(c: CaseRecord, agent: AgentId): string {
       : "A pharmacist has phoned you about one of your patients.");
   const isPublic = (p.standing ?? (isPatient ? "public" : "professional")) === "public";
   const bio = Object.entries(p.bio ?? {});
+  // A prescriber on a call learns who it is about only once the pharmacist names the patient (actorMessages).
+  const unnamed = needsPatientNamed(c, agent);
   const details = bio.length
     ? `\n<your_details>\n${bio.map(([k, v]) => `- ${k}: ${v}`).join("\n")}\n</your_details>\n`
     : "";
@@ -35,9 +37,15 @@ ${p.description}
 <setting>${c.setting}</setting>
 ${details}
 <what_you_know>
-${p.publicFacts.map((f) => `- ${f}`).join("\n")}
+${unnamed ? "- You don't yet know which of your patients this call is about." : p.publicFacts.map((f) => `- ${f}`).join("\n")}
 </what_you_know>
-${p.openingLine ? `\nYou opened the conversation by saying: "${p.openingLine}"\n` : ""}${bio.length ? "\nYour details are your own, so give any of them plainly whenever you are asked, the way anyone would when a pharmacist checks who they are talking to.\n" : ""}
+${p.openingLine ? `\nYou opened the conversation by saying: "${p.openingLine}"\n` : ""}${bio.length ? "\nYour details are your own, so give any of them plainly whenever you are asked, the way anyone would when a pharmacist checks who they are talking to.\n" : ""}${
+    unnamed
+      ? `
+You see many patients, so until the system tells you the pharmacist has named the patient, you have no idea who this call is about. Don't guess, and don't mention any patient, condition, medicine or prescription. If the pharmacist starts asking or explaining before saying who the patient is, ask for the patient's name (and date of birth) first. who_you_are describes how you will respond once you know.
+`
+      : ""
+  }
 What you know is limited to your_details and what_you_know, plus any facts the system adds later in the conversation. Nothing else about this situation is true for you:
 - If asked about something not covered, say you don't know or aren't sure, in your own manner. Do not fill gaps: never invent medicines, what a medicine is for, doses, conditions, test results, family members, other people, events, or what any health professional said or did.
 - When you list medicines or other facts, name only the known ones, and do not hint that there are more ("a couple of others", "a lot of things"). As far as you know, that is everything.
@@ -69,6 +77,7 @@ Right: I think so, love.
  */
 export function actorMessages(c: CaseRecord, agent: AgentId, transcript: Turn[]): Anthropic.MessageParam[] {
   const unlocks = unlockedFacts(c, agent, transcript);
+  const namedAt = needsPatientNamed(c, agent) ? patientNamedAt(c, agent, transcript) : null;
   const byTurn = new Map<number, string[]>();
   for (const u of unlocks) byTurn.set(u.turnIndex, [...(byTurn.get(u.turnIndex) ?? []), u.fact]);
 
@@ -80,14 +89,22 @@ export function actorMessages(c: CaseRecord, agent: AgentId, transcript: Turn[])
     messages.push({ role: turn.role === "candidate" ? "user" : "assistant", content: turn.text });
     // Placed after the question that unlocked it: a system message cannot be the first message.
     const facts = byTurn.get(i);
+    const parts: string[] = [];
+    if (i === namedAt) {
+      const p = getPersona(c, agent)!;
+      const dob = c.agents.patient.bio?.["Date of birth"];
+      parts.push(
+        `The pharmacist has named the patient: ${patientFullName(c)}${dob ? `, born ${dob}` : ""}. You know this patient, and these are now part of what you know:\n${p.publicFacts.map((f) => `- ${f}`).join("\n")}`,
+      );
+    }
     if (facts) {
-      messages.push({
-        role: "system",
-        content: `These are true for your character and now part of what you know. The pharmacist's question above is about them, so answer it with them, plainly and in your own words:\n${facts
+      parts.push(
+        `These are true for your character and now part of what you know. The pharmacist's question above is about them, so answer it with them, plainly and in your own words:\n${facts
           .map((f) => `- ${f}`)
           .join("\n")}`,
-      });
+      );
     }
+    if (parts.length) messages.push({ role: "system", content: parts.join("\n\n") });
   });
   return messages;
 }

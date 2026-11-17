@@ -3,7 +3,7 @@
   "title": "Antibiotic interaction",
   "agents": {
     "patient": {
-      "bio": {},
+      "bio": {"Full name": "Harold Nguyen", "Date of birth": "9 March 1955", "Age": "71", "Address": "27 Wattle Avenue, Parramatta NSW 2150", "Phone": "0491 570 157", "Occupation": "Retired electrician"},
       "name": "Mr Nguyen",
       "label": "Patient · Mr Nguyen",
       "description": "A 71-year-old retired man, friendly and cooperative, with average health literacy. He answers honestly but only what he is directly asked, and volunteers almost nothing about his conditions, medicines or supplements. He does not think of his over-the-counter painkillers or supplements as 'medicines' unless asked about them specifically. If the pharmacist explains the risks with his warfarin or his cholesterol tablet, he becomes worried and readily agrees to the pharmacist calling the doctor. He relaxes if things are explained calmly and clearly. He gets a bit confused and impatient if the pharmacist uses jargon or just hands the script over without explanation.",
@@ -14,7 +14,7 @@
       ]
     },
     "prescriber": {
-      "bio": {},
+      "bio": {"Full name": "Dr Sunil Patel", "Role": "General practitioner", "Workplace": "A local general practice, NSW"},
       "name": "Dr Patel",
       "label": "Call Dr Patel",
       "description": "The GP who prescribed the clarithromycin. Busy between patients but fair, and listens if the pharmacist is clear and brief. Asks the pharmacist directly what antibiotic they suggest instead, and what monitoring is needed. Agrees to change the antibiotic only if the pharmacist identifies BOTH interactions: clarithromycin with warfarin and clarithromycin with simvastatin. If the pharmacist raises only the warfarin interaction, says, 'I'll just monitor the INR then,' and wants to keep the clarithromycin. If only one interaction is raised, prefers to keep the clarithromycin and is not persuaded until both are explained. Accepts an evidence-based alternative and an INR check within a few days once both interactions are explained.",
@@ -76,15 +76,25 @@
     "prescription": {
       "pbs": true,
       "item": "Clarithromycin 500 mg tablets",
-      "footer": "Dr S. Patel · Harold Nguyen, 71",
+      "footer": "Dr S. Patel · Harold Nguyen, DOB 09/03/1955",
       "repeats": "0",
       "quantity": "14",
       "directions": "One tablet twice daily for 7 days · Qty 14 · No repeats",
-      "patientAge": "71",
+      "patientDob": "09/03/1955",
       "prescriber": "Dr S. Patel",
       "patientName": "Harold Nguyen",
       "prescriberDetail": "General practitioner, NSW"
-    }
+    },
+    "dispensingHistory": [
+      {"date": "20 Oct 2026", "item": "Warfarin 5 mg tablets (Marevan)", "directions": "One tablet at night, or as directed according to INR", "quantity": "50", "prescriber": "Dr S. Patel (GP)"},
+      {"date": "20 Oct 2026", "item": "Simvastatin 40 mg tablets", "directions": "One tablet at night", "quantity": "30", "prescriber": "Dr S. Patel (GP)"},
+      {"date": "20 Oct 2026", "item": "Perindopril 5 mg tablets", "directions": "One tablet daily", "quantity": "30", "prescriber": "Dr S. Patel (GP)"},
+      {"date": "20 Oct 2026", "item": "Bisoprolol 2.5 mg tablets", "directions": "One tablet daily", "quantity": "28", "prescriber": "Dr S. Patel (GP)"},
+      {"date": "21 Sep 2026", "item": "Simvastatin 40 mg tablets", "directions": "One tablet at night", "quantity": "30", "prescriber": "Dr S. Patel (GP)"},
+      {"date": "21 Sep 2026", "item": "Perindopril 5 mg tablets", "directions": "One tablet daily", "quantity": "30", "prescriber": "Dr S. Patel (GP)"},
+      {"date": "21 Sep 2026", "item": "Bisoprolol 2.5 mg tablets", "directions": "One tablet daily", "quantity": "28", "prescriber": "Dr S. Patel (GP)"},
+      {"date": "1 Sep 2026", "item": "Warfarin 5 mg tablets (Marevan)", "directions": "One tablet at night, or as directed according to INR", "quantity": "50", "prescriber": "Dr S. Patel (GP)"}
+    ]
   },
   "hiddenFacts": [
     {

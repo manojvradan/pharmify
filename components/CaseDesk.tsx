@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore, type KeyboardEvent, type PointerEvent, type ReactNode } from "react";
 import type { PublicCase } from "@/lib/cases/schema";
+import { DispensingHistory } from "@/components/DispensingHistory";
 
 /**
  * The exam desk (design: "Exam mode session"). Before the clock starts, the question sheet
@@ -74,7 +75,7 @@ function Prescription({ p }: { p: NonNullable<PublicCase["documents"]["prescript
         <Field name="Patient's Medicare No." />
         <Field name="Date of prescribing" value={p.date} />
         <Field name="Patient's name" value={p.patientName} />
-        <Field name="Age" value={p.patientAge} />
+        <Field name="Date of birth" value={p.patientDob} />
         <Field name="Address" value={p.patientAddress} wide />
       </div>
       <div className="flex gap-[18px] bg-[repeating-linear-gradient(135deg,#FFFFFF_0_9px,#FCFAFD_9px_10px)] px-6 py-[18px]">
@@ -514,15 +515,7 @@ export function CaseDesk({
           "hist",
           "Dispensing history",
           <Sheet title={`Dispensing history${patient ? ` · ${patient}` : ""}`}>
-            {dispensingHistory.map((d, i) => (
-              <div
-                key={`${d.item}-${d.date}`}
-                className={`flex justify-between gap-3 py-1.5 text-sm ${i < dispensingHistory.length - 1 ? "border-b border-line-soft" : ""}`}
-              >
-                <span>{d.item}</span>
-                <span className="flex-none font-mono whitespace-nowrap text-subtle">{d.date}</span>
-              </div>
-            ))}
+            <DispensingHistory entries={dispensingHistory} />
           </Sheet>,
         )}
       {notes &&

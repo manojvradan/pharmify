@@ -101,6 +101,37 @@ export function mentionsTrigger(text: string, triggers: string[]): boolean {
   return triggers.some((t) => sentences.some((words) => matches(words, t)));
 }
 
+/** The patient's full name as the bank has it: their bio, else the prescription. */
+export function patientFullName(c: CaseRecord): string | undefined {
+  const name = c.agents.patient.bio?.["Full name"] ?? c.documents.prescription?.patientName;
+  return name?.replace(/\(.*?\)/g, "").trim() || undefined;
+}
+
+/** The patient's surname, normalised: what a caller must say before a prescriber knows who the call is about. */
+export function patientSurname(c: CaseRecord): string | undefined {
+  const words = normalise(patientFullName(c) ?? "");
+  return words.at(-1);
+}
+
+/** Whether this agent starts the conversation not knowing which patient it is about. */
+export function needsPatientNamed(c: CaseRecord, agent: AgentId): boolean {
+  return agent === "prescriber" && !!c.agents.prescriber && !c.agents.prescriber.knowsPatient && !!patientSurname(c);
+}
+
+/**
+ * The candidate turn in which the pharmacist first named the patient to this agent (their
+ * surname, or a possessive like "Ryan's"). -1 when the agent knows the patient from the start;
+ * null when they haven't been told yet.
+ */
+export function patientNamedAt(c: CaseRecord, agent: AgentId, transcript: Turn[]): number | null {
+  if (!needsPatientNamed(c, agent)) return -1;
+  const surname = patientSurname(c)!;
+  const i = transcript.findIndex(
+    (t) => t.role === "candidate" && normalise(t.text).some((w) => w === surname || w === `${surname}s`),
+  );
+  return i === -1 ? null : i;
+}
+
 export type UnlockEvent = { factId: string; fact: string; turnIndex: number };
 
 /**
@@ -109,10 +140,13 @@ export type UnlockEvent = { factId: string; fact: string; turnIndex: number };
  * it from the full history on every request instead of trusting the browser.
  */
 export function unlockedFacts(c: CaseRecord, agent: AgentId, transcript: Turn[]): UnlockEvent[] {
+  // A prescriber who doesn't yet know which patient the call is about can't answer about them.
+  const namedAt = patientNamedAt(c, agent, transcript);
+  if (namedAt === null) return [];
   const pending = c.hiddenFacts.filter((f) => f.agent === agent);
   const events: UnlockEvent[] = [];
   transcript.forEach((turn, turnIndex) => {
-    if (turn.role !== "candidate" || pending.length === 0) return;
+    if (turn.role !== "candidate" || turnIndex < namedAt || pending.length === 0) return;
     // A trigger must match inside one sentence, so words from unrelated sentences can't combine.
     const sentences = sentencesOf(turn.text).map(normalise);
     for (let i = pending.length - 1; i >= 0; i--) {

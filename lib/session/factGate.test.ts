@@ -2,13 +2,14 @@ import { describe, expect, it } from "vitest";
 import raw from "@/data/cases/atorvastatin-doubling-up.json";
 import { CaseRecord, type AgentId, type Turn } from "@/lib/cases/schema";
 import { caseIds, getCase } from "@/lib/cases/bank";
-import { mentionsTrigger, normalise, unlockedFacts } from "./factGate";
+import { askedAfterNaming } from "@/lib/cases/check";
+import { mentionsTrigger, normalise, patientNamedAt, unlockedFacts } from "./factGate";
 
 const atorva = CaseRecord.parse(raw);
 
-/** Fact ids unlocked by a single candidate line to one agent. */
+/** Fact ids unlocked by a single candidate line to one agent (to the prescriber, once the patient is named). */
 function unlocks(agent: AgentId, line: string): string[] {
-  const transcript: Turn[] = [{ role: "candidate", text: line, t: 0 }];
+  const transcript = askedAfterNaming(atorva, agent, line);
   return unlockedFacts(atorva, agent, transcript)
     .map((u) => u.factId)
     .sort();
@@ -96,7 +97,37 @@ describe("fact gate: atorvastatin case, prescriber", () => {
   });
 });
 
-/** Full candidate scripts from live runs on 2026-11-05: which facts each one has earned. */
+describe("fact gate: the prescriber doesn't know who the call is about until told", () => {
+  const ask = (text: string): Turn => ({ role: "candidate", text, t: 0 });
+  const reply: Turn = { role: "actor", text: "Which patient?", t: 0 };
+
+  it("asking before naming the patient unlocks nothing, even with the right words", () => {
+    expect(unlockedFacts(atorva, "prescriber", [ask("Did you intend for him to take both atorvastatins?")])).toEqual([]);
+    expect(unlockedFacts(atorva, "prescriber", [ask("It's about Mr R. Did you intend him to take two statins?")])).toEqual([]);
+  });
+
+  it.each(["It's about Ronald Ryan.", "I'm calling about Mr Ryan, born 14 May 1958.", "It's regarding Ryan's discharge script."])(
+    "%s names the patient",
+    (line) => expect(patientNamedAt(atorva, "prescriber", [reply, ask(line)])).toBe(1),
+  );
+
+  it("a question asked before naming has to be asked again after", () => {
+    const t = [ask("Did you intend for him to take two statins?"), reply, ask("Ronald Ryan, born 14 May 1958.")];
+    expect(unlockedFacts(atorva, "prescriber", t)).toEqual([]);
+    const again = [...t, reply, ask("Did you intend for him to take two statins?")];
+    expect(unlockedFacts(atorva, "prescriber", again).map((u) => u.turnIndex)).toEqual([4]);
+  });
+
+  it("naming the patient and asking in one turn works", () => {
+    expect(unlockedFacts(atorva, "prescriber", [ask("I'm calling about Ronald Ryan. Did you intend him to take two statins?")])).toHaveLength(1);
+  });
+
+  it("the patient knows who they are from the start", () => {
+    expect(patientNamedAt(atorva, "patient", [])).toBe(-1);
+  });
+});
+
+/** Full candidate scripts from live runs on 2026-11-05 (the prescriber lines now name the patient): which facts each one has earned. */
 describe("fact gate: whole sessions", () => {
   function earned(script: [AgentId, string][]) {
     const by: Record<AgentId, Turn[]> = { patient: [], prescriber: [] };
@@ -119,7 +150,7 @@ describe("fact gate: whole sessions", () => {
     ],
     [
       "prescriber",
-      "Hi doctor, it's the pharmacist about Mr R. I think he might be on two statins, so maybe he should stop one?"
+      "Hi doctor, it's the pharmacist about Mr Ryan. I think he might be on two statins, so maybe he should stop one?"
     ],
     [
       "prescriber",
@@ -149,7 +180,7 @@ describe("fact gate: whole sessions", () => {
     ],
     [
       "prescriber",
-      "Hi doctor, it's the pharmacist calling about Mr R. He's been discharged with brand atorvastatin 40 mg at night, and he's still taking the generic atorvastatin 40 mg you prescribed, so he's doubling up. He also takes warfarin and sometimes misses doses. I recommend he continues one product only, the generic atorvastatin 40 mg at night. Can you confirm?"
+      "Hi doctor, it's the pharmacist calling about Ronald Ryan. He's been discharged with brand atorvastatin 40 mg at night, and he's still taking the generic atorvastatin 40 mg you prescribed, so he's doubling up. He also takes warfarin and sometimes misses doses. I recommend he continues one product only, the generic atorvastatin 40 mg at night. Can you confirm?"
     ],
     [
       "prescriber",

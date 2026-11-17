@@ -9,15 +9,18 @@
     "prescription": {
       "item": "Atorvastatin 40 mg tablets (brand)",
       "directions": "One tablet at night · Qty 30 · 5 repeats",
-      "footer": "Penrith Hospital discharge · Dr A. Okafor · Ronald Ryan, 68",
+      "footer": "Penrith Hospital discharge · Dr A. Okafor · Ronald Ryan, DOB 14/05/1958",
       "prescriber": "Dr A. Okafor",
       "prescriberDetail": "Discharge prescriber · Penrith Hospital, NSW",
       "pbs": true,
       "brandSubstitutionNotPermitted": true
     },
     "dispensingHistory": [
-      { "item": "Atorvastatin 40 mg (generic)", "date": "19 Oct" },
-      { "item": "Atorvastatin 40 mg (generic)", "date": "21 Sep" }
+      {"date": "19 Oct 2026", "item": "Atorvastatin 40 mg tablets (generic)", "directions": "One tablet at night", "quantity": "30", "prescriber": "Dr L. Chen (GP)"},
+      {"date": "19 Oct 2026", "item": "Warfarin 5 mg tablets (Marevan)", "directions": "As directed by your doctor, according to INR", "quantity": "50", "prescriber": "Dr L. Chen (GP)"},
+      {"date": "21 Sep 2026", "item": "Atorvastatin 40 mg tablets (generic)", "directions": "One tablet at night", "quantity": "30", "prescriber": "Dr L. Chen (GP)"},
+      {"date": "22 Aug 2026", "item": "Atorvastatin 40 mg tablets (generic)", "directions": "One tablet at night", "quantity": "30", "prescriber": "Dr L. Chen (GP)"},
+      {"date": "12 Aug 2026", "item": "Warfarin 5 mg tablets (Marevan)", "directions": "As directed by your doctor, according to INR", "quantity": "50", "prescriber": "Dr L. Chen (GP)"}
     ]
   },
   "agents": {
@@ -37,9 +40,9 @@
       "label": "Call Dr Okafor",
       "name": "Dr Okafor",
       "avatar": "dr-hoot",
-      "description": "The hospital doctor who discharged Mr Ryan, busy on the ward. Polite but short on time. Wants the pharmacist to get to the point and give a clear recommendation rather than an open question.",
+      "description": "A hospital doctor, busy on the ward. Polite but short on time. Wants the pharmacist to get to the point and give a clear recommendation rather than an open question.",
       "situation": "A community pharmacist has phoned you on the ward about a patient you discharged.",
-      "bio": {"Full name": "Dr Amara Okafor", "Role": "Hospital doctor who discharged Mr Ryan", "Workplace": "Penrith Hospital, NSW"},
+      "bio": {"Full name": "Dr Amara Okafor", "Role": "Hospital doctor (discharging medical officer)", "Workplace": "Penrith Hospital, NSW"},
       "openingLine": "Dr Okafor speaking, I've only got a minute. What's up?",
       "publicFacts": [
         "You discharged Mr Ryan from Penrith Hospital and wrote his discharge prescription for atorvastatin 40 mg.",

@@ -166,3 +166,15 @@ describe("whatsapp", () => {
     );
   });
 });
+
+describe("approving a draft made under older checks", () => {
+  it("finds what the current checks need, e.g. a clinical case with no dispensing history", async () => {
+    const { draftProblemsNow } = await import("./cases");
+    const { getCase } = await import("@/lib/cases/bank");
+    const c = structuredClone(getCase("clarithromycin-warfarin-simvastatin-interaction")!);
+    c.id = "clarithromycin-draft";
+    expect(draftProblemsNow(c)).toEqual([]);
+    delete c.documents.dispensingHistory;
+    expect(draftProblemsNow(c).some((p) => p.includes("dispensingHistory"))).toBe(true);
+  });
+});

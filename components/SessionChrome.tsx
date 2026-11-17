@@ -3,6 +3,7 @@ import { LogoMark } from "@/components/icons";
 import { MyPip } from "@/components/MyPip";
 import { PipGrading } from "@/components/PipGrading";
 import type { PublicCase } from "@/lib/cases/schema";
+import { DispensingHistory } from "@/components/DispensingHistory";
 
 /** Shared by both session types: the role play (ExamSession) and the spoken answer (ExplainSession). */
 
@@ -46,15 +47,7 @@ export function CaseDocuments({ c }: { c: PublicCase }) {
       {c.documents.dispensingHistory && c.documents.dispensingHistory.length > 0 && (
         <div className="flex flex-col gap-2 rounded-xl border border-line bg-white p-4">
           <h2 className={docLabel}>Dispensing history</h2>
-          {c.documents.dispensingHistory.map((d, idx, all) => (
-            <div
-              key={`${d.item}-${d.date}`}
-              className={`flex justify-between gap-3 py-2 text-sm ${idx < all.length - 1 ? "border-b border-line-soft" : ""}`}
-            >
-              <span>{d.item}</span>
-              <span className="font-mono text-subtle">{d.date}</span>
-            </div>
-          ))}
+          <DispensingHistory entries={c.documents.dispensingHistory} />
         </div>
       )}
       {c.documents.notes && c.documents.notes.length > 0 && (

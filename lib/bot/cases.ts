@@ -79,12 +79,13 @@ const SYSTEM = `You turn a pharmacy exam question into a case record for Pharmif
 - title: 2-4 words. problemType: the problem type or ethical/legal theme, e.g. "Drug interaction".
 - setting: where it happens, e.g. "Community pharmacy, NSW".
 - questionSheet: what the intern reads first, written like the exam's question sheet. Ends with the task, e.g. "Manage the situation as you would in practice. You may contact the prescriber."
-- documents: prescription {item, directions, footer}, dispensingHistory [{item, date}], notes [string]. Include only what the question provides or clearly needs.
+- documents: prescription {item, directions, footer}, dispensingHistory, notes [string]. A prescription identifies the patient by date of birth, not age: the script form fills the date of birth from the patient's bio, and a footer that names the patient gives it as "DOB dd/mm/yyyy" (e.g. "Dr S. Patel · Harold Nguyen, DOB 09/03/1955"). Include only what the question provides or clearly needs, except dispensingHistory.
+- documents.dispensingHistory: required for a "clinical" case: the patient's dispensings at this pharmacy over the last few months, newest first, as [{date, item, directions, quantity, prescriber}], e.g. {"date": "19 Oct 2026", "item": "Atorvastatin 40 mg tablets (generic)", "directions": "One tablet at night", "quantity": "30", "prescriber": "Dr L. Chen (GP)"}. Use what the document gives. Otherwise build it from the patient's regular prescription medicines in the scenario, with realistic Australian brands, pack sizes and refill intervals, and dates before today that fit the story (e.g. a medicine started three months ago first appears three months back). Leave out what the patient buys over the counter or gets elsewhere, and anything the case relies on the intern finding out by asking. List the history you made up in assumptions. Optional for ethical and legal cases.
 - agents.patient / agents.prescriber (persona):
   - label: shown on the switch, e.g. "Patient · Mrs T." or "Call the GP".
   - name: what they answer to, e.g. "Mrs T." or "Dr Nguyen". Never bracket placeholders like [GP] or [SURNAME]; invent a realistic name.
   - description: age, manner, health literacy, how they react to good and poor handling. This steers the actor's behaviour.
-  - bio: identity details as label → value, so they can answer identity questions: Full name, Date of birth, Age, Address, Phone, Occupation (professionals: Full name, Role, Workplace). Identity only: never medicines, conditions, allergies, or anything from a hidden fact. Ages must match the documents; the current year is 2026. Phone numbers only from this fictional range: 0491 570 156, 0491 570 157, 0491 570 158, 0491 570 159, 0491 570 110, 0491 570 313, 0491 570 737, 0491 571 266, 0491 571 491, 0491 571 804, 0491 572 549, 0491 572 665, 0491 572 983.
+  - bio: identity details as label → value, so they can answer identity questions: Full name, Date of birth, Age, Address, Phone, Occupation (professionals: Full name, Role, Workplace). Required in a "clinical" case for the patient (at least Full name, Date of birth, Age, Address), matching the prescription. Identity only: never medicines, conditions, allergies, or anything from a hidden fact. Ages must match the documents; the current year is 2026. Phone numbers only from this fictional range: 0491 570 156, 0491 570 157, 0491 570 158, 0491 570 159, 0491 570 110, 0491 570 313, 0491 570 737, 0491 571 266, 0491 571 491, 0491 571 804, 0491 572 549, 0491 572 665, 0491 572 983.
   - situation: only if not the default (patient at the counter; prescriber phoned about their patient).
   - standing: "public" or "professional", only if not the default for the slot.
   - avatar: the cast character who draws them (they keep the persona's own name). Pick by age, gender and manner:
@@ -93,6 +94,7 @@ ${castList}
 ${voiceList}
   - openingLine: their first words, said verbatim when the intern first turns to them. Natural spoken Australian English.
   - publicFacts: what they'd say without being asked or in answer to any basic question. Short sentences.
+  - The prescriber doesn't know which patient a call is about until the intern says the patient's surname: only then do their publicFacts and hidden facts reach the actor. So put everything about this patient in the prescriber's publicFacts or hiddenFacts, and never name the patient in the prescriber's label, description, situation, openingLine or bio (write "A busy GP", not "Mr Ryan's GP"). Set knowsPatient: true only when they already know who it's about, e.g. a pharmacy owner standing in the dispensary.
 - hiddenFacts: what a strong intern must ask to find out. Each has id (kebab-case), agent, fact (as the persona knows it, e.g. "You still have the old tablets at home and have kept taking them."), triggers, and unlockHint (the question a strong intern would ask, in curly quotes).
 - answerKey: plantedProblem, acceptableResolutions, unacceptableActions, counsellingPoints, codePrinciples, legal, modelAnswer. Grader-only.
 </fields>
@@ -143,6 +145,16 @@ async function callModel(messages: Anthropic.Beta.BetaMessageParam[]) {
   });
   if (!response.parsed_output) throw new Error(`Couldn't draft the question (${response.stop_reason})`);
   return response.parsed_output;
+}
+
+/**
+ * What a saved draft fails under the bank's checks as they are now. A draft's stored problems
+ * date from when it was drafted, and the rules can tighten since (e.g. clinical cases now need a
+ * dispensing history), so Approve checks again before anything goes live.
+ */
+export function draftProblemsNow(record: CaseRecord): string[] {
+  const checked = checkCase(record, caseIds());
+  return checked.record ? [...checked.problems, ...answerSchemeProblems(checked.record)] : checked.problems;
 }
 
 /**
