@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore, type KeyboardEvent, type PointerEvent, type ReactNode } from "react";
 import type { PublicCase } from "@/lib/cases/schema";
+import { DispensingHistory } from "@/components/DispensingHistory";
 
 /**
  * The exam desk (design: "Exam mode session"). Before the clock starts, the question sheet
@@ -514,15 +515,7 @@ export function CaseDesk({
           "hist",
           "Dispensing history",
           <Sheet title={`Dispensing history${patient ? ` · ${patient}` : ""}`}>
-            {dispensingHistory.map((d, i) => (
-              <div
-                key={`${d.item}-${d.date}`}
-                className={`flex justify-between gap-3 py-1.5 text-sm ${i < dispensingHistory.length - 1 ? "border-b border-line-soft" : ""}`}
-              >
-                <span>{d.item}</span>
-                <span className="flex-none font-mono whitespace-nowrap text-subtle">{d.date}</span>
-              </div>
-            ))}
+            <DispensingHistory entries={dispensingHistory} />
           </Sheet>,
         )}
       {notes &&

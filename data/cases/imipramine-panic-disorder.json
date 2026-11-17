@@ -10,7 +10,19 @@
       "item": "Imipramine 10 mg tablets",
       "directions": "Take ONE tablet at night · Qty 50",
       "footer": "Dr Burton (contactable by phone) · Sarah Jones, 40"
-    }
+    },
+    "dispensingHistory": [
+      {"date": "6 Oct 2026", "item": "Imipramine 10 mg tablets", "directions": "One tablet at night", "quantity": "50", "prescriber": "Dr A. Burton (GP)"},
+      {"date": "6 Oct 2026", "item": "Diltiazem CR 180 mg capsules", "directions": "One capsule daily", "quantity": "30", "prescriber": "Dr A. Burton (GP)"},
+      {"date": "6 Oct 2026", "item": "Rosuvastatin 5 mg tablets", "directions": "One tablet daily", "quantity": "30", "prescriber": "Dr A. Burton (GP)"},
+      {"date": "6 Oct 2026", "item": "Budesonide 400 microgram inhaler (Pulmicort Turbuhaler)", "directions": "One inhalation twice daily. Rinse mouth after use", "quantity": "1 inhaler", "prescriber": "Dr A. Burton (GP)"},
+      {"date": "8 Sep 2026", "item": "Diltiazem CR 180 mg capsules", "directions": "One capsule daily", "quantity": "30", "prescriber": "Dr A. Burton (GP)"},
+      {"date": "8 Sep 2026", "item": "Rosuvastatin 5 mg tablets", "directions": "One tablet daily", "quantity": "30", "prescriber": "Dr A. Burton (GP)"},
+      {"date": "8 Sep 2026", "item": "Budesonide 400 microgram inhaler (Pulmicort Turbuhaler)", "directions": "One inhalation twice daily. Rinse mouth after use", "quantity": "1 inhaler", "prescriber": "Dr A. Burton (GP)"},
+      {"date": "14 Aug 2026", "item": "Imipramine 10 mg tablets", "directions": "One tablet at night", "quantity": "50", "prescriber": "Dr A. Burton (GP)"},
+      {"date": "3 Mar 2026", "item": "Salbutamol 100 microgram inhaler", "directions": "One to two puffs when needed for wheeze", "quantity": "1 inhaler", "prescriber": "Dr A. Burton (GP)"},
+      {"date": "12 Jan 2026", "item": "Glyceryl trinitrate 400 microgram spray (Nitrolingual Pumpspray)", "directions": "One spray under the tongue for chest pain; repeat after 5 minutes if needed, up to 3 sprays. Call 000 if pain persists", "quantity": "1 spray", "prescriber": "Dr A. Burton (GP)"}
+    ]
   },
   "agents": {
     "patient": {
@@ -28,8 +40,8 @@
       "label": "Call Dr Burton",
       "name": "Dr Burton",
       "avatar": "dr-hoot",
-      "description": "Sarah's GP. Courteous and open to a pharmacist's input, but expects a clear, referenced recommendation. Will ask the pharmacist what they recommend and which reference to check next time. Thanks the pharmacist for calling at the end.",
-      "bio": {"Full name": "Dr Andrew Burton", "Role": "General practitioner, Sarah Jones's GP", "Workplace": "A local general practice"},
+      "description": "A GP. Courteous and open to a pharmacist's input, but expects a clear, referenced recommendation. Will ask the pharmacist what they recommend and which reference to check next time. Thanks the pharmacist for calling at the end.",
+      "bio": {"Full name": "Dr Andrew Burton", "Role": "General practitioner", "Workplace": "A local general practice"},
       "openingLine": "Dr Burton speaking.",
       "publicFacts": [
         "You prescribed imipramine 10 mg at night for Sarah Jones's panic disorder about three months ago.",

@@ -23,6 +23,31 @@ describe("checkCase", () => {
     expect(problems.some((p) => p.includes("give away hidden"))).toBe(true);
   });
 
+  it("asks a complex clinical case for a dispensing history and a patient who can say who they are", () => {
+    const c = structuredClone(getCase("clarithromycin-warfarin-simvastatin-interaction")!);
+    delete c.documents.dispensingHistory;
+    delete c.agents.patient.bio!["Date of birth"];
+    const { problems } = checkCase(c);
+    expect(problems.some((p) => p.includes("documents.dispensingHistory"))).toBe(true);
+    expect(problems).toContain('agents.patient.bio needs "Date of birth" so the patient can answer when asked');
+  });
+
+  it("flags a prescriber who knows who the call is about before being told", () => {
+    const c = structuredClone(getCase("imipramine-panic-disorder")!);
+    c.agents.prescriber!.bio!.Role = "General practitioner, Sarah Jones's GP";
+    c.agents.prescriber!.description = "Sarah's GP. Courteous.";
+    const { problems } = checkCase(c);
+    expect(problems.filter((p) => p.includes("names the patient"))).toHaveLength(2);
+    c.agents.prescriber!.knowsPatient = true;
+    expect(checkCase(c).problems).toEqual([]);
+  });
+
+  it("leaves ethical and legal cases alone: no one is role played", () => {
+    const c = structuredClone(getCase("glp1-shortage")!);
+    delete c.agents.patient.bio;
+    expect(checkCase(c).problems).toEqual([]);
+  });
+
   it("reports schema errors with their path", () => {
     expect(checkCase({ id: "Bad Id" }).problems.some((p) => p.startsWith("id:"))).toBe(true);
   });

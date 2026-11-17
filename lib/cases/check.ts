@@ -1,10 +1,10 @@
 import "server-only";
 
 import { actorSystemPrompt } from "@/lib/session/actor";
-import { normalise, unlockedFacts } from "@/lib/session/factGate";
+import { needsPatientNamed, normalise, patientFullName, patientSurname, unlockedFacts } from "@/lib/session/factGate";
 import { getPersona } from "./bank";
 import { caseFormat } from "./format";
-import { type AgentId, CaseRecord } from "./schema";
+import { type AgentId, CaseRecord, type Turn } from "./schema";
 
 /**
  * Checks a case before it joins the bank: the same guarantees lib/session/actor.test.ts
@@ -36,7 +36,7 @@ export function checkCase(raw: unknown, existingIds: Iterable<string> = []): { r
         problems.push(`hidden fact "${f.id}": trigger "${t}" is only filler words, so it can never match`);
         continue;
       }
-      const unlocked = unlockedFacts(c, f.agent, [{ role: "candidate", text: t, t: 0 }]).map((u) => u.factId);
+      const unlocked = unlockedFacts(c, f.agent, askedAfterNaming(c, f.agent, t)).map((u) => u.factId);
       if (!unlocked.includes(f.id)) problems.push(`hidden fact "${f.id}": trigger "${t}" doesn't unlock it`);
     }
   }
@@ -60,10 +60,49 @@ export function checkCase(raw: unknown, existingIds: Iterable<string> = []): { r
     }
   }
 
-  if (caseFormat(c.category) === "roleplay" && !c.agents.patient.openingLine) {
-    problems.push("a clinical (role-play) case needs agents.patient.openingLine");
+  if (caseFormat(c.category) === "roleplay") {
+    if (!c.agents.patient.openingLine) problems.push("a clinical (role-play) case needs agents.patient.openingLine");
+    problems.push(...rolePlayDetailProblems(c));
   }
   return { record: c, problems };
+}
+
+/** The bio details a role-play patient must be able to give when the pharmacist checks who they are. */
+export const PATIENT_BIO_REQUIRED = ["Full name", "Date of birth", "Age", "Address"] as const;
+
+/**
+ * What a role-play (complex clinical) case needs beyond the schema: a dispensing history, a patient
+ * who can confirm who they are, and a prescriber who can't tell who the call is about until told.
+ */
+function rolePlayDetailProblems(c: CaseRecord): string[] {
+  const problems: string[] = [];
+  if (!c.documents.dispensingHistory?.length) {
+    problems.push("a complex clinical case needs documents.dispensingHistory: the patient's recent dispensings at this pharmacy");
+  }
+  const bio = c.agents.patient.bio ?? {};
+  for (const k of PATIENT_BIO_REQUIRED) if (!bio[k]?.trim()) problems.push(`agents.patient.bio needs "${k}" so the patient can answer when asked`);
+
+  const p = c.agents.prescriber;
+  if (p && !p.knowsPatient) {
+    if (!patientSurname(c)) problems.push("the prescriber can only be told who the patient is once the patient has a full name in their bio");
+    else if (needsPatientNamed(c, "prescriber")) {
+      // Their persona is in the actor's prompt from the first word, before the pharmacist says who the call is about.
+      const names = new Set(normalise(patientFullName(c) ?? "").filter((w) => w.length > 2));
+      const visible = { label: p.label, description: p.description, situation: p.situation ?? "", openingLine: p.openingLine ?? "", ...p.bio };
+      for (const [field, text] of Object.entries(visible)) {
+        const hit = normalise(text).find((w) => names.has(w) || names.has(w.replace(/s$/, "")));
+        if (hit) problems.push(`agents.prescriber ${field} names the patient ("${hit}"), but the prescriber shouldn't know who the call is about until the pharmacist says`);
+      }
+    }
+  }
+  return problems;
+}
+
+/** A transcript in which the pharmacist names the patient first, when this agent needs that, then says `text`. */
+export function askedAfterNaming(c: CaseRecord, agent: AgentId, text: string): Turn[] {
+  const ask: Turn = { role: "candidate", text, t: 0 };
+  if (!needsPatientNamed(c, agent)) return [ask];
+  return [{ role: "candidate", text: `I'm calling about ${patientFullName(c)}.`, t: 0 }, { role: "actor", text: "Yes?", t: 0 }, ask];
 }
 
 const words = (s: string) => s.split(/\s+/).filter(Boolean).length;

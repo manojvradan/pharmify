@@ -41,7 +41,32 @@ const Persona = z.object({
   openingLine: z.string().optional(),
   /** What the persona may say without being asked. */
   publicFacts: z.array(z.string()),
+  /**
+   * Prescriber only. A prescriber on a call doesn't know which patient it is about until the
+   * pharmacist says the patient's surname: until then their publicFacts and hidden facts stay out of
+   * the actor's reach (lib/session/factGate.ts). Set true when they already know, e.g. a pharmacy
+   * owner standing in the dispensary.
+   */
+  knowsPatient: z.boolean().optional(),
 });
+
+/**
+ * One line of the patient's dispensing history at this pharmacy, newest first, the way it prints
+ * from the dispensing software. Required for complex clinical cases (lib/cases/check.ts).
+ */
+const DispensingEntry = z.object({
+  /** Full date, e.g. "19 Oct 2026". */
+  date: z.string(),
+  /** Medicine, strength and form, with the brand if it matters, e.g. "Atorvastatin 40 mg tablets (generic)". */
+  item: z.string(),
+  /** Label directions as dispensed, e.g. "One tablet at night". */
+  directions: z.string().optional(),
+  /** e.g. "30" or "1 inhaler". */
+  quantity: z.string().optional(),
+  /** Who wrote it, e.g. "Dr L. Chen (GP)". */
+  prescriber: z.string().optional(),
+});
+export type DispensingEntry = z.infer<typeof DispensingEntry>;
 
 const HiddenFact = z.object({
   id: z.string(),
@@ -89,7 +114,7 @@ export const CaseRecord = z.object({
         brandSubstitutionNotPermitted: z.boolean().optional(),
       })
       .optional(),
-    dispensingHistory: z.array(z.object({ item: z.string(), date: z.string() })).optional(),
+    dispensingHistory: z.array(DispensingEntry).optional(),
     notes: z.array(z.string()).optional(),
   }),
   agents: z.object({
