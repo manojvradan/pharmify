@@ -75,7 +75,7 @@ function Prescription({ p }: { p: NonNullable<PublicCase["documents"]["prescript
         <Field name="Patient's Medicare No." />
         <Field name="Date of prescribing" value={p.date} />
         <Field name="Patient's name" value={p.patientName} />
-        <Field name="Age" value={p.patientAge} />
+        <Field name="Date of birth" value={p.patientDob} />
         <Field name="Address" value={p.patientAddress} wide />
       </div>
       <div className="flex gap-[18px] bg-[repeating-linear-gradient(135deg,#FFFFFF_0_9px,#FCFAFD_9px_10px)] px-6 py-[18px]">

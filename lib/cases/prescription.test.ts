@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { prescriptionForm } from "./prescription";
+import { prescriptionForm, scriptDate } from "./prescription";
 
 const base = { item: "Atorvastatin 40 mg tablets", directions: "One tablet at night · Qty 30 · 5 repeats", footer: "Hospital · Mr R." };
 
@@ -10,8 +10,12 @@ describe("prescriptionForm", () => {
   });
 
   it("fills the patient from their bio, with the legal name only", () => {
-    const f = prescriptionForm(base, { "Full name": "Ronald Ryan (goes by Ron)", Age: "68", Address: "12 Banksia Street, Penrith NSW 2750" });
-    expect([f.patientName, f.patientAge, f.patientAddress]).toEqual(["Ronald Ryan", "68 years", "12 Banksia Street, Penrith NSW 2750"]);
+    const f = prescriptionForm(base, { "Full name": "Ronald Ryan (goes by Ron)", "Date of birth": "14 May 1958", Age: "68", Address: "12 Banksia Street, Penrith NSW 2750" });
+    expect([f.patientName, f.patientDob, f.patientAddress]).toEqual(["Ronald Ryan", "14/05/1958", "12 Banksia Street, Penrith NSW 2750"]);
+  });
+
+  it("prints a date of birth the way a script does, and leaves odd ones alone", () => {
+    expect(["2 February 1986", "9 Sept 1955", "1986-02-02", "early 1950s"].map(scriptDate)).toEqual(["02/02/1986", "09/09/1955", "1986-02-02", "early 1950s"]);
   });
 
   it("prefers the case's own fields", () => {

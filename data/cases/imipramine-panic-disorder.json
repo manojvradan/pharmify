@@ -9,7 +9,7 @@
     "prescription": {
       "item": "Imipramine 10 mg tablets",
       "directions": "Take ONE tablet at night · Qty 50",
-      "footer": "Dr Burton (contactable by phone) · Sarah Jones, 40"
+      "footer": "Dr Burton (contactable by phone) · Sarah Jones, DOB 02/02/1986"
     },
     "dispensingHistory": [
       {"date": "6 Oct 2026", "item": "Imipramine 10 mg tablets", "directions": "One tablet at night", "quantity": "50", "prescriber": "Dr A. Burton (GP)"},

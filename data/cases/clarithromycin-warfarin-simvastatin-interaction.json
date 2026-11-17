@@ -76,11 +76,11 @@
     "prescription": {
       "pbs": true,
       "item": "Clarithromycin 500 mg tablets",
-      "footer": "Dr S. Patel · Harold Nguyen, 71",
+      "footer": "Dr S. Patel · Harold Nguyen, DOB 09/03/1955",
       "repeats": "0",
       "quantity": "14",
       "directions": "One tablet twice daily for 7 days · Qty 14 · No repeats",
-      "patientAge": "71",
+      "patientDob": "09/03/1955",
       "prescriber": "Dr S. Patel",
       "patientName": "Harold Nguyen",
       "prescriberDetail": "General practitioner, NSW"

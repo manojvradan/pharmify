@@ -98,14 +98,15 @@ export const CaseRecord = z.object({
         footer: z.string(),
         /*
          * Optional details for the full script form in the session. Anything left out is filled
-         * from elsewhere (lib/cases/prescription.ts): the patient's name, age and address from
+         * from elsewhere (lib/cases/prescription.ts): the patient's name, date of birth and address from
          * their bio, and quantity and repeats from `directions`.
          */
         prescriber: z.string().optional(),
         /** Under the prescriber's name, e.g. "Discharge prescriber · Penrith Hospital, NSW". */
         prescriberDetail: z.string().optional(),
         patientName: z.string().optional(),
-        patientAge: z.string().optional(),
+        /** As a script prints it, e.g. "14/05/1958". Defaults to the patient's bio. */
+        patientDob: z.string().optional(),
         patientAddress: z.string().optional(),
         date: z.string().optional(),
         quantity: z.string().optional(),
