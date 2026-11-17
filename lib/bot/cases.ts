@@ -24,8 +24,24 @@ export type CaseSource =
   | { kind: "text"; text: string }
   | { kind: "media"; mediaId: string; mimeType?: string; filename?: string; caption?: string };
 
-/** The model writes everything except review status and sources, which the bot sets. */
-const DraftCase = CaseRecord.omit({ review: true, sources: true });
+/**
+ * The model writes everything except review status and sources, which the bot sets.
+ * Structured outputs cap how many optional fields a schema may have ("The compiled grammar is
+ * too large"), so the model's version trims the record: the prescription is just item, directions
+ * and footer (the script form fills the rest from the patient's bio and the directions), and every
+ * dispensing-history column is required. Keep the optional count well under the limit when adding
+ * fields (lib/bot/bot.test.ts counts them).
+ */
+const recordShape = CaseRecord.omit({ review: true, sources: true });
+const docs = recordShape.shape.documents;
+export const DraftCase = recordShape.extend({
+  documents: docs.extend({
+    prescription: z.object({ item: z.string(), directions: z.string(), footer: z.string() }).optional(),
+    dispensingHistory: z
+      .array(z.object({ date: z.string(), item: z.string(), directions: z.string(), quantity: z.string(), prescriber: z.string() }))
+      .optional(),
+  }),
+});
 const DraftOutput = z.object({
   /** One or two sentences on why the case is legal, ethical or complex clinical. Shown to the sender. */
   categoryReason: z.string(),
@@ -183,7 +199,10 @@ export async function draftCase(
   let last: CaseDraft | undefined;
   for (let attempt = 0; attempt < ATTEMPTS; attempt++) {
     const out = await callModel(messages);
-    const checked = checkCase({ ...out.case, ...meta }, existing);
+    // On a revision, keep any script-form details the previous record had (the model can't see or write them).
+    const prevRx = "previous" in input ? input.previous.documents.prescription : undefined;
+    const rx = out.case.documents.prescription && prevRx ? { ...prevRx, ...out.case.documents.prescription } : out.case.documents.prescription;
+    const checked = checkCase({ ...out.case, documents: { ...out.case.documents, prescription: rx }, ...meta }, existing);
     const record = checked.record;
     const problems = record ? [...checked.problems, ...answerSchemeProblems(record)] : checked.problems;
     if (record) last = { record, categoryReason: out.categoryReason, assumptions: out.assumptions, problems };

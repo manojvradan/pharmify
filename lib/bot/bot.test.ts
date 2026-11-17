@@ -178,3 +178,27 @@ describe("approving a draft made under older checks", () => {
     expect(draftProblemsNow(c).some((p) => p.includes("dispensingHistory"))).toBe(true);
   });
 });
+
+describe("case drafting schema", () => {
+  // The API rejects structured-output schemas with too many optional fields ("The compiled grammar
+  // is too large"). The limit is around 24; 31 broke drafting in production.
+  it("stays well under the structured-outputs optional-field limit", async () => {
+    const { z } = await import("zod");
+    const { DraftCase } = await import("./cases");
+    let optional = 0;
+    const walk = (n: any): void => {
+      if (!n || typeof n !== "object") return;
+      if (n.type === "object" && n.properties) {
+        const required = new Set(n.required ?? []);
+        for (const [k, v] of Object.entries(n.properties)) {
+          if (!required.has(k)) optional++;
+          walk(v);
+        }
+      }
+      if (n.items) walk(n.items);
+      for (const a of n.anyOf ?? []) walk(a);
+    };
+    walk(z.toJSONSchema(DraftCase, { io: "output" }));
+    expect(optional).toBeLessThanOrEqual(20);
+  });
+});
