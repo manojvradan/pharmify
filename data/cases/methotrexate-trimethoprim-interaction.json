@@ -1,0 +1,256 @@
+{
+  "id": "methotrexate-trimethoprim-interaction",
+  "title": "Antibiotic and methotrexate",
+  "agents": {
+    "patient": {
+      "bio": {
+        "Age": "68",
+        "Phone": "0491 570 157",
+        "Address": "8 Seaview Crescent, Brighton VIC 3186",
+        "Full name": "Helen Doyle",
+        "Occupation": "Retired primary school teacher",
+        "Date of birth": "22 July 1957"
+      },
+      "name": "Mrs Doyle",
+      "label": "Patient · Mrs D.",
+      "voice": "au-soft-woman",
+      "avatar": "rosie-rabbit",
+      "description": "A 68-year-old retired primary school teacher with average health literacy. She is friendly and chatty, but uncomfortable with her urinary symptoms and keen to start the antibiotic today. She thinks of her methotrexate as 'the arthritis one from the specialist' and doesn't link it to anything the GP prescribes, so she doesn't mention it unless asked about other medicines. She warms to an intern who explains clearly why the antibiotic may need changing and reassures her she will still be treated today. She gets anxious and a bit impatient if she is left waiting without an explanation, or if she is told something is 'dangerous' without a plan.",
+      "openingLine": "Hello love, the doctor's given me this for a water infection. Could I get it now? It's really burning.",
+      "publicFacts": [
+        "She has a urinary tract infection and saw her GP this morning.",
+        "It burns when she passes urine and she is going to the toilet a lot.",
+        "She would like to start the antibiotic today."
+      ]
+    },
+    "prescriber": {
+      "bio": {
+        "Role": "General practitioner",
+        "Full name": "Dr Peter Nguyen",
+        "Workplace": "Bayside Family Medical, Brighton VIC"
+      },
+      "name": "Dr Nguyen",
+      "label": "Call Dr Nguyen",
+      "voice": "au-doctor",
+      "avatar": "dr-hoot",
+      "standing": "professional",
+      "situation": "A community pharmacist has phoned you between consultations about a prescription you wrote this morning.",
+      "description": "A GP running a busy morning clinic. Reasonable and collegial. Responds well to a pharmacist who is brief, names the interaction clearly and offers a specific alternative. Becomes impatient if the pharmacist is vague or only asks an open question like 'what do you want to do?'.",
+      "openingLine": "Dr Nguyen here, I've got a patient waiting. How can I help?",
+      "publicFacts": [
+        "You saw Mrs Doyle this morning for symptoms of uncomplicated cystitis.",
+        "You prescribed trimethoprim 300 mg at night for 3 days.",
+        "You did not send a urine sample for culture."
+      ]
+    }
+  },
+  "review": {
+    "status": "draft",
+    "version": "0.1"
+  },
+  "setting": "Community pharmacy, VIC",
+  "sources": [
+    "Drafted with the WhatsApp bot from a document sent by Dina"
+  ],
+  "category": "clinical",
+  "answerKey": {
+    "legal": [
+      "A new prescription (or a documented verbal or electronic authorisation in line with Victorian requirements) is needed before supplying a different antibiotic."
+    ],
+    "modelAnswer": "1. Gather information: confirm the patient's identity and take a full medication history, asking specifically about specialist and weekly medicines. She takes methotrexate 10 mg every Monday (last dose yesterday) and folic acid 5 mg on Thursdays for rheumatoid arthritis, plus occasional paracetamol. Ask about her UTI symptoms: two days of dysuria and frequency, with no fever, flank pain, haematuria, nausea or vomiting, which fits uncomplicated cystitis. Ask about allergies (none; cephalexin tolerated before) and recent renal function and blood counts (normal three weeks ago).\n2. Identify the problem: trimethoprim plus methotrexate is a serious interaction. Both inhibit dihydrofolate reductase, and trimethoprim reduces renal tubular secretion of methotrexate, raising its levels. The result is a risk of severe bone marrow suppression and pancytopenia, which can be fatal even at low weekly doses, especially in older patients. The combination should be avoided.\n3. Check references: AMH interactions (methotrexate–trimethoprim: avoid), and eTG Antibiotic for cystitis in non-pregnant women (cefalexin 500 mg 12-hourly for 5 days, or nitrofurantoin 100 mg 6-hourly for 5 days).\n4. Contact the prescriber: withhold the trimethoprim and phone Dr Nguyen. Explain that the patient takes methotrexate 10 mg weekly from her rheumatologist and describe the interaction. Recommend cefalexin 500 mg twice daily for 5 days, with nitrofurantoin 100 mg four times daily for 5 days as the alternative (renal function is reported normal). Obtain a new prescription and ask the GP to update her medication list.\n5. Supply and counsel: explain the change to Mrs Doyle and reassure her she is being treated today. Counsel her to complete the 5-day course, continue methotrexate and folic acid as usual, and watch for antibiotic side effects. Teach her the warning signs of methotrexate toxicity (mouth ulcers, fever, sore throat, bruising) and of kidney infection, which need urgent review. Advise fluids and a GP review if she is not better in 48 hours. Remind her to tell every prescriber she takes methotrexate.\n6. Document: record the intervention, the prescriber contacted, the outcome and the counselling given in the dispensing record. Consider a clinical intervention note or a flag on her profile for methotrexate interactions.",
+    "codePrinciples": [],
+    "plantedProblem": "Clinically significant interaction: trimethoprim has been prescribed for uncomplicated cystitis in a 68-year-old woman taking low-dose weekly methotrexate (10 mg Mondays, last dose yesterday). Trimethoprim is a dihydrofolate reductase inhibitor, so its antifolate effect adds to methotrexate's. It also reduces renal tubular secretion of methotrexate, raising methotrexate levels. Together these can cause serious, potentially fatal bone marrow suppression (pancytopenia) and mucositis, even at low methotrexate doses. The GP did not know about the specialist-prescribed methotrexate. The combination should be avoided and a different antibiotic used.",
+    "counsellingPoints": [
+      "Cefalexin 500 mg: take one capsule every 12 hours for 5 days and finish the whole course even if symptoms settle. It can be taken with or without food.",
+      "Common antibiotic side effects are nausea and diarrhoea. Seek help for severe or bloody diarrhoea, or for any rash or swelling.",
+      "Continue methotrexate 10 mg once a week on Mondays and folic acid on Thursdays as usual. The antibiotic was changed so the methotrexate can be continued safely.",
+      "Watch for signs of methotrexate toxicity: mouth ulcers, sore throat, fever, unusual bruising or bleeding, or unusual tiredness. Contact the doctor or go to hospital urgently if these occur.",
+      "Drink plenty of fluids. Urinary alkalinisers can ease burning, but they should not be used with nitrofurantoin if that is chosen.",
+      "Return to the GP if symptoms are not improving within 48 hours. Go straight away if she develops fever, back or side pain, vomiting or blood in the urine, as these suggest a kidney infection.",
+      "Always tell every doctor and pharmacist that she takes methotrexate before starting any new medicine, including antibiotics and anti-inflammatories."
+    ],
+    "unacceptableActions": [
+      "Dispensing trimethoprim without identifying the interaction.",
+      "Recognising the interaction but dispensing anyway with advice only, or telling her to skip or stop methotrexate without the prescribers' agreement.",
+      "Calling the prescriber with no specific alternative, or recommending another antifolate such as trimethoprim-sulfamethoxazole.",
+      "Sending her away untreated without arranging an alternative."
+    ],
+    "acceptableResolutions": [
+      "Take a full medication history and identify the weekly methotrexate, its dose and day, and that the last dose was yesterday.",
+      "Assess the UTI to confirm uncomplicated cystitis: duration, fever, flank pain, haematuria and vomiting. Also ask about allergies and recent renal function and blood counts.",
+      "Withhold the trimethoprim and contact Dr Nguyen. Explain the interaction and recommend a specific alternative: cefalexin 500 mg 12-hourly for 5 days, or nitrofurantoin 100 mg 6-hourly for 5 days.",
+      "Dispense the new antibiotic once a valid prescription is received. Counsel Mrs Doyle on the antibiotic, why the change was made, and the signs of methotrexate toxicity.",
+      "Document the intervention and advise that her medication list with the GP be updated. Ideally, advise her to always mention methotrexate to every prescriber.",
+      "Make sure she is treated today and not left without an antibiotic."
+    ]
+  },
+  "documents": {
+    "notes": [
+      "Today is Tuesday 10 March 2026."
+    ],
+    "prescription": {
+      "pbs": true,
+      "date": "10 March 2026",
+      "item": "Trimethoprim 300 mg tablets",
+      "footer": "Dr P. Nguyen · Bayside Family Medical, Brighton VIC · Helen Doyle, DOB 22/07/1957",
+      "repeats": "0",
+      "quantity": "3",
+      "directions": "One tablet at night for 3 days · Qty 3 · No repeats",
+      "prescriber": "Dr P. Nguyen",
+      "patientName": "Helen Doyle",
+      "patientAddress": "8 Seaview Crescent, Brighton VIC 3186",
+      "prescriberDetail": "General practitioner · Bayside Family Medical, Brighton VIC",
+      "brandSubstitutionNotPermitted": false
+    },
+    "dispensingHistory": [
+      {
+        "date": "16 Feb 2026",
+        "item": "Methotrexate 2.5 mg tablets (Methoblastin)",
+        "quantity": "30",
+        "directions": "Four tablets (10 mg) once a week on Mondays",
+        "prescriber": "Dr R. Patel (rheumatologist)"
+      },
+      {
+        "date": "16 Feb 2026",
+        "item": "Folic acid 5 mg tablets (Megafol)",
+        "quantity": "50",
+        "directions": "One tablet once a week on Thursdays",
+        "prescriber": "Dr R. Patel (rheumatologist)"
+      },
+      {
+        "date": "19 Jan 2026",
+        "item": "Methotrexate 2.5 mg tablets (Methoblastin)",
+        "quantity": "30",
+        "directions": "Four tablets (10 mg) once a week on Mondays",
+        "prescriber": "Dr R. Patel (rheumatologist)"
+      }
+    ]
+  },
+  "hiddenFacts": [
+    {
+      "id": "takes-methotrexate",
+      "fact": "You take methotrexate 10 mg (four 2.5 mg tablets) once a week on Mondays for rheumatoid arthritis, prescribed by your rheumatologist Dr Patel. You took this week's dose yesterday, Monday. You did not mention it to the GP this morning because the specialist looks after it.",
+      "agent": "patient",
+      "triggers": [
+        "other medicine",
+        "any other",
+        "anything else",
+        "other tablet",
+        "methotrexate",
+        "arthritis",
+        "rheumatologist",
+        "specialist",
+        "weekly tablet",
+        "once week",
+        "regular medicine",
+        "currently take",
+        "tell doctor",
+        "last dose"
+      ],
+      "unlockHint": "“Are you taking any other medicines, including any from a specialist?”"
+    },
+    {
+      "id": "folic-acid-paracetamol",
+      "fact": "You also take folic acid 5 mg once a week on Thursdays, and paracetamol now and then for joint pain. You don't take any other prescription or over-the-counter medicines, vitamins or herbal products.",
+      "agent": "patient",
+      "triggers": [
+        "other medicine",
+        "any other",
+        "anything else",
+        "other tablet",
+        "folic acid",
+        "vitamin",
+        "supplement",
+        "herbal",
+        "over counter",
+        "pain relief",
+        "paracetamol",
+        "buy yourself"
+      ],
+      "unlockHint": "“Do you take anything else, like vitamins or anything you buy yourself?”"
+    },
+    {
+      "id": "symptoms-uncomplicated",
+      "fact": "For two days you have had burning when passing urine and have needed to go often and urgently. You have no fever, chills, back or side pain, nausea or vomiting, and you haven't seen blood in your urine. You haven't had a urine infection for several years.",
+      "agent": "patient",
+      "triggers": [
+        "symptoms",
+        "how long",
+        "fever",
+        "temperature",
+        "chills",
+        "back pain",
+        "side pain",
+        "blood urine",
+        "vomiting",
+        "nausea",
+        "feel unwell",
+        "started",
+        "infection before"
+      ],
+      "unlockHint": "“Can you tell me about your symptoms: how long, and any fever or back pain?”"
+    },
+    {
+      "id": "no-allergies",
+      "fact": "You have no medicine allergies. You took cephalexin for a skin infection a few years ago without any problems.",
+      "agent": "patient",
+      "triggers": [
+        "allergy",
+        "allergies",
+        "allergic",
+        "reaction",
+        "rash",
+        "penicillin",
+        "cephalexin",
+        "cefalexin",
+        "keflex",
+        "antibiotic before",
+        "side effect"
+      ],
+      "unlockHint": "“Do you have any allergies or reactions to medicines, especially antibiotics?”"
+    },
+    {
+      "id": "recent-bloods",
+      "fact": "Your rheumatologist checks your blood every three months. Your last blood test was about three weeks ago and you were told your kidneys and blood counts were fine.",
+      "agent": "patient",
+      "triggers": [
+        "blood test",
+        "kidney",
+        "kidneys",
+        "liver",
+        "blood count",
+        "monitoring",
+        "last test",
+        "pathology",
+        "checks blood",
+        "kidney function"
+      ],
+      "unlockHint": "“When did you last have blood tests, and were your kidneys and blood counts okay?”"
+    },
+    {
+      "id": "gp-unaware-methotrexate",
+      "fact": "You did not know Mrs Doyle was taking methotrexate. It is prescribed by her rheumatologist and is not on your current medication list for her. You agree the trimethoprim should not be given. You will accept cefalexin 500 mg twice daily for 5 days (or nitrofurantoin 100 mg four times daily for 5 days) and will send a new prescription to the pharmacy now. You will update her medication list.",
+      "agent": "prescriber",
+      "triggers": [
+        "methotrexate",
+        "interaction",
+        "interact",
+        "bone marrow",
+        "folate",
+        "rheumatologist",
+        "alternative",
+        "cefalexin",
+        "cephalexin",
+        "nitrofurantoin",
+        "change antibiotic",
+        "switch",
+        "different antibiotic",
+        "instead trimethoprim",
+        "new script"
+      ],
+      "unlockHint": "“She takes methotrexate 10 mg weekly; trimethoprim interacts and risks bone marrow suppression. I recommend cefalexin 500 mg twice daily for 5 days instead. Would you agree?”"
+    }
+  ],
+  "problemType": "Drug interaction",
+  "questionSheet": "A woman in her late sixties presents a new prescription from her GP for a urinary tract infection. Her dispensing history at your pharmacy is shown. Manage the situation as you would in practice. You may contact the prescriber."
+}
