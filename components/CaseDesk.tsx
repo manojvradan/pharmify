@@ -11,7 +11,9 @@ import { DispensingHistory } from "@/components/DispensingHistory";
  * they can be dragged (mouse, touch, or arrow keys) out of the way of the role play in the
  * middle. The prescription has a "Read" button that brings it to the centre at full size,
  * and any paper can be minimised to a tray in the bottom corner. When the case ends
- * (`papers` false) they all clear off the desk.
+ * (`papers` false) they all clear off the desk. "Full text" on the band opens the question
+ * sheet to read over the darkened screen (`onReading` tells the session to pause the
+ * character meanwhile).
  */
 
 type DocId = "rx" | "hist" | "notes";
@@ -25,6 +27,8 @@ const DOCS: Record<DocId, { w: number; liveScale: number; tilt: number }> = {
 };
 const DOC_NAME: Record<DocId, string> = { rx: "Prescription", hist: "Dispensing history", notes: "Notes" };
 const BAND_H = 58;
+/** The least height (on screen) a side paper is squeezed to before it may run off the desk. */
+const MIN_PAPER = 140;
 const EASE = "cubic-bezier(.2,.8,.2,1)";
 const label = "text-[10.5px] font-semibold tracking-[0.08em] text-subtle uppercase";
 const mono = "font-mono text-sm text-ink";
@@ -121,11 +125,20 @@ function Prescription({ p }: { p: NonNullable<PublicCase["documents"]["prescript
   );
 }
 
+/**
+ * A paper with a title. When its paper is height-limited on the desk, the sheet shrinks to fit
+ * and its contents scroll inside it (`data-scroll`, which also stops a drag starting there).
+ */
 function Sheet({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <div className="flex flex-col gap-1.5 rounded-lg border border-[#D9D3E2] bg-white px-4 py-3.5 shadow-[0_20px_40px_-28px_rgba(22,17,42,0.45)]">
+    <div className="flex min-h-0 flex-col gap-1.5 rounded-lg border border-[#D9D3E2] bg-white px-4 py-3.5 shadow-[0_20px_40px_-28px_rgba(22,17,42,0.45)]">
       <span className={label}>{title}</span>
-      {children}
+      <div
+        data-scroll
+        className="-mr-2 min-h-0 touch-pan-y overflow-y-auto overscroll-contain pr-2 focus-visible:outline-2 focus-visible:outline-pink"
+      >
+        {children}
+      </div>
     </div>
   );
 }
@@ -156,6 +169,8 @@ export function CaseDesk({
   live,
   papers = true,
   brief,
+  onReading,
+  readingNote,
   children,
 }: {
   c: PublicCase;
@@ -165,6 +180,10 @@ export function CaseDesk({
   papers?: boolean;
   /** Under the question sheet before the clock starts: the start button and options. */
   brief: ReactNode;
+  /** Called with true when the candidate opens the question sheet to read, false when they close it. */
+  onReading?: (reading: boolean) => void;
+  /** Shown on the open question sheet, e.g. that the character is paused. */
+  readingNote?: ReactNode;
   /** The role play, in the middle of the desk once the clock is running. */
   children: ReactNode;
 }) {
@@ -186,7 +205,7 @@ export function CaseDesk({
   const [zoom, setZoom] = useState(false);
   /** Papers minimised to the tray, in the order they went in. */
   const [mini, setMini] = useState<DocId[]>([]);
-  const [qOpen, setQOpen] = useState(false);
+  const sheetRef = useRef<HTMLDialogElement>(null);
   const reduced = useReducedMotion();
   // A replay goes back to the brief: start the next run with every paper out and none zoomed.
   const [wasLive, setWasLive] = useState(live);
@@ -209,7 +228,12 @@ export function CaseDesk({
       if (!st) return;
       setSize({ w: st.clientWidth, h: st.clientHeight, brief: briefRef.current?.offsetHeight ?? 0 });
       const hs: Partial<Record<DocId, number>> = {};
-      for (const id of Object.keys(docRefs.current) as DocId[]) hs[id] = docRefs.current[id]?.offsetHeight ?? 0;
+      // Each paper's full height, including any of its contents scrolled out of view.
+      for (const id of Object.keys(docRefs.current) as DocId[]) {
+        const el = docRefs.current[id];
+        const sc = el?.querySelector<HTMLElement>("[data-scroll]");
+        hs[id] = (el?.offsetHeight ?? 0) + (sc ? sc.scrollHeight - sc.clientHeight : 0);
+      }
       setHeights(hs);
     };
     measure();
@@ -218,6 +242,11 @@ export function CaseDesk({
     if (briefRef.current) ro.observe(briefRef.current);
     return () => ro.disconnect();
   }, [live]);
+
+  // The question sheet closes if the case ends (or goes back to the brief) while it's open.
+  useEffect(() => {
+    if (!live || !papers) sheetRef.current?.close();
+  }, [live, papers]);
 
   useEffect(() => {
     const onKey = (e: globalThis.KeyboardEvent) => {
@@ -247,13 +276,27 @@ export function CaseDesk({
    */
   const homePos = (id: DocId): Pos => {
     if (id === "rx") return { x: 24, y: BAND_H + 28 };
-    let y = BAND_H + 28;
-    for (const other of ids) {
-      if (other === id) break;
-      if (other !== "rx") y += (heights[other] ?? 150) + 20;
-    }
-    return { x: Math.max(8, size.w - DOCS[id].w - 24), y };
+    return { x: Math.max(8, size.w - DOCS[id].w - 24), y: sideHome[id]?.y ?? BAND_H + 28 };
   };
+
+  /**
+   * The side papers stacked down the right edge, each with the most height (on screen) it may
+   * take: its full height if that fits, otherwise what's left once the papers under it have
+   * room for their own (up to MIN_PAPER each). A long paper's contents scroll inside it.
+   */
+  const sideHome = (() => {
+    const out: Partial<Record<DocId, { y: number; cap: number }>> = {};
+    const side = ids.filter((id) => id !== "rx");
+    const full = (id: DocId) => (heights[id] ?? 150) * liveScale(id);
+    let y = BAND_H + 28;
+    side.forEach((id, i) => {
+      const below = side.slice(i + 1).reduce((sum, j) => sum + Math.min(full(j), MIN_PAPER) + 20, 0);
+      const cap = Math.max(MIN_PAPER, Math.min(full(id), size.h - 16 - y - below));
+      out[id] = { y, cap };
+      y += cap + 20;
+    });
+    return out;
+  })();
   const at = (id: DocId) => pos[id] ?? homePos(id);
 
   /** Where each paper sits before the clock starts: centred under the question sheet. */
@@ -289,6 +332,9 @@ export function CaseDesk({
   const down = (id: DocId) => (e: PointerEvent<HTMLDivElement>) => {
     if (!live || zoomed || e.button !== 0) return;
     if ((e.target as HTMLElement).closest("button")) return;
+    // Inside a paper that scrolls, the pointer scrolls it; the bar along the top still drags.
+    const scroller = (e.target as HTMLElement).closest<HTMLElement>("[data-scroll]");
+    if (scroller && scroller.scrollHeight > scroller.clientHeight) return;
     const start = { x: e.clientX, y: e.clientY, o: at(id) };
     const move = (ev: globalThis.PointerEvent) => {
       setPos((p) => ({ ...p, [id]: clamp(id, start.o.x + ev.clientX - start.x, start.o.y + ev.clientY - start.y) }));
@@ -324,6 +370,18 @@ export function CaseDesk({
       setTop("rx");
       setZoom((z) => !z);
     }
+  };
+
+  /**
+   * Once the clock starts, how tall a side paper may be, so it never runs past the bottom of the
+   * desk: its place in the stack (sideHome) until it's moved, then whatever room is below it.
+   * Longer contents scroll inside. In the paper's own units, before its scale; undefined is no limit.
+   */
+  const maxHeight = (id: DocId): number | undefined => {
+    if (!live || id === "rx") return undefined;
+    const moved = pos[id];
+    const cap = moved ? Math.max(MIN_PAPER, size.h - moved.y - 16) : (sideHome[id]?.cap ?? MIN_PAPER);
+    return cap / liveScale(id);
   };
 
   const placement = (id: DocId) => {
@@ -381,7 +439,7 @@ export function CaseDesk({
     return (
       <div
         aria-hidden={!live}
-        className="flex items-center justify-between gap-2 overflow-hidden font-semibold text-subtle transition-[opacity,height] duration-300"
+        className="flex flex-none items-center justify-between gap-2 overflow-hidden font-semibold text-subtle transition-[opacity,height] duration-300"
         style={{ height: live ? (big ? 40 : 30) : 0, opacity: live ? 1 : 0, fontSize: big ? 19 : 12 }}
       >
         <span className="inline-flex items-center gap-2">
@@ -435,8 +493,8 @@ export function CaseDesk({
       aria-label={`${title}. ${live ? `Drag or use the arrow keys to move${id === "rx" ? "; Enter to read it full size" : ""}.` : ""}`}
       onPointerDown={down(id)}
       onKeyDown={key(id)}
-      className="absolute origin-top-left touch-none select-none focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-pink"
-      style={{ width: DOCS[id].w, ...placement(id) }}
+      className="absolute flex origin-top-left touch-none flex-col select-none focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-pink"
+      style={{ width: DOCS[id].w, maxHeight: maxHeight(id), ...placement(id) }}
     >
       {chrome(id, id === "rx" ? "Prescription" : "Drag")}
       {body}
@@ -448,8 +506,8 @@ export function CaseDesk({
   return (
     <main
       ref={stageRef}
-      className="relative flex-1 overflow-hidden bg-canvas bg-[radial-gradient(#E3DEEA_1px,transparent_1px)] bg-size-[22px_22px]"
-      style={{ minHeight: live ? 780 : Math.max(640, briefLayout.bottom + 40) }}
+      className="relative min-h-0 flex-1 overflow-hidden bg-canvas bg-[radial-gradient(#E3DEEA_1px,transparent_1px)] bg-size-[22px_22px]"
+      style={{ minHeight: live ? 0 : Math.max(640, briefLayout.bottom + 40) }}
     >
       {!live ? (
         <section
@@ -469,17 +527,59 @@ export function CaseDesk({
           >
             <div className="mx-auto flex max-w-[980px] items-center gap-3.5 px-6 py-2.5">
               <span className={`flex-none ${label}`}>Question sheet</span>
-              <p className={`m-0 min-w-0 flex-1 text-[15px] ${qOpen ? "" : "truncate"}`}>{c.questionSheet}</p>
+              <p className="m-0 min-w-0 flex-1 truncate text-[15px]">{c.questionSheet}</p>
               <button
                 type="button"
-                onClick={() => setQOpen(!qOpen)}
-                aria-expanded={qOpen}
+                onClick={() => {
+                  sheetRef.current?.showModal();
+                  onReading?.(true);
+                }}
+                aria-haspopup="dialog"
                 className="min-h-9 flex-none cursor-pointer rounded-lg border border-line bg-white px-3 text-[13px] font-semibold text-ink"
               >
-                {qOpen ? "Less" : "Full text"}
+                Full text
               </button>
             </div>
           </section>
+          {/* Reading mode: the whole screen dims and blurs, the papers can't be touched, and the
+              sheet drops down in large type. Esc, the button or a click outside closes it. */}
+          <dialog
+            ref={sheetRef}
+            aria-labelledby="question-sheet-title"
+            onClose={() => onReading?.(false)}
+            onClick={(e) => {
+              if (e.target === e.currentTarget) e.currentTarget.close();
+            }}
+            className="mx-auto mt-[11vh] max-h-[78vh] w-[min(780px,calc(100%-32px))] overflow-y-auto overscroll-contain rounded-[28px] border-0 bg-white p-0 text-ink shadow-[0_40px_80px_-30px_rgba(22,17,42,0.6)] backdrop:bg-ink/60 backdrop:backdrop-blur-[3px] open:animate-sheet-down backdrop:open:animate-dim-in"
+          >
+            <div className="flex flex-col gap-5 px-6 pt-7 pb-6 sm:px-10 sm:pt-9 sm:pb-8">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <h2 id="question-sheet-title" className={`m-0 ${label}`}>
+                  Question sheet
+                </h2>
+                {readingNote && (
+                  <span className="inline-flex items-center gap-2 rounded-full bg-canvas px-3 py-1 text-[13px] font-semibold text-ink-2">
+                    <svg width="10" height="12" viewBox="0 0 10 12" aria-hidden="true">
+                      <rect x="0.5" y="0.5" width="3" height="11" rx="1" fill="currentColor" />
+                      <rect x="6.5" y="0.5" width="3" height="11" rx="1" fill="currentColor" />
+                    </svg>
+                    {readingNote}
+                  </span>
+                )}
+              </div>
+              <p className="m-0 text-[21px] leading-[1.65] tracking-[-0.01em] text-pretty whitespace-pre-line sm:text-[23px]">{c.questionSheet}</p>
+              <div className="flex justify-end pt-1">
+                <button
+                  type="button"
+                  autoFocus
+                  onClick={() => sheetRef.current?.close()}
+                  className="min-h-11 cursor-pointer rounded-xl bg-ink px-5 text-[15px] font-semibold text-white hover:bg-ink/90"
+                >
+                  Back to the case
+                </button>
+              </div>
+            </div>
+          </dialog>
           {/* Tabs pinned to the top and controls to the bottom; the character's stage fills the
               space between, so switching characters never moves either. */}
           <section aria-label="Role play" className="absolute inset-x-0 bottom-0 flex flex-col items-center gap-5 py-5" style={{ top: BAND_H }}>
