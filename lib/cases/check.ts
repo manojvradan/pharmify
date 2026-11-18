@@ -76,6 +76,7 @@ export const PATIENT_BIO_REQUIRED = ["Full name", "Date of birth", "Age", "Addre
  */
 function rolePlayDetailProblems(c: CaseRecord): string[] {
   const problems: string[] = [];
+  if (!c.specialty) problems.push("a complex clinical case needs a specialty, for the clinical case hub");
   if (!c.documents.dispensingHistory?.length) {
     problems.push("a complex clinical case needs documents.dispensingHistory: the patient's recent dispensings at this pharmacy");
   }

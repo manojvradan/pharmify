@@ -7,7 +7,7 @@ import { getOwnedSession } from "@/lib/session/store";
 import { issueAgentTicket } from "@/lib/voice/agentTicket";
 import { type AgentJobMetadata, VOICE_AGENT_NAME } from "@/lib/voice/agentTicket.shared";
 import { liveKitEnabled } from "@/lib/voice/livekit";
-import { voiceId } from "@/lib/voice/voices";
+import { inworldVoice, voiceId } from "@/lib/voice/voices";
 
 const Body = z.object({ sessionId: z.uuid() });
 
@@ -40,6 +40,8 @@ export async function POST(req: Request) {
       name: a.name,
       openingLine: a.openingLine,
       voiceId: voiceId(a.voice),
+      // The agent speaks with Inworld (LiveKit Inference); voiceId is its ElevenLabs fallback.
+      ttsVoice: inworldVoice(a.voice),
     })),
   };
 

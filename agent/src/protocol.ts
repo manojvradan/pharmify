@@ -12,7 +12,7 @@ export type AgentJobMetadata = {
   sessionId: string;
   ticket: string;
   apiBase: string;
-  characters: { id: CharacterId; name: string; openingLine?: string; voiceId: string }[];
+  characters: { id: CharacterId; name: string; openingLine?: string; voiceId: string; ttsVoice?: string }[];
 };
 
 export const TOPIC_SWITCH = "pharmify.agent";

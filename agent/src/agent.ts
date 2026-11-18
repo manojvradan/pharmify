@@ -23,8 +23,14 @@ import {
   VOICE_AGENT_NAME,
 } from "./protocol.ts";
 
-/** Same low-latency voice model as the app's own voice mode (lib/voice/elevenlabs.ts). */
+/** ElevenLabs fallback: same low-latency model as the app's own voice mode (lib/voice/elevenlabs.ts). */
 const TTS_MODEL = "eleven_flash_v2_5";
+/**
+ * Characters speak with Inworld TTS 2 Flash through LiveKit Inference (no separate key, about a
+ * third of ElevenLabs' cost), in the voice the app sends as `ttsVoice`. Without one (an older app
+ * deployment), they use their ElevenLabs voice.
+ */
+const INWORLD_MODEL = "inworld/inworld-tts-2-flash";
 /** How long to wait for the app to start answering a turn before apologising instead. */
 const TURN_TIMEOUT_MS = 20_000;
 /** Said when a turn fails, so the candidate hears something rather than silence. */
@@ -92,7 +98,9 @@ class Character extends voice.Agent {
     super({
       // Not sent to any model; the app holds the character's real instructions.
       instructions: `You are ${info.name}.`,
-      tts: new elevenlabs.TTS({ apiKey: elevenLabsKey(), voiceId: info.voiceId, model: TTS_MODEL, languageCode: "en" }),
+      tts: info.ttsVoice
+        ? new inference.TTS({ model: INWORLD_MODEL, voice: info.ttsVoice, language: "en" })
+        : new elevenlabs.TTS({ apiKey: elevenLabsKey(), voiceId: info.voiceId, model: TTS_MODEL, languageCode: "en" }),
     });
     this.info = info;
     this.job = job;

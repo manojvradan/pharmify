@@ -9,7 +9,7 @@ export type AgentJobMetadata = {
   ticket: string;
   /** Where the agent calls /api/session/turn: this deployment's own origin. */
   apiBase: string;
-  characters: { id: "patient" | "prescriber"; name: string; openingLine?: string; voiceId: string }[];
+  characters: { id: "patient" | "prescriber"; name: string; openingLine?: string; voiceId: string; ttsVoice?: string }[];
 };
 
 /** Text-stream topics between the browser and the agent. */

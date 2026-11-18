@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { CAST_IDS, type CastId, OLD_CAST_IDS } from "@/lib/cast";
+import { SPECIALTY_IDS } from "./specialties";
 import { VOICE_KEYS, type VoiceKey } from "@/lib/voice/voices";
 import type { PrescriptionForm } from "./prescription";
 
@@ -91,6 +92,8 @@ export const CaseRecord = z.object({
   category: z.enum(["ethical", "legal", "clinical"]),
   /** One of the Board's problem types, or the ethical/legal theme. */
   problemType: z.string(),
+  /** Complex clinical only: the specialty it's filed under on the clinical case hub (lib/cases/specialties.ts). */
+  specialty: z.enum(SPECIALTY_IDS).optional(),
   setting: z.string(),
   questionSheet: z.string(),
   documents: z.object({
