@@ -284,5 +284,6 @@
     }
   ],
   "problemType": "Drug interaction",
+  "specialty": "infectious-disease",
   "questionSheet": "Mr Harold Nguyen, a 71-year-old man, presents a valid prescription for clarithromycin 500 mg tablets, one twice daily for 7 days, from his GP, Dr Patel. Dr Patel can be contacted by phone. Manage the situation as you would in practice. You may contact the prescriber."
 }

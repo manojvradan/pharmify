@@ -11,6 +11,7 @@ import { CAST } from "@/lib/cast";
 import { caseIds } from "@/lib/cases/bank";
 import { ANSWER_SCHEME_MINIMUMS as MIN, answerSchemeProblems, checkCase } from "@/lib/cases/check";
 import { CaseRecord } from "@/lib/cases/schema";
+import { SPECIALTY_IDS } from "@/lib/cases/specialties";
 import { VOICE_LIBRARY } from "@/lib/voice/voices";
 import { downloadMedia } from "./whatsapp";
 
@@ -113,6 +114,7 @@ const SYSTEM = `You turn a pharmacy exam question into a case record for Pharmif
 <fields>
 - id: short kebab-case slug of the topic, e.g. "warfarin-antibiotic-interaction".
 - title: 2-4 words. problemType: the problem type or ethical/legal theme, e.g. "Drug interaction".
+- specialty: required for a "clinical" case, leave out otherwise: the one specialty the case is mainly about, by the condition or medicine at the centre of the problem. One of: ${SPECIALTY_IDS.join(", ")}.
 - setting: where it happens, e.g. "Community pharmacy, NSW".
 - questionSheet: what the intern reads first, written like the exam's question sheet. Ends with the task, e.g. "Manage the situation as you would in practice. You may contact the prescriber."
 - documents: prescription {item, directions, footer}, dispensingHistory, notes [string]. A prescription identifies the patient by date of birth, not age: the script form fills the date of birth from the patient's bio, and a footer that names the patient gives it as "DOB dd/mm/yyyy" (e.g. "Dr S. Patel · Harold Nguyen, DOB 09/03/1955"). Include only what the question provides or clearly needs, except dispensingHistory.
