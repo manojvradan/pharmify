@@ -506,8 +506,8 @@ export function CaseDesk({
   return (
     <main
       ref={stageRef}
-      className="relative flex-1 overflow-hidden bg-canvas bg-[radial-gradient(#E3DEEA_1px,transparent_1px)] bg-size-[22px_22px]"
-      style={{ minHeight: live ? 780 : Math.max(640, briefLayout.bottom + 40) }}
+      className="relative min-h-0 flex-1 overflow-hidden bg-canvas bg-[radial-gradient(#E3DEEA_1px,transparent_1px)] bg-size-[22px_22px]"
+      style={{ minHeight: live ? 0 : Math.max(640, briefLayout.bottom + 40) }}
     >
       {!live ? (
         <section

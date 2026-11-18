@@ -457,7 +457,9 @@ export function ExamSession({
           : "";
 
   return (
-    <div className="flex min-h-screen flex-col bg-white text-base leading-normal">
+    // Once the clock starts, the session is exactly one screen: no page scroll, the role play
+    // scales to fit, and long papers scroll inside themselves. Before it, the brief can scroll.
+    <div className={`flex flex-col bg-white text-base leading-normal ${phase === "ready" ? "min-h-screen" : "h-dvh overflow-hidden"}`}>
       <SessionHeader c={c} phase={phase} remaining={remaining} elapsed={elapsed} notice={timeCheck(remaining, c.partSeconds)} />
 
       <CaseDesk
