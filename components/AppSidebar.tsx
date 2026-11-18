@@ -10,7 +10,7 @@ import { CardsIcon, DocIcon, HangerIcon, HomeIcon, LogoMark } from "@/components
 const items = [
   { href: "/home", label: "Home", Icon: HomeIcon },
   { href: "/flashcards", label: "Flashcards", Icon: CardsIcon, badge: String(SESSION_SIZE) },
-  { href: "/pip", label: "My Pip", Icon: HangerIcon },
+  { href: "/pip", label: "My Pip", Icon: HangerIcon, badge: "New", accent: true },
   { href: "/debrief", label: "History", Icon: DocIcon },
 ];
 
@@ -53,8 +53,8 @@ const FADE =
 /** The main nav. `pathname` is null while the route is still prerendering: no item is highlighted yet. */
 function Nav({ pathname }: { pathname: string | null }) {
   return (
-      <nav aria-label="Main" className="flex flex-col gap-1 text-[15px] font-bold">
-        {items.map(({ href, label, Icon, badge }) => {
+      <nav aria-label="Main" className="flex flex-col gap-1 text-[15px] font-semibold">
+        {items.map(({ href, label, Icon, badge, accent }) => {
           const active = pathname !== null && (pathname === href || (href !== "/home" && pathname.startsWith(`${href}/`)));
           return (
             <Link
@@ -62,8 +62,8 @@ function Nav({ pathname }: { pathname: string | null }) {
               href={href}
               aria-current={active ? "page" : undefined}
               title={label}
-              className={`flex min-h-11 items-center gap-3 rounded-[14px] px-3.5 no-underline ${
-                active ? "bg-pink-tint text-pink-deep hover:text-pink-deep" : "text-ink-2 hover:text-ink"
+              className={`flex min-h-11 items-center gap-3 rounded-[10px] px-3.5 no-underline transition-colors duration-150 ${
+                active ? "bg-pink-tint text-pink-deep hover:text-pink-deep" : "text-ink-2 hover:bg-canvas hover:text-ink"
               }`}
             >
               <span className="flex-none">
@@ -72,8 +72,8 @@ function Nav({ pathname }: { pathname: string | null }) {
               <span className={FADE}>{label}</span>
               {badge && (
                 <span
-                  className={`ml-auto rounded-full px-[9px] py-px text-[13px] text-ink ${FADE} ${
-                    active ? "border-[1.5px] border-ink bg-white" : "bg-sun"
+                  className={`ml-auto rounded-[6px] px-2 text-xs leading-5 font-semibold ${FADE} ${
+                    accent ? "bg-pink-tint text-pink-deep" : active ? "bg-white text-ink-2" : "bg-line-soft text-ink-2"
                   }`}
                 >
                   {badge}
@@ -97,12 +97,12 @@ function Profile() {
   const name = user?.fullName || user?.firstName || "Your account";
   const email = user?.primaryEmailAddress?.emailAddress;
   return (
-    <div className="flex min-h-14 items-center gap-3 rounded-[14px] px-1.5">
+    <div className="flex min-h-12 items-center gap-3 rounded-[10px] px-1.5">
       <span className="flex-none">
         <UserButton appearance={{ elements: { avatarBox: "size-9" } }} />
       </span>
       <div className={`flex min-w-0 flex-col leading-tight ${FADE}`}>
-        <span className="truncate text-[15px] font-bold text-ink">{name}</span>
+        <span className="truncate text-sm font-semibold text-ink">{name}</span>
         {email && <span className="truncate text-[13px] text-subtle">{email}</span>}
       </div>
     </div>
@@ -122,7 +122,7 @@ function LogOut() {
         void signOut({ redirectUrl: "/" });
       }}
       title="Log out"
-      className="flex min-h-10 w-full cursor-pointer items-center gap-3 rounded-[12px] border-0 bg-transparent px-3.5 text-[15px] font-bold text-ink-2 hover:bg-chip hover:text-ink"
+      className="flex min-h-10 w-full cursor-pointer items-center gap-3 rounded-[10px] border-0 bg-transparent px-3.5 text-sm font-semibold text-ink-2 hover:bg-canvas hover:text-ink"
     >
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" className="flex-none">
         <path d="M8 3.5H5A1.5 1.5 0 003.5 5v10A1.5 1.5 0 005 16.5h3" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
@@ -146,15 +146,15 @@ export function AppSidebar({ streak }: { streak: ReactNode }) {
     <aside
       aria-label="App"
       data-collapsed={collapsed}
-      className={`group/sidebar box-border flex flex-[1_1_100%] flex-col gap-6 overflow-x-hidden border-r border-line-soft bg-white px-3 py-5 transition-[flex-basis] duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] min-[820px]:sticky min-[820px]:top-0 min-[820px]:h-screen min-[820px]:self-start min-[820px]:overflow-y-auto ${
-        collapsed ? "min-[820px]:flex-[0_0_72px]" : "min-[820px]:flex-[0_0_208px]"
+      className={`group/sidebar box-border flex flex-[1_1_100%] flex-col gap-7 overflow-x-hidden border-r border-line-soft bg-white px-[18px] py-6 transition-[flex-basis] duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] min-[820px]:sticky min-[820px]:top-0 min-[820px]:h-screen min-[820px]:self-start min-[820px]:overflow-y-auto ${
+        collapsed ? "min-[820px]:flex-[0_0_76px]" : "min-[820px]:flex-[0_0_240px]"
       }`}
     >
-      <Link href="/" className="flex items-center gap-2 px-[7px] text-ink no-underline" aria-label="Pharmify home">
+      <Link href="/" className="flex items-center gap-2.5 px-0.5 text-ink no-underline" aria-label="Pharmify home">
         <span className="flex-none">
-          <LogoMark size={34} />
+          <LogoMark size={38} />
         </span>
-        <span className={`text-xl font-bold tracking-[-0.02em] text-brand ${FADE}`}>Pharmify</span>
+        <span className={`text-[22px] font-bold tracking-[-0.02em] text-brand ${FADE}`}>Pharmify</span>
       </Link>
 
       <Suspense fallback={<Nav pathname={null} />}>
@@ -163,7 +163,7 @@ export function AppSidebar({ streak }: { streak: ReactNode }) {
 
       <div className="mt-auto flex flex-col gap-3">
         {streak}
-        <div className="flex flex-col gap-1 border-t border-line-soft pt-3">
+        <div className="flex flex-col gap-0.5 border-t border-line-soft pt-3">
           <Profile />
           <LogOut />
           <button
@@ -171,7 +171,7 @@ export function AppSidebar({ streak }: { streak: ReactNode }) {
             onClick={toggle}
             aria-expanded={!collapsed}
             title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-            className="hidden min-h-10 w-full cursor-pointer items-center gap-3 rounded-[12px] border-0 bg-transparent px-3.5 text-[15px] font-bold text-ink-2 hover:bg-chip hover:text-ink min-[820px]:flex"
+            className="hidden min-h-10 w-full cursor-pointer items-center gap-3 rounded-[10px] border-0 bg-transparent px-3.5 text-sm font-semibold text-ink-2 hover:bg-canvas hover:text-ink min-[820px]:flex"
           >
             <svg
               width="20"
