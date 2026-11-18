@@ -1,294 +1,257 @@
-import type { CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { CAST, type CastId } from "@/lib/cast";
 
 /**
- * The animal cast, drawn from the "Pharmify cast" design sheet. Each character is its
- * body plus a separate mouth (smile, beak or trunk) that animates from the CSS variable
- * `--mouth` (0 closed, 1 wide open) on any ancestor; see `useTalkingMouth`. Nothing
- * here re-renders while talking: only the variable changes.
+ * The cast, drawn from the "Meet the cast" design sheet. Each character is a body plus the
+ * shared mouth, which animates from the CSS variable `--mouth` (0 closed, 1 wide open) on any
+ * ancestor; see `useTalkingMouth`. Nothing here re-renders while talking: only the variable changes.
  */
 
 const INK = "#4A2233";
 
-/** A dark open mouth with a tongue, scaled vertically by --mouth. */
-function OpenMouth({ cx, cy, rx, ry }: { cx: number; cy: number; rx: number; ry: number }) {
+/** The smile from the design sheet, which fades out as a dark open mouth (scaled by --mouth) opens. */
+function Mouth() {
   return (
-    <g className="cast-open">
-      <ellipse cx={cx} cy={cy} rx={rx} ry={ry} fill={INK} />
-      <ellipse cx={cx} cy={cy + ry * 0.35} rx={rx * 0.55} ry={ry * 0.45} fill="#EC6F9E" />
-    </g>
+    <>
+      <path className="cast-smile" d="M54 70 Q60 75.5 66 70" stroke={INK} strokeWidth="2.6" strokeLinecap="round" />
+      <g className="cast-open">
+        <ellipse cx="60" cy="72" rx="5" ry="4.5" fill={INK} />
+        <ellipse cx="60" cy="73.6" rx="2.8" ry="2" fill="#EC6F9E" />
+      </g>
+    </>
   );
 }
 
-const DRAWINGS: Record<CastId, { body: React.ReactNode; mouth: React.ReactNode }> = {
-  "bertie-bear": {
-    body: (
-      <>
-      <path d="M20 122 C20 100 36 90 60 90 C84 90 100 100 100 122 Z" fill="#E8B44A" stroke="#4A2233" strokeWidth="3.5" strokeLinejoin="round" />
-      <circle cx="54" cy="104" r="2.5" fill="#4A2233" />
-      <circle cx="54" cy="114" r="2.5" fill="#4A2233" />
-      <path d="M60 90 V122" stroke="#4A2233" strokeWidth="3" />
-      <circle cx="35" cy="36" r="11" fill="#A0683F" stroke="#4A2233" strokeWidth="3.5" />
-      <circle cx="35" cy="36" r="5" fill="#DFA567" />
-      <circle cx="85" cy="36" r="11" fill="#A0683F" stroke="#4A2233" strokeWidth="3.5" />
-      <circle cx="85" cy="36" r="5" fill="#DFA567" />
-      <circle cx="60" cy="60" r="31" fill="#A0683F" stroke="#4A2233" strokeWidth="3.5" />
-      <ellipse cx="60" cy="72" rx="14" ry="11" fill="#F2D2B0" stroke="#4A2233" strokeWidth="2.5" />
-      <ellipse cx="60" cy="67" rx="5.5" ry="3.8" fill="#4A2233" />
-      <circle cx="49" cy="55" r="3.4" fill="#4A2233" />
-      <circle cx="71" cy="55" r="3.4" fill="#4A2233" />
-      <circle cx="50.2" cy="53.7" r="1.1" fill="#FFFFFF" />
-      <circle cx="72.2" cy="53.7" r="1.1" fill="#FFFFFF" />
-      <circle cx="49" cy="55" r="8" stroke="#4A2233" strokeWidth="2.5" />
-      <circle cx="71" cy="55" r="8" stroke="#4A2233" strokeWidth="2.5" />
-      <path d="M57 55 H63" stroke="#4A2233" strokeWidth="2.5" />
-      <ellipse cx="38" cy="70" rx="5" ry="3.2" fill="#F4A0B5" />
-      <ellipse cx="82" cy="70" rx="5" ry="3.2" fill="#F4A0B5" />
-      </>
-    ),
-    mouth: (
-      <>
-        <path className="cast-smile" d="M55.5 74 Q60 78 64.5 74" stroke="#4A2233" strokeWidth="2.5" strokeLinecap="round" />
-        <OpenMouth cx={60} cy={76} rx={4.5} ry={4} />
-      </>
-    ),
-  },
-  "kiki-koala": {
-    body: (
-      <>
-      <path d="M20 122 C20 100 36 90 60 90 C84 90 100 100 100 122 Z" fill="#C9B3F2" stroke="#4A2233" strokeWidth="3.5" strokeLinejoin="round" />
-      <path d="M52 92 V106 M68 92 V106" stroke="#4A2233" strokeWidth="2.5" strokeLinecap="round" />
-      <circle cx="52" cy="108" r="2.5" fill="#FFFFFF" stroke="#4A2233" strokeWidth="2" />
-      <circle cx="68" cy="108" r="2.5" fill="#FFFFFF" stroke="#4A2233" strokeWidth="2" />
-      <circle cx="28" cy="46" r="16" fill="#A9A8B8" stroke="#4A2233" strokeWidth="3.5" />
-      <circle cx="28" cy="46" r="8" fill="#F4D6E0" />
-      <circle cx="92" cy="46" r="16" fill="#A9A8B8" stroke="#4A2233" strokeWidth="3.5" />
-      <circle cx="92" cy="46" r="8" fill="#F4D6E0" />
-      <circle cx="60" cy="62" r="29" fill="#A9A8B8" stroke="#4A2233" strokeWidth="3.5" />
-      <ellipse cx="60" cy="68" rx="8" ry="10.5" fill="#4A2233" />
-      <path d="M44 58 Q48.5 62 53 58 M67 58 Q71.5 62 76 58" stroke="#4A2233" strokeWidth="3" strokeLinecap="round" />
-      <ellipse cx="40" cy="72" rx="5" ry="3.2" fill="#F4A0B5" />
-      <ellipse cx="80" cy="72" rx="5" ry="3.2" fill="#F4A0B5" />
-      <path d="M88 22 h7 l-7 8 h7 M98 12 h5 l-5 6 h5" stroke="#4A2233" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      </>
-    ),
-    mouth: (
-      <>
-        <path className="cast-smile" d="M56 82 Q60 84 64 82" stroke="#4A2233" strokeWidth="2.5" strokeLinecap="round" />
-        <OpenMouth cx={60} cy={83} rx={4} ry={3.5} />
-      </>
-    ),
-  },
-  "wally-wombat": {
-    body: (
-      <>
-      <path d="M20 122 C20 100 36 90 60 90 C84 90 100 100 100 122 Z" fill="#FF9A3D" stroke="#4A2233" strokeWidth="3.5" strokeLinejoin="round" />
-      <path d="M34 104 L48 98 M86 104 L72 98 M30 114 L46 108 M90 114 L74 108" stroke="#FFF4D6" strokeWidth="4" strokeLinecap="round" />
-      <circle cx="37" cy="38" r="8" fill="#8E6A4E" stroke="#4A2233" strokeWidth="3.5" />
-      <circle cx="83" cy="38" r="8" fill="#8E6A4E" stroke="#4A2233" strokeWidth="3.5" />
-      <ellipse cx="60" cy="62" rx="33" ry="29" fill="#8E6A4E" stroke="#4A2233" strokeWidth="3.5" />
-      <ellipse cx="60" cy="72" rx="16" ry="11" fill="#B89274" />
-      <rect x="51" y="62" width="18" height="11" rx="5.5" fill="#4A2233" />
-      <circle cx="47" cy="54" r="3" fill="#4A2233" />
-      <circle cx="73" cy="54" r="3" fill="#4A2233" />
-      <circle cx="48.2" cy="52.7" r="1.1" fill="#FFFFFF" />
-      <circle cx="74.2" cy="52.7" r="1.1" fill="#FFFFFF" />
-      <path d="M42 47 L52 50 M78 47 L68 50" stroke="#4A2233" strokeWidth="3" strokeLinecap="round" />
-      <ellipse cx="38" cy="68" rx="5" ry="3.2" fill="#F4A0B5" />
-      <ellipse cx="82" cy="68" rx="5" ry="3.2" fill="#F4A0B5" />
-      </>
-    ),
-    mouth: (
-      <>
-        <path className="cast-smile" d="M55 79 H65" stroke="#4A2233" strokeWidth="2.5" strokeLinecap="round" />
-        <OpenMouth cx={60} cy={79.5} rx={5} ry={3.6} />
-      </>
-    ),
-  },
-  "rosie-rabbit": {
-    body: (
-      <>
-      <path d="M20 122 C20 100 36 90 60 90 C84 90 100 100 100 122 Z" fill="#A9C8F5" stroke="#4A2233" strokeWidth="3.5" strokeLinejoin="round" />
-      <circle cx="46" cy="95" r="3" fill="#FFFFFF" stroke="#4A2233" strokeWidth="1.5" />
-      <circle cx="53" cy="99" r="3" fill="#FFFFFF" stroke="#4A2233" strokeWidth="1.5" />
-      <circle cx="60" cy="100" r="3" fill="#FFFFFF" stroke="#4A2233" strokeWidth="1.5" />
-      <circle cx="67" cy="99" r="3" fill="#FFFFFF" stroke="#4A2233" strokeWidth="1.5" />
-      <circle cx="74" cy="95" r="3" fill="#FFFFFF" stroke="#4A2233" strokeWidth="1.5" />
-      <g transform="rotate(-12 46 30)" />
-      <ellipse cx="46" cy="26" rx="9" ry="23" fill="#FFFFFF" stroke="#4A2233" strokeWidth="3.5" />
-      <ellipse cx="46" cy="27" rx="4" ry="15" fill="#F7B8CB" />
-      <g transform="rotate(12 74 30)" />
-      <ellipse cx="74" cy="26" rx="9" ry="23" fill="#FFFFFF" stroke="#4A2233" strokeWidth="3.5" />
-      <ellipse cx="74" cy="27" rx="4" ry="15" fill="#F7B8CB" />
-      <circle cx="60" cy="64" r="28" fill="#FFFFFF" stroke="#4A2233" strokeWidth="3.5" />
-      <path d="M57 68 H63 L60 72 Z" fill="#EC6F9E" stroke="#4A2233" strokeWidth="2" strokeLinejoin="round" />
-      <path d="M36 70 H48 M36 75 L48 73 M84 70 H72 M84 75 L72 73" stroke="#4A2233" strokeWidth="1.6" strokeLinecap="round" />
-      <circle cx="50" cy="60" r="3.2" fill="#4A2233" />
-      <circle cx="70" cy="60" r="3.2" fill="#4A2233" />
-      <circle cx="51.2" cy="58.7" r="1.1" fill="#FFFFFF" />
-      <circle cx="71.2" cy="58.7" r="1.1" fill="#FFFFFF" />
-      <ellipse cx="42" cy="70" rx="5" ry="3.2" fill="#F4A0B5" />
-      <ellipse cx="78" cy="70" rx="5" ry="3.2" fill="#F4A0B5" />
-      </>
-    ),
-    mouth: (
-      <>
-        <path d="M60 72 V75" stroke="#4A2233" strokeWidth="2.2" strokeLinecap="round" />
-        <path className="cast-smile" d="M56 77 Q60 79 60 75 Q60 79 64 77" stroke="#4A2233" strokeWidth="2.5" strokeLinecap="round" />
-        <OpenMouth cx={60} cy={78} rx={3.6} ry={3.2} />
-      </>
-    ),
-  },
-  "penny-penguin": {
-    body: (
-      <>
-      <path d="M20 122 C20 100 36 88 60 88 C84 88 100 100 100 122 Z" fill="#2E3550" stroke="#4A2233" strokeWidth="3.5" strokeLinejoin="round" />
-      <path d="M42 122 C42 104 50 96 60 96 C70 96 78 104 78 122 Z" fill="#FFFFFF" />
-      <path d="M40 88 Q60 100 80 88 L82 96 Q60 108 38 96 Z" fill="#8FD8C0" stroke="#4A2233" strokeWidth="2.5" strokeLinejoin="round" />
-      <path d="M74 98 L78 114 L70 112 Z" fill="#8FD8C0" stroke="#4A2233" strokeWidth="2.5" strokeLinejoin="round" />
-      <circle cx="60" cy="58" r="31" fill="#2E3550" stroke="#4A2233" strokeWidth="3.5" />
-      <path d="M60 46 C53 36 37 40 37 56 C37 72 46 82 60 82 C74 82 83 72 83 56 C83 40 67 36 60 46 Z" fill="#FFFFFF" />
-      <circle cx="50" cy="56" r="3.4" fill="#4A2233" />
-      <circle cx="70" cy="56" r="3.4" fill="#4A2233" />
-      <circle cx="51.2" cy="54.7" r="1.1" fill="#FFFFFF" />
-      <circle cx="71.2" cy="54.7" r="1.1" fill="#FFFFFF" />
-      <ellipse cx="43" cy="66" rx="5" ry="3.2" fill="#F4A0B5" />
-      <ellipse cx="77" cy="66" rx="5" ry="3.2" fill="#F4A0B5" />
-      <path d="M44 28 Q60 18 76 28 L74 34 Q60 26 46 34 Z" fill="#F7A8C4" stroke="#4A2233" strokeWidth="2.5" strokeLinejoin="round" />
-      <circle cx="60" cy="20" r="5" fill="#F7A8C4" stroke="#4A2233" strokeWidth="2.5" />
-      </>
-    ),
-    mouth: (
-      <>
-        <ellipse className="cast-open" cx="60" cy="70" rx="4.2" ry="3.4" fill="#4A2233" />
-        <path className="cast-jaw" d="M56.5 68.5 L60 72 L63.5 68.5" fill="#FFB347" stroke="#4A2233" strokeWidth="2.5" strokeLinejoin="round" />
-        <path d="M56.5 68.5 L53 65 L67 65 L63.5 68.5" fill="#FFB347" stroke="#4A2233" strokeWidth="2.5" strokeLinejoin="round" />
-      </>
-    ),
-  },
-  "felix-fox": {
-    body: (
-      <>
-      <path d="M20 122 C20 100 36 90 60 90 C84 90 100 100 100 122 Z" fill="#7FA2D6" stroke="#4A2233" strokeWidth="3.5" strokeLinejoin="round" />
-      <path d="M48 90 L56 102 L60 92 L64 102 L72 90" fill="#FFFFFF" stroke="#4A2233" strokeWidth="2.5" strokeLinejoin="round" />
-      <path d="M60 102 V122" stroke="#4A2233" strokeWidth="2.5" />
-      <path d="M33 48 L35 16 L56 34 Z" fill="#F08A4B" stroke="#4A2233" strokeWidth="3.5" strokeLinejoin="round" />
-      <path d="M38 40 L39 25 L49 34 Z" fill="#FFE3C8" />
-      <path d="M87 48 L85 16 L64 34 Z" fill="#F08A4B" stroke="#4A2233" strokeWidth="3.5" strokeLinejoin="round" />
-      <path d="M82 40 L81 25 L71 34 Z" fill="#FFE3C8" />
-      <circle cx="60" cy="60" r="29" fill="#F08A4B" stroke="#4A2233" strokeWidth="3.5" />
-      <path d="M32 63 Q42 72 60 72 Q78 72 88 63 Q86 88 60 89 Q34 88 32 63 Z" fill="#FFF4EA" stroke="#4A2233" strokeWidth="2.5" strokeLinejoin="round" />
-      <ellipse cx="60" cy="72" rx="5" ry="3.5" fill="#4A2233" />
-      <circle cx="49" cy="57" r="3.3" fill="#4A2233" />
-      <circle cx="71" cy="57" r="3.3" fill="#4A2233" />
-      <circle cx="50.2" cy="55.7" r="1.1" fill="#FFFFFF" />
-      <circle cx="72.2" cy="55.7" r="1.1" fill="#FFFFFF" />
-      <ellipse cx="42" cy="70" rx="5" ry="3.2" fill="#F4A0B5" />
-      <ellipse cx="78" cy="70" rx="5" ry="3.2" fill="#F4A0B5" />
-      </>
-    ),
-    mouth: (
-      <>
-        <path className="cast-smile" d="M56 78 Q60 81 64 78" stroke="#4A2233" strokeWidth="2.5" strokeLinecap="round" />
-        <OpenMouth cx={60} cy={80} rx={4} ry={3.6} />
-      </>
-    ),
-  },
-  "dr-hoot": {
-    body: (
-      <>
-      <path d="M20 122 C20 100 36 90 60 90 C84 90 100 100 100 122 Z" fill="#FFFFFF" stroke="#4A2233" strokeWidth="3.5" strokeLinejoin="round" />
-      <path d="M50 90 L60 108 L70 90" stroke="#4A2233" strokeWidth="3" strokeLinejoin="round" fill="none" />
+const DRAWINGS: Record<CastId, ReactNode> = {
+  "bertie-walsh": (
+    <>
+      <rect x="51" y="74" width="18" height="20" fill="#F2C9A5" />
+      <path d="M51 74 V92 M69 74 V92" stroke="#4A2233" strokeWidth="3" />
+      <path d="M16 122 C16 101 33 90 60 90 C87 90 104 101 104 122 Z" fill="#E8B44A" stroke="#4A2233" strokeWidth="3.5" strokeLinejoin="round" />
+      <path d="M50 90 L60 108 L70 90" stroke="#4A2233" strokeWidth="3" fill="#FFFFFF" strokeLinejoin="round" />
       <path d="M60 108 V122" stroke="#4A2233" strokeWidth="3" />
-      <path d="M46 92 C42 104 44 112 52 114 M74 92 C78 104 76 110 70 112" stroke="#EC6F9E" strokeWidth="3.5" strokeLinecap="round" fill="none" />
-      <circle cx="68" cy="114" r="4.5" fill="#FFFFFF" stroke="#4A2233" strokeWidth="2.5" />
-      <path d="M34 40 L32 20 L48 32 Z M86 40 L88 20 L72 32 Z" fill="#9C7A5B" stroke="#4A2233" strokeWidth="3.5" strokeLinejoin="round" />
-      <circle cx="60" cy="60" r="31" fill="#9C7A5B" stroke="#4A2233" strokeWidth="3.5" />
-      <path d="M34 76 Q60 96 86 76 Q76 84 60 84 Q44 84 34 76 Z" fill="#D9BFA0" />
-      <circle cx="47" cy="58" r="12" fill="#FFFFFF" stroke="#4A2233" strokeWidth="3" />
-      <circle cx="73" cy="58" r="12" fill="#FFFFFF" stroke="#4A2233" strokeWidth="3" />
-      <circle cx="48" cy="59" r="5" fill="#4A2233" />
-      <circle cx="72" cy="59" r="5" fill="#4A2233" />
-      <circle cx="49.5" cy="57.5" r="1.5" fill="#FFFFFF" />
-      <circle cx="73.5" cy="57.5" r="1.5" fill="#FFFFFF" />
-      <path d="M37 45 L56 50 M83 45 L64 50" stroke="#4A2233" strokeWidth="3" strokeLinecap="round" />
-      </>
-    ),
-    mouth: (
-      <>
-        <ellipse className="cast-open" cx="60" cy="75" rx="3" ry="3" fill="#4A2233" />
-        <path className="cast-jaw" d="M58 74 L60 78 L62 74" fill="#FFB347" stroke="#4A2233" strokeWidth="2.5" strokeLinejoin="round" />
-        <path d="M58 74 L56 70 L64 70 L62 74" fill="#FFB347" stroke="#4A2233" strokeWidth="2.5" strokeLinejoin="round" />
-      </>
-    ),
-  },
-  "dr-kip": {
-    body: (
-      <>
-      <path d="M20 122 C20 100 36 90 60 90 C84 90 100 100 100 122 Z" fill="#6CC3B5" stroke="#4A2233" strokeWidth="3.5" strokeLinejoin="round" />
-      <path d="M48 90 L60 106 L72 90" stroke="#4A2233" strokeWidth="3" strokeLinejoin="round" fill="none" />
-      <rect x="66" y="104" width="12" height="9" rx="2" fill="#FFFFFF" stroke="#4A2233" strokeWidth="2" />
-      <g transform="rotate(-14 44 30)" />
-      <ellipse cx="44" cy="24" rx="8" ry="19" fill="#C98B55" stroke="#4A2233" strokeWidth="3.5" />
-      <ellipse cx="44" cy="26" rx="3.5" ry="12" fill="#F2C9A0" />
-      <g transform="rotate(14 76 30)" />
-      <ellipse cx="76" cy="24" rx="8" ry="19" fill="#C98B55" stroke="#4A2233" strokeWidth="3.5" />
-      <ellipse cx="76" cy="26" rx="3.5" ry="12" fill="#F2C9A0" />
-      <ellipse cx="60" cy="60" rx="27" ry="29" fill="#C98B55" stroke="#4A2233" strokeWidth="3.5" />
-      <ellipse cx="60" cy="73" rx="15" ry="12" fill="#EBC59A" stroke="#4A2233" strokeWidth="2.5" />
-      <ellipse cx="60" cy="68" rx="5.5" ry="3.6" fill="#4A2233" />
-      <circle cx="50" cy="55" r="3.2" fill="#4A2233" />
-      <circle cx="70" cy="55" r="3.2" fill="#4A2233" />
-      <circle cx="51.2" cy="53.7" r="1.1" fill="#FFFFFF" />
-      <circle cx="71.2" cy="53.7" r="1.1" fill="#FFFFFF" />
-      <path d="M43 46 L54 48 M77 46 L66 48" stroke="#4A2233" strokeWidth="2.8" strokeLinecap="round" />
-      <ellipse cx="40" cy="66" rx="5" ry="3.2" fill="#F4A0B5" />
-      <ellipse cx="80" cy="66" rx="5" ry="3.2" fill="#F4A0B5" />
-      </>
-    ),
-    mouth: (
-      <>
-        <path className="cast-smile" d="M56 77 Q60 80 64 77" stroke="#4A2233" strokeWidth="2.5" strokeLinecap="round" />
-        <OpenMouth cx={60} cy={79} rx={4} ry={3.6} />
-      </>
-    ),
-  },
-  "dr-tusk": {
-    body: (
-      <>
-      <path d="M20 122 C20 100 36 90 60 90 C84 90 100 100 100 122 Z" fill="#FFFFFF" stroke="#4A2233" strokeWidth="3.5" strokeLinejoin="round" />
-      <path d="M50 90 L60 108 L70 90" stroke="#4A2233" strokeWidth="3" strokeLinejoin="round" fill="none" />
-      <path d="M60 108 V122" stroke="#4A2233" strokeWidth="3" />
-      <path d="M48 96 V122" stroke="#5127D1" strokeWidth="3" />
-      <rect x="40" y="108" width="16" height="11" rx="2" fill="#E6D0FF" stroke="#4A2233" strokeWidth="2" />
-      <ellipse cx="27" cy="58" rx="19" ry="24" fill="#B8B6C8" stroke="#4A2233" strokeWidth="3.5" />
-      <ellipse cx="27" cy="58" rx="10" ry="15" fill="#F4D6E0" />
-      <ellipse cx="93" cy="58" rx="19" ry="24" fill="#B8B6C8" stroke="#4A2233" strokeWidth="3.5" />
-      <ellipse cx="93" cy="58" rx="10" ry="15" fill="#F4D6E0" />
-      <circle cx="60" cy="56" r="27" fill="#B8B6C8" stroke="#4A2233" strokeWidth="3.5" />
-      <circle cx="49" cy="52" r="3.2" fill="#4A2233" />
-      <circle cx="71" cy="52" r="3.2" fill="#4A2233" />
-      <circle cx="50.2" cy="50.7" r="1.1" fill="#FFFFFF" />
-      <circle cx="72.2" cy="50.7" r="1.1" fill="#FFFFFF" />
-      <path d="M42 42 L54 44 M78 42 L66 44" stroke="#4A2233" strokeWidth="3" strokeLinecap="round" />
-      <ellipse cx="40" cy="64" rx="5" ry="3.2" fill="#F4A0B5" />
-      <ellipse cx="80" cy="64" rx="5" ry="3.2" fill="#F4A0B5" />
-      </>
-    ),
-    mouth: (
-      <>
-        <OpenMouth cx={71} cy={76} rx={3.2} ry={2.8} />
-        <path
-          className="cast-trunk"
-          d="M52 64 C50 80 53 94 63 94 C70 94 72 87 68 85 C63 88 61 82 64 64 Z"
-          fill="#B8B6C8"
-          stroke="#4A2233"
-          strokeWidth="3"
-          strokeLinejoin="round"
-        />
-      </>
-    ),
-  },
+      <circle cx="55" cy="113" r="2.3" fill="#4A2233" />
+      <ellipse cx="34.5" cy="58" rx="5.5" ry="7" fill="#F2C9A5" stroke="#4A2233" strokeWidth="3" />
+      <ellipse cx="85.5" cy="58" rx="5.5" ry="7" fill="#F2C9A5" stroke="#4A2233" strokeWidth="3" />
+      <ellipse cx="60" cy="55" rx="26" ry="28" fill="#F2C9A5" stroke="#4A2233" strokeWidth="3.5" />
+      <path d="M34.5 60 C30 49 33 40 41 34 C39 43 39 51 41 58 Z" fill="#E4E1EA" stroke="#4A2233" strokeWidth="3" strokeLinejoin="round" />
+      <path d="M85.5 60 C90 49 87 40 79 34 C81 43 81 51 79 58 Z" fill="#E4E1EA" stroke="#4A2233" strokeWidth="3" strokeLinejoin="round" />
+      <path d="M50 36 Q60 33 70 36 M53 40.5 Q60 38.5 67 40.5" stroke="#4A2233" strokeWidth="1.5" strokeLinecap="round" opacity="0.35" />
+      <path d="M45 49.5 Q50 46.5 55 49 M65 49 Q70 46.5 75 49.5" stroke="#9C97A6" strokeWidth="2.8" strokeLinecap="round" />
+      <circle cx="50" cy="57" r="3.2" fill="#4A2233" />
+      <circle cx="70" cy="57" r="3.2" fill="#4A2233" />
+      <circle cx="51.1" cy="55.8" r="1" fill="#FFFFFF" />
+      <circle cx="71.1" cy="55.8" r="1" fill="#FFFFFF" />
+      <path d="M60 59 Q57.5 64 60.8 65" stroke="#4A2233" strokeWidth="2" strokeLinecap="round" />
+      <ellipse cx="44.5" cy="66" rx="4.5" ry="2.8" fill="#F4A0B5" opacity="0.75" />
+      <ellipse cx="75.5" cy="66" rx="4.5" ry="2.8" fill="#F4A0B5" opacity="0.75" />
+      <circle cx="50" cy="57" r="7.5" stroke="#4A2233" strokeWidth="2.4" fill="#FFFFFF" fillOpacity="0.25" />
+      <circle cx="70" cy="57" r="7.5" stroke="#4A2233" strokeWidth="2.4" fill="#FFFFFF" fillOpacity="0.25" />
+      <path d="M57.5 57 H62.5 M42.5 56 L35 54 M77.5 56 L85 54" stroke="#4A2233" strokeWidth="2.4" />
+    </>
+  ),
+  "kiki-nguyen": (
+    <>
+      <circle cx="60" cy="19" r="10" fill="#2B2233" stroke="#4A2233" strokeWidth="3" />
+      <rect x="51" y="74" width="18" height="20" fill="#F1CDA8" />
+      <path d="M51 74 V92 M69 74 V92" stroke="#4A2233" strokeWidth="3" />
+      <path d="M16 122 C16 101 33 90 60 90 C87 90 104 101 104 122 Z" fill="#C9B3F2" stroke="#4A2233" strokeWidth="3.5" strokeLinejoin="round" />
+      <path d="M44 92 C46 100 74 100 76 92" stroke="#4A2233" strokeWidth="3" fill="#B49CE8" />
+      <path d="M54 98 V110 M66 98 V110" stroke="#4A2233" strokeWidth="2.5" strokeLinecap="round" />
+      <ellipse cx="34.5" cy="58" rx="5.5" ry="7" fill="#F1CDA8" stroke="#4A2233" strokeWidth="3" />
+      <ellipse cx="85.5" cy="58" rx="5.5" ry="7" fill="#F1CDA8" stroke="#4A2233" strokeWidth="3" />
+      <ellipse cx="60" cy="55" rx="26" ry="28" fill="#F1CDA8" stroke="#4A2233" strokeWidth="3.5" />
+      <path d="M34 54 C31 31 45 22 60 22 C75 22 89 31 86 54 C80 42 70 35 58 36 C49 39 41 45 34 54 Z" fill="#2B2233" stroke="#4A2233" strokeWidth="3" strokeLinejoin="round" />
+      <path d="M45 49.5 Q50 46.5 55 49 M65 49 Q70 46.5 75 49.5" stroke="#4A2233" strokeWidth="2.8" strokeLinecap="round" />
+      <circle cx="50" cy="57" r="3" fill="#4A2233" />
+      <circle cx="70" cy="57" r="3" fill="#4A2233" />
+      <path d="M46 61.5 Q50 63.5 54 61.5 M66 61.5 Q70 63.5 74 61.5" stroke="#4A2233" strokeWidth="1.4" strokeLinecap="round" opacity="0.5" />
+      <path d="M60 59 Q57.5 64 60.8 65" stroke="#4A2233" strokeWidth="2" strokeLinecap="round" />
+      <ellipse cx="44.5" cy="66" rx="4.5" ry="2.8" fill="#F4A0B5" opacity="0.75" />
+      <ellipse cx="75.5" cy="66" rx="4.5" ry="2.8" fill="#F4A0B5" opacity="0.75" />
+    </>
+  ),
+  "wally-morris": (
+    <>
+      <rect x="51" y="74" width="18" height="20" fill="#E2A87F" />
+      <path d="M51 74 V92 M69 74 V92" stroke="#4A2233" strokeWidth="3" />
+      <path d="M16 122 C16 101 33 90 60 90 C87 90 104 101 104 122 Z" fill="#FF9F43" stroke="#4A2233" strokeWidth="3.5" strokeLinejoin="round" />
+      <rect x="17" y="104" width="86" height="8" fill="#F4F0E8" stroke="#4A2233" strokeWidth="2" />
+      <path d="M60 90 V122" stroke="#4A2233" strokeWidth="2.5" />
+      <ellipse cx="34.5" cy="58" rx="5.5" ry="7" fill="#E2A87F" stroke="#4A2233" strokeWidth="3" />
+      <ellipse cx="85.5" cy="58" rx="5.5" ry="7" fill="#E2A87F" stroke="#4A2233" strokeWidth="3" />
+      <ellipse cx="60" cy="55" rx="26" ry="28" fill="#E2A87F" stroke="#4A2233" strokeWidth="3.5" />
+      <path d="M35 58 C35 80 47 87 60 87 C73 87 85 80 85 58 C81 70 73 74 60 74 C47 74 39 70 35 58 Z" fill="#7A4A2A" stroke="#4A2233" strokeWidth="3" strokeLinejoin="round" />
+      <path d="M33 57 C29 32 44 21 60 21 C77 21 91 32 87 57 C85 46 80 40 73 38 C66 42 53 43 44 39 C38 42 35 49 33 57 Z" fill="#7A4A2A" stroke="#4A2233" strokeWidth="3" strokeLinejoin="round" />
+      <path d="M45 49.5 Q50 46.5 55 49 M65 49 Q70 46.5 75 49.5" stroke="#5A341E" strokeWidth="2.8" strokeLinecap="round" />
+      <circle cx="50" cy="57" r="3.2" fill="#4A2233" />
+      <circle cx="70" cy="57" r="3.2" fill="#4A2233" />
+      <circle cx="51.1" cy="55.8" r="1" fill="#FFFFFF" />
+      <circle cx="71.1" cy="55.8" r="1" fill="#FFFFFF" />
+      <path d="M60 59 Q57.5 64 60.8 65" stroke="#4A2233" strokeWidth="2" strokeLinecap="round" />
+      <ellipse cx="44.5" cy="66" rx="4.5" ry="2.8" fill="#F4A0B5" opacity="0.75" />
+      <ellipse cx="75.5" cy="66" rx="4.5" ry="2.8" fill="#F4A0B5" opacity="0.75" />
+    </>
+  ),
+  "rosie-costa": (
+    <>
+      <rect x="51" y="74" width="18" height="20" fill="#F6D5BE" />
+      <path d="M51 74 V92 M69 74 V92" stroke="#4A2233" strokeWidth="3" />
+      <path d="M16 122 C16 101 33 90 60 90 C87 90 104 101 104 122 Z" fill="#FF8CC6" stroke="#4A2233" strokeWidth="3.5" strokeLinejoin="round" />
+      <path d="M50 90 L60 104 L70 90" stroke="#4A2233" strokeWidth="3" fill="#FFFFFF" strokeLinejoin="round" />
+      <circle cx="49" cy="93" r="2.6" fill="#FFFFFF" stroke="#4A2233" strokeWidth="1.6" />
+      <circle cx="53" cy="98" r="2.6" fill="#FFFFFF" stroke="#4A2233" strokeWidth="1.6" />
+      <circle cx="58" cy="101" r="2.6" fill="#FFFFFF" stroke="#4A2233" strokeWidth="1.6" />
+      <circle cx="63" cy="101" r="2.6" fill="#FFFFFF" stroke="#4A2233" strokeWidth="1.6" />
+      <circle cx="68" cy="98" r="2.6" fill="#FFFFFF" stroke="#4A2233" strokeWidth="1.6" />
+      <circle cx="72" cy="93" r="2.6" fill="#FFFFFF" stroke="#4A2233" strokeWidth="1.6" />
+      <ellipse cx="34.5" cy="58" rx="5.5" ry="7" fill="#F6D5BE" stroke="#4A2233" strokeWidth="3" />
+      <ellipse cx="85.5" cy="58" rx="5.5" ry="7" fill="#F6D5BE" stroke="#4A2233" strokeWidth="3" />
+      <ellipse cx="60" cy="55" rx="26" ry="28" fill="#F6D5BE" stroke="#4A2233" strokeWidth="3.5" />
+      <circle cx="36" cy="50" r="8.5" fill="#E4E1EA" stroke="#4A2233" strokeWidth="3" />
+      <circle cx="38" cy="38" r="8.5" fill="#E4E1EA" stroke="#4A2233" strokeWidth="3" />
+      <circle cx="46" cy="29" r="8.5" fill="#E4E1EA" stroke="#4A2233" strokeWidth="3" />
+      <circle cx="57" cy="25" r="8.5" fill="#E4E1EA" stroke="#4A2233" strokeWidth="3" />
+      <circle cx="68" cy="26" r="8.5" fill="#E4E1EA" stroke="#4A2233" strokeWidth="3" />
+      <circle cx="78" cy="31" r="8.5" fill="#E4E1EA" stroke="#4A2233" strokeWidth="3" />
+      <circle cx="84" cy="41" r="8.5" fill="#E4E1EA" stroke="#4A2233" strokeWidth="3" />
+      <circle cx="85" cy="51" r="8.5" fill="#E4E1EA" stroke="#4A2233" strokeWidth="3" />
+      <path d="M40 46 C46 36 74 36 80 46" fill="#E4E1EA" />
+      <path d="M45 49.5 Q50 46.5 55 49 M65 49 Q70 46.5 75 49.5" stroke="#9C97A6" strokeWidth="2.8" strokeLinecap="round" />
+      <circle cx="50" cy="57" r="3.2" fill="#4A2233" />
+      <circle cx="70" cy="57" r="3.2" fill="#4A2233" />
+      <circle cx="51.1" cy="55.8" r="1" fill="#FFFFFF" />
+      <circle cx="71.1" cy="55.8" r="1" fill="#FFFFFF" />
+      <path d="M60 59 Q57.5 64 60.8 65" stroke="#4A2233" strokeWidth="2" strokeLinecap="round" />
+      <ellipse cx="44.5" cy="66" rx="4.5" ry="2.8" fill="#F4A0B5" opacity="0.75" />
+      <ellipse cx="75.5" cy="66" rx="4.5" ry="2.8" fill="#F4A0B5" opacity="0.75" />
+      <circle cx="34" cy="67" r="2.6" fill="#FFFFFF" stroke="#4A2233" strokeWidth="1.8" />
+      <circle cx="86" cy="67" r="2.6" fill="#FFFFFF" stroke="#4A2233" strokeWidth="1.8" />
+    </>
+  ),
+  "penny-okafor": (
+    <>
+      <path d="M80 38 C99 44 100 70 89 86 C87 70 85 58 78 50 Z" fill="#2B1D18" stroke="#4A2233" strokeWidth="3" strokeLinejoin="round" />
+      <rect x="51" y="74" width="18" height="20" fill="#8D5A3B" />
+      <path d="M51 74 V92 M69 74 V92" stroke="#4A2233" strokeWidth="3" />
+      <path d="M16 122 C16 101 33 90 60 90 C87 90 104 101 104 122 Z" fill="#8FD8C0" stroke="#4A2233" strokeWidth="3.5" strokeLinejoin="round" />
+      <path d="M40 93 L80 122" stroke="#4A2233" strokeWidth="7" strokeLinecap="round" />
+      <path d="M40 93 L80 122" stroke="#FFC94D" strokeWidth="3.5" strokeLinecap="round" />
+      <ellipse cx="34.5" cy="58" rx="5.5" ry="7" fill="#8D5A3B" stroke="#4A2233" strokeWidth="3" />
+      <ellipse cx="85.5" cy="58" rx="5.5" ry="7" fill="#8D5A3B" stroke="#4A2233" strokeWidth="3" />
+      <ellipse cx="60" cy="55" rx="26" ry="28" fill="#8D5A3B" stroke="#4A2233" strokeWidth="3.5" />
+      <path d="M34 54 C31 31 45 22 60 22 C75 22 89 31 86 54 C80 42 70 35 58 36 C49 39 41 45 34 54 Z" fill="#2B1D18" stroke="#4A2233" strokeWidth="3" strokeLinejoin="round" />
+      <path d="M45 49.5 Q50 46.5 55 49 M65 49 Q70 46.5 75 49.5" stroke="#4A2233" strokeWidth="2.8" strokeLinecap="round" />
+      <circle cx="50" cy="57" r="3" fill="#4A2233" />
+      <circle cx="70" cy="57" r="3" fill="#4A2233" />
+      <path d="M46 61.5 Q50 63.5 54 61.5 M66 61.5 Q70 63.5 74 61.5" stroke="#4A2233" strokeWidth="1.4" strokeLinecap="round" opacity="0.5" />
+      <path d="M60 59 Q57.5 64 60.8 65" stroke="#4A2233" strokeWidth="2" strokeLinecap="round" />
+      <ellipse cx="44.5" cy="66" rx="4.5" ry="2.8" fill="#F4A0B5" opacity="0.75" />
+      <ellipse cx="75.5" cy="66" rx="4.5" ry="2.8" fill="#F4A0B5" opacity="0.75" />
+    </>
+  ),
+  "felix-romano": (
+    <>
+      <rect x="51" y="74" width="18" height="20" fill="#E8B896" />
+      <path d="M51 74 V92 M69 74 V92" stroke="#4A2233" strokeWidth="3" />
+      <path d="M16 122 C16 101 33 90 60 90 C87 90 104 101 104 122 Z" fill="#A9C8F5" stroke="#4A2233" strokeWidth="3.5" strokeLinejoin="round" />
+      <path d="M48 91 L56 104 L60 96 L64 104 L72 91" stroke="#4A2233" strokeWidth="2.6" fill="#FFFFFF" strokeLinejoin="round" />
+      <path d="M60 100 V122" stroke="#4A2233" strokeWidth="2.5" />
+      <rect x="66" y="108" width="12" height="8" rx="1.5" stroke="#4A2233" strokeWidth="2" />
+      <ellipse cx="34.5" cy="58" rx="5.5" ry="7" fill="#E8B896" stroke="#4A2233" strokeWidth="3" />
+      <ellipse cx="85.5" cy="58" rx="5.5" ry="7" fill="#E8B896" stroke="#4A2233" strokeWidth="3" />
+      <ellipse cx="60" cy="55" rx="26" ry="28" fill="#E8B896" stroke="#4A2233" strokeWidth="3.5" />
+      <path d="M37 64 C38 80 48 85 60 85 C72 85 82 80 83 64 C79 73 71 77 60 77 C49 77 41 73 37 64 Z" fill="#5A3A2A" opacity="0.28" />
+      <path d="M33 57 C29 30 46 20 63 21 C79 22 91 33 87 55 C84 45 79 39 71 37 C60 36 47 41 40 47 C37 50 34 53 33 57 Z" fill="#5A3A2A" stroke="#4A2233" strokeWidth="3" strokeLinejoin="round" />
+      <path d="M45 49.5 Q50 46.5 55 49 M65 49 Q70 46.5 75 49.5" stroke="#3E281C" strokeWidth="2.8" strokeLinecap="round" />
+      <circle cx="50" cy="57" r="3.2" fill="#4A2233" />
+      <circle cx="70" cy="57" r="3.2" fill="#4A2233" />
+      <circle cx="51.1" cy="55.8" r="1" fill="#FFFFFF" />
+      <circle cx="71.1" cy="55.8" r="1" fill="#FFFFFF" />
+      <path d="M60 59 Q57.5 64 60.8 65" stroke="#4A2233" strokeWidth="2" strokeLinecap="round" />
+      <ellipse cx="44.5" cy="66" rx="4.5" ry="2.8" fill="#F4A0B5" opacity="0.75" />
+      <ellipse cx="75.5" cy="66" rx="4.5" ry="2.8" fill="#F4A0B5" opacity="0.75" />
+    </>
+  ),
+  "dr-holt": (
+    <>
+      <path d="M30 72 C23 40 36 19 60 19 C84 19 97 40 90 72 C86 76 80 76 78 71 L78 52 L42 52 L42 71 C40 76 34 76 30 72 Z" fill="#8C6A54" stroke="#4A2233" strokeWidth="3" strokeLinejoin="round" />
+      <rect x="51" y="74" width="18" height="20" fill="#F2C9A5" />
+      <path d="M51 74 V92 M69 74 V92" stroke="#4A2233" strokeWidth="3" />
+      <path d="M16 122 C16 101 33 90 60 90 C87 90 104 101 104 122 Z" fill="#FFFFFF" stroke="#4A2233" strokeWidth="3.5" strokeLinejoin="round" />
+      <path d="M50 90 L60 104 L70 90 Z" fill="#A9C8F5" stroke="#4A2233" strokeWidth="2.5" strokeLinejoin="round" />
+      <path d="M50 90 L56 122 M70 90 L64 122" stroke="#4A2233" strokeWidth="2.5" />
+      <path d="M45 92 C40 104 43 112 51 114 M75 92 C80 104 77 110 71 112" stroke="#EC6F9E" strokeWidth="3.2" strokeLinecap="round" fill="none" />
+      <circle cx="70" cy="114" r="4.3" fill="#FFFFFF" stroke="#4A2233" strokeWidth="2.4" />
+      <ellipse cx="34.5" cy="58" rx="5.5" ry="7" fill="#F2C9A5" stroke="#4A2233" strokeWidth="3" />
+      <ellipse cx="85.5" cy="58" rx="5.5" ry="7" fill="#F2C9A5" stroke="#4A2233" strokeWidth="3" />
+      <ellipse cx="60" cy="55" rx="26" ry="28" fill="#F2C9A5" stroke="#4A2233" strokeWidth="3.5" />
+      <path d="M34 54 C31 31 45 22 60 22 C75 22 89 31 86 54 C80 42 70 35 58 36 C49 39 41 45 34 54 Z" fill="#8C6A54" stroke="#4A2233" strokeWidth="3" strokeLinejoin="round" />
+      <path d="M44 26 C40 32 37 40 36 48" stroke="#E4E1EA" strokeWidth="4" strokeLinecap="round" />
+      <path d="M45 49.5 Q50 46.5 55 49 M65 49 Q70 46.5 75 49.5" stroke="#6B4F3D" strokeWidth="2.8" strokeLinecap="round" />
+      <circle cx="50" cy="57" r="3.2" fill="#4A2233" />
+      <circle cx="70" cy="57" r="3.2" fill="#4A2233" />
+      <circle cx="51.1" cy="55.8" r="1" fill="#FFFFFF" />
+      <circle cx="71.1" cy="55.8" r="1" fill="#FFFFFF" />
+      <path d="M60 59 Q57.5 64 60.8 65" stroke="#4A2233" strokeWidth="2" strokeLinecap="round" />
+      <ellipse cx="44.5" cy="66" rx="4.5" ry="2.8" fill="#F4A0B5" opacity="0.75" />
+      <ellipse cx="75.5" cy="66" rx="4.5" ry="2.8" fill="#F4A0B5" opacity="0.75" />
+      <rect x="42" y="51.5" width="15" height="11" rx="3" stroke="#4A2233" strokeWidth="2.4" fill="#FFFFFF" fillOpacity="0.25" />
+      <rect x="63" y="51.5" width="15" height="11" rx="3" stroke="#4A2233" strokeWidth="2.4" fill="#FFFFFF" fillOpacity="0.25" />
+      <path d="M57 56 H63 M42 55 L35 53 M78 55 L85 53" stroke="#4A2233" strokeWidth="2.4" />
+    </>
+  ),
+  "dr-kapoor": (
+    <>
+      <rect x="51" y="74" width="18" height="20" fill="#C68A62" />
+      <path d="M51 74 V92 M69 74 V92" stroke="#4A2233" strokeWidth="3" />
+      <path d="M16 122 C16 101 33 90 60 90 C87 90 104 101 104 122 Z" fill="#5FC3A9" stroke="#4A2233" strokeWidth="3.5" strokeLinejoin="round" />
+      <path d="M50 90 L60 104 L70 90" stroke="#4A2233" strokeWidth="2.6" fill="#4AAE94" strokeLinejoin="round" />
+      <path d="M45 92 C40 104 43 112 51 114 M75 92 C80 104 77 110 71 112" stroke="#EC6F9E" strokeWidth="3.2" strokeLinecap="round" fill="none" />
+      <circle cx="70" cy="114" r="4.3" fill="#FFFFFF" stroke="#4A2233" strokeWidth="2.4" />
+      <ellipse cx="34.5" cy="58" rx="5.5" ry="7" fill="#C68A62" stroke="#4A2233" strokeWidth="3" />
+      <ellipse cx="85.5" cy="58" rx="5.5" ry="7" fill="#C68A62" stroke="#4A2233" strokeWidth="3" />
+      <ellipse cx="60" cy="55" rx="26" ry="28" fill="#C68A62" stroke="#4A2233" strokeWidth="3.5" />
+      <path d="M37 64 C38 80 48 85 60 85 C72 85 82 80 83 64 C79 73 71 77 60 77 C49 77 41 73 37 64 Z" fill="#1F1A20" opacity="0.35" />
+      <path d="M33 52 C31 28 46 20 60 20 C74 20 89 28 87 52 C80 46 70 43 60 43 C50 43 40 46 33 52 Z" fill="#5FC3A9" stroke="#4A2233" strokeWidth="3" strokeLinejoin="round" />
+      <path d="M38 44 C46 40 74 40 82 44" stroke="#4A2233" strokeWidth="2" opacity="0.4" />
+      <path d="M45 49.5 Q50 46.5 55 49 M65 49 Q70 46.5 75 49.5" stroke="#1F1A20" strokeWidth="2.8" strokeLinecap="round" />
+      <circle cx="50" cy="57" r="3" fill="#4A2233" />
+      <circle cx="70" cy="57" r="3" fill="#4A2233" />
+      <path d="M46 61.5 Q50 63.5 54 61.5 M66 61.5 Q70 63.5 74 61.5" stroke="#4A2233" strokeWidth="1.4" strokeLinecap="round" opacity="0.5" />
+      <path d="M60 59 Q57.5 64 60.8 65" stroke="#4A2233" strokeWidth="2" strokeLinecap="round" />
+      <ellipse cx="44.5" cy="66" rx="4.5" ry="2.8" fill="#F4A0B5" opacity="0.75" />
+      <ellipse cx="75.5" cy="66" rx="4.5" ry="2.8" fill="#F4A0B5" opacity="0.75" />
+    </>
+  ),
+  "dr-tan": (
+    <>
+      <path d="M33 60 C30 76 34 84 40 86 L40 60 Z" fill="#1F1A20" stroke="#4A2233" strokeWidth="3" strokeLinejoin="round" />
+      <path d="M87 60 C90 76 86 84 80 86 L80 60 Z" fill="#1F1A20" stroke="#4A2233" strokeWidth="3" strokeLinejoin="round" />
+      <rect x="51" y="74" width="18" height="20" fill="#F0CBA2" />
+      <path d="M51 74 V92 M69 74 V92" stroke="#4A2233" strokeWidth="3" />
+      <path d="M16 122 C16 101 33 90 60 90 C87 90 104 101 104 122 Z" fill="#FFFFFF" stroke="#4A2233" strokeWidth="3.5" strokeLinejoin="round" />
+      <path d="M50 90 L60 104 L70 90 Z" fill="#FFE8F3" stroke="#4A2233" strokeWidth="2.5" strokeLinejoin="round" />
+      <path d="M50 90 L56 122 M70 90 L64 122" stroke="#4A2233" strokeWidth="2.5" />
+      <path d="M45 92 C40 104 43 112 51 114 M75 92 C80 104 77 110 71 112" stroke="#EC6F9E" strokeWidth="3.2" strokeLinecap="round" fill="none" />
+      <circle cx="70" cy="114" r="4.3" fill="#FFFFFF" stroke="#4A2233" strokeWidth="2.4" />
+      <ellipse cx="34.5" cy="58" rx="5.5" ry="7" fill="#F0CBA2" stroke="#4A2233" strokeWidth="3" />
+      <ellipse cx="85.5" cy="58" rx="5.5" ry="7" fill="#F0CBA2" stroke="#4A2233" strokeWidth="3" />
+      <ellipse cx="60" cy="55" rx="26" ry="28" fill="#F0CBA2" stroke="#4A2233" strokeWidth="3.5" />
+      <path d="M34 57 C31 30 46 22 60 22 C74 22 89 30 86 57 C83 42 72 33 60 32 C48 33 37 42 34 57 Z" fill="#1F1A20" stroke="#4A2233" strokeWidth="3" strokeLinejoin="round" />
+      <path d="M60 23 V33" stroke="#4A2233" strokeWidth="2" />
+      <path d="M45 49.5 Q50 46.5 55 49 M65 49 Q70 46.5 75 49.5" stroke="#1F1A20" strokeWidth="2.8" strokeLinecap="round" />
+      <circle cx="50" cy="57" r="3.2" fill="#4A2233" />
+      <circle cx="70" cy="57" r="3.2" fill="#4A2233" />
+      <circle cx="51.1" cy="55.8" r="1" fill="#FFFFFF" />
+      <circle cx="71.1" cy="55.8" r="1" fill="#FFFFFF" />
+      <path d="M60 59 Q57.5 64 60.8 65" stroke="#4A2233" strokeWidth="2" strokeLinecap="round" />
+      <ellipse cx="44.5" cy="66" rx="4.5" ry="2.8" fill="#F4A0B5" opacity="0.75" />
+      <ellipse cx="75.5" cy="66" rx="4.5" ry="2.8" fill="#F4A0B5" opacity="0.75" />
+      <circle cx="34" cy="68" r="2.6" fill="#FFC94D" stroke="#4A2233" strokeWidth="1.8" />
+      <circle cx="86" cy="68" r="2.6" fill="#FFC94D" stroke="#4A2233" strokeWidth="1.8" />
+    </>
+  ),
 };
 
 export function CastAvatar({
@@ -305,7 +268,6 @@ export function CastAvatar({
   /** Hide from assistive tech when a visible name is next to it. */
   decorative?: boolean;
 }) {
-  const d = DRAWINGS[id];
   return (
     <svg
       viewBox="0 0 120 122"
@@ -316,8 +278,8 @@ export function CastAvatar({
       style={style}
       {...(decorative ? { "aria-hidden": true } : { role: "img", "aria-label": CAST[id].name })}
     >
-      {d.body}
-      {d.mouth}
+      {DRAWINGS[id]}
+      <Mouth />
     </svg>
   );
 }

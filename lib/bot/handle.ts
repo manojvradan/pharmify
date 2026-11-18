@@ -2,6 +2,7 @@ import "server-only";
 
 import { randomBytes } from "node:crypto";
 import { and, eq } from "drizzle-orm";
+import { upgradeRecord } from "@/lib/cases/schema";
 import { db, schema } from "@/lib/db";
 import { type CaseDraft, caseSummary, draftCase, draftProblemsNow } from "./cases";
 import { publishCase } from "./github";
@@ -43,7 +44,7 @@ async function getDraft(phone: string, id: string) {
     .select()
     .from(schema.botCaseDrafts)
     .where(and(eq(schema.botCaseDrafts.id, id), eq(schema.botCaseDrafts.phone, phone)));
-  return row;
+  return row && { ...row, record: upgradeRecord(row.record) };
 }
 
 /** Saves a draft (new, or replacing the open one) and sends its summary, preview link and buttons. */
