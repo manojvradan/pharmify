@@ -17,3 +17,5 @@ export type AgentJobMetadata = {
 
 export const TOPIC_SWITCH = "pharmify.agent";
 export const TOPIC_ENDED = "pharmify.ended";
+/** Browser -> agent: "pause" while the candidate reads the question sheet, "resume" after. */
+export const TOPIC_PAUSE = "pharmify.pause";

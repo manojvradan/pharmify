@@ -15,3 +15,4 @@ export type AgentJobMetadata = {
 /** Text-stream topics between the browser and the agent. */
 export const TOPIC_SWITCH = "pharmify.agent"; // browser -> agent: who the candidate is talking to
 export const TOPIC_ENDED = "pharmify.ended"; // agent -> browser: the server says the part is over
+export const TOPIC_PAUSE = "pharmify.pause"; // browser -> agent: "pause" while the candidate reads, "resume" after

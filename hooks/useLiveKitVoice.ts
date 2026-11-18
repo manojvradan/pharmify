@@ -6,7 +6,7 @@ import { type RemoteTrack, Room, RoomEvent, Track } from "livekit-client";
 const AGENT_JOIN_TIMEOUT_MS = 25_000;
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { AgentId } from "@/lib/cases/schema";
-import { TOPIC_ENDED, TOPIC_SWITCH } from "@/lib/voice/agentTicket.shared";
+import { TOPIC_ENDED, TOPIC_PAUSE, TOPIC_SWITCH } from "@/lib/voice/agentTicket.shared";
 import { closeAudioContext, resumeAudioContext } from "@/lib/voice/audioContext";
 
 /** One line in the live transcript, as the agent publishes it. `id` repeats while a line is still being said. */
@@ -37,6 +37,11 @@ export function useLiveKitVoice({
   const analyserRef = useRef<AnalyserNode | null>(null);
   const bufRef = useRef<Float32Array<ArrayBuffer> | null>(null);
   const [state, setState] = useState<AgentState | "off">("off");
+  const [muted, setMutedState] = useState(false);
+  // Paused (the candidate is reading the question sheet): the character can't hear or be heard.
+  // Muted (the candidate's choice): only the mic is off. Refs, for the room's handlers.
+  const pausedRef = useRef(false);
+  const mutedRef = useRef(false);
   // Kept in refs so the room's handlers always call the latest callbacks.
   const onLineRef = useRef(onLine);
   const onEndedRef = useRef(onEnded);
@@ -46,6 +51,13 @@ export function useLiveKitVoice({
     onEndedRef.current = onEnded;
     onLostRef.current = onLost;
   });
+
+  /** Puts the mic and the character's audio in line with paused and muted. */
+  const apply = useCallback(() => {
+    const room = roomRef.current;
+    if (audioElRef.current) audioElRef.current.muted = pausedRef.current;
+    if (room?.state === "connected") void room.localParticipant.setMicrophoneEnabled(!pausedRef.current && !mutedRef.current).catch(() => {});
+  }, []);
 
   const disconnect = useCallback(() => {
     const room = roomRef.current;
@@ -90,6 +102,7 @@ export function useLiveKitVoice({
         audioElRef.current?.remove();
         const el = track.attach();
         el.style.display = "none";
+        el.muted = pausedRef.current;
         document.body.appendChild(el);
         audioElRef.current = el;
         const ctx = ctxRef.current;
@@ -168,8 +181,35 @@ export function useLiveKitVoice({
         noiseSuppression: true,
         autoGainControl: true,
       });
+      // Paused or muted while connecting: catch up.
+      apply();
     },
-    [disconnect],
+    [disconnect, apply],
+  );
+
+  /**
+   * Pauses the character while the candidate reads: their mic and the character's voice go
+   * off, and the agent stops mid-sentence and drops anything half-said, so nothing is answered
+   * or missed meanwhile. Unpausing puts the mic back as it was (unless muted).
+   */
+  const setPaused = useCallback(
+    (paused: boolean) => {
+      if (pausedRef.current === paused) return;
+      pausedRef.current = paused;
+      apply();
+      void roomRef.current?.localParticipant.sendText(paused ? "pause" : "resume", { topic: TOPIC_PAUSE }).catch(() => {});
+    },
+    [apply],
+  );
+
+  /** Turns the candidate's mic off or on; the character keeps talking and can still be heard. */
+  const setMuted = useCallback(
+    (m: boolean) => {
+      mutedRef.current = m;
+      setMutedState(m);
+      apply();
+    },
+    [apply],
   );
 
   /** Tells the agent who the candidate has turned to. */
@@ -197,5 +237,5 @@ export function useLiveKitVoice({
     [disconnect],
   );
 
-  return { connect, disconnect, switchTo, level, state };
+  return { connect, disconnect, switchTo, level, state, muted, setMuted, setPaused };
 }

@@ -26,8 +26,9 @@ const roundBtn = "grid size-[52px] cursor-pointer place-items-center rounded-ful
 /**
  * `voice`: characters speak their lines (ElevenLabs) and the candidate can hold to speak
  * instead of typing. Off when the server has no ELEVENLABS_API_KEY.
- * `handsFree`: also offer hands-free voice (LiveKit agent): no button, the character hears
- * when you've finished and can be interrupted. Off unless LiveKit is configured.
+ * `handsFree`: use hands-free voice (LiveKit agent): no button, the character hears when
+ * you've finished and can be interrupted. Off unless LiveKit is configured; hold to speak is
+ * then the fallback.
  */
 export function ExamSession({
   case: c,
@@ -51,6 +52,8 @@ export function ExamSession({
   /** Voice mode only: the text box is shown instead of "Hold to speak". */
   const [typing, setTyping] = useState(!voice);
   const [transcribing, setTranscribing] = useState(false);
+  /** The question sheet is open to read: the character is paused meanwhile. */
+  const [reading, setReading] = useState(false);
   // Destructured so effects and callbacks depend on the stable functions, not a new object each render.
   const {
     play: playVoice,
@@ -62,8 +65,8 @@ export function ExamSession({
     level: voiceLevel,
   } = useCharacterVoice();
   const recorder = useRecorder();
-  /** Chosen on the start screen; fixed once the session is live. */
-  // Hands-free is the default wherever it's available; the start screen can turn it off.
+  // Hands-free whenever it's available; there's no choice on the start screen. It turns off
+  // (falling back to hold to speak) only if it fails to start or drops mid-session.
   const [handsFreeOn, setHandsFreeOn] = useState(handsFree && voice);
   /** Hands-free lines by segment id, so a line still being said updates in place. */
   const liveLinesRef = useRef(new Map<string, { agent: AgentId; index: number }>());
@@ -435,12 +438,16 @@ export function ExamSession({
   const handsFreeLive = handsFreeOn && live.state !== "off";
   const talking = handsFreeLive ? live.state === "speaking" : voice ? speaking : streaming && !waiting;
   const status = handsFreeLive
-    ? {
+    ? reading
+      ? `${agentInfo.name} is paused while you read`
+      : live.muted && live.state === "listening"
+        ? "Your mic is muted."
+        : {
         connecting: `Bringing ${agentInfo.name} in…`,
         listening: "Listening. Just talk.",
         thinking: `${agentInfo.name} is thinking…`,
         speaking: `${agentInfo.name} is speaking`,
-      }[live.state as "connecting" | "listening" | "thinking" | "speaking"]
+          }[live.state as "connecting" | "listening" | "thinking" | "speaking"]
     : transcribing
       ? "Listening back…"
       : talking
@@ -457,19 +464,16 @@ export function ExamSession({
         c={c}
         live={phase !== "ready"}
         papers={phase === "ready" || phase === "live"}
+        onReading={(r) => {
+          setReading(r);
+          // Hands-free: mic and character off, and the agent stops mid-sentence. Otherwise
+          // just stop any reply being read out; the text stays on screen.
+          live.setPaused(r);
+          if (r) stopVoice();
+        }}
+        readingNote={handsFreeLive ? `${agentInfo.name} is paused while you read` : undefined}
         brief={
           <>
-            {handsFree && voice && (
-              <label className="inline-flex cursor-pointer items-center gap-2.5 rounded-full bg-white px-4 py-2 text-sm font-medium text-ink-2 shadow-card">
-                <input
-                  type="checkbox"
-                  checked={handsFreeOn}
-                  onChange={(e) => setHandsFreeOn(e.target.checked)}
-                  className="size-4 accent-pink-deep"
-                />
-                Hands-free conversation (beta)
-              </label>
-            )}
             <button
               type="button"
               onClick={() => void start()}
@@ -574,10 +578,24 @@ export function ExamSession({
                   className="flex w-full max-w-[760px] flex-wrap items-center gap-2.5 rounded-[28px] border-[1.5px] border-line bg-white p-2.5 shadow-card"
                 >
                   {handsFreeLive ? (
-                    <p className="m-0 inline-flex min-h-[60px] flex-[1_1_220px] items-center justify-center gap-2.5 rounded-full bg-pink-tint px-7 text-[17px] font-bold text-ink">
-                      <MicIcon filled />
-                      {live.state === "connecting" ? "Connecting your mic…" : "Mic on. Talk any time."}
-                    </p>
+                    <>
+                      <p
+                        className={`m-0 inline-flex min-h-[60px] flex-[1_1_220px] items-center justify-center gap-2.5 rounded-full px-7 text-[17px] font-bold text-ink ${live.muted ? "bg-chip" : "bg-pink-tint"}`}
+                      >
+                        {live.muted ? <MicOffIcon /> : <MicIcon filled />}
+                        {live.state === "connecting" ? "Connecting your mic…" : live.muted ? "Mic muted." : "Mic on. Talk any time."}
+                      </p>
+                      <button
+                        type="button"
+                        aria-pressed={live.muted}
+                        aria-label={live.muted ? "Unmute your mic" : "Mute your mic"}
+                        title={live.muted ? "Unmute" : "Mute"}
+                        onClick={() => live.setMuted(!live.muted)}
+                        className={`${roundBtn} ${live.muted ? "bg-pink-tint outline-[1.5px] outline-ink" : "bg-chip"}`}
+                      >
+                        {live.muted ? <MicIcon /> : <MicOffIcon />}
+                      </button>
+                    </>
                   ) : null}
                   {voice && !handsFreeLive && (
                     <button
@@ -675,6 +693,17 @@ function MicIcon({ filled = false }: { filled?: boolean }) {
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
       <rect x="7" y="2.5" width="6" height="10" rx="3" {...(filled ? { fill: "#16112A" } : { stroke: "#16112A", strokeWidth: 1.6 })} />
       <path d="M4 9.5a6 6 0 0012 0M10 15.5v2.5" stroke="#16112A" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+/** A mic struck through: muted. */
+function MicOffIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <rect x="7" y="2.5" width="6" height="10" rx="3" stroke="#16112A" strokeWidth="1.6" />
+      <path d="M4 9.5a6 6 0 0012 0M10 15.5v2.5" stroke="#16112A" strokeWidth="1.6" strokeLinecap="round" />
+      <path d="M3 3l14 14" stroke="#16112A" strokeWidth="1.8" strokeLinecap="round" />
     </svg>
   );
 }

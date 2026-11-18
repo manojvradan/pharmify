@@ -18,6 +18,7 @@ import {
   type AgentJobMetadata,
   type CharacterId,
   TOPIC_ENDED,
+  TOPIC_PAUSE,
   TOPIC_SWITCH,
   VOICE_AGENT_NAME,
 } from "./protocol.ts";
@@ -224,6 +225,19 @@ export default defineAgent({
         logger.warn({ err }, "couldn't clear the pending turn on switch");
       }
       session.updateAgent(next);
+    });
+
+    // The candidate opened the question sheet to read: the browser turns their mic and our audio
+    // off, and the character stops mid-sentence and forgets anything half-heard, so nothing is
+    // answered or said unheard. "resume" needs nothing: the mic comes back on in the browser.
+    ctx.room.registerTextStreamHandler(TOPIC_PAUSE, async (reader) => {
+      if ((await reader.readAll()).trim() !== "pause") return;
+      session.interrupt();
+      try {
+        session.clearUserTurn();
+      } catch (err) {
+        logger.warn({ err }, "couldn't clear the pending turn on pause");
+      }
     });
 
     await session.start({ agent: first, room: ctx.room });
