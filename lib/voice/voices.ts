@@ -27,15 +27,15 @@ export const VOICE_KEYS = Object.keys(VOICE_LIBRARY) as [VoiceKey, ...VoiceKey[]
 
 /** Each cast member's usual voice; a persona overrides it with `voice` when the character plays someone else. */
 export const AVATAR_VOICE: Record<CastId, VoiceKey> = {
-  "bertie-bear": "au-older-man",
-  "wally-wombat": "au-man-30s",
-  "felix-fox": "au-man-40s",
-  "penny-penguin": "au-woman-40s",
-  "rosie-rabbit": "au-soft-woman",
-  "kiki-koala": "au-young-man",
-  "dr-hoot": "au-doctor",
-  "dr-kip": "au-man-professional",
-  "dr-tusk": "au-deep-man",
+  "bertie-walsh": "au-older-man",
+  "wally-morris": "au-man-40s",
+  "felix-romano": "au-man-mid-30s",
+  "penny-okafor": "au-woman-40s",
+  "rosie-costa": "au-soft-woman",
+  "kiki-nguyen": "au-young-woman",
+  "dr-holt": "au-woman-40s",
+  "dr-kapoor": "au-man-professional",
+  "dr-tan": "au-woman-professional",
 };
 
 export function voiceId(key: VoiceKey): string {

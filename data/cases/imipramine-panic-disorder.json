@@ -28,7 +28,8 @@
     "patient": {
       "label": "Patient · Sarah",
       "name": "Sarah",
-      "avatar": "rosie-rabbit",
+      "avatar": "penny-okafor",
+      "voice": "au-soft-woman",
       "description": "A 40-year-old woman, softly spoken and a little flat. Her partner died a few months ago. Polite and cooperative, but she answers only what she is asked and doesn't volunteer information.",
       "bio": {"Full name": "Sarah Jones", "Date of birth": "2 February 1986", "Age": "40", "Address": "5 Myrtle Close, a local suburb", "Phone": "0491 570 110", "Occupation": "Receptionist at a dental clinic"},
       "openingLine": "Hi, I'm just here to pick up my tablets again.",
@@ -39,7 +40,7 @@
     "prescriber": {
       "label": "Call Dr Burton",
       "name": "Dr Burton",
-      "avatar": "dr-hoot",
+      "avatar": "dr-holt",
       "description": "A GP. Courteous and open to a pharmacist's input, but expects a clear, referenced recommendation. Will ask the pharmacist what they recommend and which reference to check next time. Thanks the pharmacist for calling at the end.",
       "bio": {"Full name": "Dr Andrew Burton", "Role": "General practitioner", "Workplace": "A local general practice"},
       "openingLine": "Dr Burton speaking.",

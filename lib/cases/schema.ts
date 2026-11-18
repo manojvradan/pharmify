@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { CAST_IDS, type CastId } from "@/lib/cast";
+import { CAST_IDS, type CastId, OLD_CAST_IDS } from "@/lib/cast";
 import { VOICE_KEYS, type VoiceKey } from "@/lib/voice/voices";
 import type { PrescriptionForm } from "./prescription";
 
@@ -33,8 +33,11 @@ const Persona = z.object({
   situation: z.string().optional(),
   /** Whether they speak as a member of the public or as a health professional. Defaults by slot. */
   standing: z.enum(["public", "professional"]).optional(),
-  /** Which cast character draws this persona (lib/cast.ts). Defaults by standing. */
-  avatar: z.enum(CAST_IDS).optional(),
+  /**
+   * Which cast character draws this persona (lib/cast.ts). Defaults by standing. The animal
+   * cast's old ids, still in saved drafts, read as the character who took over the part.
+   */
+  avatar: z.preprocess((v) => (typeof v === "string" ? (OLD_CAST_IDS[v] ?? v) : v), z.enum(CAST_IDS)).optional(),
   /** Which Australian voice they speak in (lib/voice/voices.ts). Defaults to the avatar's voice. */
   voice: z.enum(VOICE_KEYS).optional(),
   /** Said word for word, without the model, when the candidate first opens this agent. */
@@ -142,6 +145,14 @@ export const CaseRecord = z.object({
   sources: z.array(z.string()).default([]),
 });
 export type CaseRecord = z.infer<typeof CaseRecord>;
+
+/**
+ * A stored record (e.g. a bot draft saved before the cast changed) read through the schema, so
+ * old cast ids become the new ones. Falls back to the record as stored if it doesn't parse.
+ */
+export function upgradeRecord(record: CaseRecord): CaseRecord {
+  return CaseRecord.safeParse(record).data ?? record;
+}
 
 /** The part of a case that is safe to send to the browser: no hidden facts, no answer key. */
 export type PublicCase = {

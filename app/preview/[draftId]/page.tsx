@@ -5,11 +5,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense, type ReactNode } from "react";
 import { CastAvatar } from "@/components/CastAvatar";
+import { defaultAvatar } from "@/lib/cast";
 import { LogoMark } from "@/components/icons";
 import { Pip } from "@/components/Pip";
 import { CATEGORY_LABEL, CaseDocuments } from "@/components/SessionChrome";
 import { toPublic } from "@/lib/cases/bank";
-import type { AgentId } from "@/lib/cases/schema";
+import { type AgentId, upgradeRecord } from "@/lib/cases/schema";
 import { db, schema } from "@/lib/db";
 
 export const metadata: Metadata = { title: "Question preview", robots: { index: false, follow: false } };
@@ -56,12 +57,12 @@ async function Preview({ params, searchParams }: PageProps<"/preview/[draftId]">
   const [row] = await db().select().from(schema.botCaseDrafts).where(eq(schema.botCaseDrafts.id, draftId));
   if (!row || !sameToken(row.token, t)) notFound();
 
-  const c = row.record;
+  const c = upgradeRecord(row.record);
   const pub = toPublic(c);
   const personas = (["patient", "prescriber"] as AgentId[]).flatMap((id) => {
     const p = id === "patient" ? c.agents.patient : c.agents.prescriber;
     const shown = pub.agents.find((a) => a.id === id);
-    return p ? [{ id, p, avatar: shown?.avatar ?? p.avatar ?? (id === "patient" ? "bertie-bear" : "dr-hoot"), voice: shown?.voice ?? p.voice }] : [];
+    return p ? [{ id, p, avatar: shown?.avatar ?? p.avatar ?? defaultAvatar(id === "patient" ? "public" : "professional"), voice: shown?.voice ?? p.voice }] : [];
   });
   const status = { draft: "Waiting for approval", published: "Approved and published", discarded: "Discarded" }[row.status];
 

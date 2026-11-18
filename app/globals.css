@@ -351,9 +351,6 @@
   transform-box: fill-box;
   transform-origin: 50% 35%;
 }
-.cast-jaw {
-  transform: translateY(calc(var(--mouth, 0) * 4.5px));
-}
 /* The head bobs gently while the character talks (design: "bob", 1.4s). */
 @keyframes cast-bob {
   0%, 100% { transform: translateY(0); }
@@ -362,9 +359,4 @@
 .cast-bob { animation: cast-bob 1.4s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) {
   .cast-bob { animation: none; }
-}
-.cast-trunk {
-  transform: rotate(calc(var(--mouth, 0) * -9deg));
-  transform-box: view-box;
-  transform-origin: 58px 64px;
 }
