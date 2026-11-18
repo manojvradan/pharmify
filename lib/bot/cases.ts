@@ -113,7 +113,7 @@ const SYSTEM = `You turn a pharmacy exam question into a case record for Pharmif
 
 <fields>
 - id: short kebab-case slug of the topic, e.g. "warfarin-antibiotic-interaction".
-- title: 2-4 words. problemType: the problem type or ethical/legal theme, e.g. "Drug interaction".
+- title: 2-4 words naming what the patient comes in with or asks for, as the candidate first sees it (e.g. "Home from hospital", "A course of antibiotics"). It is shown before the case starts, so it must never name or hint at the problem to spot, the medicine at fault, the interaction, or the right answer (not "Doubling up", "Antibiotic interaction", "Amitriptyline in AF"). problemType: the problem type or ethical/legal theme, e.g. "Drug interaction".
 - specialty: required for a "clinical" case, leave out otherwise: the one specialty the case is mainly about, by the condition or medicine at the centre of the problem. One of: ${SPECIALTY_IDS.join(", ")}.
 - setting: where it happens, e.g. "Community pharmacy, NSW".
 - questionSheet: what the intern reads first, written like the exam's question sheet. Ends with the task, e.g. "Manage the situation as you would in practice. You may contact the prescriber."

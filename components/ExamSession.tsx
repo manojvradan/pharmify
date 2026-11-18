@@ -532,7 +532,7 @@ export function ExamSession({
               )}
 
               {/* Character and latest line: fills the space between the tabs and the controls. */}
-              <div className="flex min-h-0 w-full max-w-[1100px] flex-1 flex-col items-center gap-5 px-6 text-center">
+              <div className="flex min-h-0 w-full max-w-[1240px] flex-1 flex-col items-center gap-3 px-4 text-center">
                 {/* Sized to the stage (a size container), not to its own content. */}
                 <div className="relative min-h-[200px] w-full flex-1 [container-type:size]">
                   <div className="absolute inset-0 flex items-center justify-center">
@@ -546,14 +546,14 @@ export function ExamSession({
                     />
                   </div>
                 </div>
-                {/* Room for the status and a two-line reply whoever is speaking, so the stage stays put. */}
-                <div className="flex min-h-[118px] flex-none animate-fade-up-late flex-col items-center gap-2.5">
+                {/* Room for the status and a short reply whoever is speaking, so the stage stays put. */}
+                <div className="flex min-h-[84px] flex-none animate-fade-up-late flex-col items-center gap-1.5">
                   <span className="text-sm text-subtle">
                     {status}
                   </span>
                   <p
                     aria-live="polite"
-                    className="m-0 min-h-[1.35em] max-w-[30ch] text-[clamp(20px,2.2vw,27px)] leading-[1.35] tracking-[-0.02em] text-balance"
+                    className="m-0 min-h-[1.4em] max-w-[52ch] text-[clamp(16px,1.35vw,19px)] leading-[1.4] tracking-[-0.01em] text-balance"
                   >
                     {lastActor ? `“${lastActor.text}”` : ""}
                   </p>
@@ -749,7 +749,7 @@ function SpeakerAvatar({
   if (CAST[avatar].kind === "patient") {
     return (
       // As wide as the stage allows while the whole scene (640×340, plus border) still fits its height.
-      <div ref={ref} className="relative w-[min(100cqw,calc((100cqh-14px)*640/340),1000px)] animate-scene-in">
+      <div ref={ref} className="relative w-[min(100cqw,calc((100cqh-14px)*640/340),1200px)] animate-scene-in">
         <div className="overflow-hidden rounded-[24px] border-[3px] border-white shadow-[0_20px_40px_-24px_rgba(22,17,42,0.45),0_0_0_1.5px_#E5E1EC]">
           <PharmacyScene className="block">
             <g className="animate-walk-in">
@@ -765,8 +765,8 @@ function SpeakerAvatar({
   }
 
   return (
-    // As large as the stage's height allows (the name tag hangs below), up to 440px.
-    <div ref={ref} className="relative grid size-[min(100cqw,calc(100cqh-14px),440px)] animate-scene-in place-items-center">
+    // As large as the stage's height allows (the name tag hangs below), up to 520px.
+    <div ref={ref} className="relative grid size-[min(100cqw,calc(100cqh-14px),520px)] animate-scene-in place-items-center">
       {/* Rings pulse out from the call while the prescriber is talking. */}
       {talking && (
         <>

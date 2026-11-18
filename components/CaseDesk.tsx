@@ -9,7 +9,7 @@ import { DispensingHistory } from "@/components/DispensingHistory";
  * sits centred with the case papers laid out under it to read. Once it starts, the question
  * sheet docks as a band along the top and the papers slide to the edges of the desk, where
  * they can be dragged (mouse, touch, or arrow keys) out of the way of the role play in the
- * middle. The prescription has a "Read" button that brings it to the centre at full size,
+ * middle (the dispensing history stays pinned to the right edge, beside the role play). The prescription has a "Read" button that brings it to the centre at full size,
  * and any paper can be minimised to a tray in the bottom corner. When the case ends
  * (`papers` false) they all clear off the desk. "Full text" on the band opens the question
  * sheet to read over the darkened screen (`onReading` tells the session to pause the
@@ -27,6 +27,13 @@ const DOCS: Record<DocId, { w: number; liveScale: number; tilt: number }> = {
 };
 const DOC_NAME: Record<DocId, string> = { rx: "Prescription", hist: "Dispensing history", notes: "Notes" };
 const BAND_H = 58;
+/**
+ * Papers pinned in place once the clock starts: the dispensing history stays on the right edge,
+ * upright, where the candidate always knows to look; it can still be minimised.
+ */
+const PINNED: ReadonlySet<DocId> = new Set(["hist"]);
+/** From this desk width the role play makes room for the pinned history instead of sitting under it. */
+const PIN_ROOM_MIN_W = 1000;
 /** The least height (on screen) a side paper is squeezed to before it may run off the desk. */
 const MIN_PAPER = 140;
 const EASE = "cubic-bezier(.2,.8,.2,1)";
@@ -297,7 +304,7 @@ export function CaseDesk({
     });
     return out;
   })();
-  const at = (id: DocId) => pos[id] ?? homePos(id);
+  const at = (id: DocId) => (PINNED.has(id) ? homePos(id) : (pos[id] ?? homePos(id)));
 
   /** Where each paper sits before the clock starts: centred under the question sheet. */
   const briefLayout = (() => {
@@ -330,7 +337,7 @@ export function CaseDesk({
   })();
 
   const down = (id: DocId) => (e: PointerEvent<HTMLDivElement>) => {
-    if (!live || zoomed || e.button !== 0) return;
+    if (!live || zoomed || e.button !== 0 || PINNED.has(id)) return;
     if ((e.target as HTMLElement).closest("button")) return;
     // Inside a paper that scrolls, the pointer scrolls it; the bar along the top still drags.
     const scroller = (e.target as HTMLElement).closest<HTMLElement>("[data-scroll]");
@@ -360,7 +367,7 @@ export function CaseDesk({
   const key = (id: DocId) => (e: KeyboardEvent<HTMLDivElement>) => {
     if (!live || e.target !== e.currentTarget) return;
     const d = { ArrowLeft: [-24, 0], ArrowRight: [24, 0], ArrowUp: [0, -24], ArrowDown: [0, 24] }[e.key];
-    if (d) {
+    if (d && !PINNED.has(id)) {
       e.preventDefault();
       setTop(id);
       const o = at(id);
@@ -379,7 +386,7 @@ export function CaseDesk({
    */
   const maxHeight = (id: DocId): number | undefined => {
     if (!live || id === "rx") return undefined;
-    const moved = pos[id];
+    const moved = PINNED.has(id) ? undefined : pos[id];
     const cap = moved ? Math.max(MIN_PAPER, size.h - moved.y - 16) : (sideHome[id]?.cap ?? MIN_PAPER);
     return cap / liveScale(id);
   };
@@ -401,13 +408,16 @@ export function CaseDesk({
       return {
         left: p.x,
         top: p.y,
-        transform: `translateY(28px) rotate(${DOCS[id].tilt}deg) scale(${s * 0.92})`,
+        transform: `translateY(28px) rotate(${PINNED.has(id) ? 0 : DOCS[id].tilt}deg) scale(${s * 0.92})`,
         zIndex: 6,
         opacity: 0,
         visibility: "hidden" as const,
         pointerEvents: "none" as const,
         transition: reduced ? "none" : `opacity .3s, transform .4s ${EASE}, visibility 0s .4s`,
       };
+    }
+    if (PINNED.has(id)) {
+      return { left: p.x, top: p.y, transform: `scale(${s})`, zIndex: 6, cursor: "default", opacity: 1, visibility: "visible" as const, transition: reduced ? "none" : `${moving}, opacity .3s` };
     }
     return {
       left: p.x,
@@ -443,7 +453,7 @@ export function CaseDesk({
         style={{ height: live ? (big ? 40 : 30) : 0, opacity: live ? 1 : 0, fontSize: big ? 19 : 12 }}
       >
         <span className="inline-flex items-center gap-2">
-          <DragDots />
+          {!PINNED.has(id) && <DragDots />}
           {title}
         </span>
         {live && (
@@ -490,18 +500,23 @@ export function CaseDesk({
       tabIndex={live && shown(id) ? 0 : -1}
       aria-hidden={!shown(id) || undefined}
       inert={!shown(id)}
-      aria-label={`${title}. ${live ? `Drag or use the arrow keys to move${id === "rx" ? "; Enter to read it full size" : ""}.` : ""}`}
+      aria-label={`${title}. ${live ? (PINNED.has(id) ? "Pinned to the right of the desk." : `Drag or use the arrow keys to move${id === "rx" ? "; Enter to read it full size" : ""}.`) : ""}`}
       onPointerDown={down(id)}
       onKeyDown={key(id)}
       className="absolute flex origin-top-left touch-none flex-col select-none focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-pink"
       style={{ width: DOCS[id].w, maxHeight: maxHeight(id), ...placement(id) }}
     >
-      {chrome(id, id === "rx" ? "Prescription" : "Drag")}
+      {chrome(id, id === "rx" ? "Prescription" : PINNED.has(id) ? "" : "Drag")}
       {body}
     </div>
   );
 
   const patient = c.agents.find((a) => a.id === "patient")?.name;
+  // On a wide desk, the role play stops short of the pinned history (and the same on the left) so the
+  // patient is never under it and stays centred.
+  const pinned = ids.filter((id) => PINNED.has(id) && shown(id));
+  const pinRoom =
+    live && papers && pinned.length > 0 && size.w >= PIN_ROOM_MIN_W ? Math.max(...pinned.map((id) => DOCS[id].w * liveScale(id))) + 24 + 16 : 0;
 
   return (
     <main
@@ -582,7 +597,12 @@ export function CaseDesk({
           </dialog>
           {/* Tabs pinned to the top and controls to the bottom; the character's stage fills the
               space between, so switching characters never moves either. */}
-          <section aria-label="Role play" className="absolute inset-x-0 bottom-0 flex flex-col items-center gap-5 py-5" style={{ top: BAND_H }}>
+          <section
+            aria-label="Role play"
+            className="absolute bottom-0 flex flex-col items-center gap-5 py-5 transition-[left,right] duration-500"
+            // The same room on both sides, so the role play stays centred on the screen.
+            style={{ top: BAND_H, left: pinRoom, right: pinRoom }}
+          >
             {children}
           </section>
           {zoomed && <div aria-hidden="true" onClick={() => setZoom(false)} className="absolute inset-0 z-[18] bg-ink/35" />}
