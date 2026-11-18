@@ -24,9 +24,45 @@ export type CaseSource =
   | { kind: "text"; text: string }
   | { kind: "media"; mediaId: string; mimeType?: string; filename?: string; caption?: string };
 
-/** The model writes everything except review status and sources, which the bot sets. */
-const DraftCase = CaseRecord.omit({ review: true, sources: true });
-const DraftOutput = z.object({
+/**
+ * The model writes everything except review status and sources, which the bot sets.
+ * Structured outputs cap how many optional fields a schema may have ("The compiled grammar is
+ * too large"), so the model's version trims the record: the prescription is just item, directions
+ * and footer (the script form fills the rest from the patient's bio and the directions), and every
+ * dispensing-history column is required. Keep the optional count well under the limit when adding
+ * fields (lib/bot/bot.test.ts counts them).
+ */
+const recordShape = CaseRecord.omit({ review: true, sources: true });
+const docs = recordShape.shape.documents;
+/*
+ * A bio is a record (label → value) in the bank, but structured outputs can only fill the keys a
+ * schema lists, so a record always came back as {}. The model writes a list of pairs instead
+ * (required, so it also costs no optional field), and toCaseInput turns it back into a record.
+ */
+const BioPairs = z.array(z.object({ label: z.string(), value: z.string() }));
+const agents = recordShape.shape.agents.shape;
+const PersonaDraft = agents.patient.extend({ bio: BioPairs });
+export const DraftCase = recordShape.extend({
+  agents: z.object({ patient: PersonaDraft, prescriber: PersonaDraft.optional() }),
+  documents: docs.extend({
+    prescription: z.object({ item: z.string(), directions: z.string(), footer: z.string() }).optional(),
+    dispensingHistory: z
+      .array(z.object({ date: z.string(), item: z.string(), directions: z.string(), quantity: z.string(), prescriber: z.string() }))
+      .optional(),
+  }),
+});
+type PersonaDraft = z.infer<typeof PersonaDraft>;
+const bioRecord = (p: PersonaDraft) => {
+  const pairs = p.bio.filter((b) => b.label.trim() && b.value.trim());
+  return { ...p, bio: pairs.length ? Object.fromEntries(pairs.map((b) => [b.label.trim(), b.value.trim()])) : undefined };
+};
+
+/** The model's draft as the bank's record shape (before review and sources are added). */
+export function toCaseInput(d: z.infer<typeof DraftCase>) {
+  return { ...d, agents: { patient: bioRecord(d.agents.patient), prescriber: d.agents.prescriber && bioRecord(d.agents.prescriber) } };
+}
+
+export const DraftOutput = z.object({
   /** One or two sentences on why the case is legal, ethical or complex clinical. Shown to the sender. */
   categoryReason: z.string(),
   case: DraftCase,
@@ -85,7 +121,7 @@ const SYSTEM = `You turn a pharmacy exam question into a case record for Pharmif
   - label: shown on the switch, e.g. "Patient · Mrs T." or "Call the GP".
   - name: what they answer to, e.g. "Mrs T." or "Dr Nguyen". Never bracket placeholders like [GP] or [SURNAME]; invent a realistic name.
   - description: age, manner, health literacy, how they react to good and poor handling. This steers the actor's behaviour.
-  - bio: identity details as label → value, so they can answer identity questions: Full name, Date of birth, Age, Address, Phone, Occupation (professionals: Full name, Role, Workplace). Required in a "clinical" case for the patient (at least Full name, Date of birth, Age, Address), matching the prescription. Identity only: never medicines, conditions, allergies, or anything from a hidden fact. Ages must match the documents; the current year is 2026. Phone numbers only from this fictional range: 0491 570 156, 0491 570 157, 0491 570 158, 0491 570 159, 0491 570 110, 0491 570 313, 0491 570 737, 0491 571 266, 0491 571 491, 0491 571 804, 0491 572 549, 0491 572 665, 0491 572 983.
+  - bio: identity details as a list of {label, value} pairs, so they can answer identity questions: Full name, Date of birth, Age, Address, Phone, Occupation (professionals: Full name, Role, Workplace). Required in a "clinical" case for the patient (at least Full name, Date of birth, Age, Address), matching the prescription. Identity only: never medicines, conditions, allergies, or anything from a hidden fact. Ages must match the documents; the current year is 2026. Phone numbers only from this fictional range: 0491 570 156, 0491 570 157, 0491 570 158, 0491 570 159, 0491 570 110, 0491 570 313, 0491 570 737, 0491 571 266, 0491 571 491, 0491 571 804, 0491 572 549, 0491 572 665, 0491 572 983.
   - situation: only if not the default (patient at the counter; prescriber phoned about their patient).
   - standing: "public" or "professional", only if not the default for the slot.
   - avatar: the cast character who draws them (they keep the persona's own name). Pick by age, gender and manner:
@@ -183,7 +219,11 @@ export async function draftCase(
   let last: CaseDraft | undefined;
   for (let attempt = 0; attempt < ATTEMPTS; attempt++) {
     const out = await callModel(messages);
-    const checked = checkCase({ ...out.case, ...meta }, existing);
+    // On a revision, keep any script-form details the previous record had (the model can't see or write them).
+    const prevRx = "previous" in input ? input.previous.documents.prescription : undefined;
+    const rx = out.case.documents.prescription && prevRx ? { ...prevRx, ...out.case.documents.prescription } : out.case.documents.prescription;
+    const draft = toCaseInput(out.case);
+    const checked = checkCase({ ...draft, documents: { ...draft.documents, prescription: rx }, ...meta }, existing);
     const record = checked.record;
     const problems = record ? [...checked.problems, ...answerSchemeProblems(record)] : checked.problems;
     if (record) last = { record, categoryReason: out.categoryReason, assumptions: out.assumptions, problems };

@@ -178,3 +178,59 @@ describe("approving a draft made under older checks", () => {
     expect(draftProblemsNow(c).some((p) => p.includes("dispensingHistory"))).toBe(true);
   });
 });
+
+describe("case drafting schema", () => {
+  // The API rejects structured-output schemas with too many optional fields ("The compiled grammar
+  // is too large"). The documented limit is 24, with internal limits below it; 31 broke drafting in
+  // production. Counted on the schema the SDK actually sends.
+  type Node = { type?: string; properties?: Record<string, Node>; required?: string[]; items?: Node; anyOf?: Node[]; $defs?: Record<string, Node> };
+  async function sentSchema(): Promise<Node> {
+    const { betaZodOutputFormat } = await import("@anthropic-ai/sdk/helpers/beta/zod");
+    const { DraftOutput } = await import("./cases");
+    return (betaZodOutputFormat(DraftOutput) as unknown as { schema: Node }).schema;
+  }
+  function visit(n: Node | undefined, f: (n: Node, path: string) => void, path = "") {
+    if (!n || typeof n !== "object") return;
+    f(n, path);
+    for (const [k, v] of Object.entries(n.properties ?? {})) visit(v, f, `${path}.${k}`);
+    visit(n.items, f, `${path}[]`);
+    for (const a of n.anyOf ?? []) visit(a, f, path);
+    for (const [k, d] of Object.entries(n.$defs ?? {})) visit(d, f, `$${k}`);
+  }
+
+  it("stays well under the structured-outputs optional-field limit", async () => {
+    let optional = 0;
+    visit(await sentSchema(), (n) => {
+      if (n.properties) optional += Object.keys(n.properties).filter((k) => !(n.required ?? []).includes(k)).length;
+    });
+    expect(optional).toBeLessThanOrEqual(20);
+  });
+
+  it("has no record-type objects, which the model can only ever return empty", async () => {
+    const empty: string[] = [];
+    visit(await sentSchema(), (n, path) => {
+      if (n.type === "object" && Object.keys(n.properties ?? {}).length === 0) empty.push(path);
+    });
+    expect(empty).toEqual([]);
+  });
+});
+
+describe("drafted bios", () => {
+  // Structured outputs can only return the keys a schema lists, so a record bio always came back {}.
+  it("come back from the model as label/value pairs and go into the bank as a record", async () => {
+    const { toCaseInput } = await import("./cases");
+    const { getCase } = await import("@/lib/cases/bank");
+    const c = structuredClone(getCase("clarithromycin-warfarin-simvastatin-interaction")!);
+    const pairs = (bio: Record<string, string> = {}) => Object.entries(bio).map(([label, value]) => ({ label, value }));
+    const draft = {
+      ...c,
+      agents: {
+        patient: { ...c.agents.patient, bio: [...pairs(c.agents.patient.bio), { label: " ", value: "" }] },
+        prescriber: { ...c.agents.prescriber!, bio: [] },
+      },
+    };
+    const out = toCaseInput(draft as Parameters<typeof toCaseInput>[0]);
+    expect(out.agents.patient.bio).toEqual(c.agents.patient.bio);
+    expect(out.agents.prescriber?.bio).toBeUndefined();
+  });
+});
