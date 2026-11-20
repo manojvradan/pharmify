@@ -12,6 +12,7 @@ import case_imipramine_panic_disorder from "@/data/cases/imipramine-panic-disord
 import case_mdma_sertraline from "@/data/cases/mdma-sertraline.json";
 import case_methotrexate_trimethoprim_interaction from "@/data/cases/methotrexate-trimethoprim-interaction.json";
 import case_prescribing_for_family from "@/data/cases/prescribing-for-family.json";
+import case_tca_depression_af_falls_risk from "@/data/cases/tca-depression-af-falls-risk.json";
 import case_telehealth_cannabis from "@/data/cases/telehealth-cannabis.json";
 import case_wrong_patient_disclosure from "@/data/cases/wrong-patient-disclosure.json";
 
@@ -29,6 +30,7 @@ export const RAW_CASES: unknown[] = [
   case_mdma_sertraline,
   case_methotrexate_trimethoprim_interaction,
   case_prescribing_for_family,
+  case_tca_depression_af_falls_risk,
   case_telehealth_cannabis,
   case_wrong_patient_disclosure,
 ];
