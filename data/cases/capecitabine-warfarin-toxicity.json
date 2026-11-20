@@ -1,0 +1,338 @@
+{
+  "id": "capecitabine-warfarin-toxicity",
+  "title": "Next chemo cycle",
+  "category": "clinical",
+  "problemType": "Drug interaction and adverse effects (chemotherapy toxicity)",
+  "specialty": "oncology",
+  "setting": "Community pharmacy, NSW",
+  "questionSheet": "Mr George Papadakis, a 66-year-old man, presents a valid prescription for capecitabine 500 mg tablets from Dr Roy, his oncologist. The directions are 3 tablets twice daily for 14 days, then 7 days off. This is his second cycle, and he says it is due to start today. Dr Roy can be contacted by phone. Manage the situation as you would in practice. You may contact the prescriber.",
+  "documents": {
+    "prescription": {
+      "item": "Capecitabine 500 mg tablets (Xeloda) · Qty 84",
+      "directions": "Take 3 tablets (1500 mg) twice daily, within 30 minutes after food, for 14 days, then 7 days off · Cycle 2",
+      "footer": "Dr P. Roy (Medical Oncologist), Nepean Cancer Care Centre · George Papadakis, DOB 11/02/1960"
+    },
+    "dispensingHistory": [
+      {
+        "date": "26 Oct 2026",
+        "item": "Capecitabine 500 mg tablets (Xeloda)",
+        "directions": "3 tablets twice daily after food for 14 days, then 7 days off · Cycle 1",
+        "quantity": "84",
+        "prescriber": "Dr P. Roy (Oncologist)"
+      },
+      {
+        "date": "26 Oct 2026",
+        "item": "Ondansetron 8 mg tablets (generic)",
+        "directions": "One tablet every 12 hours when required for nausea",
+        "quantity": "4",
+        "prescriber": "Dr P. Roy (Oncologist)"
+      },
+      {
+        "date": "20 Oct 2026",
+        "item": "Omeprazole 20 mg capsules (generic)",
+        "directions": "One capsule daily",
+        "quantity": "30",
+        "prescriber": "Dr P. Roy (Oncologist)"
+      },
+      {
+        "date": "21 Sep 2026",
+        "item": "Omeprazole 20 mg capsules (generic)",
+        "directions": "One capsule daily",
+        "quantity": "30",
+        "prescriber": "Nepean Hospital discharge"
+      }
+    ],
+    "notes": [
+      "Today: 16 Nov 2026.",
+      "Cycle 1 of capecitabine was dispensed at this pharmacy on 26 Oct 2026."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient · Mr Papadakis",
+      "name": "Mr Papadakis",
+      "description": "A 66-year-old retired man with average health literacy. He looks tired and a bit pale, and he is keen to get his chemo and go home. His wife usually manages his tablets and she isn't with him today, so he is vague on doses. He doesn't volunteer anything. To closed questions like 'any side effects?' he answers only 'just an upset tummy'. He opens up only to open, empathic questions and to specific questions about each symptom. He is worried about falling behind, because the oncologist told him 'never miss a cycle', and he resists being told to stop. He agrees to the pharmacist calling the doctor only once the reasons are clearly explained. He becomes defensive if lectured or simply refused, and cooperative if treated respectfully and given a plan.",
+      "bio": {
+        "Age": "66",
+        "Phone": "0491 570 313",
+        "Address": "8 Jacaranda Crescent, Kingswood NSW 2747",
+        "Full name": "George Papadakis",
+        "Occupation": "Retired council worker",
+        "Date of birth": "11 February 1960"
+      },
+      "avatar": "bertie-walsh",
+      "voice": "au-older-man",
+      "openingLine": "G'day. This is for my chemo tablets, second round. The doctor said I've got to start today.",
+      "publicFacts": [
+        "He is picking up his second cycle of chemo tablets for bowel cancer.",
+        "He was told the new cycle starts today.",
+        "If asked about side effects in general, he says it's 'just an upset tummy'.",
+        "His wife usually sorts out his tablets and she isn't here today.",
+        "The oncologist told him to 'never miss a cycle'."
+      ]
+    },
+    "prescriber": {
+      "label": "Call the oncologist",
+      "name": "Dr Roy",
+      "description": "A busy medical oncologist between clinic patients who asks the pharmacist to be brief. Firm. Believes delaying chemotherapy risks the outcome, and says the INR is 'the GP's job'. Dismisses the first concern ('diarrhoea is expected, loperamide is fine'). Changes the plan only if given a specific, structured case: stools well above baseline, dehydration, hand-foot reaction, bleeding on warfarin, reduced kidney function, plus a clear request (hold cycle 2, same-day review, urgent INR, full blood count and renal function). If the pharmacist only says 'I won't dispense', becomes defensive: 'that's not your call'. Accepts a collaborative, clearly reasoned recommendation. Asks which reference supports the capecitabine–warfarin interaction and the renal dose threshold. Never raises kidney function unless the pharmacist does.",
+      "bio": {
+        "Role": "Medical oncologist",
+        "Full name": "Dr Priya Roy",
+        "Workplace": "Nepean Cancer Care Centre, NSW"
+      },
+      "avatar": "dr-tan",
+      "voice": "au-woman-professional",
+      "openingLine": "Dr Roy. I've got a clinic full of patients, so please be quick. What's the issue?",
+      "publicFacts": [
+        "You prescribed capecitabine 1500 mg twice daily (3 x 500 mg), 14 days on and 7 days off, as cycle 2 for Mr Papadakis's colorectal cancer.",
+        "You think delaying chemotherapy risks his outcome.",
+        "You consider his INR monitoring the GP's job.",
+        "Your first reaction to diarrhoea is that it is expected and loperamide is fine."
+      ]
+    }
+  },
+  "hiddenFacts": [
+    {
+      "id": "diarrhoea-frequency",
+      "agent": "patient",
+      "fact": "For the last 4 days you've been opening your bowels 6–7 times a day. Normally it's once a day. The loperamide isn't really holding it.",
+      "triggers": [
+        "diarrhoea",
+        "bowels",
+        "stools",
+        "toilet",
+        "runny",
+        "loose",
+        "bowel motions",
+        "how often toilet",
+        "upset tummy",
+        "tummy",
+        "poo",
+        "going toilet"
+      ],
+      "unlockHint": "“Tell me more about your tummy. How many times a day are you going to the toilet compared with normal?”"
+    },
+    {
+      "id": "dehydration",
+      "agent": "patient",
+      "fact": "You're passing very little urine, and you feel dizzy when you stand up.",
+      "triggers": [
+        "passing urine",
+        "wee",
+        "urine",
+        "dizzy",
+        "light headed",
+        "lightheaded",
+        "drinking",
+        "fluids",
+        "standing up",
+        "faint",
+        "thirsty",
+        "dehydrated"
+      ],
+      "unlockHint": "“Are you managing to drink, and how much urine are you passing? Any dizziness?”"
+    },
+    {
+      "id": "sore-mouth",
+      "agent": "patient",
+      "fact": "Your mouth has been sore, which makes eating hard.",
+      "triggers": [
+        "mouth",
+        "sore mouth",
+        "mouth ulcers",
+        "ulcers",
+        "eating",
+        "swallowing",
+        "gums",
+        "tongue"
+      ],
+      "unlockHint": "“Any soreness in your mouth or trouble eating?”"
+    },
+    {
+      "id": "hand-foot",
+      "agent": "patient",
+      "fact": "The palms of your hands are red and painful.",
+      "triggers": [
+        "hands",
+        "palms",
+        "feet",
+        "soles",
+        "skin",
+        "redness",
+        "peeling",
+        "tingling",
+        "hand foot",
+        "sore hands"
+      ],
+      "unlockHint": "“Have you noticed any changes to the skin on your hands or feet?”"
+    },
+    {
+      "id": "bleeding",
+      "agent": "patient",
+      "fact": "You've got bruises on your arms you can't explain, and yesterday there was blood in your urine.",
+      "triggers": [
+        "bruising",
+        "bruise",
+        "bleeding",
+        "blood",
+        "blood urine",
+        "nosebleed",
+        "bleeding gums",
+        "black stools",
+        "red urine",
+        "marks arms"
+      ],
+      "unlockHint": "“Have you noticed any bruising or bleeding, like blood in your urine or stools?”"
+    },
+    {
+      "id": "conditions",
+      "agent": "patient",
+      "fact": "You've had atrial fibrillation, an irregular heartbeat, for 5 years, and you have high blood pressure. (Only mention your kidneys if asked about kidneys or blood tests.)",
+      "triggers": [
+        "medical conditions",
+        "health problems",
+        "conditions",
+        "heart",
+        "irregular heartbeat",
+        "blood pressure",
+        "other illnesses",
+        "medical history"
+      ],
+      "unlockHint": "“Do you have any other medical conditions?”"
+    },
+    {
+      "id": "regular-medicines",
+      "agent": "patient",
+      "fact": "Besides the chemo, you take warfarin 4 mg at night, bisoprolol 5 mg daily, omeprazole 20 mg daily (the hospital started it), ondansetron when needed for nausea, and loperamide for the diarrhoea. Your wife fills the GP's scripts at the pharmacy near home.",
+      "triggers": [
+        "other medicine",
+        "any other",
+        "anything else",
+        "other tablet",
+        "regular medicine",
+        "blood thinner",
+        "warfarin",
+        "anticoagulant",
+        "heart medicine",
+        "currently take",
+        "full list",
+        "what else take"
+      ],
+      "unlockHint": "“What other medicines do you take, including ones from your GP?”"
+    },
+    {
+      "id": "missed-inr",
+      "agent": "patient",
+      "fact": "Your INR check was due last week, but you missed it because you were too unwell to get to the lab.",
+      "triggers": [
+        "inr",
+        "warfarin check",
+        "warfarin test",
+        "last inr",
+        "missed test",
+        "blood test warfarin",
+        "pathology",
+        "lab",
+        "warfarin monitoring",
+        "inr checked"
+      ],
+      "unlockHint": "“When was your INR last checked, and what was it?”"
+    },
+    {
+      "id": "kidneys",
+      "agent": "patient",
+      "fact": "The oncology bloods last week showed reduced kidney function. They told you the eGFR was 42, and you've been told you have chronic kidney disease.",
+      "triggers": [
+        "kidney",
+        "kidneys",
+        "renal",
+        "egfr",
+        "blood test",
+        "blood results",
+        "bloods",
+        "creatinine",
+        "kidney function"
+      ],
+      "unlockHint": "“Have you had blood tests recently? Has anyone mentioned your kidney function?”"
+    },
+    {
+      "id": "ibuprofen",
+      "agent": "patient",
+      "fact": "You take ibuprofen 400 mg two or three times a day for back pain. You bought it yourself. It's 'just an anti-inflammatory', so you didn't think it counted.",
+      "triggers": [
+        "over counter",
+        "pain relief",
+        "painkiller",
+        "anti inflammatory",
+        "ibuprofen",
+        "nurofen",
+        "back pain",
+        "buy yourself",
+        "supermarket",
+        "pain",
+        "paracetamol"
+      ],
+      "unlockHint": "“Do you take anything you buy yourself, like pain relievers?”"
+    },
+    {
+      "id": "turmeric",
+      "agent": "patient",
+      "fact": "You take turmeric capsules because you read they 'help chemo'.",
+      "triggers": [
+        "supplements",
+        "vitamins",
+        "herbal",
+        "natural",
+        "turmeric",
+        "complementary",
+        "health food",
+        "naturopath",
+        "alternative"
+      ],
+      "unlockHint": "“Any vitamins, herbal or natural products?”"
+    }
+  ],
+  "answerKey": {
+    "plantedProblem": "He has active capecitabine toxicity before cycle 2: diarrhoea 6–7 times a day (normally once) for 4 days with dehydration (little urine, postural dizziness), mucositis and hand-foot syndrome. He also has signs of over-anticoagulation (bruising, haematuria) from the capecitabine–warfarin interaction, which markedly raises INR, and his INR check was missed. Second hidden problem: reduced kidney function (eGFR 42), which needs a capecitabine dose reduction in moderate impairment, with acute kidney injury risk from dehydration. Both are worsened by OTC ibuprofen (kidney injury, bleeding with warfarin) and turmeric (possible INR effect). Omeprazole may affect capecitabine but is lower priority. Cycle 2 should not start before review.",
+    "acceptableResolutions": [
+      "Introduces self, confirms identity, gains consent, and addresses privacy and the absent wife. Uses open, empathic questions to elicit the full toxicity picture and a complete medicine history, including warfarin, OTC and complementary products.",
+      "Does not supply cycle 2 to start today. Recognises that it should be held pending same-day medical review.",
+      "Identifies the capecitabine–warfarin interaction, links bruising and haematuria to possible over-anticoagulation, and asks for an urgent INR today.",
+      "Identifies eGFR 42 (moderate renal impairment): capecitabine needs dose reduction and is contraindicated in severe impairment, and dehydration risks acute kidney injury.",
+      "Calls Dr Roy with a structured ISBAR message and a specific request (hold cycle 2, same-day review, urgent INR, FBC and renal function), handles the pushback collaboratively, and cites references (product information, eviQ, AMH).",
+      "Advises stopping ibuprofen (use paracetamol) and turmeric, maintaining fluids, and gives clear criteria for going to hospital. Informs the GP or anticoagulation prescriber. Documents the intervention."
+    ],
+    "unacceptableActions": [
+      "Dispensing cycle 2 to start today without escalating the toxicity and bleeding.",
+      "Missing the capecitabine–warfarin interaction or the current toxicity (overall fail).",
+      "Simply refusing to dispense ('I won't dispense') without a collaborative plan with the oncologist.",
+      "Accepting 'diarrhoea is expected, loperamide is fine' and sending him home.",
+      "Ignoring the OTC ibuprofen or advising him to keep taking it."
+    ],
+    "counsellingPoints": [
+      "Don't start the new capecitabine cycle today. The oncology team need to review you first, and holding it is about safety, not giving up on treatment.",
+      "Stop the ibuprofen now. It can harm your kidneys and increase bleeding with warfarin. Use paracetamol for back pain instead (up to the usual daily limit) unless your doctor says otherwise.",
+      "Stop the turmeric capsules. They may affect your INR and haven't been shown to help chemo.",
+      "Get your INR, full blood count and kidney blood tests done today as arranged. Don't skip or change warfarin doses on your own; follow the advice you get today.",
+      "Sip fluids often (water or oral rehydration solution) to replace what you're losing with the diarrhoea.",
+      "Go straight to the hospital or call 000 if you have heavy bleeding or a lot of blood in your urine or stools, feel faint or very dizzy, have a fever of 38°C or more or shivers, or have diarrhoea you can't control, or more than 6–7 times a day despite loperamide.",
+      "For your sore mouth, use bland mouthwashes such as salt and bicarbonate, and keep your hands moisturised and out of heat and friction. Report any worsening.",
+      "Tell your wife about today's plan, and keep an up-to-date list of all your medicines, including ones you buy yourself, to show every doctor and pharmacist."
+    ],
+    "codePrinciples": [
+      "Pharmacy Board Code of Conduct: Collaboration – working with the prescriber and other practitioners and communicating clearly in the patient's interest.",
+      "PSA Code of Ethics: Care – the pharmacist's primary concern is the patient's health and safety."
+    ],
+    "legal": [
+      "Document the clinical intervention and communication with the prescriber in the dispensing record, consistent with the Poisons and Therapeutic Goods Regulation 2008 (NSW) and Pharmacy Board professional practice guidelines."
+    ],
+    "modelAnswer": "1. Opening: The pharmacist introduces themselves, confirms they are speaking with George Papadakis (DOB 11/02/1960), and moves to a private area. They acknowledge that his wife, who usually manages his tablets, isn't present, and ask his consent to discuss his health.\n\n2. Gather information with open, empathic questions. Avoid 'any side effects?'; instead ask 'How have the last three weeks been for you?' Then ask specifically about:\n- bowel frequency compared with normal (6–7 a day versus once, for 4 days);\n- fluid intake, urine output and dizziness;\n- mouth soreness;\n- hands and feet;\n- bruising or bleeding (bruises, blood in urine yesterday);\n- medical conditions (AF, hypertension, CKD);\n- recent blood tests (eGFR 42 last week);\n- every medicine: warfarin 4 mg nocte with the INR missed last week, bisoprolol, omeprazole, ondansetron, loperamide;\n- OTC and complementary products: ibuprofen 400 mg two to three times daily, turmeric.\n\n3. Identify and explain the problems.\n- Toxicity: grade 2 or worse diarrhoea with dehydration, plus mucositis and palmar-plantar erythrodysaesthesia, means capecitabine should be interrupted, not started, until reviewed.\n- Interaction: capecitabine (via 5-FU) inhibits CYP2C9 and can markedly raise INR. Bruising and haematuria suggest over-anticoagulation, so an INR is needed today.\n- Kidney function: eGFR 42 is moderate impairment. Capecitabine requires dose reduction (per the product information, to 75% of the starting dose at CrCl 30–50 mL/min) and is contraindicated below 30. Dehydration, ibuprofen and the ACE-free but NSAID-exposed kidney risk acute kidney injury, which would raise fluoropyrimidine exposure further.\n- OTC: ibuprofen adds bleeding risk with warfarin and harms the kidneys; turmeric may raise INR.\n- Omeprazole: PPIs may reduce capecitabine efficacy. Flag it as lower priority.\n- Check against the capecitabine product information, eviQ, the AMH and an interactions reference.\n\n4. Explain to Mr Papadakis why cycle 2 shouldn't start today. Address his 'never miss a cycle' concern (a short delay for safety is standard), and gain his agreement to call the oncologist.\n\n5. Call Dr Roy using ISBAR. Situation: cycle 2 due today, with toxicity and bleeding. Background: warfarin with the INR missed, eGFR 42, ibuprofen. Assessment: grade 2 diarrhoea with dehydration, hand-foot syndrome, mucositis, likely raised INR with haematuria, moderate renal impairment. Request: hold cycle 2, same-day review at the day unit or ED, urgent INR, FBC and UEC, and dose reduction for renal function before restarting. Also suggest reviewing omeprazole and coordinating warfarin management with the GP (or considering an alternative anticoagulant). If she says 'diarrhoea is expected', restate the frequency above baseline and the dehydration. If she says 'the INR is the GP's job', point out that the interaction is caused by the chemotherapy and he is bleeding now. Cite the product information and eviQ for the interaction and the renal threshold. Don't simply refuse.\n\n6. Counsel: don't start capecitabine today; stop ibuprofen (use paracetamol) and turmeric; keep up fluids; follow the same-day plan; know the hospital red flags (heavy bleeding, dizziness or fainting, fever of 38°C or more, uncontrolled diarrhoea).\n\n7. Follow-up and documentation: hold the script or supply only once the plan is confirmed. Inform the GP about the INR. Follow up with the patient or his wife the next day. Document the history, the problems, the advice, who was contacted, the outcome and the plan."
+  },
+  "review": {
+    "status": "draft",
+    "version": "0.1"
+  },
+  "sources": [
+    "Drafted with the WhatsApp bot from a document sent by Dina"
+  ]
+}
