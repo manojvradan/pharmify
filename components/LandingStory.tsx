@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { LogoMark } from "@/components/icons";
-import { PilotSignup } from "@/components/PilotSignup";
 import { Pip } from "@/components/Pip";
 
 /**
@@ -317,8 +316,11 @@ export function LandingStory() {
                 {ch.label}
               </button>
             ))}
-            <Link href="/home" className={`${btn} min-h-[46px] bg-[#FFC94D] px-5 text-base`}>
-              Sign in
+            <Link href="/home" className={`${btn} min-h-[46px] bg-white px-5 text-base`}>
+              Log in
+            </Link>
+            <Link href="/sign-up" className={`${btn} min-h-[46px] bg-[#FFC94D] px-5 text-base`}>
+              Sign up
             </Link>
           </nav>
         </div>
@@ -353,11 +355,11 @@ export function LandingStory() {
                   Practise the oral exam out loud. Get marked against the Board&apos;s criteria.
                 </p>
                 <div className="flex flex-wrap gap-3.5">
-                  <button type="button" onClick={() => go(1)} className={`${btn} bg-[#FF8CC6]`}>
-                    Join the pilot
-                  </button>
+                  <Link href="/sign-up" className={`${btn} bg-[#FF8CC6]`}>
+                    Sign up
+                  </Link>
                   <Link href="/home" className={`${btn} bg-white`}>
-                    Sign in
+                    Log in
                   </Link>
                 </div>
               </Panel>
@@ -380,7 +382,14 @@ export function LandingStory() {
                 <Kicker>Fill your script</Kicker>
                 <Headline>Confidence Capsules.</Headline>
                 <p className="m-0 max-w-[38ch] text-[17px] sm:text-[19px]">Take one case daily. Results may include exam-day calm.</p>
-                <PilotSignup variant="pill" />
+                <div className="flex flex-wrap gap-3.5">
+                  <Link href="/sign-up" className={`${btn} bg-[#FF8CC6]`}>
+                    Sign up
+                  </Link>
+                  <Link href="/home" className={`${btn} bg-white`}>
+                    Log in
+                  </Link>
+                </div>
                 <span className="text-sm">Not affiliated with Ahpra or the Pharmacy Board</span>
               </Panel>
             </div>
