@@ -1,0 +1,320 @@
+{
+  "id": "tca-depression-af-falls-risk",
+  "title": "Feeling really down",
+  "category": "clinical",
+  "problemType": "Inappropriate antidepressant choice (TCA in an older patient with cardiac disease and falls)",
+  "specialty": "mental-health",
+  "setting": "Community pharmacy, NSW",
+  "questionSheet": "Margaret Collins, a 68-year-old woman, presents a new prescription for amitriptyline 25 mg tablets, one tablet at night, from her GP, Dr Williams. She says: “I’ve been feeling really down lately, and my doctor gave me this medication to help. I’m already taking quite a few tablets, so I’m a little worried about starting another one.” Assess the prescription, identify and prioritise the clinical problems, gather a relevant history, communicate with the doctor as needed, and counsel the patient. Manage the situation as you would in practice. You may contact the prescriber.",
+  "documents": {
+    "prescription": {
+      "item": "Amitriptyline 25 mg tablets",
+      "directions": "ONE tablet at night · Qty 50 · 0 repeats",
+      "footer": "Dr H. Williams (GP) · Margaret Collins, DOB 17/02/1958"
+    },
+    "dispensingHistory": [
+      {
+        "date": "20 Oct 2026",
+        "item": "Apixaban 5 mg tablets (Eliquis)",
+        "directions": "One tablet twice a day",
+        "quantity": "60",
+        "prescriber": "Dr H. Williams (GP)"
+      },
+      {
+        "date": "20 Oct 2026",
+        "item": "Amlodipine 5 mg tablets (generic)",
+        "directions": "One tablet daily",
+        "quantity": "30",
+        "prescriber": "Dr H. Williams (GP)"
+      },
+      {
+        "date": "6 Oct 2026",
+        "item": "Metoprolol tartrate 50 mg tablets (Minax)",
+        "directions": "One tablet twice a day",
+        "quantity": "100",
+        "prescriber": "Dr H. Williams (GP)"
+      },
+      {
+        "date": "22 Sep 2026",
+        "item": "Apixaban 5 mg tablets (Eliquis)",
+        "directions": "One tablet twice a day",
+        "quantity": "60",
+        "prescriber": "Dr H. Williams (GP)"
+      },
+      {
+        "date": "22 Sep 2026",
+        "item": "Amlodipine 5 mg tablets (generic)",
+        "directions": "One tablet daily",
+        "quantity": "30",
+        "prescriber": "Dr H. Williams (GP)"
+      },
+      {
+        "date": "8 Sep 2026",
+        "item": "Furosemide 40 mg tablets (Lasix)",
+        "directions": "One tablet in the morning",
+        "quantity": "100",
+        "prescriber": "Dr H. Williams (GP)"
+      },
+      {
+        "date": "24 Aug 2026",
+        "item": "Apixaban 5 mg tablets (Eliquis)",
+        "directions": "One tablet twice a day",
+        "quantity": "60",
+        "prescriber": "Dr H. Williams (GP)"
+      },
+      {
+        "date": "24 Aug 2026",
+        "item": "Amlodipine 5 mg tablets (generic)",
+        "directions": "One tablet daily",
+        "quantity": "30",
+        "prescriber": "Dr H. Williams (GP)"
+      },
+      {
+        "date": "14 Aug 2026",
+        "item": "Metoprolol tartrate 50 mg tablets (Minax)",
+        "directions": "One tablet twice a day",
+        "quantity": "100",
+        "prescriber": "Dr H. Williams (GP)"
+      }
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient · Mrs Collins",
+      "name": "Mrs Collins",
+      "description": "A 68-year-old retired woman, softly spoken, a little flat and tearful, with average health literacy. She is anxious about adding yet another tablet. She answers honestly when asked but does not volunteer her history, falls, test results or what she buys over the counter. If the pharmacist is warm, unhurried and explains things plainly she relaxes and opens up. If she is rushed or given jargon she goes quiet and says she'll just take what the doctor gave her.",
+      "bio": {
+        "Age": "68",
+        "Phone": "0491 571 266",
+        "Address": "8 Jacaranda Crescent, Parramatta NSW 2150",
+        "Full name": "Margaret Collins",
+        "Occupation": "Retired school librarian",
+        "Date of birth": "17 February 1958"
+      },
+      "avatar": "rosie-costa",
+      "voice": "au-soft-woman",
+      "openingLine": "I've been feeling really down lately, and my doctor gave me this medication to help. I'm already taking quite a few tablets, so I'm a little worried about starting another one.",
+      "publicFacts": [
+        "Your GP, Dr Williams, gave you this new tablet for feeling down.",
+        "You already take quite a few tablets and you're worried about adding another.",
+        "You get your regular tablets from this pharmacy."
+      ]
+    },
+    "prescriber": {
+      "label": "Call Dr Williams",
+      "name": "Dr Williams",
+      "description": "A GP in her fifties, busy between consults but fair. She defends her choice at first and asks why amitriptyline can't be used. She listens if the pharmacist is clear, brief and prioritised and gives a specific alternative with a dose and monitoring plan. She becomes impatient with vague concerns or an open question like 'what do you want to do?'.",
+      "bio": {
+        "Role": "General practitioner",
+        "Full name": "Dr Helen Williams",
+        "Workplace": "Parramatta Family Medical Centre, NSW"
+      },
+      "avatar": "dr-holt",
+      "voice": "au-woman-professional",
+      "openingLine": "Helen Williams speaking, I've got a patient waiting. How can I help?",
+      "publicFacts": [
+        "You saw Margaret Collins this week and diagnosed depression.",
+        "You prescribed amitriptyline 25 mg at night, hoping it would help her sleep as well as her mood.",
+        "When the pharmacist raises a concern, your first response is: 'Why can't we use amitriptyline? It will help her sleep as well as her depression.'",
+        "You know she has atrial fibrillation on apixaban, hypertension, CKD and has had a fall before."
+      ]
+    }
+  },
+  "hiddenFacts": [
+    {
+      "id": "medical-history",
+      "agent": "patient",
+      "fact": "You have atrial fibrillation, high blood pressure and kidney disease (the doctor called it stage 3b). You were only recently told you have depression. You've had a fall before.",
+      "triggers": [
+        "medical conditions",
+        "health conditions",
+        "medical history",
+        "health problems",
+        "other conditions",
+        "heart condition",
+        "atrial fibrillation",
+        "irregular heartbeat",
+        "kidney",
+        "blood pressure",
+        "diagnosed",
+        "conditions treated"
+      ],
+      "unlockHint": "“What other health conditions are you being treated for?”"
+    },
+    {
+      "id": "dizzy-on-standing",
+      "agent": "patient",
+      "fact": "You feel dizzy and light-headed when you stand up, especially getting out of bed or a chair.",
+      "triggers": [
+        "dizzy",
+        "dizziness",
+        "light headed",
+        "lightheaded",
+        "stand up",
+        "standing up",
+        "faint",
+        "woozy",
+        "balance",
+        "unsteady",
+        "side effects"
+      ],
+      "unlockHint": "“Do you ever feel dizzy or light-headed, for example when you stand up?”"
+    },
+    {
+      "id": "two-falls",
+      "agent": "patient",
+      "fact": "You've had two falls in the last six months. You didn't break anything but it shook you up.",
+      "triggers": [
+        "fall",
+        "falls",
+        "fallen",
+        "fell",
+        "trip",
+        "tripped",
+        "slip",
+        "injured",
+        "hurt yourself",
+        "bruise"
+      ],
+      "unlockHint": "“Have you had any falls recently?”"
+    },
+    {
+      "id": "recent-results",
+      "agent": "patient",
+      "fact": "Your recent blood tests showed kidney function (eGFR) of 38 and potassium of 3.3, which the doctor said was a bit low. The nurse said your resting heart rate was 54.",
+      "triggers": [
+        "blood test",
+        "blood tests",
+        "blood results",
+        "test results",
+        "pathology",
+        "kidney function",
+        "egfr",
+        "potassium",
+        "heart rate",
+        "pulse",
+        "recent bloods",
+        "electrolytes"
+      ],
+      "unlockHint": "“Have you had any recent blood tests, or has anyone checked your heart rate or kidney function?”"
+    },
+    {
+      "id": "otc-ibuprofen",
+      "agent": "patient",
+      "fact": "You buy ibuprofen from the supermarket and take it now and then for back pain. You also take paracetamol when you need it.",
+      "triggers": [
+        "over counter",
+        "ibuprofen",
+        "nurofen",
+        "anti inflammatory",
+        "painkiller",
+        "pain relief",
+        "back pain",
+        "paracetamol",
+        "panadol",
+        "buy yourself",
+        "supermarket",
+        "vitamins",
+        "supplements",
+        "anything else"
+      ],
+      "unlockHint": "“Do you take anything you buy yourself, like pain relievers, vitamins or herbal products?”"
+    },
+    {
+      "id": "no-previous-antidepressant",
+      "agent": "patient",
+      "fact": "You have never taken an antidepressant before.",
+      "triggers": [
+        "antidepressant before",
+        "previous antidepressant",
+        "old antidepressant",
+        "tried before",
+        "first time",
+        "ever taken",
+        "depression medicine",
+        "mood medicine",
+        "taken before",
+        "antidepressant"
+      ],
+      "unlockHint": "“Have you ever taken a medicine for depression before?”"
+    },
+    {
+      "id": "mood-and-safety",
+      "agent": "patient",
+      "fact": "You feel low and tired most days and have lost interest in things, but you have no thoughts of harming yourself. Your daughter visits each weekend. You haven't seen a counsellor or psychologist.",
+      "triggers": [
+        "self harm",
+        "harm yourself",
+        "suicide",
+        "suicidal",
+        "feel safe",
+        "unsafe",
+        "thoughts ending",
+        "counsellor",
+        "psychologist",
+        "talk someone",
+        "support",
+        "family",
+        "mental health plan"
+      ],
+      "unlockHint": "“Have you had any thoughts of harming yourself, and do you have support around you?”"
+    },
+    {
+      "id": "poor-sleep",
+      "agent": "patient",
+      "fact": "You've been sleeping badly, waking early and lying awake worrying.",
+      "triggers": [
+        "sleep",
+        "sleeping",
+        "insomnia",
+        "awake",
+        "waking",
+        "wake up",
+        "rest well",
+        "nights"
+      ],
+      "unlockHint": "“How have you been sleeping?”"
+    }
+  ],
+  "answerKey": {
+    "plantedProblem": "Amitriptyline (a tricyclic antidepressant) is a poor choice for a 68-year-old with atrial fibrillation, bradycardia (HR 54) on metoprolol, hypokalaemia (K 3.3 on furosemide), CKD 3b, orthostatic dizziness and two falls in six months. Its anticholinergic effects, orthostatic hypotension, sedation and falls risk, and cardiac conduction/QT risk (made worse by low potassium) outweigh the benefit, and 25 mg is also a sub-therapeutic antidepressant dose. She also takes OTC ibuprofen with apixaban and CKD, which raises bleeding and renal risk. Depression should be managed with a safer alternative and non-drug support.",
+    "acceptableResolutions": [
+      "Take a full history before dispensing: conditions, all medicines including OTC, falls, dizziness, recent pathology, previous antidepressants, mood and safety.",
+      "Identify and prioritise the problems: TCA anticholinergic and orthostatic effects with falls risk; conduction/QT risk with bradycardia and hypokalaemia; ibuprofen with apixaban and CKD.",
+      "Withhold supply of amitriptyline and contact Dr Williams with a clear, evidence-based recommendation (for example sertraline 25–50 mg daily, or mirtazapine 15 mg at night if sleep is a priority), with a monitoring plan.",
+      "Recommend correcting and rechecking potassium, reviewing furosemide and bradycardia, and a falls assessment.",
+      "Advise stopping ibuprofen and using regular paracetamol for back pain, and tell the GP.",
+      "Recommend non-drug depression care (mental health care plan, psychologist) and a safety check.",
+      "Counsel the patient, arrange follow-up and document the intervention."
+    ],
+    "unacceptableActions": [
+      "Dispensing amitriptyline without assessing falls, cardiac and electrolyte risks or contacting the prescriber.",
+      "Recommending citalopram or escitalopram without considering QT risk with hypokalaemia.",
+      "Ignoring the ibuprofen use with apixaban and CKD.",
+      "Telling her to stop her regular medicines or to stop her antidepressant plan without arranging an alternative with the GP.",
+      "Failing to ask about mood severity and suicide risk in a newly diagnosed depressed patient."
+    ],
+    "counsellingPoints": [
+      "Explain that the GP is changing the depression medicine to one that is less likely to cause dizziness, falls or heart rhythm problems, and that she should not start the amitriptyline.",
+      "If sertraline is started: take one dose each morning with food; it can take 2–4 weeks to help mood and up to 6–8 weeks for the full effect, so keep taking it and don't stop suddenly.",
+      "Early side effects such as nausea, upset stomach or feeling jittery usually settle within 1–2 weeks; report confusion, headache, unusual tiredness or unsteadiness, which can signal low sodium.",
+      "Stop the supermarket ibuprofen because with apixaban and her kidneys it raises the risk of bleeding and kidney damage; use paracetamol regularly for back pain instead (up to 1 g four times a day).",
+      "Watch for bleeding: black or bloody stools, blood in urine, unusual bruising, or nosebleeds that won't stop. Seek medical help straight away if these occur.",
+      "Reduce falls risk: stand up slowly, sit on the edge of the bed before getting up, and use good lighting at night.",
+      "If her mood gets worse or she has any thoughts of harming herself, contact her GP or Lifeline (13 11 14) straight away, or call 000 in an emergency.",
+      "Return for a review in 1–2 weeks and have the blood tests (potassium, sodium, kidney function) the GP orders."
+    ],
+    "codePrinciples": [],
+    "legal": [
+      "Document the clinical intervention and the prescriber's decision in the dispensing record (Pharmacy Board of Australia Guidelines for dispensing of medicines)."
+    ],
+    "modelAnswer": "1. Gather information before dispensing. Ask about her conditions (AF, hypertension, CKD 3b, recently diagnosed depression, previous fall), all medicines including OTC (apixaban 5 mg BD, metoprolol 50 mg BD, amlodipine 5 mg, furosemide 40 mg, PRN paracetamol, occasional ibuprofen), dizziness on standing, falls (two in six months), recent pathology (eGFR 38, K 3.3, HR 54), previous antidepressants (none), sleep, mood severity and suicide risk, and support. 2. Identify and prioritise the problems. Most urgent: amitriptyline's anticholinergic and alpha-blocking effects cause sedation, confusion and orthostatic hypotension, which add to her falls risk while she is anticoagulated (a fall could cause a serious bleed). Tricyclics also slow cardiac conduction and prolong QT; hypokalaemia from furosemide and bradycardia on metoprolol increase arrhythmia risk. TCAs are listed as potentially inappropriate in older people, and 25 mg is below an effective antidepressant dose. Second: OTC ibuprofen with apixaban increases bleeding risk, and with furosemide and CKD it threatens renal function. 3. Check references: AMH (amitriptyline precautions, antidepressant comparison), eTG Psychotropic (depression in older adults), the AMH Aged Care Companion, and the apixaban product information for dose criteria (check age, weight and serum creatinine). 4. Call Dr Williams and answer her question directly. Although amitriptyline helps sleep, in Mrs Collins its falls, anticholinergic and conduction risks outweigh that. Recommend sertraline 25 mg daily, increasing to 50 mg after 1–2 weeks (low QT and anticholinergic burden), with sleep addressed by treating the depression and by sleep hygiene. Alternative: mirtazapine 15 mg at night if insomnia and poor appetite dominate, watching for sedation and falls. Avoid citalopram or escitalopram because of QT risk with hypokalaemia. Also recommend correcting potassium and reviewing furosemide, reviewing the heart rate of 54 on metoprolol, checking sodium at baseline and at 2–4 weeks (SSRI with diuretic in an older patient), stopping ibuprofen, using regular paracetamol, a falls assessment, a mental health care plan with a psychologist referral, and review in 2 weeks. Note that SSRIs add a modest bleeding risk with apixaban, which is another reason to remove the NSAID. 5. Counsel her empathetically: the change and why, how to take the new medicine, its onset and side effects, stopping ibuprofen, bleeding and falls precautions, and crisis contacts. 6. Follow up at 1–2 weeks and consider a Home Medicines Review. 7. Document the intervention, the GP conversation and the outcome, and return or cancel the amitriptyline script as agreed."
+  },
+  "review": {
+    "status": "draft",
+    "version": "0.1"
+  },
+  "sources": [
+    "Drafted with the WhatsApp bot from a document sent by Dina"
+  ]
+}
