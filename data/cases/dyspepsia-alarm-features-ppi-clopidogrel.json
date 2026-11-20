@@ -1,0 +1,425 @@
+{
+  "id": "dyspepsia-alarm-features-ppi-clopidogrel",
+  "title": "Something for indigestion",
+  "category": "clinical",
+  "problemType": "Alarm symptoms and a drug interaction",
+  "specialty": "gastroenterology",
+  "setting": "Community pharmacy",
+  "questionSheet": "Mr Peter Anderson, a man in his late sixties, presents a valid prescription from his GP, Dr Roberts, for omeprazole 40 mg capsules, one capsule twice daily for 8 weeks. He tells you it is for indigestion. Dr Roberts can be contacted by phone. Manage the situation as you would in practice. You may contact the prescriber.",
+  "documents": {
+    "prescription": {
+      "item": "Omeprazole 40 mg capsules",
+      "directions": "One capsule twice daily for 8 weeks",
+      "footer": "Dr H. Roberts (GP) · Peter Anderson, DOB 12/03/1958"
+    },
+    "dispensingHistory": [
+      {
+        "date": "26 Oct 2026",
+        "item": "Clopidogrel 75 mg tablets (generic)",
+        "directions": "One tablet daily",
+        "quantity": "28",
+        "prescriber": "Dr H. Roberts (GP)"
+      },
+      {
+        "date": "26 Oct 2026",
+        "item": "Atorvastatin 40 mg tablets (generic)",
+        "directions": "One tablet at night",
+        "quantity": "30",
+        "prescriber": "Dr H. Roberts (GP)"
+      },
+      {
+        "date": "26 Oct 2026",
+        "item": "Ramipril 5 mg capsules (generic)",
+        "directions": "One capsule daily",
+        "quantity": "30",
+        "prescriber": "Dr H. Roberts (GP)"
+      },
+      {
+        "date": "12 Oct 2026",
+        "item": "Metoprolol tartrate 50 mg tablets (generic)",
+        "directions": "One tablet twice daily",
+        "quantity": "100",
+        "prescriber": "Dr H. Roberts (GP)"
+      },
+      {
+        "date": "5 Oct 2026",
+        "item": "Aspirin 100 mg enteric-coated tablets (Cartia)",
+        "directions": "One tablet daily",
+        "quantity": "84",
+        "prescriber": "Dr H. Roberts (GP)"
+      },
+      {
+        "date": "28 Sep 2026",
+        "item": "Clopidogrel 75 mg tablets (generic)",
+        "directions": "One tablet daily",
+        "quantity": "28",
+        "prescriber": "Dr H. Roberts (GP)"
+      },
+      {
+        "date": "28 Sep 2026",
+        "item": "Atorvastatin 40 mg tablets (generic)",
+        "directions": "One tablet at night",
+        "quantity": "30",
+        "prescriber": "Dr H. Roberts (GP)"
+      },
+      {
+        "date": "28 Sep 2026",
+        "item": "Ramipril 5 mg capsules (generic)",
+        "directions": "One capsule daily",
+        "quantity": "30",
+        "prescriber": "Dr H. Roberts (GP)"
+      },
+      {
+        "date": "31 Aug 2026",
+        "item": "Clopidogrel 75 mg tablets (generic)",
+        "directions": "One tablet daily",
+        "quantity": "28",
+        "prescriber": "Dr H. Roberts (GP)"
+      },
+      {
+        "date": "31 Aug 2026",
+        "item": "Atorvastatin 40 mg tablets (generic)",
+        "directions": "One tablet at night",
+        "quantity": "30",
+        "prescriber": "Dr H. Roberts (GP)"
+      },
+      {
+        "date": "31 Aug 2026",
+        "item": "Ramipril 5 mg capsules (generic)",
+        "directions": "One capsule daily",
+        "quantity": "30",
+        "prescriber": "Dr H. Roberts (GP)"
+      },
+      {
+        "date": "23 Aug 2026",
+        "item": "Metoprolol tartrate 50 mg tablets (generic)",
+        "directions": "One tablet twice daily",
+        "quantity": "100",
+        "prescriber": "Dr H. Roberts (GP)"
+      }
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient · Mr Anderson",
+      "name": "Mr Anderson",
+      "description": "A 68-year-old retired man, polite and stoic, with average health literacy. He is quietly worried his symptoms are serious but 'doesn't want to make a fuss', so he plays them down. If asked 'any other symptoms?' he says 'no'. He only reveals the swallowing trouble, weight loss, tiredness and black stools when asked about each one specifically. He opens up and accepts urgent review when the pharmacist is calm, kind and clear about why it matters. He gets dismissive and keen to leave if rushed or lectured.",
+      "bio": {
+        "Age": "68",
+        "Phone": "0491 570 157",
+        "Address": "8 Kurrajong Close, Campbelltown NSW 2560",
+        "Full name": "Peter Anderson",
+        "Occupation": "Retired electrician",
+        "Date of birth": "12 March 1958"
+      },
+      "avatar": "bertie-walsh",
+      "voice": "au-older-man",
+      "openingLine": "G'day. The doctor's given me this for my indigestion. Hopefully won't take long.",
+      "publicFacts": [
+        "He has had 'indigestion' in the upper part of his tummy for about 3 weeks.",
+        "His GP, Dr Roberts, wrote him this script.",
+        "He has never taken a tablet like this for his stomach before.",
+        "If asked about other symptoms in general, he says 'no, not really'."
+      ]
+    },
+    "prescriber": {
+      "label": "Call the GP",
+      "name": "Dr Roberts",
+      "description": "A GP in her fifties, busy between patients but fair. She thinks new dyspepsia is usually benign and wants to try the PPI first. She listens if the pharmacist is clear, structured and specific, and asks direct questions back. She changes the plan when given clear reasons and a specific recommendation, but not for a vague concern.",
+      "bio": {
+        "Role": "General practitioner",
+        "Full name": "Dr Helen Roberts",
+        "Workplace": "Campbelltown Family Medical Practice"
+      },
+      "avatar": "dr-holt",
+      "voice": "au-woman-professional",
+      "openingLine": "Helen Roberts speaking. I've got a patient waiting, what can I do for you?",
+      "publicFacts": [
+        "You saw Mr Anderson for about 3 weeks of upper abdominal indigestion and prescribed omeprazole 40 mg twice daily for 8 weeks.",
+        "New dyspepsia is usually benign. Your plan is to try the PPI first, then scope if it doesn't settle.",
+        "You know his history: coronary stent 8 months ago, hypertension and high cholesterol. You prescribe his aspirin, clopidogrel, atorvastatin, metoprolol and ramipril.",
+        "He didn't mention swallowing problems, weight loss or black stools to you."
+      ]
+    }
+  },
+  "hiddenFacts": [
+    {
+      "id": "dysphagia",
+      "agent": "patient",
+      "fact": "For about 2 weeks, food has been sticking in your lower chest when you swallow, especially meat.",
+      "triggers": [
+        "swallowing",
+        "swallow",
+        "food stick",
+        "food stuck",
+        "stuck",
+        "trouble swallowing",
+        "difficulty swallowing",
+        "food going down",
+        "meat",
+        "dysphagia",
+        "food catch",
+        "choking"
+      ],
+      "unlockHint": "“Have you had any trouble swallowing, or food getting stuck?”"
+    },
+    {
+      "id": "weight-loss",
+      "agent": "patient",
+      "fact": "You've lost about 6 kg over the last 2 months without trying.",
+      "triggers": [
+        "weight",
+        "lost weight",
+        "weight loss",
+        "losing weight",
+        "appetite",
+        "clothes loose",
+        "thinner",
+        "weigh",
+        "kilos",
+        "eating less"
+      ],
+      "unlockHint": "“Have you lost any weight without trying?”"
+    },
+    {
+      "id": "black-stools",
+      "agent": "patient",
+      "fact": "You've had two black, sticky bowel motions this week. You haven't vomited blood.",
+      "triggers": [
+        "stool",
+        "stools",
+        "bowel",
+        "poo",
+        "black",
+        "toilet",
+        "bleeding",
+        "blood",
+        "tarry",
+        "dark",
+        "bowel motion",
+        "vomit"
+      ],
+      "unlockHint": "“Have you noticed any change in your bowel motions, like black or tarry stools?”"
+    },
+    {
+      "id": "tired-pale",
+      "agent": "patient",
+      "fact": "You've been very tired lately, and your wife says you look pale. You haven't fainted.",
+      "triggers": [
+        "tired",
+        "energy",
+        "pale",
+        "fatigue",
+        "exhausted",
+        "breathless",
+        "short breath",
+        "dizzy",
+        "faint",
+        "lightheaded",
+        "weak",
+        "colour"
+      ],
+      "unlockHint": "“Have you been feeling more tired than usual, or been told you look pale?”"
+    },
+    {
+      "id": "regular-medicines",
+      "agent": "patient",
+      "fact": "You take clopidogrel 75 mg daily, aspirin 100 mg daily, atorvastatin 40 mg, metoprolol 50 mg twice daily and ramipril 5 mg daily.",
+      "triggers": [
+        "other medicine",
+        "regular medicine",
+        "any other",
+        "currently take",
+        "blood thinner",
+        "clopidogrel",
+        "aspirin",
+        "plavix",
+        "heart tablet",
+        "other tablet",
+        "medicine list",
+        "prescription medicine"
+      ],
+      "unlockHint": "“What other medicines do you take regularly?”"
+    },
+    {
+      "id": "medical-history",
+      "agent": "patient",
+      "fact": "You had a stent put in your heart 8 months ago for coronary artery disease. You also have high blood pressure and high cholesterol. You gave up smoking 5 years ago.",
+      "triggers": [
+        "heart",
+        "stent",
+        "condition",
+        "medical history",
+        "health problem",
+        "blood pressure",
+        "cholesterol",
+        "smoke",
+        "smoking",
+        "cardiologist",
+        "medical condition",
+        "operation"
+      ],
+      "unlockHint": "“Do you have any medical conditions?”"
+    },
+    {
+      "id": "naproxen",
+      "agent": "patient",
+      "fact": "You buy naproxen 250 mg over the counter and take it two to three times a day for back pain. You didn't think to mention it to the doctor.",
+      "triggers": [
+        "pain",
+        "painkiller",
+        "back",
+        "over counter",
+        "anti-inflammatory",
+        "naproxen",
+        "nurofen",
+        "ibuprofen",
+        "buy yourself",
+        "supermarket",
+        "pain relief",
+        "arthritis",
+        "without prescription"
+      ],
+      "unlockHint": "“Do you take anything you buy yourself, like painkillers or anti-inflammatories?”"
+    },
+    {
+      "id": "gaviscon",
+      "agent": "patient",
+      "fact": "You've been taking Gaviscon when needed for the indigestion. It helps a bit.",
+      "triggers": [
+        "antacid",
+        "gaviscon",
+        "tried anything",
+        "already tried",
+        "heartburn",
+        "indigestion medicine",
+        "mylanta",
+        "stomach medicine",
+        "reflux"
+      ],
+      "unlockHint": "“Have you tried anything for the indigestion already?”"
+    },
+    {
+      "id": "worried",
+      "agent": "patient",
+      "fact": "You're secretly worried it's something serious, but you don't want to make a fuss or bother anyone.",
+      "triggers": [
+        "worried",
+        "concerned",
+        "serious",
+        "scared",
+        "anxious",
+        "worry",
+        "how feeling",
+        "nervous",
+        "frightened",
+        "concerns"
+      ],
+      "unlockHint": "“Is there anything worrying you about these symptoms?”"
+    },
+    {
+      "id": "urgent-plan",
+      "agent": "prescriber",
+      "fact": "If the pharmacist raises alarm features, first say the endoscopy waiting list is long and ask what exactly they want you to do. Only if they are specific (age over 60, swallowing difficulty, unintentional weight loss, black stools, tiredness and pallor, on aspirin plus clopidogrel) and ask for a clear action, agree: you'll see him today for assessment and blood tests including a full blood count and iron studies, and refer him for urgent endoscopy. If he has more black stools, dizziness or fainting, he should go to the emergency department. You won't stop his aspirin or clopidogrel without speaking to his cardiologist because of the stent.",
+      "triggers": [
+        "weight loss",
+        "swallowing",
+        "dysphagia",
+        "black stool",
+        "melaena",
+        "alarm",
+        "red flag",
+        "bleed",
+        "bleeding",
+        "endoscopy",
+        "scope",
+        "urgent",
+        "anaemia",
+        "same day",
+        "emergency"
+      ],
+      "unlockHint": "“He has alarm features: he's over 60, has trouble swallowing, has lost 6 kg and has had black stools while on aspirin and clopidogrel. Could you see him today for bloods and an urgent endoscopy referral?”"
+    },
+    {
+      "id": "naproxen-unknown",
+      "agent": "prescriber",
+      "fact": "You didn't know he was taking OTC naproxen. Once told, you agree he should stop it and use paracetamol for his back pain instead.",
+      "triggers": [
+        "naproxen",
+        "anti-inflammatory",
+        "nsaid",
+        "over counter",
+        "back pain",
+        "naprosyn",
+        "otc",
+        "bleeding risk",
+        "paracetamol"
+      ],
+      "unlockHint": "“He's also taking OTC naproxen with his aspirin and clopidogrel. I recommend he stops it and uses paracetamol instead.”"
+    },
+    {
+      "id": "ppi-choice",
+      "agent": "prescriber",
+      "fact": "If the PPI or the clopidogrel interaction is raised, ask: 'Which one and why?' Accept a change if the pharmacist explains that omeprazole and esomeprazole inhibit CYP2C19 and reduce activation of clopidogrel, and recommends pantoprazole. Agree to pantoprazole 40 mg daily for gastroprotection while the urgent work-up goes ahead.",
+      "triggers": [
+        "clopidogrel",
+        "cyp2c19",
+        "pantoprazole",
+        "different ppi",
+        "interaction",
+        "esomeprazole",
+        "switch",
+        "alternative ppi",
+        "change ppi",
+        "other ppi",
+        "activation",
+        "omeprazole"
+      ],
+      "unlockHint": "“Omeprazole inhibits CYP2C19 and reduces clopidogrel activation. Could we use pantoprazole instead?”"
+    }
+  ],
+  "answerKey": {
+    "plantedProblem": "A 68-year-old man prescribed an empirical PPI for new dyspepsia has alarm features: age over 60, dysphagia, about 6 kg unintentional weight loss, possible melaena (black, sticky stools) and anaemia symptoms (tired, pale). He needs urgent same-day medical assessment, blood tests and endoscopy, not a PPI trial alone. He is also at high bleeding risk from aspirin + clopidogrel + OTC naproxen. And omeprazole inhibits CYP2C19, reducing activation of the clopidogrel he needs after his stent 8 months ago.",
+    "acceptableResolutions": [
+      "Introduce self, confirm identity, get consent, and take a full history with open then specific questions about swallowing, weight, bowel motions, tiredness, medical history, regular medicines and OTC use.",
+      "Recognise the alarm features and contact Dr Roberts with a structured, specific request for same-day assessment, blood tests (e.g. FBC, iron studies) and urgent endoscopy referral.",
+      "Identify the bleeding risk from aspirin + clopidogrel + naproxen; recommend stopping naproxen and using paracetamol instead.",
+      "Advise the patient to go to the emergency department if he has ongoing black stools, dizziness or fainting.",
+      "Not advise stopping aspirin or clopidogrel on his own; any change is for the cardiologist or treating team because of the stent.",
+      "Identify the omeprazole–clopidogrel CYP2C19 interaction and recommend a PPI with less effect (e.g. pantoprazole) if gastroprotection is needed; supply only the agreed product.",
+      "Document the intervention and the agreed plan."
+    ],
+    "unacceptableActions": [
+      "Missing the alarm features and supplying the PPI as a routine trial (overall fail).",
+      "Dispensing omeprazole without raising the clopidogrel interaction (overall fail).",
+      "Telling him to stop aspirin or clopidogrel himself.",
+      "Not addressing OTC naproxen with dual antiplatelet therapy.",
+      "Reassuring him that it is 'just indigestion' or advising him to wait 8 weeks before review."
+    ],
+    "counsellingPoints": [
+      "Your symptoms (food sticking, weight loss, black stools, tiredness) need to be checked by Dr Roberts today, with blood tests and an urgent referral for a camera test (endoscopy).",
+      "If you pass more black or tarry stools, vomit blood or anything like coffee grounds, or feel dizzy, faint or short of breath, go straight to the emergency department or call 000.",
+      "Stop the naproxen now: with aspirin and clopidogrel it greatly increases your risk of stomach bleeding. Use paracetamol for your back pain instead, at no more than the maximum daily dose on the pack.",
+      "Keep taking your aspirin and clopidogrel unless your cardiologist or doctor tells you otherwise: stopping them could block your stent.",
+      "Your stomach-protecting medicine has been changed to pantoprazole, which doesn't stop clopidogrel working the way omeprazole can. Take one tablet once a day, about 30 minutes before breakfast.",
+      "Avoid other anti-inflammatory painkillers such as ibuprofen, diclofenac or high-dose aspirin products, and check with a pharmacist before buying any pain or cold medicines.",
+      "Gaviscon can still be used for symptoms, but separate it from your other medicines by about 2 hours."
+    ],
+    "codePrinciples": [
+      "Pharmacy Board of Australia Code of Conduct: providing good care, including recognising when a patient needs urgent referral to another practitioner.",
+      "Pharmacy Board of Australia Code of Conduct: working with other practitioners through clear, respectful communication.",
+      "PSA Code of Ethics: Care principle, acting in the patient's best interests and preventing harm."
+    ],
+    "legal": [
+      "Record the clinical intervention and the agreed prescriber change, consistent with the Pharmacy Board's Guidelines for dispensing of medicines and PSA Professional Practice Standards."
+    ],
+    "modelAnswer": "Introduce yourself, confirm it is Mr Peter Anderson and his date of birth, and get his consent to ask some questions. Use open questions about the indigestion first, then specific ones, because he answers 'no' to a general 'any other symptoms?'. Ask about trouble swallowing (food sticks in his lower chest with meat for 2 weeks), weight (about 6 kg lost unintentionally in 2 months), bowel motions (two black, sticky stools this week), energy and colour (tired and pale), medical history (coronary stent 8 months ago, hypertension, high cholesterol, ex-smoker), regular medicines (clopidogrel 75 mg, aspirin 100 mg, atorvastatin 40 mg, metoprolol 50 mg twice daily, ramipril 5 mg) and OTC products (naproxen 250 mg two to three times daily for back pain, Gaviscon as needed). Acknowledge that he is worried. Recognise the alarm features: age over 60 with new dyspepsia, dysphagia, unintentional weight loss, possible melaena and symptoms of anaemia. These mean possible upper GI malignancy or a GI bleed, which needs urgent assessment and endoscopy rather than an 8-week empirical PPI trial. Identify that aspirin + clopidogrel + naproxen greatly increases GI bleeding risk. Also identify that omeprazole (and esomeprazole) inhibit CYP2C19, reducing conversion of clopidogrel to its active metabolite and potentially its antiplatelet effect after a recent stent. Check AMH, eTG (Gastrointestinal) and the PPI/clopidogrel interaction monographs. Phone Dr Roberts in a structured (ISBAR) way. State the specific alarm features and the antiplatelet therapy, and ask for a clear action: same-day review with blood tests (FBC, iron studies) and urgent endoscopy referral. Recommend stopping naproxen and using paracetamol instead. If gastroprotection is needed, change omeprazole to pantoprazole 40 mg daily, explaining why. Do not advise stopping aspirin or clopidogrel; that decision rests with the cardiologist or treating team. Counsel Mr Anderson clearly and kindly. He must see Dr Roberts today and go to the emergency department if he has ongoing black stools, dizziness or fainting. He should stop naproxen, use paracetamol, keep taking his antiplatelets, and take pantoprazole as agreed. Follow up to confirm he attended. Document the history, the alarm features, the interactions, the discussion with Dr Roberts, the agreed changes and the counselling."
+  },
+  "review": {
+    "status": "draft",
+    "version": "0.1"
+  },
+  "sources": [
+    "Drafted with the WhatsApp bot from a document sent by Dina"
+  ]
+}
