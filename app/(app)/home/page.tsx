@@ -470,15 +470,11 @@ export default function HomePage() {
                   <CategoryCounts category={c.key} bar={c.bar} />
                 </Suspense>
                 <Link
-                  // Clinical opens the case hub (cases by specialty); the others start a random case.
-                  href={
-                    c.key === "clinical"
-                      ? "/clinical"
-                      : `/session?category=${c.key}`
-                  }
+                  // Each category opens its case hub (/clinical, /ethical, /legal).
+                  href={`/${c.key}`}
                   className="mt-auto inline-flex min-h-11 items-center justify-center gap-2.5 rounded-[10px] border border-[#CFC9D9] bg-white text-[15px] font-semibold text-ink no-underline transition-colors duration-200 hover:border-ink hover:bg-ink hover:text-white focus-visible:border-ink focus-visible:bg-ink focus-visible:text-white"
                 >
-                  {c.key === "clinical" ? "Browse cases" : "Start"}
+                  Browse cases
                 </Link>
               </div>
             </article>
