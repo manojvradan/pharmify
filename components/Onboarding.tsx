@@ -271,7 +271,7 @@ export function Onboarding({ sittings, initial }: { sittings: string[]; initial:
                   >
                     Go to dashboard
                   </button>
-                  <button type="button" disabled={busy} onClick={() => finish("/session")} className={primary}>
+                  <button type="button" disabled={busy} onClick={() => finish("/session?category=clinical")} className={primary}>
                     Start my first case
                   </button>
                 </>
