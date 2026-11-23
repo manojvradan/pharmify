@@ -12,11 +12,14 @@ import {
   type SpecialtyId,
 } from "@/lib/cases/specialties";
 
-/** A complex clinical case as its card shows it (built on the server from the case bank). */
-export type ClinicalCaseCard = {
+export type HubCategory = "clinical" | "ethical" | "legal";
+
+/** A case as its card shows it (built on the server from the case bank). */
+export type HubCaseCard = {
   id: string;
   title: string;
-  specialty: SpecialtyId;
+  /** Complex clinical cases only: the specialty they're grouped under. */
+  specialty?: SpecialtyId;
   /** The question sheet; the card shows its first lines. */
   summary: string;
   /** The patient's name and age, e.g. "Mr Nguyen, 71". */
@@ -27,26 +30,72 @@ export type ClinicalCaseCard = {
 };
 
 /** Graded tries on one case, and whether any passed. */
-export type ClinicalCaseProgress = { tries: number; passed: boolean };
+export type HubCaseProgress = { tries: number; passed: boolean };
+
+/**
+ * Each hub's header and colours, matching its category card on the home page. `tint` and `bar`
+ * colour cards that have no specialty (ethical and legal).
+ */
+const HUBS: Record<
+  HubCategory,
+  { title: string; blurb: string; bg: string; tint: string; bar: string; icon: string; search: string }
+> = {
+  clinical: {
+    title: "Complex clinical",
+    blurb: "20-minute role plays. Talk to the patient, phone the prescriber, and sort out the problem.",
+    bg: "linear-gradient(rgba(22,17,42,0.045) 1px, transparent 1px) 0 0 / 18px 18px, linear-gradient(90deg, rgba(22,17,42,0.045) 1px, transparent 1px) 0 0 / 18px 18px, #EFE6FF",
+    tint: "#EFE6FF",
+    bar: "#B99CF5",
+    icon: "M9.5 4.5l-5 5a4.6 4.6 0 006.5 6.5l5-5a4.6 4.6 0 00-6.5-6.5zM7 7l6.5 6.5M18 15v6M15 18h6",
+    search: "Search cases, medicines or problems",
+  },
+  ethical: {
+    title: "Ethical",
+    blurb: "5-minute cases. Explain what you'd do and why, then talk it through.",
+    bg: "radial-gradient(circle, rgba(22,17,42,0.05) 1.4px, transparent 1.9px) 0 0 / 16px 16px, #FFE8F3",
+    tint: "#FFE8F3",
+    bar: "#FF8CC6",
+    icon: "M12 3v18M7 21h10M4 7h16M6.5 7L4 13a3 3 0 005 0L6.5 7zM17.5 7L15 13a3 3 0 005 0l-2.5-6z",
+    search: "Search cases or settings",
+  },
+  legal: {
+    title: "Legal",
+    blurb: "5-minute cases. Explain what you'd do and why, then talk it through.",
+    bg: "repeating-linear-gradient(0deg, transparent 0 21px, rgba(22,17,42,0.045) 21px 22px), #FFF4D6",
+    tint: "#FFF4D6",
+    bar: "#FFC94D",
+    icon: "M7 3h7l4 4v14H7zM14 3v4h4M10 12h5M10 16h5",
+    search: "Search cases or settings",
+  },
+};
+
+/** A card's colours: its specialty's, or else its hub's. */
+const colours = (c: HubCaseCard, category: HubCategory) =>
+  c.specialty ? SPECIALTIES[c.specialty] : HUBS[category];
 
 const ease = "ease-[cubic-bezier(0.22,1,0.36,1)]";
 const lift = `transition-[transform,box-shadow] duration-[550ms] ${ease} motion-safe:hover:-translate-y-0.5 hover:shadow-[0_16px_34px_-20px_rgba(22,17,42,0.35)]`;
 
 /**
- * The complex clinical case hub (design reference: a clinical case hub with cases grouped by
- * specialty). Filter by specialty or search; each card starts that case. `progress` is null
+ * A category's case hub (design reference: a clinical case hub with cases grouped by specialty).
+ * Complex clinical cases are grouped and filtered by specialty; ethical and legal cases are one
+ * list. Search across them; each card opens its details and starts that case. `progress` is null
  * while the candidate's results load.
  */
-export function ClinicalHub({
+export function CaseHub({
+  category,
   cases,
   progress,
   initialSpecialty,
 }: {
+  category: HubCategory;
   /** From ?specialty= in the address, so a link or a refresh opens on that specialty. */
   initialSpecialty?: SpecialtyId | null;
-  cases: ClinicalCaseCard[];
-  progress: Record<string, ClinicalCaseProgress> | null;
+  cases: HubCaseCard[];
+  progress: Record<string, HubCaseProgress> | null;
 }) {
+  const hub = HUBS[category];
+  const bySpecialty = category === "clinical";
   const [only, setOnlyState] = useState<SpecialtyId | null>(
     initialSpecialty ?? null,
   );
@@ -62,10 +111,10 @@ export function ClinicalHub({
   const [query, setQuery] = useState("");
   /** The case open in the details modal, and the card it opened from (for the transition). */
   const [open, setOpen] = useState<{
-    c: ClinicalCaseCard;
+    c: HubCaseCard;
     from: DOMRect;
   } | null>(null);
-  const openCase = (c: ClinicalCaseCard, card: HTMLElement) =>
+  const openCase = (c: HubCaseCard, card: HTMLElement) =>
     setOpen({ c, from: card.getBoundingClientRect() });
 
   const count = useMemo(() => {
@@ -73,7 +122,7 @@ export function ClinicalHub({
       SpecialtyId,
       number
     >;
-    for (const c of cases) n[c.specialty]++;
+    for (const c of cases) if (c.specialty) n[c.specialty]++;
     return n;
   }, [cases]);
 
@@ -82,7 +131,7 @@ export function ClinicalHub({
     (c) =>
       (!only || c.specialty === only) &&
       (!q ||
-        [c.title, c.summary, c.who, SPECIALTIES[c.specialty].label].some((t) =>
+        [c.title, c.summary, c.who, c.setting, c.specialty ? SPECIALTIES[c.specialty].label : ""].some((t) =>
           t.toLowerCase().includes(q),
         )),
   );
@@ -94,6 +143,16 @@ export function ClinicalHub({
     : null;
   const withCases = SPECIALTY_IDS.filter((id) => count[id] > 0);
   const empty = SPECIALTY_IDS.filter((id) => count[id] === 0);
+  const card = (c: HubCaseCard) => (
+    <CaseCard
+      key={c.id}
+      c={c}
+      category={category}
+      p={progress?.[c.id]}
+      loading={!progress}
+      onOpen={openCase}
+    />
+  );
 
   return (
     <main className="box-border flex min-w-0 flex-[999_1_560px] flex-col gap-6 px-[clamp(16px,3vw,36px)] pt-6 pb-10">
@@ -123,10 +182,7 @@ export function ClinicalHub({
       <section
         aria-labelledby="hub-title"
         className="group relative flex flex-wrap items-end justify-between gap-6 overflow-hidden rounded-[28px] border-[1.5px] border-line px-[clamp(20px,3vw,32px)] py-7"
-        style={{
-          background:
-            "linear-gradient(rgba(22,17,42,0.045) 1px, transparent 1px) 0 0 / 18px 18px, linear-gradient(90deg, rgba(22,17,42,0.045) 1px, transparent 1px) 0 0 / 18px 18px, #EFE6FF",
-        }}
+        style={{ background: hub.bg }}
       >
         <span
           aria-hidden="true"
@@ -147,7 +203,7 @@ export function ClinicalHub({
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path
-                d="M9.5 4.5l-5 5a4.6 4.6 0 006.5 6.5l5-5a4.6 4.6 0 00-6.5-6.5zM7 7l6.5 6.5M18 15v6M15 18h6"
+                d={hub.icon}
                 stroke="#16112A"
                 strokeWidth="1.9"
                 strokeLinecap="round"
@@ -157,15 +213,14 @@ export function ClinicalHub({
           </span>
           <h1 id="hub-title" className="m-0 flex flex-col leading-[0.95]">
             <span className="text-[clamp(34px,3.6vw,48px)] font-bold tracking-[-0.02em]">
-              Complex clinical
+              {hub.title}
             </span>
             <span className="mt-1 text-[21px] font-bold tracking-[-0.01em] text-ink-2">
               cases
             </span>
           </h1>
           <p className="m-0 max-w-[52ch] text-[15px] font-medium text-ink-2">
-            20-minute role plays. Talk to the patient, phone the prescriber, and
-            sort out the problem.
+            {hub.blurb}
           </p>
         </div>
         <div className="relative flex flex-wrap items-center gap-3">
@@ -178,7 +233,7 @@ export function ClinicalHub({
             value={passed === null ? null : String(passed)}
           />
           <Link
-            href="/session?category=clinical"
+            href={`/session?category=${category}`}
             className={`inline-flex min-h-[54px] items-center justify-center gap-2.5 rounded-[18px] border-2 border-ink bg-sun px-6 text-lg font-bold text-ink no-underline shadow-pop transition-transform duration-[550ms] ${ease} hover:text-ink motion-safe:hover:-translate-y-0.5 motion-safe:active:translate-y-0.5`}
           >
             <svg
@@ -204,7 +259,7 @@ export function ClinicalHub({
       {/* Search and specialties */}
       <div ref={filtersRef} className="flex scroll-mt-6 flex-col gap-3.5">
         <label className="relative block">
-          <span className="sr-only">Search clinical cases</span>
+          <span className="sr-only">Search {hub.title.toLowerCase()} cases</span>
           <svg
             width="18"
             height="18"
@@ -225,10 +280,11 @@ export function ClinicalHub({
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search cases, medicines or problems"
+            placeholder={hub.search}
             className="box-border min-h-[50px] w-full rounded-2xl border-[1.5px] border-line bg-white pr-4 pl-11 text-[15px] text-ink placeholder:text-subtle focus:border-ink focus:outline-none"
           />
         </label>
+        {bySpecialty && (
         <div
           role="group"
           aria-label="Specialty"
@@ -251,42 +307,38 @@ export function ClinicalHub({
             />
           ))}
         </div>
+        )}
       </div>
 
-      {q || only ? (
+      {q || only || !bySpecialty ? (
         // Searching or one specialty: one flat list.
         <section aria-live="polite" className="flex flex-col gap-4">
           {only && !q ? (
             <SectionHead id={only} n={count[only]} />
           ) : (
             <h2 className="m-0 text-xl font-bold tracking-[-0.015em]">
-              {shown.length} {shown.length === 1 ? "case" : "cases"}
+              {q ? shown.length : `All ${shown.length}`}{" "}
+              {shown.length === 1 ? "case" : "cases"}
               {only ? ` in ${SPECIALTIES[only].label.toLowerCase()}` : ""}
             </h2>
           )}
           {shown.length ? (
-            <Grid>
-              {shown.map((c) => (
-                <CaseCard
-                  key={c.id}
-                  c={c}
-                  p={progress?.[c.id]}
-                  loading={!progress}
-                  onOpen={openCase}
-                />
-              ))}
-            </Grid>
+            <Grid>{shown.map(card)}</Grid>
           ) : (
             <Empty
               title={
-                only && !q
-                  ? `No ${SPECIALTIES[only].label.toLowerCase()} cases yet`
-                  : "No cases match that"
+                q
+                  ? "No cases match that"
+                  : only
+                    ? `No ${SPECIALTIES[only].label.toLowerCase()} cases yet`
+                    : `No ${hub.title.toLowerCase()} cases yet`
               }
               body={
-                only && !q
-                  ? "They're on the way. Try another specialty, or let Pip surprise you."
-                  : "Try another word, or clear the search."
+                q
+                  ? "Try another word, or clear the search."
+                  : only
+                    ? "They're on the way. Try another specialty, or let Pip surprise you."
+                    : "They're on the way. Check back soon."
               }
             />
           )}
@@ -305,17 +357,7 @@ export function ClinicalHub({
                 onShowOnly={() => setOnly(id)}
               />
               <Grid>
-                {cases
-                  .filter((c) => c.specialty === id)
-                  .map((c) => (
-                    <CaseCard
-                      key={c.id}
-                      c={c}
-                      p={progress?.[c.id]}
-                      loading={!progress}
-                      onOpen={openCase}
-                    />
-                  ))}
+                {cases.filter((c) => c.specialty === id).map(card)}
               </Grid>
             </section>
           ))}
@@ -351,6 +393,7 @@ export function ClinicalHub({
         <CaseModal
           key={open.c.id}
           c={open.c}
+          category={category}
           from={open.from}
           p={progress?.[open.c.id]}
           onClosed={() => setOpen(null)}
@@ -476,16 +519,18 @@ function Grid({ children }: { children: React.ReactNode }) {
 
 function CaseCard({
   c,
+  category,
   p,
   loading,
   onOpen,
 }: {
-  c: ClinicalCaseCard;
-  p?: ClinicalCaseProgress;
+  c: HubCaseCard;
+  category: HubCategory;
+  p?: HubCaseProgress;
   loading: boolean;
-  onOpen: (c: ClinicalCaseCard, card: HTMLElement) => void;
+  onOpen: (c: HubCaseCard, card: HTMLElement) => void;
 }) {
-  const sp = SPECIALTIES[c.specialty];
+  const sp = colours(c, category);
   const done = p?.passed ? 100 : p?.tries ? 45 : 0;
   return (
     <article
@@ -520,15 +565,17 @@ function CaseCard({
           <p className="m-0 text-sm text-muted">{c.who}</p>
         </div>
       </div>
-      <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 px-5 pt-3.5 text-[11.5px] font-bold tracking-[0.07em] uppercase">
-        <span
-          className="inline-flex items-center gap-1.5 rounded-full py-0.5 pr-2.5 pl-1 text-ink"
-          style={{ background: sp.tint }}
-        >
-          <SpecialtyIcon id={c.specialty} size={14} />
-          {sp.label}
-        </span>
-      </div>
+      {c.specialty && (
+        <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 px-5 pt-3.5 text-[11.5px] font-bold tracking-[0.07em] uppercase">
+          <span
+            className="inline-flex items-center gap-1.5 rounded-full py-0.5 pr-2.5 pl-1 text-ink"
+            style={{ background: sp.tint }}
+          >
+            <SpecialtyIcon id={c.specialty} size={14} />
+            {SPECIALTIES[c.specialty].label}
+          </span>
+        </div>
+      )}
       <p className="m-0 line-clamp-3 px-5 pt-3 text-[15px] leading-[1.55] text-ink-2">
         {c.summary}
       </p>
@@ -556,7 +603,7 @@ function Status({
   p,
   loading,
 }: {
-  p?: ClinicalCaseProgress;
+  p?: HubCaseProgress;
   loading: boolean;
 }) {
   if (loading)
@@ -663,14 +710,16 @@ const reduceMotion = () =>
  */
 function CaseModal({
   c,
+  category,
   from,
   p,
   onClosed,
   onPickSpecialty,
 }: {
-  c: ClinicalCaseCard;
+  c: HubCaseCard;
+  category: HubCategory;
   from: DOMRect;
-  p?: ClinicalCaseProgress;
+  p?: HubCaseProgress;
   onClosed: () => void;
   /** The specialty pill was clicked: show every case in that specialty. */
   onPickSpecialty: (id: SpecialtyId) => void;
@@ -679,7 +728,8 @@ function CaseModal({
   const panel = useRef<HTMLDivElement>(null);
   const content = useRef<HTMLDivElement>(null);
   const closing = useRef(false);
-  const sp = SPECIALTIES[c.specialty];
+  const sp = colours(c, category);
+  const specialty = c.specialty;
 
   /** The transform that puts the panel exactly over a card's box. */
   const over = (box: DOMRect) => {
@@ -809,18 +859,19 @@ function CaseModal({
         >
           <div className="flex items-start justify-between gap-4">
             <div className="flex flex-wrap items-center gap-2 text-[11.5px] font-bold tracking-[0.07em] uppercase">
+              {specialty && (
               <button
                 type="button"
                 onClick={() => {
                   close();
-                  onPickSpecialty(c.specialty);
+                  onPickSpecialty(specialty);
                 }}
-                title={`See all ${sp.label.toLowerCase()} cases`}
+                title={`See all ${SPECIALTIES[specialty].label.toLowerCase()} cases`}
                 className="inline-flex cursor-pointer items-center gap-1.5 rounded-full border-0 py-0.5 pr-2.5 pl-1 font-[inherit] tracking-[inherit] text-ink uppercase transition-[filter,transform] duration-200 hover:brightness-95 motion-safe:hover:-translate-y-px"
                 style={{ background: sp.tint }}
               >
-                <SpecialtyIcon id={c.specialty} size={14} />
-                {sp.label}
+                <SpecialtyIcon id={specialty} size={14} />
+                {SPECIALTIES[specialty].label}
                 <svg
                   width="10"
                   height="10"
@@ -837,6 +888,7 @@ function CaseModal({
                   />
                 </svg>
               </button>
+              )}
               <Status p={p} loading={false} />
             </div>
             <button
