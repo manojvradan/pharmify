@@ -4,6 +4,7 @@ import case_amitriptyline_elderly_cardiac_falls from "@/data/cases/amitriptyline
 import case_atorvastatin_doubling_up from "@/data/cases/atorvastatin-doubling-up.json";
 import case_bush_medicine from "@/data/cases/bush-medicine.json";
 import case_capecitabine_warfarin_toxicity from "@/data/cases/capecitabine-warfarin-toxicity.json";
+import case_carbimazole_sore_throat_agranulocytosis from "@/data/cases/carbimazole-sore-throat-agranulocytosis.json";
 import case_clarithromycin_warfarin_simvastatin_interaction from "@/data/cases/clarithromycin-warfarin-simvastatin-interaction.json";
 import case_conscientious_objection_ecp from "@/data/cases/conscientious-objection-ecp.json";
 import case_conscientious_objection_emergency_contraception from "@/data/cases/conscientious-objection-emergency-contraception.json";
@@ -25,6 +26,7 @@ export const RAW_CASES: unknown[] = [
   case_atorvastatin_doubling_up,
   case_bush_medicine,
   case_capecitabine_warfarin_toxicity,
+  case_carbimazole_sore_throat_agranulocytosis,
   case_clarithromycin_warfarin_simvastatin_interaction,
   case_conscientious_objection_ecp,
   case_conscientious_objection_emergency_contraception,
