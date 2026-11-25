@@ -1,0 +1,320 @@
+{
+  "id": "levothyroxine-early-pregnancy",
+  "title": "Her usual repeat",
+  "category": "clinical",
+  "problemType": "Under-treatment risk in pregnancy with absorption interactions",
+  "specialty": "endocrinology",
+  "setting": "Community pharmacy, NSW",
+  "questionSheet": "Ms Emily Carter, a woman in her early thirties, presents a valid repeat prescription for levothyroxine 100 micrograms, one tablet daily, from her GP, Dr Walsh. She is a regular customer and says it is just her usual thyroid tablets. Dr Walsh can be contacted by phone. Manage the situation as you would in practice. You may contact the prescriber.",
+  "documents": {
+    "prescription": {
+      "item": "Levothyroxine 100 microgram tablets (Eutroxsig)",
+      "directions": "One tablet daily · Qty 200 · Repeat",
+      "footer": "Dr J. Walsh (GP) · Emily Carter, DOB 12/03/1993"
+    },
+    "dispensingHistory": [
+      {
+        "date": "14 May 2026",
+        "item": "Levothyroxine 100 microgram tablets (Eutroxsig)",
+        "directions": "One tablet daily",
+        "quantity": "200",
+        "prescriber": "Dr J. Walsh (GP)"
+      },
+      {
+        "date": "18 Nov 2025",
+        "item": "Levothyroxine 100 microgram tablets (Eutroxsig)",
+        "directions": "One tablet daily",
+        "quantity": "200",
+        "prescriber": "Dr J. Walsh (GP)"
+      }
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient · Ms Carter",
+      "name": "Ms Carter",
+      "description": "A 33-year-old woman with hypothyroidism since her early twenties. Friendly but tired and a little flat. Average health literacy. She sees this as a routine pickup and answers only what she is asked; she does not mention her pregnancy, supplements or symptoms unless asked directly. She is happy about the pregnancy, which was planned, but does not know her thyroid levels matter in pregnancy and is worried about 'bothering the doctor'. She opens up and becomes keen to follow advice if the pharmacist asks about pregnancy sensitively, in private, and explains why it matters. She becomes guarded and short if questioned bluntly in front of others, or if she is lectured.",
+      "bio": {
+        "Age": "33",
+        "Phone": "0491 570 313",
+        "Address": "8 Lilly Pilly Close, Castle Hill NSW 2154",
+        "Full name": "Emily Carter",
+        "Occupation": "Primary school teacher",
+        "Date of birth": "12 March 1993"
+      },
+      "avatar": "penny-okafor",
+      "voice": "au-soft-woman",
+      "openingLine": "Hi, just my thyroid tablets again, thanks. Same as usual.",
+      "publicFacts": [
+        "She is here for her usual levothyroxine repeat.",
+        "She has had an underactive thyroid since her early twenties.",
+        "She has been on the same tablets for years."
+      ]
+    },
+    "prescriber": {
+      "label": "Call Dr Walsh",
+      "name": "Dr Walsh",
+      "description": "A GP in her fifties, busy between consults but fair. Starts from the view that the patient is stable and asks why the pharmacist is calling. If the pharmacist only says the patient is pregnant, she says she will recheck the thyroid at the 12-week visit. She changes her plan only when the pharmacist clearly explains that thyroxine requirements usually rise early in pregnancy, that the patient's absorption is being reduced (iron and calcium, coffee and breakfast, vomiting), and describes the symptoms, then asks for a TSH and free T4 now and a dose review. She will ask which reference the pharmacist is using for thyroid management in pregnancy. Responds well to a brief, structured call with a clear recommendation.",
+      "bio": {
+        "Role": "General practitioner",
+        "Full name": "Dr Jane Walsh",
+        "Workplace": "Castle Hill Family Practice, NSW"
+      },
+      "avatar": "dr-holt",
+      "voice": "au-woman-professional",
+      "openingLine": "Jane Walsh speaking. I've got someone waiting, what can I do for you?",
+      "publicFacts": [
+        "Ms Carter has been your patient for years with hypothyroidism, stable on levothyroxine 100 micrograms daily.",
+        "Her TSH was normal at her check 5 months ago.",
+        "You do not know she is pregnant; she has not been in to see you about it.",
+        "If told only that she is pregnant, you plan to recheck her thyroid at the 12-week visit."
+      ]
+    }
+  },
+  "hiddenFacts": [
+    {
+      "id": "pregnant",
+      "agent": "patient",
+      "fact": "You are about 7 weeks pregnant, confirmed with a home test. It was planned and you are very happy. You have not seen a doctor about it yet.",
+      "triggers": [
+        "pregnant",
+        "pregnancy",
+        "expecting",
+        "trying baby",
+        "baby",
+        "family planning",
+        "planning family",
+        "chance pregnant",
+        "contraception",
+        "period",
+        "trying conceive",
+        "breastfeeding"
+      ],
+      "unlockHint": "“Is there any chance you might be pregnant, or are you planning a pregnancy?”"
+    },
+    {
+      "id": "not-seen-doctor",
+      "agent": "patient",
+      "fact": "You haven't seen Dr Walsh or anyone about the pregnancy yet. You didn't know your thyroid result matters in pregnancy and you don't want to bother the doctor.",
+      "triggers": [
+        "seen doctor",
+        "doctor know",
+        "told doctor",
+        "antenatal",
+        "midwife",
+        "obstetrician",
+        "first appointment",
+        "doctor appointment",
+        "gp aware",
+        "booked in",
+        "see doctor",
+        "doctor aware"
+      ],
+      "unlockHint": "“Have you seen Dr Walsh about the pregnancy yet?”"
+    },
+    {
+      "id": "multivitamin-iron-calcium",
+      "agent": "patient",
+      "fact": "You started a pregnancy multivitamin with iron and calcium 3 weeks ago, and take it straight after your levothyroxine because it's easier to do it all at once.",
+      "triggers": [
+        "other medicine",
+        "anything else",
+        "multivitamin",
+        "vitamin",
+        "supplement",
+        "iron",
+        "calcium",
+        "over counter",
+        "pregnancy vitamin",
+        "other tablet",
+        "buy yourself",
+        "folic acid"
+      ],
+      "unlockHint": "“Are you taking any other medicines, vitamins or supplements?”"
+    },
+    {
+      "id": "biotin",
+      "agent": "patient",
+      "fact": "You've taken biotin 10 mg daily 'for hair' for a long time. You don't think of it as a medicine.",
+      "triggers": [
+        "biotin",
+        "hair",
+        "supplement",
+        "vitamin",
+        "skin nails",
+        "beauty",
+        "herbal",
+        "natural",
+        "complementary",
+        "other supplement",
+        "anything else",
+        "health shop"
+      ],
+      "unlockHint": "“Any vitamins or supplements, including ones for hair, skin or nails?”"
+    },
+    {
+      "id": "how-she-takes-it",
+      "agent": "patient",
+      "fact": "You take the levothyroxine with your coffee and breakfast in the morning, then the multivitamin straight after.",
+      "triggers": [
+        "how take",
+        "when take",
+        "time take",
+        "what time",
+        "morning",
+        "breakfast",
+        "empty stomach",
+        "food",
+        "coffee",
+        "routine",
+        "take tablet",
+        "with meal"
+      ],
+      "unlockHint": "“How and when do you usually take your thyroid tablet?”"
+    },
+    {
+      "id": "symptoms",
+      "agent": "patient",
+      "fact": "You feel very tired, constipated and cold all the time.",
+      "triggers": [
+        "feeling lately",
+        "feeling tired",
+        "tired",
+        "energy",
+        "symptoms",
+        "constipated",
+        "constipation",
+        "cold",
+        "run down",
+        "unwell",
+        "well lately",
+        "side effects"
+      ],
+      "unlockHint": "“How have you been feeling lately?”"
+    },
+    {
+      "id": "vomiting",
+      "agent": "patient",
+      "fact": "You have morning sickness with vomiting most days, sometimes soon after taking your tablet.",
+      "triggers": [
+        "vomit",
+        "vomiting",
+        "morning sickness",
+        "nausea",
+        "nauseous",
+        "throw up",
+        "threw up",
+        "keep down",
+        "bring up",
+        "after tablet",
+        "being sick",
+        "feel sick"
+      ],
+      "unlockHint": "“Have you had any morning sickness or vomiting, and when is it in relation to your tablet?”"
+    },
+    {
+      "id": "last-tsh",
+      "agent": "patient",
+      "fact": "Your TSH 'was fine' at your last blood test about 5 months ago. Nothing since.",
+      "triggers": [
+        "blood test",
+        "last test",
+        "tsh",
+        "thyroid levels",
+        "thyroid test",
+        "levels checked",
+        "last checked",
+        "thyroid function",
+        "results",
+        "bloods"
+      ],
+      "unlockHint": "“When was your thyroid blood test last checked, and what did it show?”"
+    },
+    {
+      "id": "biotin-unaware",
+      "agent": "prescriber",
+      "fact": "You did not know she takes biotin 10 mg daily. You accept that high-dose biotin can interfere with thyroid blood tests and agree she should stop it before the test, with timing confirmed with the lab.",
+      "triggers": [
+        "biotin",
+        "hair supplement",
+        "supplement",
+        "interfere test",
+        "test interference",
+        "assay",
+        "falsely",
+        "lab result",
+        "stop before test",
+        "vitamin"
+      ],
+      "unlockHint": "“She takes biotin 10 mg daily, which can interfere with thyroid function tests. Could she stop it before the bloods?”"
+    },
+    {
+      "id": "agrees-tsh-now",
+      "agent": "prescriber",
+      "fact": "Once the pharmacist explains rising thyroxine needs in early pregnancy, the absorption problems and her symptoms, you agree to order TSH and free T4 now, review the levothyroxine dose on the results, and see her this week to start antenatal care. Meanwhile she should keep taking 100 micrograms daily, taken correctly.",
+      "triggers": [
+        "requirements increase",
+        "dose increase",
+        "increase dose",
+        "needs more",
+        "higher dose",
+        "tsh now",
+        "test now",
+        "free t4",
+        "dose review",
+        "review dose",
+        "absorption",
+        "iron calcium",
+        "separate",
+        "antenatal",
+        "see her"
+      ],
+      "unlockHint": "“Thyroxine needs usually rise early in pregnancy and her absorption is reduced. Could you check TSH and free T4 now and review her dose?”"
+    }
+  ],
+  "answerKey": {
+    "plantedProblem": "Ms Carter is about 7 weeks pregnant (not yet known to her GP) on an unchanged levothyroxine 100 microgram dose with a TSH last checked 5 months ago. Levothyroxine requirements usually rise in early pregnancy and under-treatment risks the pregnancy and fetal development. Her absorption is also reduced: she takes it with coffee and breakfast, takes iron and calcium straight after, and vomits soon after some doses. She has hypothyroid symptoms (tiredness, constipation, cold). Second problem: biotin 10 mg daily can interfere with thyroid function tests, so it should be stopped before testing.",
+    "acceptableResolutions": [
+      "Introduce self, confirm identity, get consent, move to a private area and ask about pregnancy sensitively.",
+      "Take a full history: other medicines and supplements (multivitamin with iron and calcium, biotin), how and when she takes the levothyroxine, symptoms, vomiting timing, last TSH, whether she has seen a doctor.",
+      "Explain that thyroxine needs usually rise in early pregnancy and why adequate treatment matters for her and the baby.",
+      "Correct administration: empty stomach 30–60 minutes before breakfast and coffee; separate iron and calcium by about 4 hours.",
+      "Contact Dr Walsh with a structured explanation and recommend urgent TSH and free T4, a dose review and early antenatal care; do not change the dose without the prescriber.",
+      "Flag biotin interference with thyroid tests and recommend stopping it before the blood test (timing per lab or doctor).",
+      "Supply the repeat, counsel her not to stop levothyroxine, and document the intervention."
+    ],
+    "unacceptableActions": [
+      "Dispensing without asking about pregnancy or identifying the absorption interactions (overall fail).",
+      "Telling her to stop or change the levothyroxine dose herself, or changing the dose without the prescriber.",
+      "Accepting a recheck only at the 12-week visit without pushing for testing now.",
+      "Not addressing the biotin before thyroid testing.",
+      "Asking about pregnancy in front of other customers or judgementally."
+    ],
+    "counsellingPoints": [
+      "Keep taking levothyroxine every day; do not stop it because of the pregnancy, as the baby relies on her thyroid hormone in early pregnancy.",
+      "Take the tablet on an empty stomach with water, 30–60 minutes before breakfast and coffee, at the same time each day.",
+      "Take the pregnancy multivitamin (iron and calcium) at least 4 hours apart from the levothyroxine, e.g. at lunch or in the evening.",
+      "If she vomits soon after a dose, tell her doctor; ask how to handle repeat dosing rather than guessing, and seek review if vomiting is severe or she cannot keep fluids down.",
+      "Stop the biotin before her thyroid blood test (confirm how many days with the lab or doctor) and tell the lab she has been taking it.",
+      "Get her TSH and free T4 checked now and see Dr Walsh this week to start antenatal care; expect the dose may need increasing and regular rechecks through pregnancy.",
+      "Report worsening tiredness, feeling cold, constipation, or palpitations, tremor or anxiety after any dose change."
+    ],
+    "codePrinciples": [
+      "Pharmacy Board Code of Conduct: Providing good care: assess the patient, recognise risk and escalate appropriately.",
+      "Pharmacy Board Code of Conduct: Working with other practitioners: communicate clearly with the prescriber about the patient's care.",
+      "PSA Code of Ethics: Care: respect privacy and dignity, especially when discussing pregnancy."
+    ],
+    "legal": [
+      "Record the intervention and clinical advice in the dispensing record, as required under the Poisons and Therapeutic Goods Regulation 2008 (NSW) and the Pharmacy Board's guidelines on dispensing.",
+      "Do not alter the prescribed dose without the prescriber's authority."
+    ],
+    "modelAnswer": "Greet Ms Carter, introduce myself, confirm identity and get consent to ask some questions, and move to the consultation room for privacy. Ask open questions: how she takes the tablet and when, how she has been feeling, when her thyroid was last tested, other medicines including vitamins and supplements, and, sensitively, whether she is or might be pregnant. She is about 7 weeks pregnant, not yet seen a doctor, takes levothyroxine with coffee and breakfast followed by a multivitamin with iron and calcium, takes biotin 10 mg for hair, vomits most days sometimes soon after her tablet, and is tired, constipated and cold. Her TSH was normal 5 months ago. Identify the problems: levothyroxine requirements usually rise early in pregnancy, and under-treated hypothyroidism risks miscarriage and impaired fetal neurodevelopment; her absorption is reduced by food and coffee, by iron and calcium (chelation), and by vomiting; her symptoms suggest under-replacement; and high-dose biotin can interfere with immunoassays and give misleading thyroid results. Check AMH, eTG (Endocrinology) and thyroid-in-pregnancy guidance. Phone Dr Walsh in a structured way: situation (pregnant 7 weeks, still on 100 micrograms), background (TSH 5 months ago), assessment (rising requirements, absorption problems, symptoms, biotin), recommendation (TSH and free T4 now after stopping biotin per lab advice, dose review on results as guidelines often advise an early increase on confirmation of pregnancy, and an antenatal visit this week). If she offers to wait until 12 weeks, explain why that is too late. Name eTG and AMH when asked. Do not change the dose myself. Supply the repeat and counsel: keep taking it daily, empty stomach 30–60 minutes before breakfast, multivitamin 4 hours apart, what to do about vomiting, stop biotin before testing, symptoms to report, and regular TSH checks through pregnancy. Reassure her that contacting the doctor is appropriate. Document the conversation, the call, the agreed plan and the follow-up, and offer to check in after her results."
+  },
+  "review": {
+    "status": "draft",
+    "version": "0.1"
+  },
+  "sources": [
+    "Drafted with the WhatsApp bot from a document sent by Dina"
+  ]
+}

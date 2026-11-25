@@ -11,6 +11,7 @@ import case_dyspepsia_alarm_features_ppi_clopidogrel from "@/data/cases/dyspepsi
 import case_forged_s8_prescription from "@/data/cases/forged-s8-prescription.json";
 import case_glp1_shortage from "@/data/cases/glp1-shortage.json";
 import case_imipramine_panic_disorder from "@/data/cases/imipramine-panic-disorder.json";
+import case_levothyroxine_early_pregnancy from "@/data/cases/levothyroxine-early-pregnancy.json";
 import case_mdma_sertraline from "@/data/cases/mdma-sertraline.json";
 import case_methotrexate_trimethoprim_interaction from "@/data/cases/methotrexate-trimethoprim-interaction.json";
 import case_prescribing_for_family from "@/data/cases/prescribing-for-family.json";
@@ -31,6 +32,7 @@ export const RAW_CASES: unknown[] = [
   case_forged_s8_prescription,
   case_glp1_shortage,
   case_imipramine_panic_disorder,
+  case_levothyroxine_early_pregnancy,
   case_mdma_sertraline,
   case_methotrexate_trimethoprim_interaction,
   case_prescribing_for_family,
