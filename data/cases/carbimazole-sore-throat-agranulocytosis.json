@@ -1,0 +1,337 @@
+{
+  "id": "carbimazole-sore-throat-agranulocytosis",
+  "title": "A repeat and a new script",
+  "category": "clinical",
+  "problemType": "Serious adverse effect (possible agranulocytosis) with contraindication and pregnancy issues",
+  "specialty": "endocrinology",
+  "setting": "Community pharmacy, NSW",
+  "questionSheet": "Ms Nina Fraser, a woman in her thirties, presents a valid repeat prescription for carbimazole 10 mg tablets, one three times daily, from her GP, Dr Costa. She also hands over a second, new prescription from Dr Costa for propranolol 40 mg tablets, one twice daily. Dr Costa can be contacted by phone. Manage the situation as you would in practice. You may contact the prescriber.",
+  "documents": {
+    "prescription": {
+      "item": "Carbimazole 10 mg tablets · Qty 100 · Repeat (first repeat)",
+      "directions": "One tablet three times daily",
+      "footer": "Dr M. Costa (GP) · Nina Fraser, DOB 21/11/1989"
+    },
+    "dispensingHistory": [
+      {
+        "date": "3 Jul 2026",
+        "item": "Carbimazole 10 mg tablets",
+        "directions": "One tablet three times daily",
+        "quantity": "100",
+        "prescriber": "Dr M. Costa (GP)"
+      },
+      {
+        "date": "15 Jun 2026",
+        "item": "Budesonide/formoterol 200/6 inhaler (Symbicort Turbuhaler)",
+        "directions": "One inhalation twice daily",
+        "quantity": "1 (120 doses)",
+        "prescriber": "Dr M. Costa (GP)"
+      },
+      {
+        "date": "15 Jun 2026",
+        "item": "Salbutamol 100 microgram inhaler (Ventolin)",
+        "directions": "1-2 puffs when required for wheeze or shortness of breath",
+        "quantity": "1 (200 doses)",
+        "prescriber": "Dr M. Costa (GP)"
+      },
+      {
+        "date": "16 Apr 2026",
+        "item": "Budesonide/formoterol 200/6 inhaler (Symbicort Turbuhaler)",
+        "directions": "One inhalation twice daily",
+        "quantity": "1 (120 doses)",
+        "prescriber": "Dr M. Costa (GP)"
+      }
+    ],
+    "notes": [
+      "Second prescription presented today (new): Propranolol 40 mg tablets · One tablet twice daily · Qty 100 · Dr M. Costa (GP) · Nina Fraser, DOB 21/11/1989.",
+      "Today's date: 7 Aug 2026."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient · Ms Fraser",
+      "name": "Ms Fraser",
+      "description": "A 36-year-old childcare worker, friendly but tired and a little flat, with average health literacy. She wants her scripts filled quickly and plays things down: asked generally about side effects she says 'not really'. She only gives details about her throat, fevers, asthma, periods or supplements when asked specifically. She is startled by a question about pregnancy and becomes guarded if it is asked bluntly or without privacy, but answers honestly if asked sensitively with an explanation. She worries about losing her job if she needs time off and becomes anxious if told to go to hospital without a reason. She settles when things are explained calmly and she is given a clear plan, including a medical certificate and a quick review.",
+      "bio": {
+        "Age": "36",
+        "Phone": "0491 571 266",
+        "Address": "8 Grevillea Close, Blacktown NSW 2148",
+        "Full name": "Nina Fraser",
+        "Occupation": "Childcare worker",
+        "Date of birth": "21 November 1989"
+      },
+      "avatar": "penny-okafor",
+      "voice": "au-woman-40s",
+      "openingLine": "Hi, can I get my thyroid tablets filled again, please? And the doctor gave me this new one too.",
+      "publicFacts": [
+        "The carbimazole is for an overactive thyroid. She was diagnosed with Graves' disease about five weeks ago.",
+        "This is her first refill of the carbimazole.",
+        "The propranolol is new today, for 'a racing heart and shaking'.",
+        "If asked in general about side effects, she says 'not really'."
+      ]
+    },
+    "prescriber": {
+      "label": "Call Dr Costa",
+      "name": "Dr Costa",
+      "description": "A busy GP in her fifties, fair but short on time. She first says sore throats are common and probably viral and asks the pharmacist to just dispense the repeat and the propranolol. If the pharmacist only says 'stop the carbimazole' without reasons, she asks 'On what basis?'. She changes her mind when the pharmacist clearly explains the risk of agranulocytosis (usually in the first 3 months), points to the sore throat, mouth ulcers and fever together, and asks for an urgent full blood count and a same-day assessment. She asks which reference the pharmacist is using for antithyroid drug safety and for treatment in pregnancy. She responds well to a clear, structured message with specific recommendations.",
+      "bio": {
+        "Role": "General practitioner",
+        "Full name": "Dr Maria Costa",
+        "Workplace": "Blacktown Family Medical Centre, NSW"
+      },
+      "avatar": "dr-holt",
+      "voice": "au-woman-professional",
+      "openingLine": "Dr Costa speaking. I've got a full waiting room, what can I do for you?",
+      "publicFacts": [
+        "Nina Fraser is your patient. You diagnosed Graves' disease about five weeks ago and started carbimazole 10 mg three times daily.",
+        "You wrote her propranolol 40 mg twice daily today for palpitations and tremor.",
+        "She has had asthma since childhood and uses budesonide/formoterol and salbutamol.",
+        "You first think a sore throat is common and probably viral, and you'd like both scripts dispensed."
+      ]
+    }
+  },
+  "hiddenFacts": [
+    {
+      "id": "sore-throat-fever",
+      "agent": "patient",
+      "fact": "You have had a sore throat and mouth ulcers for 3 days, and have felt feverish and shivery since last night. You haven't told the doctor because you thought it was just a cold.",
+      "triggers": [
+        "sore throat",
+        "throat",
+        "fever",
+        "temperature",
+        "mouth ulcers",
+        "ulcers",
+        "infection",
+        "shivery",
+        "chills",
+        "feeling unwell",
+        "cold flu",
+        "feel sick",
+        "hot cold",
+        "run down"
+      ],
+      "unlockHint": "“Have you had a sore throat, mouth ulcers, fever or any signs of infection lately?”"
+    },
+    {
+      "id": "painkillers-masking",
+      "agent": "patient",
+      "fact": "You have been taking ibuprofen and paracetamol, which settle the fever.",
+      "triggers": [
+        "ibuprofen",
+        "paracetamol",
+        "nurofen",
+        "panadol",
+        "painkillers",
+        "pain relief",
+        "taken anything",
+        "take anything",
+        "treat fever",
+        "fever medicine",
+        "settle fever",
+        "anything help"
+      ],
+      "unlockHint": "“Have you taken anything for the throat or the fever?”"
+    },
+    {
+      "id": "asthma-poorly-controlled",
+      "agent": "patient",
+      "fact": "This week you have needed your salbutamol (Ventolin) 3–4 times a day, and you have had some wheeze at night.",
+      "triggers": [
+        "asthma",
+        "puffer",
+        "inhaler",
+        "ventolin",
+        "salbutamol",
+        "symbicort",
+        "breathing",
+        "wheeze",
+        "wheezy",
+        "short breath",
+        "breathless",
+        "lungs",
+        "night cough"
+      ],
+      "unlockHint": "“How has your asthma been lately? How often are you using your Ventolin?”"
+    },
+    {
+      "id": "possible-pregnancy",
+      "agent": "patient",
+      "fact": "Your periods are irregular and your last period was about 7 weeks ago. You are not using contraception and haven't done a pregnancy test. The question startles you.",
+      "triggers": [
+        "pregnant",
+        "pregnancy",
+        "period",
+        "last period",
+        "menstrual",
+        "contraception",
+        "contraceptive",
+        "the pill",
+        "baby",
+        "conceive",
+        "pregnancy test",
+        "chance pregnant",
+        "family planning"
+      ],
+      "unlockHint": "“Is there any chance you could be pregnant? When was your last period?”"
+    },
+    {
+      "id": "kelp-supplement",
+      "agent": "patient",
+      "fact": "You take a kelp (seaweed) supplement every day 'for thyroid health'.",
+      "triggers": [
+        "supplement",
+        "supplements",
+        "vitamins",
+        "herbal",
+        "kelp",
+        "seaweed",
+        "iodine",
+        "natural",
+        "health food",
+        "complementary",
+        "over counter",
+        "other medicine",
+        "anything else",
+        "other tablet"
+      ],
+      "unlockHint": "“Do you take any other medicines, vitamins or supplements?”"
+    },
+    {
+      "id": "work-worry",
+      "agent": "patient",
+      "fact": "You work in childcare and you're worried about losing your job if you have to take time off.",
+      "triggers": [
+        "work",
+        "job",
+        "time off",
+        "childcare",
+        "employer",
+        "worried",
+        "concerns",
+        "certificate",
+        "miss work",
+        "what do for living"
+      ],
+      "unlockHint": "“Is anything worrying you about getting checked today, like work?”"
+    },
+    {
+      "id": "gp-agrees-agranulocytosis",
+      "agent": "prescriber",
+      "fact": "If the pharmacist explains the risk of agranulocytosis on carbimazole (usually in the first 3 months) and the combination of sore throat, mouth ulcers and fever, you agree: withhold carbimazole until the result is back, arrange an urgent full blood count today, and see her the same day; she should go to the emergency department if she becomes more unwell or can't be seen promptly. You didn't know she had these symptoms. If they only say 'stop it', ask 'On what basis?'.",
+      "triggers": [
+        "agranulocytosis",
+        "neutropenia",
+        "white cell",
+        "white blood",
+        "blood count",
+        "full blood",
+        "fbc",
+        "neutrophil",
+        "bone marrow",
+        "withhold carbimazole",
+        "hold carbimazole",
+        "stop carbimazole",
+        "mouth ulcers",
+        "sore throat",
+        "fever"
+      ],
+      "unlockHint": "“She has had a sore throat, mouth ulcers and fever on carbimazole in her first weeks. I'm concerned about agranulocytosis. Can she have an urgent full blood count and same-day review, and withhold the dose until then?”"
+    },
+    {
+      "id": "gp-propranolol-asthma",
+      "agent": "prescriber",
+      "fact": "When propranolol and asthma are raised, you say 'It's only a low dose' and ask the pharmacist for an alternative. You accept a reasoned alternative (e.g. a rate-limiting calcium channel blocker, or a cardioselective beta-blocker with caution only once asthma is controlled) and agree to review her asthma. You didn't know her asthma was poorly controlled.",
+      "triggers": [
+        "propranolol",
+        "asthma",
+        "beta blocker",
+        "non selective",
+        "nonselective",
+        "cardioselective",
+        "bronchospasm",
+        "wheeze",
+        "salbutamol",
+        "ventolin",
+        "alternative",
+        "diltiazem",
+        "metoprolol"
+      ],
+      "unlockHint": "“Propranolol is non-selective and she has poorly controlled asthma. Could we use an alternative such as diltiazem for her symptoms?”"
+    },
+    {
+      "id": "gp-pregnancy",
+      "agent": "prescriber",
+      "fact": "You didn't know she might be pregnant. You agree she should do a pregnancy test today, and if she is pregnant you would review treatment (propylthiouracil is usually preferred in the first trimester) and involve an endocrinologist. You ask which reference the pharmacist is using for treatment in pregnancy.",
+      "triggers": [
+        "pregnant",
+        "pregnancy",
+        "period",
+        "contraception",
+        "propylthiouracil",
+        "ptu",
+        "first trimester",
+        "birth defects",
+        "teratogenic",
+        "pregnancy test"
+      ],
+      "unlockHint": "“Her last period was 7 weeks ago and she isn't using contraception. Carbimazole is linked to birth defects; can we arrange a pregnancy test and review treatment?”"
+    },
+    {
+      "id": "gp-kelp",
+      "agent": "prescriber",
+      "fact": "You didn't know she takes a daily kelp supplement. You agree she should stop it.",
+      "triggers": [
+        "kelp",
+        "iodine",
+        "seaweed",
+        "supplement",
+        "supplements",
+        "herbal",
+        "complementary"
+      ],
+      "unlockHint": "“She takes a daily kelp supplement, which contains iodine. I'd recommend she stops it.”"
+    }
+  ],
+  "answerKey": {
+    "plantedProblem": "Possible carbimazole-induced agranulocytosis: 5 weeks into carbimazole she has a 3-day sore throat, mouth ulcers and fever/shivering, partly masked by ibuprofen and paracetamol and not reported to her GP. Also: new propranolol (non-selective beta-blocker) in a patient with currently poorly controlled asthma (salbutamol 3–4 times a day, night wheeze); possible pregnancy (last period 7 weeks ago, no contraception) while on carbimazole; and a daily kelp (iodine) supplement that is inappropriate in Graves' disease.",
+    "acceptableResolutions": [
+      "Introduce self, confirm identity, get consent and move to a private area; use open and specific questions to draw out throat, mouth ulcer and fever symptoms, and ask about pregnancy sensitively.",
+      "Recognise possible agranulocytosis; advise her not to take the next carbimazole dose until assessed; recommend an urgent full blood count and same-day medical review (emergency department if unwell or she cannot be seen promptly); note paracetamol and ibuprofen can mask fever.",
+      "Do not dispense the carbimazole repeat without escalation; phone Dr Costa with a structured message and respond to her pushback with clinical reasons.",
+      "Do not dispense propranolol; explain it is non-selective and unsuitable in asthma, particularly poorly controlled asthma, and recommend an alternative (e.g. rate-limiting calcium channel blocker, or a cardioselective beta-blocker with caution) plus an asthma review.",
+      "Advise a pregnancy test today; explain carbimazole is associated with birth defects and treatment in pregnancy is decided with the prescriber (propylthiouracil preferred in first trimester); do not tell her to stop antithyroid treatment on her own long term.",
+      "Advise her to stop the kelp supplement because iodine can worsen or interfere with treatment of Graves' disease.",
+      "Counsel on infection signs to report immediately, contraception, and support with work (medical certificate, rapid review); document everything."
+    ],
+    "unacceptableActions": [
+      "Failing to recognise possible agranulocytosis, or dispensing the carbimazole repeat and sending her away with cold advice (overall fail).",
+      "Dispensing propranolol without raising her asthma (overall fail).",
+      "Telling the GP only to 'stop the carbimazole' with no reasoning or plan.",
+      "Telling her to stop carbimazole permanently on her own, or ignoring the possible pregnancy.",
+      "Recommending more ibuprofen/paracetamol or a throat lozenge as the solution."
+    ],
+    "counsellingPoints": [
+      "Do not take your next carbimazole tablet until a blood test has checked your white cells and a doctor has seen you today.",
+      "Go to the emergency department straight away if you can't be seen today or you get worse: high fever, rigors, worsening throat or mouth ulcers, or feeling very unwell.",
+      "Paracetamol and ibuprofen can hide a fever, so don't rely on them to judge how sick you are; tell the doctor you've been taking them.",
+      "For as long as you take carbimazole, any sore throat, mouth ulcers, fever or other signs of infection mean stopping and getting an urgent blood test; it's not 'just a cold'.",
+      "Don't start the propranolol: it can tighten the airways and worsen your asthma, which is already flaring. Dr Costa will choose another option for your heart rate.",
+      "Your asthma needs review: using Ventolin 3–4 times a day with night wheeze means it is not controlled; keep using your Symbicort twice daily and seek urgent help if Ventolin isn't helping.",
+      "Do a pregnancy test today. Carbimazole can harm a developing baby, so if you are pregnant your doctor will change your treatment; don't stop your thyroid treatment long term without your doctor.",
+      "Use reliable contraception while on carbimazole unless you and your doctor plan a pregnancy.",
+      "Stop the kelp supplement: it contains iodine, which can worsen an overactive thyroid and interfere with treatment.",
+      "You can get a medical certificate for today; a quick blood test and review now is the fastest way back to work safely."
+    ],
+    "codePrinciples": [],
+    "legal": [],
+    "modelAnswer": "1. Set-up: introduce self, confirm Ms Fraser's identity and DOB, get consent and move to the consultation room. 2. Gather information with open then specific questions: what the medicines are for and when started (Graves' 5 weeks ago, first repeat); how she's been since starting; specifically any sore throat, mouth ulcers, fever, chills (3 days of sore throat and ulcers, fever and shivers since last night, masked by ibuprofen and paracetamol, not told GP); asthma control (salbutamol 3–4 times a day, night wheeze); all other medicines and supplements (daily kelp); and sensitively, possible pregnancy (LMP ~7 weeks ago, no contraception, no test). 3. Identify and explain: carbimazole can cause agranulocytosis, mostly in the first 3 months; sore throat, mouth ulcers and fever together are classic warning signs and can progress to life-threatening sepsis, so this is an emergency until an FBC excludes it. Propranolol is a non-selective beta-blocker that can cause bronchospasm, contraindicated/avoided in asthma, especially when uncontrolled. Carbimazole is associated with congenital anomalies; propylthiouracil is usually preferred in the first trimester. Kelp provides iodine, which can worsen thyrotoxicosis and interfere with treatment. 4. Check references: eTG (Endocrinology, thyroid disorders), AMH (carbimazole, propranolol), APF, and for pregnancy eTG, TGA pregnancy category and MotherSafe. 5. Advise her to withhold the next carbimazole dose and not dispense either script pending the call. 6. Phone Dr Costa with a structured (ISBAR) message: Ms Fraser, 5 weeks on carbimazole, has sore throat, mouth ulcers and fever; risk of agranulocytosis; request urgent FBC with differential today and same-day review, carbimazole withheld meanwhile, ED if she can't be seen or deteriorates. If the GP says it's probably viral or asks 'on what basis', explain the timing, the triad of symptoms and the masking by analgesics. Raise propranolol in poorly controlled asthma; when told 'it's only a low dose', explain even low doses of non-selective beta-blockers can trigger severe bronchospasm and recommend an alternative such as diltiazem (rate-limiting calcium channel blocker), or a cardioselective beta-blocker with caution once asthma is controlled, plus an asthma review. Report possible pregnancy and recommend a pregnancy test today with treatment review (PTU in first trimester, endocrinology input), and recommend stopping kelp. Name references when asked. 7. Counsel: withhold dose, same-day FBC/review, ED red flags, infection signs to report for as long as on carbimazole, don't start propranolol, asthma action, pregnancy test and contraception, stop kelp, don't stop antithyroid therapy long term on her own; address work worry (medical certificate, rapid review). 8. Follow-up: offer to call her later today or tomorrow to check she was seen and the FBC result; supply carbimazole only once cleared or as re-prescribed. 9. Document the symptoms, advice, call with Dr Costa, agreed plan, and that scripts were not dispensed."
+  },
+  "review": {
+    "status": "draft",
+    "version": "0.1"
+  },
+  "sources": [
+    "Drafted with the WhatsApp bot from a document sent by Dina"
+  ]
+}
