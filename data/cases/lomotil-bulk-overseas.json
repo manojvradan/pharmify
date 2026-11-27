@@ -1,0 +1,70 @@
+{
+  "id": "lomotil-bulk-overseas",
+  "title": "Off on holiday",
+  "category": "legal",
+  "problemType": "Pharmacist Only Medicine supply: quantity and therapeutic need",
+  "setting": "Community pharmacy, Adelaide, South Australia",
+  "questionSheet": "You are the pharmacist on duty at a community pharmacy in Adelaide, South Australia. Mr Graham Mills (67), a regular customer, comes to the counter and asks for six boxes of Lomotil (diphenoxylate 2.5 mg with atropine sulfate 25 micrograms; Pharmacist Only Medicine, 8 tablets per pack). He says: 'My wife and I are off to India and Nepal for seven weeks next Friday. Last time I travelled I got terrible diarrhoea, so I want plenty to be on the safe side.' He has used Lomotil once before, on a trip three years ago, without problems. His only regular medicine is perindopril for blood pressure. He has not seen a doctor or travel clinic about this trip. Explain the legal and professional issues and what you would do.",
+  "documents": {
+    "notes": [
+      "Requested: Lomotil (diphenoxylate hydrochloride 2.5 mg / atropine sulfate 25 micrograms) × 6 packs of 8 tablets (48 tablets).",
+      "Pharmacist Only Medicine (Schedule 3) in packs of 8 tablets. Larger packs are Prescription Only (Schedule 4).",
+      "Also in stock: loperamide 2 mg capsules, oral rehydration salts.",
+      "Patient's regular medicine (dispensed here): perindopril 5 mg, one daily.",
+      "Travel: India and Nepal, seven weeks, leaving in eight days. No travel medicine consultation yet."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Customer · Mr Mills",
+      "name": "Mr Mills",
+      "avatar": "bertie-walsh",
+      "voice": "au-older-man",
+      "description": "A 67-year-old retired engineer, friendly and organised, excited about the trip. He has done his research and expects to be given what he asks for, but is reasonable and accepts a clear explanation, especially practical advice that will keep him well while travelling.",
+      "bio": {"Full name": "Graham Mills", "Date of birth": "14 June 1959", "Age": "67", "Address": "12 Kensington Road, Norwood SA 5067", "Phone": "0491 570 157", "Occupation": "Retired engineer"},
+      "openingLine": "Morning! Could I grab six boxes of Lomotil? We're off to India and Nepal next week.",
+      "publicFacts": [
+        "He and his wife are travelling to India and Nepal for seven weeks, leaving next Friday.",
+        "He had bad diarrhoea on a previous trip and used Lomotil then without problems.",
+        "He takes perindopril for blood pressure and nothing else.",
+        "He hasn't seen a doctor or travel clinic about this trip."
+      ]
+    }
+  },
+  "hiddenFacts": [],
+  "answerKey": {
+    "plantedProblem": "A request for a large quantity of a Pharmacist Only Medicine. Diphenoxylate with atropine is Schedule 3 only in small packs (8 tablets); larger quantities are Schedule 4 and need a prescription. Supplying six S3 packs at once (48 tablets) would get around the scheduling, which limits the quantity available without a prescription because diphenoxylate is an opioid with misuse potential and is a controlled drug in many countries. The pharmacist must personally assess therapeutic need and supply only an appropriate quantity, and should address his traveller's diarrhoea plan properly. That plan includes loperamide as the preferred antimotility agent, rehydration, when not to use an antimotility agent, and referral for travel medicine advice and a prescription if he needs more.",
+    "acceptableResolutions": [
+      "Personally assess the request (who it is for, the indication, previous use, other medicines and conditions, travel details) as required for a Pharmacist Only Medicine.",
+      "Explain that the S3 pack size limits how much can be supplied without a prescription, and decline to supply six packs; supply at most one pack if it is appropriate after assessment.",
+      "Recommend loperamide as the preferred antimotility agent for traveller's diarrhoea in adults, plus oral rehydration salts, and explain how to use them.",
+      "Counsel on when not to use antimotility agents (fever, blood or mucus in the stool, severe abdominal pain) and when to seek medical care while travelling.",
+      "Refer him to his GP or a travel medicine clinic before departure, for vaccinations, malaria and altitude advice, standby antibiotic treatment if appropriate, and a prescription if a larger quantity of an antidiarrhoeal is clinically justified.",
+      "Advise on travelling with medicines: keep them in original labelled packaging in carry-on luggage with a prescription or doctor's letter, and check destination-country rules, because diphenoxylate is a controlled drug internationally.",
+      "Record the supply and the advice given in line with pharmacy procedure."
+    ],
+    "unacceptableActions": [
+      "Selling all six packs because he is a regular customer or because he is travelling.",
+      "Selling the packs across several transactions, or to his wife, to get around the quantity limit.",
+      "Supplying without any assessment, or leaving the sale to a pharmacy assistant.",
+      "Refusing outright without offering any alternative or travel health advice.",
+      "Advising him to use Lomotil even with fever or bloody diarrhoea."
+    ],
+    "counsellingPoints": [],
+    "codePrinciples": [
+      "PSA Code of Ethics, Care principle: act in the patient's best interests and give accurate, evidence-based advice rather than simply meeting the request."
+    ],
+    "legal": [
+      "Poisons Standard (SUSMP): diphenoxylate (2.5 mg or less per dosage unit, with atropine) for oral use is Schedule 3 only in packs of 8 or fewer dosage units; larger quantities are Schedule 4 and require a prescription.",
+      "Controlled Substances Act 1984 (SA) and Controlled Substances (Poisons) Regulations 2011 (SA): a Pharmacist Only Medicine must be supplied by, or under the direct personal supervision of, a pharmacist, who must be satisfied that there is a genuine therapeutic need and that the quantity is appropriate.",
+      "Pharmacy Board of Australia Code of Conduct and PSA Professional Practice Standards: Pharmacist Only Medicines require a professional assessment and supply of an appropriate quantity, with documentation in line with pharmacy procedure.",
+      "International travel: diphenoxylate is controlled under the UN Single Convention on Narcotic Drugs. Travellers should carry it in original packaging with a prescription or letter and check the destination country's import rules."
+    ],
+    "modelAnswer": "1. The legal issue: Lomotil is a Pharmacist Only Medicine only in packs of 8 tablets. Under the Poisons Standard, larger quantities of diphenoxylate with atropine are Schedule 4 and need a prescription. The schedule limits how much can be supplied without a doctor because diphenoxylate is an opioid with misuse potential. Under the Controlled Substances Act 1984 and Controlled Substances (Poisons) Regulations 2011 (SA), I must supply it personally, or directly supervise the supply, and be satisfied of a genuine therapeutic need and an appropriate quantity. Selling six packs (48 tablets) would get around the scheduling, so I would not do it, whether in one sale or several.\n\n2. Assess: I would confirm the medicine is for him, check for glaucoma and prostate problems (atropine), check his other medicines, and ask about his travel plans.\n\n3. Offer a better plan. I would explain that for traveller's diarrhoea in adults, loperamide is the preferred antimotility agent, and that rehydration matters most, so he should pack oral rehydration salts. If appropriate, I would supply loperamide and ORS, and at most one pack of Lomotil if he still prefers it. I'd counsel him not to use an antimotility agent with a fever, blood or mucus in the stool or severe abdominal pain, to stop if there is no improvement within 48 hours, and to seek medical care in those cases.\n\n4. Refer: because he's going to India and Nepal for seven weeks with no travel consultation, I'd strongly advise seeing his GP or a travel clinic this week. They can cover vaccinations, malaria and altitude advice, and a standby antibiotic for traveller's diarrhoea. If they judge a larger antidiarrhoeal supply justified, they can prescribe it.\n\n5. Travel with medicines: keep them in original labelled packs in his carry-on, with a prescription or doctor's letter, and check the rules of the countries he's visiting, because diphenoxylate is controlled internationally.\n\n6. Communicate and document: I'd explain the limit kindly as a safety rule rather than mistrust, and record the supply and advice according to pharmacy procedure."
+  },
+  "review": {"status": "draft", "version": "0.1"},
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 12/10/2026 AM session, Part B)",
+    "Needs pharmacist review: SA setting; the number of boxes (six), destination (India and Nepal), trip length and patient details are invented; the S3 pack-size cut-off for diphenoxylate with atropine (8 dosage units) and the wording of the SA S3 supply requirement; loperamide as the preferred antimotility agent (per eTG) and the counselling thresholds; the answer key is written from current Australian practice because the recall row gives no answer."
+  ]
+}

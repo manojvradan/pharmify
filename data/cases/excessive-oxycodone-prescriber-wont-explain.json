@@ -1,0 +1,89 @@
+{
+  "id": "excessive-oxycodone-prescriber-wont-explain",
+  "title": "A new script after surgery",
+  "category": "legal",
+  "problemType": "Schedule 8 prescription for an unusually large dose and quantity; prescriber will not give a reason",
+  "setting": "Community pharmacy, Newcastle, NSW",
+  "questionSheet": "You are the pharmacist at a community pharmacy in Newcastle, NSW. Mr Darren Holloway, 47, a regular customer, presents an electronic prescription from his GP, Dr P. Lister, for oxycodone 40 mg modified-release tablets, one tablet twice a day, quantity 112 with 2 repeats (private prescription). He had a rotator cuff repair on his right shoulder four weeks ago and was discharged from hospital with 20 oxycodone 5 mg immediate-release tablets. He has not had any other opioid dispensed. The quantity prescribed (336 tablets in total) would last about 6 months. You phone Dr Lister to discuss the dose and quantity. Dr Lister says: 'I've known him for years. That's my clinical decision and I don't have to explain myself to a pharmacist. Just dispense it as written.' He will not give a reason and ends the call. Explain the legal and professional issues and what you would do.",
+  "documents": {
+    "prescription": {
+      "item": "Oxycodone 40 mg modified-release tablets (OxyContin)",
+      "directions": "ONE tablet TWICE a day · Quantity 112 (one hundred and twelve) · 2 repeats · Private prescription · Electronic",
+      "footer": "Dr P. Lister (GP) · Darren Holloway, DOB 23/02/1979",
+      "prescriber": "Dr P. Lister",
+      "prescriberDetail": "General practitioner · Hunter Street Family Practice, Newcastle, NSW",
+      "date": "05/10/2026",
+      "quantity": "112",
+      "repeats": "2",
+      "pbs": false
+    },
+    "dispensingHistory": [
+      {"date": "11 Sep 2026", "item": "Oxycodone 5 mg immediate-release tablets (Endone)", "directions": "One to two tablets every 4 to 6 hours when required for pain, maximum 6 a day", "quantity": "20", "prescriber": "Dr A. Ferris (orthopaedic registrar, John Hunter Hospital)"},
+      {"date": "11 Sep 2026", "item": "Paracetamol 500 mg tablets", "directions": "Two tablets four times a day", "quantity": "100", "prescriber": "Dr A. Ferris (orthopaedic registrar, John Hunter Hospital)"},
+      {"date": "28 Jul 2026", "item": "Rosuvastatin 10 mg tablets", "directions": "One tablet daily", "quantity": "30", "prescriber": "Dr P. Lister (GP)"}
+    ],
+    "notes": [
+      "Today: Monday 5 October 2026.",
+      "SafeScript NSW check: oxycodone 5 mg IR x 20 on 11 Sep 2026 (hospital discharge). No other S8 or monitored medicines in the past 12 months. No alerts.",
+      "Oxycodone 40 mg MR twice a day is 80 mg oxycodone a day (about 120 mg oral morphine equivalent). His discharge supply was at most 30 mg oxycodone a day, as needed.",
+      "Mr Holloway says the shoulder is 'still sore, especially at night' and he has started physiotherapy. He works in a warehouse and drives a forklift.",
+      "No regular benzodiazepines, alcohol 'a few beers on the weekend'."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient · Mr Holloway",
+      "name": "Mr Holloway",
+      "avatar": "wally-morris",
+      "voice": "au-man-40s",
+      "description": "A 47-year-old warehouse worker, a regular customer. Straightforward and a bit embarrassed to be on 'strong painkillers'. Trusts his GP. Gets frustrated if he feels accused of drug-seeking, but responds well to a respectful, safety-focused explanation and a clear plan.",
+      "bio": {"Full name": "Darren Holloway", "Date of birth": "23 February 1979", "Age": "47", "Address": "9 Kemp Street, Hamilton, NSW", "Phone": "0491 571 804", "Occupation": "Warehouse worker (forklift driver)"},
+      "openingLine": "G'day, Dr Lister sent this through for my shoulder.",
+      "publicFacts": [
+        "He had shoulder surgery four weeks ago.",
+        "It's still sore, especially at night, and he's doing physio.",
+        "Dr Lister has been his GP for years."
+      ]
+    }
+  },
+  "hiddenFacts": [],
+  "answerKey": {
+    "plantedProblem": "A Schedule 8 prescription for an unusually high dose and an excessive quantity for the indication: a sudden jump to 80 mg/day of modified-release oxycodone (about 120 mg oral morphine equivalent) in a patient who has had only a short course of low-dose immediate-release oxycodone, for subacute post-surgical pain, with a 6-month supply. Modified-release opioids are not recommended for acute or post-operative pain. The prescriber refuses to give any clinical reason. The pharmacist has an independent legal and professional duty: an S8 may only be supplied when the pharmacist is satisfied it is for a legitimate therapeutic purpose and safe, and a prescriber's say-so does not remove that duty.",
+    "acceptableResolutions": [
+      "Identify the specific concerns: high starting dose (80 mg/day MR oxycodone, about 120 mg OME) in a near opioid-naive patient; modified-release opioid for subacute post-operative pain; total of 336 tablets (about 6 months); risks of respiratory depression, overdose, dependence and diversion; safety-critical job (forklift).",
+      "Check SafeScript NSW and the dispensing history, and talk to the patient respectfully about his pain, function, current opioid use, alcohol and other sedatives, his surgeon's plan and whether he has any tablets left.",
+      "Recognise the pharmacist's independent duty: dispensing is not a mechanical act, and an S8 should not be supplied unless the pharmacist is satisfied it is for a legitimate therapeutic purpose; an unusual dose should be confirmed with the prescriber (in NSW an unusual dose is expected to be underlined and initialled by the prescriber).",
+      "Having been refused any explanation, decline to dispense the prescription as written, rather than supplying a quantity or dose the pharmacist believes is unsafe. Do not change the dose or quantity without the prescriber's agreement.",
+      "Explain the decision to Mr Holloway non-judgementally, make sure he is not left in uncontrolled pain (multimodal analgesia advice, referral back to the GP or to his surgeon or orthopaedic clinic, or another prescriber), and give urgent-care advice if pain is severe or uncontrolled.",
+      "Make a further attempt at professional resolution, for example a written note to Dr Lister with specific concerns and a suggested alternative (short course of IR oxycodone or tapering, review by the surgeon, a defined review date).",
+      "Report the concern to the NSW Health Pharmaceutical Regulatory Unit, and consider a notification to Ahpra about the prescriber's conduct if the prescribing appears to be a significant departure from accepted practice that places the patient at risk.",
+      "Document everything: the prescription details, SafeScript result, the call with Dr Lister and his words, the decision, advice to the patient and any reports made; offer naloxone and overdose education whenever an opioid is supplied."
+    ],
+    "unacceptableActions": [
+      "Dispensing the full dose and quantity as written simply because the prescriber insists.",
+      "Altering the dose or quantity yourself, or supplying a different product, without the prescriber's authority.",
+      "Accusing the patient of drug-seeking or the doctor of misconduct in front of the patient.",
+      "Turning the patient away with no plan for his pain and no referral.",
+      "Not documenting or reporting the concern."
+    ],
+    "counsellingPoints": [],
+    "codePrinciples": [
+      "Ahpra shared Code of Conduct: practitioners must act in the patient's best interests and raise concerns when another practitioner's practice may put a patient at risk.",
+      "PSA Code of Ethics, Care principle: the pharmacist must not supply a medicine where it would be unsafe, and must make sure the patient is not left without care."
+    ],
+    "legal": [
+      "Medicines, Poisons and Therapeutic Goods Act 1966 (NSW) and Medicines, Poisons and Therapeutic Goods Regulation 2008 (NSW) (formerly the Poisons and Therapeutic Goods Act and Regulation): oxycodone is a drug of addiction (Schedule 8) and may be supplied only on a valid prescription for a legitimate therapeutic purpose.",
+      "Medicines, Poisons and Therapeutic Goods Regulation 2008 (NSW): where a prescription specifies an unusual or dangerous dose, the prescriber is expected to underline and initial it, and the pharmacist should confirm it with the prescriber before dispensing.",
+      "SafeScript NSW: pharmacists should check real-time prescription monitoring before dispensing an S8; it is a requirement for monitored medicines under NSW arrangements.",
+      "Medicines, Poisons and Therapeutic Goods Regulation 2008 (NSW): a prescriber needs an authority from NSW Health to prescribe an S8 to a drug-dependent person, or for certain S8 medicines; check whether one applies.",
+      "Health Practitioner Regulation National Law (NSW): a notification may be made to the Pharmacy/Medical Board (Ahpra, or the Health Care Complaints Commission and Medical Council of NSW in NSW) about a practitioner whose conduct may place the public at risk.",
+      "Pharmacy Board of Australia Guidelines for dispensing of medicines: the pharmacist must be satisfied that a prescription is appropriate and safe before dispensing and should decline to dispense when it is not."
+    ],
+    "modelAnswer": "1. The legal and clinical issue: oxycodone is a Schedule 8 drug of addiction under the Medicines, Poisons and Therapeutic Goods Act 1966 and Regulation 2008 (NSW). The prescription is for 80 mg a day of modified-release oxycodone, about 120 mg oral morphine equivalent, for a man who has only had 20 immediate-release 5 mg tablets after shoulder surgery four weeks ago. On top of that the total quantity, 336 tablets, is about six months' supply. A sudden high-dose MR start for subacute post-operative pain is not consistent with guidelines and carries serious risks of respiratory depression, overdose and dependence, made worse by alcohol and his forklift job.\n\n2. My duty: dispensing is not mechanical. I can only supply an S8 if I'm satisfied it is for a legitimate therapeutic purpose and safe, and an unusual dose should be confirmed with the prescriber (in NSW it is expected to be underlined and initialled). The prescriber's insistence doesn't transfer that responsibility to him.\n\n3. Gather information: check SafeScript NSW and our history (one hospital supply, no alerts), and talk to Mr Holloway respectfully about his pain, function, physiotherapy, any tablets left, alcohol, sedatives and his surgeon's follow-up.\n\n4. Since I've called Dr Lister and he refuses to give any clinical reason, I would decline to dispense the prescription as written. I won't change the dose or quantity myself, because that needs the prescriber's authority.\n\n5. Look after the patient: explain calmly that I'm not comfortable supplying this dose and quantity safely without more information, without suggesting he's done anything wrong. Advise multimodal analgesia (regular paracetamol, an NSAID if suitable, ice and physio), and refer him back to his surgeon's clinic or another GP for review, with urgent care if pain becomes severe.\n\n6. Follow up professionally: send Dr Lister a short written note setting out the specific concerns and an alternative, such as a short course of IR oxycodone with a taper and surgical review.\n\n7. Report: contact the NSW Health Pharmaceutical Regulatory Unit, and consider a notification about the prescriber if the prescribing seems a significant departure from accepted practice.\n\n8. Document the prescription details, SafeScript result, the call and Dr Lister's words, my decision, my advice and any reports."
+  },
+  "review": {"status": "draft", "version": "0.1"},
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 15/10/2026 PM session, Part B)",
+    "Needs pharmacist review: NSW setting; the indication (rotator cuff repair 4 weeks ago), the product, dose and quantity (oxycodone 40 mg MR bd, 112 x 3 fills), the private e-script, the OME figure, the history and the SafeScript result were invented to make 'excessive quantity' concrete. Check the current NSW Act/Regulation names after the 2022 renaming, the 'underline and initial' rule for unusual doses, whether SafeScript NSW checking is mandatory for pharmacists for S8 at the date of the case, and the NSW notification route (HCCC / Medical Council of NSW co-regulation rather than Ahpra directly). Deciding to decline rather than part-supply is an interpretation; the recall row gives no stated answer."
+  ]
+}

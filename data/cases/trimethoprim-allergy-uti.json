@@ -1,0 +1,311 @@
+{
+  "id": "trimethoprim-allergy-uti",
+  "title": "Something for a UTI",
+  "category": "clinical",
+  "problemType": "Drug allergy (contraindication)",
+  "specialty": "infectious-disease",
+  "setting": "Community pharmacy, WA",
+  "questionSheet": "Ms Mai Pham, a university student in her early twenties, presents a new prescription from her GP, Dr Gallagher, following a telehealth consultation this afternoon for symptoms of a urinary tract infection. The prescription is for trimethoprim 300 mg tablets, one tablet at night for 3 days. Dr Gallagher can be contacted by phone. Manage the situation as you would in practice. You may contact the prescriber.",
+  "documents": {
+    "prescription": {
+      "item": "Trimethoprim 300 mg tablets · Qty 7 · No repeats",
+      "directions": "One tablet at night for 3 days",
+      "footer": "Dr F. Gallagher (GP) · Mai Pham, DOB 05/06/2003",
+      "date": "09/10/2026"
+    },
+    "dispensingHistory": [
+      {
+        "date": "2 Jul 2026",
+        "item": "Levonorgestrel 150 microgram / ethinylestradiol 30 microgram tablets (Levlen ED)",
+        "directions": "One tablet daily as directed",
+        "quantity": "4 x 28",
+        "prescriber": "Dr F. Gallagher (GP)"
+      },
+      {
+        "date": "6 Apr 2026",
+        "item": "Levonorgestrel 150 microgram / ethinylestradiol 30 microgram tablets (Levlen ED)",
+        "directions": "One tablet daily as directed",
+        "quantity": "4 x 28",
+        "prescriber": "Dr F. Gallagher (GP)"
+      },
+      {
+        "date": "18 Mar 2026",
+        "item": "Cefalexin 500 mg capsules (generic)",
+        "directions": "One capsule twice daily for 5 days",
+        "quantity": "20",
+        "prescriber": "Dr F. Gallagher (GP)"
+      },
+      {
+        "date": "7 Jan 2026",
+        "item": "Levonorgestrel 150 microgram / ethinylestradiol 30 microgram tablets (Levlen ED)",
+        "directions": "One tablet daily as directed",
+        "quantity": "4 x 28",
+        "prescriber": "Dr F. Gallagher (GP)"
+      }
+    ],
+    "notes": [
+      "No allergies are recorded on Ms Pham's profile in the dispensing software.",
+      "Today's date: Friday 9 Oct 2026, afternoon."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient · Ms Pham",
+      "name": "Ms Pham",
+      "description": "A 23-year-old university student, uncomfortable and a bit embarrassed to talk about her symptoms at the counter. Polite, a little vague, with average health literacy; she needs things explained simply. She doesn't think to mention her allergy unless asked directly about allergies or past reactions, and she calls it 'that sulfa thing' because that's what her mum calls it. She doesn't know which part of the antibiotic caused the reaction. She relaxes if moved somewhere private and spoken to kindly. She just wants to start something tonight, and gets worried if told she can't have the tablets without being told what happens next.",
+      "bio": {
+        "Full name": "Mai Pham",
+        "Date of birth": "5 June 2003",
+        "Age": "23",
+        "Address": "Unit 4, 12 Stirling Highway, Nedlands WA 6009",
+        "Phone": "0491 571 804",
+        "Occupation": "University student"
+      },
+      "avatar": "kiki-nguyen",
+      "voice": "au-young-woman",
+      "openingLine": "Hi, um, I just had a phone appointment with my doctor. She sent this through for a UTI. Can I get it tonight?",
+      "publicFacts": [
+        "You had a telehealth appointment with Dr Gallagher this afternoon about a UTI.",
+        "It stings when you wee and you want to start treatment tonight.",
+        "You've had a UTI before."
+      ]
+    },
+    "prescriber": {
+      "label": "Call Dr Gallagher",
+      "name": "Dr Gallagher",
+      "description": "A GP in her fifties finishing her afternoon telehealth list. Busy but fair, with easy pushback. At first she says the allergy on her file is to 'sulfa' and trimethoprim isn't a sulfonamide, so it should be fine. She changes her mind once the pharmacist explains that it isn't known which component caused the reaction, that trimethoprim can cause hypersensitivity on its own, and that the reaction included lip swelling. She then asks the pharmacist what they'd recommend and wants a specific drug, dose and duration.",
+      "bio": {
+        "Full name": "Dr Fiona Gallagher",
+        "Role": "General practitioner",
+        "Workplace": "Nedlands Medical Centre, WA"
+      },
+      "avatar": "dr-holt",
+      "voice": "au-woman-professional",
+      "openingLine": "Fiona Gallagher. I'm between telehealth calls, how can I help?",
+      "publicFacts": [
+        "Mai Pham is your patient. You saw her by telehealth this afternoon with two days of dysuria and frequency, no fever and no loin pain, and diagnosed uncomplicated cystitis.",
+        "You prescribed trimethoprim 300 mg at night for 3 days, the first-line choice in eTG.",
+        "Your notes list her allergy as 'sulfa: rash', with no other details.",
+        "You treated a UTI in March with cefalexin."
+      ]
+    }
+  },
+  "hiddenFacts": [
+    {
+      "id": "resprim-allergy",
+      "agent": "patient",
+      "fact": "You're allergic to an antibiotic called Resprim Forte. Your mum calls it your 'sulfa allergy'. You told Dr Gallagher you had a sulfa allergy when you first joined the practice.",
+      "triggers": [
+        "allergy",
+        "allergies",
+        "allergic",
+        "reaction",
+        "react",
+        "bad reaction",
+        "sensitive",
+        "sulfa",
+        "sulphur",
+        "resprim",
+        "bactrim",
+        "septrin",
+        "antibiotic problems",
+        "side effects antibiotics"
+      ],
+      "unlockHint": "“Do you have any allergies, or have you ever had a reaction to a medicine, especially an antibiotic?”"
+    },
+    {
+      "id": "reaction-details",
+      "agent": "patient",
+      "fact": "It was about three years ago, when you were living in Melbourne. You were given Resprim Forte twice a day for a UTI. On the third day you came out in an itchy, raised, red rash (hives) all over your body and your lips swelled up. You didn't have trouble breathing. There were no blisters, peeling skin, mouth sores or fever. The doctor stopped it and gave you antihistamines and a few days of steroid tablets, and it settled in a few days. You've never had allergy testing, and you don't know if you've ever had trimethoprim on its own.",
+      "triggers": [
+        "what happened",
+        "describe reaction",
+        "kind reaction",
+        "type reaction",
+        "rash",
+        "hives",
+        "swelling",
+        "swell",
+        "lips",
+        "breathing",
+        "blisters",
+        "peeling",
+        "hospital",
+        "how long ago",
+        "allergy test"
+      ],
+      "unlockHint": "“Can you tell me exactly what happened with that reaction: what you were taking, when it started, what it looked like, and how it was treated?”"
+    },
+    {
+      "id": "uti-symptoms",
+      "agent": "patient",
+      "fact": "For two days it has burned when you wee, you need to go all the time and urgently, and you have a mild ache low in your tummy. You don't have a fever, back or side pain, nausea, vomiting or blood in your urine, and there's no unusual vaginal discharge or itch.",
+      "triggers": [
+        "symptoms",
+        "burning",
+        "stinging",
+        "wee",
+        "urine",
+        "frequency",
+        "urgency",
+        "fever",
+        "temperature",
+        "back pain",
+        "side pain",
+        "loin",
+        "kidney",
+        "discharge",
+        "blood urine",
+        "vomiting"
+      ],
+      "unlockHint": "“What symptoms have you had and for how long? Any fever, back or side pain, nausea, blood in the urine or unusual discharge?”"
+    },
+    {
+      "id": "previous-cefalexin",
+      "agent": "patient",
+      "fact": "In March you had another UTI and took cefalexin capsules for five days with no problems at all. This is your second UTI this year. You're not allergic to penicillin; you've had amoxicillin before without trouble.",
+      "triggers": [
+        "last uti",
+        "old uti",
+        "uti before",
+        "last time",
+        "cefalexin",
+        "keflex",
+        "other antibiotics",
+        "penicillin",
+        "amoxicillin",
+        "how many uti",
+        "how often uti",
+        "march",
+        "worked before"
+      ],
+      "unlockHint": "“What did you take for your last UTI, and how did you go with it? Any problems with penicillins or cefalexin?”"
+    },
+    {
+      "id": "pregnancy-contraception",
+      "agent": "patient",
+      "fact": "You take the Levlen pill every day and haven't missed any. Your last period was about two weeks ago, on your pill break. You're not pregnant and not breastfeeding.",
+      "triggers": [
+        "pregnant",
+        "pregnancy",
+        "chance pregnant",
+        "period",
+        "last period",
+        "pill",
+        "contraception",
+        "levlen",
+        "breastfeeding",
+        "missed pills"
+      ],
+      "unlockHint": "“Is there any chance you could be pregnant? Are you breastfeeding?”"
+    },
+    {
+      "id": "ural-sachets",
+      "agent": "patient",
+      "fact": "Yesterday you bought Ural sachets from the supermarket and have had two. You're also drinking cranberry juice. You don't take any other medicines apart from the pill.",
+      "triggers": [
+        "ural",
+        "sachets",
+        "urinary alkaliniser",
+        "cranberry",
+        "tried anything",
+        "taken anything",
+        "anything else",
+        "other medicine",
+        "over counter",
+        "supermarket",
+        "supplements",
+        "vitamins"
+      ],
+      "unlockHint": "“Have you taken anything for it already, like Ural or cranberry, or any other medicines or supplements?”"
+    },
+    {
+      "id": "gp-agrees-avoid-trimethoprim",
+      "agent": "prescriber",
+      "fact": "Once the pharmacist explains that her reaction to Resprim Forte (trimethoprim with sulfamethoxazole) was hives with lip swelling, that it isn't known which component caused it, and that trimethoprim alone can cause hypersensitivity, you agree it isn't safe to give trimethoprim. You'll cancel the trimethoprim script and update her allergy record to 'trimethoprim/sulfamethoxazole (Resprim Forte): urticaria and lip swelling; component unknown, avoid trimethoprim and sulfonamide antibiotics'. You agree she could be referred for allergy assessment later, when she's well.",
+      "triggers": [
+        "resprim",
+        "bactrim",
+        "sulfamethoxazole",
+        "trimethoprim",
+        "which component",
+        "component",
+        "combination",
+        "hives",
+        "urticaria",
+        "lip swelling",
+        "angioedema",
+        "cross reactivity",
+        "allergy record",
+        "allergy assessment",
+        "both components"
+      ],
+      "unlockHint": "“Her reaction was to Resprim Forte, which is trimethoprim with sulfamethoxazole. She had hives and lip swelling, and we don't know which component caused it, so trimethoprim alone may not be safe.”"
+    },
+    {
+      "id": "gp-alternative",
+      "agent": "prescriber",
+      "fact": "You accept a reasoned eTG alternative for uncomplicated cystitis: cefalexin 500 mg twice daily (12-hourly) for 5 days, since she tolerated it in March, or nitrofurantoin 100 mg four times daily (6-hourly) for 5 days. If nitrofurantoin is suggested, you agree she should stop the Ural, because urinary alkalinisers reduce its effect. You will send a new electronic prescription for the agreed antibiotic within the next few minutes. You'd like her to come in for a urine culture if it hasn't settled in 48 hours, since it's her second UTI this year.",
+      "triggers": [
+        "cefalexin",
+        "keflex",
+        "nitrofurantoin",
+        "macrodantin",
+        "alternative",
+        "instead",
+        "different antibiotic",
+        "recommend",
+        "new script",
+        "new prescription",
+        "five days",
+        "twice daily",
+        "ural",
+        "urine culture"
+      ],
+      "unlockHint": "“As an alternative, eTG lists cefalexin 500 mg twice daily for 5 days, which she tolerated in March, or nitrofurantoin 100 mg four times daily for 5 days. Could you send a new prescription for cefalexin?”"
+    }
+  ],
+  "answerKey": {
+    "plantedProblem": "Ms Pham has a previous hypersensitivity reaction (urticaria with lip swelling, a possible angioedema, on day 3) to Resprim Forte, which is trimethoprim 160 mg with sulfamethoxazole 800 mg. It is not known which component caused it. Her GP has recorded it only as a 'sulfa' allergy and prescribed trimethoprim alone, assuming it is safe. Trimethoprim itself can cause hypersensitivity, so without testing, both components must be treated as possible culprits and trimethoprim should not be supplied. The candidate must take a detailed allergy history (agent, timing, features, severity, absence of SCAR features such as blistering, mucosal involvement or fever), confirm it is uncomplicated cystitis in a non-pregnant woman, and recommend an eTG alternative: cefalexin 500 mg 12-hourly for 5 days (tolerated in March, preferred here) or nitrofurantoin 100 mg 6-hourly for 5 days (stop Ural, which reduces its effect). The allergy should be recorded with details in the pharmacy software and by the GP.",
+    "acceptableResolutions": [
+      "Ask about allergies and previous drug reactions before dispensing; establish the reaction was to Resprim Forte (trimethoprim plus sulfamethoxazole) and take a full allergy history: when, timing after starting, features (urticaria, lip swelling), no breathing difficulty, no blistering, mucosal or systemic features, treatment and outcome, and no previous exposure to trimethoprim alone.",
+      "Explain that it can't be known which component caused the reaction without specialist testing, that trimethoprim alone can cause hypersensitivity, and therefore not supply trimethoprim.",
+      "Confirm uncomplicated cystitis (no fever, loin pain, vomiting or haematuria), not pregnant or breastfeeding, other medicines including Ural, and previous antibiotic tolerance (cefalexin in March, amoxicillin).",
+      "Phone Dr Gallagher with a clear explanation, answer the 'trimethoprim isn't a sulfonamide' pushback, and recommend cefalexin 500 mg 12-hourly for 5 days per eTG (or nitrofurantoin 100 mg 6-hourly for 5 days as a second option), with a new prescription to follow before supply.",
+      "Record the allergy in the pharmacy dispensing software with the reaction details and 'component unknown: avoid trimethoprim and sulfonamide antibiotics'; ask the GP to update her record and consider referral for allergy assessment; suggest she updates My Health Record and tells all prescribers.",
+      "Counsel on the new antibiotic, symptom relief, red flags, and when to return."
+    ],
+    "unacceptableActions": [
+      "Dispensing trimethoprim without asking about allergies, or after hearing about the Resprim Forte reaction (overall fail).",
+      "Accepting the GP's view that trimethoprim is safe because it isn't a sulfonamide, without explaining that the culprit component is unknown.",
+      "Suggesting a test dose or 'just try it and see' in the community.",
+      "Recommending nitrofurantoin while she continues taking Ural, or recommending an inappropriate antibiotic (e.g. a fluoroquinolone, or a dose or duration not in eTG).",
+      "Sending her away with no treatment plan or alternative, or supplying a different antibiotic without a valid prescription.",
+      "Not recording the allergy, so the same error can happen again."
+    ],
+    "counsellingPoints": [
+      "Don't take trimethoprim: you reacted to Resprim Forte, which contains trimethoprim as well as a sulfa antibiotic, and we can't tell which one caused your hives and lip swelling.",
+      "Take one cefalexin 500 mg capsule twice a day, about 12 hours apart, for 5 days, and finish the course even if you feel better sooner. It can be taken with or without food.",
+      "Cefalexin can cause diarrhoea, nausea or thrush. If you get a rash, hives, swelling of your lips, face or tongue, or trouble breathing, stop it and seek urgent medical help (call 000 for breathing problems).",
+      "Your symptoms should start to improve within 1 to 2 days. If they don't, or you develop fever, back or side pain, vomiting or blood in your urine, see a doctor promptly, as this can mean a kidney infection.",
+      "Drink plenty of water, and use paracetamol for discomfort. If you switch to nitrofurantoin instead, stop the Ural sachets, because they make nitrofurantoin work less well.",
+      "Cefalexin doesn't stop your Levlen pill from working; keep taking it as usual. If you get vomiting or severe diarrhoea, follow the missed-pill advice in the packet or ask us.",
+      "Tell every doctor, dentist and pharmacist that you're allergic to trimethoprim/sulfamethoxazole (Resprim, Bactrim) and to avoid trimethoprim and sulfa antibiotics. Consider a medical alert and ask your GP about allergy testing later.",
+      "As this is your second UTI this year, see Dr Gallagher if it comes back, so she can check a urine culture and talk about prevention."
+    ],
+    "codePrinciples": [],
+    "legal": [
+      "A different antibiotic can only be supplied on a valid prescription; the GP should issue a new (e.g. electronic) prescription and cancel the trimethoprim, consistent with the Medicines and Poisons Act 2014 (WA) and Medicines and Poisons Regulations 2016 (WA).",
+      "PSA Professional Practice Standards and the Pharmacy Board's Guidelines for dispensing of medicines: check allergies and adverse reaction history before supply, and document the intervention and the allergy."
+    ],
+    "modelAnswer": "1. Set-up: introduce self, confirm Ms Pham's identity and date of birth, and offer the consultation room because the topic is personal. 2. Gather information: symptoms and duration (two days of burning, frequency and urgency, mild suprapubic ache); red flags for pyelonephritis or other diagnoses (no fever, loin pain, nausea, vomiting, haematuria or discharge); pregnancy and breastfeeding (on Levlen, no missed pills, not pregnant); allergies and previous reactions. She mentions a 'sulfa allergy' only when asked, so explore it: Resprim Forte three years ago for a UTI; on day 3, widespread itchy hives and lip swelling, no breathing difficulty, no blistering, peeling, mouth sores or fever; treated with antihistamine and a short course of prednisolone; never tested; never had trimethoprim alone. Ask about previous antibiotics (cefalexin in March without problems, amoxicillin without problems) and current medicines (Levlen, Ural sachets, cranberry). 3. Identify and explain: Resprim Forte contains trimethoprim and sulfamethoxazole. The GP has recorded this as a sulfonamide allergy and prescribed trimethoprim alone, but the component responsible is unknown and trimethoprim can cause hypersensitivity by itself. Because her reaction was an immediate-type urticaria with lip swelling, re-exposure could cause a similar or worse reaction, so trimethoprim should be avoided until specialist assessment. There were no features of a severe cutaneous adverse reaction, which would contraindicate re-exposure to both drugs absolutely. 4. References: eTG Antibiotic (acute cystitis in non-pregnant women; antimicrobial hypersensitivity), AMH (trimethoprim, cefalexin, nitrofurantoin), and the ASCIA guidance on drug allergy. 5. Contact Dr Gallagher (ISBAR): explain the reaction details and that the component is unknown; when she says 'trimethoprim isn't a sulfa', explain that the combination product is the history and trimethoprim itself is a recognised cause. Recommend cefalexin 500 mg 12-hourly for 5 days, which eTG lists for cystitis and which she tolerated in March (nitrofurantoin 100 mg 6-hourly for 5 days is an alternative, but she would need to stop Ural). Ask for a new prescription and cancellation of the trimethoprim, an allergy record update, and consideration of allergy referral. 6. Supply cefalexin once the new prescription arrives; do not supply trimethoprim. 7. Counsel: cefalexin dose, duration and side effects; allergy warning signs; symptom relief and fluids; red flags for kidney infection; review if no improvement in 48 hours; no effect on her pill; allergy disclosure to all health professionals; GP review if UTIs recur. 8. Document: enter the allergy with reaction details in the dispensing software, record the intervention, the call and the outcome, and suggest she updates My Health Record. 9. Follow-up: invite her to call or return if symptoms don't improve in 48 hours."
+  },
+  "review": {
+    "status": "draft",
+    "version": "0.1"
+  },
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 09/10/2026 PM session, Part C)",
+    "Needs pharmacist review: the reaction details (urticaria with lip swelling on day 3, no SCAR features, three years ago), the GP's 'sulfa allergy' record, the previous cefalexin course in March, the Ural sachets, and the choice of cefalexin as the preferred alternative were invented or interpreted. Check the current eTG doses for acute cystitis (trimethoprim 300 mg daily for 3 days; cefalexin 500 mg 12-hourly for 5 days; nitrofurantoin 100 mg 6-hourly for 5 days), the trimethoprim pack size (7), and the WA legislation named for supplying on a new prescription."
+  ]
+}

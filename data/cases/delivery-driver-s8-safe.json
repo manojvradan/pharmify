@@ -1,0 +1,70 @@
+{
+  "id": "delivery-driver-s8-safe",
+  "title": "The morning delivery",
+  "category": "legal",
+  "problemType": "Schedule 8 storage, access and receipt",
+  "setting": "Community pharmacy, Townsville, Queensland (you are the pharmacist in charge today)",
+  "questionSheet": "You have recently started as an employee pharmacist at a busy community pharmacy in Townsville, Queensland, and today you are the pharmacist in charge. At 8:15 am, before the dispensary opens, the wholesaler's delivery driver, Shane, lets himself into the dispensary, unpacks the order and puts the Schedule 8 medicines straight into the S8 safe himself, using the safe's combination. He leaves the invoice on the bench and goes. Nobody has checked the S8 items against the invoice or entered them in the S8 register. When you phone the owner, a pharmacist who is not working today, he says: 'That's fine. Shane's been delivering to us for ten years and I trust him completely. It saves us a lot of time in the mornings.' Explain the legal issues, what you would do now, and how you would stop this happening again.",
+  "documents": {
+    "notes": [
+      "S8 safe: combination lock. The owner gave the combination to the driver; it has not been changed for at least two years.",
+      "Today's invoice, S8 lines: oxycodone 10 mg controlled-release tablets × 2 packs, tapentadol 50 mg modified-release tablets × 1 pack, dexamphetamine 5 mg tablets × 2 packs.",
+      "The S8 register has no entries for today's delivery. The last full S8 stocktake was about four months ago.",
+      "Staff tell you the driver has put S8 deliveries away like this most mornings for years."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Driver · Shane",
+      "name": "Shane",
+      "avatar": "wally-morris",
+      "voice": "au-man-30s",
+      "description": "The wholesaler's delivery driver, in his forties. Friendly, practical and always in a hurry to get to his next drop. He has been doing this for years at the owner's request and sees nothing wrong with it. He is not defensive if the pharmacist explains the new arrangement politely, but grumbles about having to wait.",
+      "bio": {"Full name": "Shane Barker", "Role": "Delivery driver for the pharmaceutical wholesaler", "Workplace": "Wholesaler's Townsville run"},
+      "openingLine": "All done, mate. The S8 stuff's in the safe as usual, invoice is on the bench.",
+      "publicFacts": [
+        "He delivers to this pharmacy most weekday mornings.",
+        "The owner gave him the safe combination years ago so he could put the S8s away himself.",
+        "He has never been asked to wait for a pharmacist to sign for anything."
+      ]
+    }
+  },
+  "hiddenFacts": [],
+  "answerKey": {
+    "plantedProblem": "An unauthorised person (the wholesaler's driver) has unsupervised access to the S8 safe and is putting S8 stock away himself, so S8 receipt is never checked against the invoice or recorded by a pharmacist, and the pharmacy cannot account for its S8 stock. This breaches Queensland's S8 secure-storage and record-keeping requirements regardless of how much the owner trusts him. The pharmacist in charge must act now, reconcile the stock, secure the safe and change the system, even though the owner says it is fine.",
+    "acceptableResolutions": [
+      "Identify that only authorised persons (here, pharmacists) may have access to the S8 safe and its combination or key, and that the driver is not authorised; the owner's trust does not change the legal requirement.",
+      "Check today's S8 delivery against the invoice personally, and enter the receipt in the S8 register with the invoice details before any of it is dispensed.",
+      "Because access has been uncontrolled, do a full count of all S8 stock in the safe and reconcile it against the register balances.",
+      "If any discrepancy is found, report the loss or suspected theft to Queensland Health without delay and to the police if theft is suspected, and record it.",
+      "Change the safe combination immediately and limit it to pharmacists; keep the safe locked when not in use.",
+      "Contact the wholesaler to change the delivery arrangement: S8 items handed to a pharmacist, checked and signed for in person, and deliveries timed for when a pharmacist is on site.",
+      "Explain to the owner, respectfully but firmly, that the practice is unlawful and exposes both of you (and the pharmacy) to regulatory and professional consequences; agree a written S8 procedure.",
+      "Document what was found, the reconciliation and the steps taken; train staff on the new S8 procedure and schedule regular S8 stocktakes."
+    ],
+    "unacceptableActions": [
+      "Accepting the owner's reassurance and letting the driver continue to access the safe.",
+      "Dispensing today's S8 stock without first checking it in and recording its receipt.",
+      "Backfilling or adjusting register entries to make the balances match without investigating or reporting a discrepancy.",
+      "Accusing the driver of theft without evidence, or confronting him aggressively.",
+      "Leaving the old combination in place after it has been shared with an unauthorised person."
+    ],
+    "counsellingPoints": [],
+    "codePrinciples": [
+      "Pharmacy Board of Australia Code of Conduct: practitioners must comply with the law and must not let an employer's instruction override their own professional and legal obligations."
+    ],
+    "legal": [
+      "Medicines and Poisons Act 2019 (Qld) and Medicines and Poisons (Medicines) Regulation 2021 (Qld): S8 medicines must be stored securely, in line with the Queensland Health Departmental Standard 'Secure storage of S8 medicines', with the safe kept locked and access to the key or combination restricted to persons authorised to deal with S8 medicines. A wholesaler's driver is not one of them.",
+      "Medicines and Poisons (Medicines) Regulation 2021 (Qld): receipt of S8 medicines must be recorded promptly and accurately in the S8 (controlled drug) register, and the pharmacy must be able to account for every S8 dealing.",
+      "Loss or theft of S8 medicines, or a discrepancy that cannot be explained, must be reported to Queensland Health as soon as practicable, and to the Queensland Police Service where theft is suspected.",
+      "Pharmacy Board of Australia Guidelines for proprietor pharmacists: the proprietor is responsible for safe systems, including secure handling of S8 medicines, but the pharmacist in charge is also professionally accountable for compliance while on duty.",
+      "PSA Professional Practice Standards: written procedures for the receipt, storage and reconciliation of S8 medicines."
+    ],
+    "modelAnswer": "1. The legal issue: S8 medicines must be stored in a locked safe that only authorised people can open. In Queensland, the Medicines and Poisons Act 2019 and the Medicines and Poisons (Medicines) Regulation 2021, with the Departmental Standard for secure storage of S8 medicines, require the safe to be kept locked and access to its combination restricted to people authorised to deal with S8s, which in a pharmacy means pharmacists. The driver is not authorised. Because he puts the stock away himself, nobody checks the S8s against the invoice or records their receipt, so the pharmacy cannot account for its S8 stock. The owner's trust in him is irrelevant to the law.\n\n2. What I would do now. Before anything from today's delivery is dispensed, I would check the S8 items against the invoice myself and enter the receipt in the S8 register. Because access has been uncontrolled for years and the last stocktake was months ago, I would count every S8 in the safe and reconcile it against the register. If there is a discrepancy, I would report it to Queensland Health without delay, and to the police if theft is suspected. I would not adjust entries to make them balance, and I would not accuse Shane without evidence.\n\n3. Secure the safe: change the combination today, give it only to pharmacists, and keep the safe locked.\n\n4. Talk to Shane politely: from now on S8s are handed to the pharmacist, who checks them and signs for them. Then contact the wholesaler to change the delivery procedure and timing so that a pharmacist is always present.\n\n5. Talk to the owner respectfully but firmly. I would explain that this breaches Queensland law, exposes him as proprietor and me as pharmacist in charge to regulatory and Board action, and puts S8s at risk of diversion. I would propose a written S8 receipt-and-storage procedure. If he refused, I would not take part in the practice and would seek advice from my professional indemnity insurer or the PSA, and from Queensland Health.\n\n6. Document what I found, the reconciliation, the changes made and the conversations.\n\n7. Prevent recurrence: a written S8 procedure, staff training, regular S8 stocktakes and balance checks, scheduled combination changes, and regular reviews of S8 access and wholesaler arrangements."
+  },
+  "review": {"status": "draft", "version": "0.1"},
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 09/10/2026 AM session, Part B)",
+    "Needs pharmacist review: Queensland setting; the driver being the wholesaler's courier who was given the safe combination; the specific S8 items, invoice and stocktake details; the exact Qld provisions on S8 storage and access (Departmental Standard 'Secure storage of S8 medicines'), the timing of register entries for receipt, and the Queensland Health unit to notify of loss or theft."
+  ]
+}

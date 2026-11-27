@@ -1,0 +1,72 @@
+{
+  "id": "emergency-supply-full-boxes-s4",
+  "title": "The owner's way",
+  "category": "legal",
+  "problemType": "Emergency supply of Schedule 4 medicines beyond what the law allows",
+  "setting": "Community pharmacy, Geelong, Victoria (you are an employee pharmacist; the owner is a pharmacist)",
+  "questionSheet": "You started as an employee pharmacist at a community pharmacy in Geelong last month. Going through the dispensing records, you notice that the owner, a pharmacist, regularly gives patients full boxes of Schedule 4 medicines as 'emergency supplies' without a prescription. When you ask about it, the owner says: \"GPs round here are booked out for three weeks. Patients love it, and a full box saves them coming back. Just do the same.\" An extract from this month's emergency supply records is in your documents. Explain the legal issues, what you would do, who you would contact, and how you would prevent it happening again.",
+  "documents": {
+    "notes": [
+      "Emergency supply records, November 2026 (extract). Each was supplied by the owner, privately priced, with no prescription and no record of contact with a prescriber:",
+      "4 Nov · Mr A. Russo, 64 · Rosuvastatin 20 mg tablets × 30 (full pack). Regular patient, last prescription expired in October. His third full-pack emergency supply of rosuvastatin since July.",
+      "11 Nov · Ms B. Tran, 29 · Amoxicillin/clavulanic acid 875/125 mg tablets × 10 (full pack). Not previously prescribed for her at this pharmacy. Reason recorded: 'sore throat'.",
+      "18 Nov · Mrs C. O'Neill, 71 · Perindopril 5 mg tablets × 30 (full pack). Stable on it for four years; her GP is on leave. No emergency or continued supply in the past 12 months.",
+      "The owner tells patients they 'don't need to worry about getting a script'.",
+      "You are aware of the PBS continued dispensing arrangements, which Victoria permits for eligible medicines."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "The pharmacy owner",
+      "name": "Ms Farrugia",
+      "avatar": "dr-holt",
+      "voice": "au-woman-40s",
+      "standing": "professional",
+      "description": "The pharmacist owner, in her fifties. Confident, busy and commercially minded. She genuinely believes she is helping patients who can't get GP appointments, and is dismissive at first of 'red tape', but she is not malicious and will listen to a clear, respectful explanation of the law and the risks.",
+      "bio": {"Full name": "Linda Farrugia", "Role": "Pharmacist and pharmacy owner", "Workplace": "The pharmacy where you work, Geelong VIC"},
+      "openingLine": "Honestly, it's a service. Nobody's complained yet.",
+      "publicFacts": [
+        "She owns the pharmacy and has been a pharmacist for 25 years.",
+        "Local GPs have long waiting times.",
+        "She gives full packs because she thinks it saves patients a return trip."
+      ]
+    }
+  },
+  "hiddenFacts": [],
+  "answerKey": {
+    "plantedProblem": "The owner is misusing emergency supply. In Victoria, a pharmacist may supply a Schedule 4 medicine without a prescription only in an emergency, for a medicine the patient is already being treated with, and in a limited quantity (no more than 3 days' supply, or the smallest pack where it can't be broken, such as an inhaler). Routine full boxes, repeated supplies to the same patient, and supplying a new antibiotic that was never prescribed are all unlawful supply. The candidate should recognise that the separate PBS continued dispensing arrangement can lawfully allow one standard pack of an eligible, stable, previously prescribed medicine once in 12 months, so a case like Mrs O'Neill's could have been supplied properly that way, but Mr Russo's repeated packs and Ms Tran's antibiotic could not. The candidate must raise it with the owner, refuse to take part, follow up affected patients, and report if it continues.",
+    "acceptableResolutions": [
+      "Identify that emergency supply is limited to continuing an existing therapy in an immediate need, in a quantity of no more than 3 days' supply (or the smallest unbreakable pack), and must be recorded; full boxes as routine practice are not lawful.",
+      "Distinguish continued dispensing: one standard pack of an eligible PBS medicine, for a patient stable on it and previously prescribed it, when a prescription can't be obtained, no more than once in 12 months, with the prescriber notified. Note that Mrs O'Neill's supply might have fitted this, but Mr Russo's third full pack since July and Ms Tran's antibiotic could not.",
+      "Identify that the amoxicillin/clavulanic acid supply is not emergency supply at all: it was a new antibiotic for an undiagnosed sore throat, effectively the pharmacist prescribing, with stewardship and patient safety risks.",
+      "Raise it with the owner privately and respectfully, explaining the law, the patient risks (no medical review, missed diagnoses, antimicrobial resistance) and the regulatory risk to her registration and the pharmacy's licence.",
+      "Refuse to make such supplies yourself, whatever the owner directs, and make only lawful emergency or continued supplies.",
+      "Follow up affected patients: encourage Mr Russo and Mrs O'Neill to see a GP for new prescriptions and review (with telehealth if appointments are hard to get), and contact Ms Tran to check how she is and advise her to see a doctor if she still has symptoms.",
+      "If the owner does not stop, report: to the Victorian Department of Health (Medicines and Poisons Regulation), and consider a notification to Ahpra, since a pattern of unlawful supply by a pharmacist may be a significant departure from professional standards that places the public at risk; the Victorian Pharmacy Authority, which licenses pharmacies, may also be relevant.",
+      "Document your concerns, your conversation with the owner and your own supplies.",
+      "Prevent recurrence: a written emergency and continued supply procedure (eligibility, quantities, recording, prescriber notification), staff training, and a way for patients who struggle to see a GP to be helped lawfully (telehealth, continued dispensing where eligible)."
+    ],
+    "unacceptableActions": [
+      "Following the owner's instruction and continuing to give full boxes as emergency supplies.",
+      "Ignoring it because the owner is the employer and 'it's her licence'.",
+      "Supplying antibiotics without a prescription for a new condition.",
+      "Treating continued dispensing as the same thing as emergency supply, or using it more than once in 12 months for the same medicine.",
+      "Confronting the owner in front of staff or patients, or leaving the affected patients without any follow-up."
+    ],
+    "counsellingPoints": [],
+    "codePrinciples": [],
+    "legal": [
+      "Drugs, Poisons and Controlled Substances Act 1981 and Drugs, Poisons and Controlled Substances Regulations 2017 (Vic): a Schedule 4 poison may be supplied only on a prescription, except that a pharmacist may make an emergency supply to a person already being treated with it, in a limited quantity (no more than 3 days' supply, or the smallest pack where it can't be broken), with records kept.",
+      "PBS continued dispensing (National Health (Continued Dispensing) Determination, permitted under Victorian law): one standard pack of an eligible medicine for a patient stable on it and previously prescribed it, when a prescription can't be obtained, no more than once in 12 months, with the prescriber informed.",
+      "Health Practitioner Regulation National Law (Victoria): a registered pharmacist must make a mandatory notification if they reasonably believe another practitioner has practised in a way that is a significant departure from accepted professional standards placing the public at risk of substantial harm; otherwise a voluntary notification can be made.",
+      "Pharmacy Regulation Act 2010 (Vic): the Victorian Pharmacy Authority licenses pharmacy businesses and premises in Victoria.",
+      "Pharmacy Board of Australia Code of Conduct and PSA Professional Practice Standards: practise within the law, put patient safety ahead of commercial interests, and keep accurate records; an employer cannot direct a pharmacist to act unlawfully."
+    ],
+    "modelAnswer": "1. The legal issue: in Victoria, Schedule 4 medicines need a prescription. The Drugs, Poisons and Controlled Substances Regulations 2017 allow a pharmacist to make an emergency supply only when the patient is already on the medicine and has an immediate need, and only in a limited quantity, no more than 3 days' supply or the smallest pack that can't be broken. Routinely giving full boxes as 'emergency supply' is unlawful supply.\n\n2. Separate the cases. Continued dispensing is a different, lawful option: one standard PBS pack of an eligible medicine, for a patient stable on it, previously prescribed it, who can't get a prescription, once in 12 months, with the prescriber told. Mrs O'Neill's perindopril could probably have been supplied properly that way. Mr Russo's third full pack of rosuvastatin since July doesn't qualify for either. Ms Tran's amoxicillin/clavulanic acid isn't emergency supply at all: it's a new antibiotic for an undiagnosed sore throat, which is effectively prescribing and harms antibiotic stewardship.\n\n3. Raise it with the owner, privately and respectfully. I'd acknowledge she's trying to help patients with poor GP access, then explain the law, the patient risks of missing medical review and diagnoses, and the risk to her registration and the pharmacy's licence. I'd suggest lawful alternatives such as continued dispensing where eligible and telehealth.\n\n4. My own practice: I would not make these supplies, whatever I'm told. The Code makes me accountable for every supply I make.\n\n5. Patients: encourage Mr Russo and Mrs O'Neill to get a GP review and new prescriptions, and contact Ms Tran to check she's well and see a doctor if she still has symptoms.\n\n6. Reporting: if the practice continues, I would report it to the Department of Health's Medicines and Poisons Regulation, and notify Ahpra. A sustained pattern of unlawful supply may meet the mandatory notification threshold. The Victorian Pharmacy Authority may also be relevant.\n\n7. Document my concerns, conversations and actions. Prevent recurrence with a written emergency and continued supply procedure and staff training."
+  },
+  "review": {"status": "draft", "version": "0.1"},
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 07/10/2026 AM session, Part B)",
+    "Needs pharmacist review: Victorian setting chosen by the drafter; the three example supplies (rosuvastatin repeated, amoxicillin/clavulanic acid for a sore throat, perindopril that might have qualified for continued dispensing) are invented to test the distinction; check the Victorian emergency supply quantity rule (3 days or smallest unbreakable pack) and that Victoria permits continued dispensing on the current terms (one pack in 12 months); whether a pattern like this meets the mandatory notification threshold; the Victorian Pharmacy Authority's role. Answer key written from current Australian practice."
+  ]
+}

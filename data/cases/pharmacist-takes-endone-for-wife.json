@@ -1,0 +1,70 @@
+{
+  "id": "pharmacist-takes-endone-for-wife",
+  "title": "Late shift in the dispensary",
+  "category": "legal",
+  "problemType": "Unauthorised removal and supply of a Schedule 8 medicine by a colleague",
+  "setting": "Community pharmacy, Canberra, Australian Capital Territory",
+  "questionSheet": "It is 7 pm on a Friday and you are working with a senior pharmacist colleague, Daniel, at a community pharmacy in Canberra. You see him take a box of Endone (oxycodone 5 mg) tablets out of the Schedule 8 safe, count out 20 tablets into a bag and put it in his own backpack. No prescription has been processed and nothing has been entered in the drug register. When you ask, he says: \"It's for my wife. She's done her back and the GP's closed till Monday. I'll get her doctor to write a script next week and sort the register out then. Don't make a big deal of it.\" Explain what you would do and why, including the legal issues, who you must notify, and how this could be prevented.",
+  "documents": {
+    "notes": [
+      "Drug register (Endone 5 mg tablets): balance before tonight 60. No entry has been made for tonight.",
+      "Last month's S8 balance check found Endone 10 tablets short. It was recorded as a 'probable counting error' and not investigated further.",
+      "Daniel is a registered pharmacist and the pharmacist in charge tonight. The owner is not on site but can be reached by phone.",
+      "Daniel's wife is not a patient of this pharmacy, and there is no record of her being prescribed oxycodone.",
+      "Canberra Script (the ACT real-time prescription monitoring system) is available in the dispensary."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Colleague · Daniel",
+      "name": "Daniel",
+      "avatar": "wally-morris",
+      "voice": "au-man-40s",
+      "description": "A senior pharmacist in his mid-forties, well liked and usually reliable. Tonight he is tired, a bit defensive and keen to play it down. He presents it as helping his wife in pain and expects a junior colleague to go along with it. He becomes uneasy if the law or reporting is mentioned, but is not aggressive.",
+      "bio": {"Full name": "Daniel Moore", "Role": "Pharmacist (pharmacist in charge tonight)", "Workplace": "The community pharmacy where you work, Canberra ACT"},
+      "openingLine": "Mate, it's just a few tablets for my wife. I'll sort it out on Monday.",
+      "publicFacts": [
+        "He says his wife hurt her back and is in a lot of pain.",
+        "He says her GP is closed until Monday.",
+        "He says he will get a prescription next week and fix up the register then."
+      ]
+    }
+  },
+  "hiddenFacts": [],
+  "answerKey": {
+    "plantedProblem": "A pharmacist is removing a Schedule 8 medicine (oxycodone) from the safe without a prescription or register entry, for supply to his wife. This is unlawful supply and, in effect, theft or diversion of a controlled medicine. A prescription obtained later cannot make it lawful, and a pharmacist cannot supply an S8 without a prescription, even in an emergency. The earlier unexplained 10-tablet shortfall raises concern of a pattern of diversion, possibly for his own use. The candidate must stop the supply if safe, keep the register accurate, notify the owner, report the loss or diversion to ACT Health, consider a mandatory notification to Ahpra, and make sure the wife gets proper care.",
+    "acceptableResolutions": [
+      "Identify that oxycodone is a Schedule 8 (controlled) medicine that can only be supplied on a valid prescription and must be recorded in the drug register at the time; taking it without a prescription is unlawful supply and possible theft or diversion, and a later prescription cannot make it lawful.",
+      "Ask him directly and calmly to return the tablets to the safe; if it is safe to do so, make sure they are counted back in and the balance is correct, witnessed by you.",
+      "Do not alter, backdate or falsify the register or agree to 'sort it out later'; record what happened accurately.",
+      "Recognise that the wife's pain is real and suggest lawful options: an after-hours GP or the ACT walk-in health centres, telehealth, or the emergency department if the pain is severe, plus suitable non-prescription analgesia and advice in the meantime.",
+      "Notify the owner the same evening, since Daniel is pharmacist in charge tonight and the safe is the owner's responsibility.",
+      "Report any loss, theft or unaccounted S8 stock (including the earlier 10-tablet shortfall) to ACT Health as required, and to the police if the medicine is not returned, as agreed with the owner.",
+      "Consider the mandatory notification duty under the National Law: diverting S8 medicines is a significant departure from accepted professional standards that places the public at risk of substantial harm, and the earlier shortfall raises a possible impairment or substance use concern. If you reasonably believe this, a notification to Ahpra is required, not optional.",
+      "Make a dated, factual record of what you saw, what was said and what you did.",
+      "Prevent recurrence: S8 safe access controls (keys or codes logged), regular witnessed balance checks with discrepancies investigated, never accepting 'counting error' without review, and staff training and support, including the Pharmacists' Support Service."
+    ],
+    "unacceptableActions": [
+      "Letting him take the tablets and saying nothing, or agreeing to 'sort it out on Monday' (fail).",
+      "Altering, backdating or falsifying the drug register to cover the missing tablets.",
+      "Supplying the oxycodone yourself as an emergency or owing supply.",
+      "Physically trying to take the bag from him or confronting him aggressively.",
+      "Telling only the owner and treating it as an internal matter when the facts meet the reporting and mandatory notification thresholds."
+    ],
+    "counsellingPoints": [],
+    "codePrinciples": [],
+    "legal": [
+      "Medicines, Poisons and Therapeutic Goods Act 2008 (ACT) and Medicines, Poisons and Therapeutic Goods Regulation 2008 (ACT): a controlled medicine (Schedule 8) may be supplied only on a valid prescription from an authorised prescriber; each transaction must be recorded in the drug register when it happens.",
+      "Medicines, Poisons and Therapeutic Goods Regulation 2008 (ACT): controlled medicines must be stored securely, and any loss or theft must be reported to ACT Health (the Chief Health Officer) promptly.",
+      "Health Practitioner Regulation National Law (ACT): a registered pharmacist must make a mandatory notification to Ahpra if they form a reasonable belief that another practitioner has placed the public at risk of substantial harm by practising in a way that significantly departs from professional standards, or by practising with an impairment.",
+      "Pharmacy Board of Australia Code of Conduct: practitioners should avoid providing care to themselves or people close to them, and in particular should not prescribe or supply Schedule 8 or psychotropic medicines for them, outside a proper professional relationship.",
+      "Criminal law: taking stock without authority may amount to theft, and possessing or supplying a controlled medicine without authority is an offence."
+    ],
+    "modelAnswer": "1. The legal issue: oxycodone is a Schedule 8 controlled medicine. Under the Medicines, Poisons and Therapeutic Goods Act and Regulation 2008 (ACT), it can only be supplied on a valid prescription, and every movement must be entered in the drug register at the time. Taking it from the safe for his wife without a prescription is unlawful supply, and in effect theft or diversion. A prescription written next week cannot make tonight's supply lawful, and there is no emergency supply for S8s.\n\n2. Act now: I'd speak to Daniel calmly and privately, acknowledge that his wife is in pain, but tell him I can't let this happen and ask him to put the tablets back. If he agrees, we count them back into the safe together and check the balance is 60. I would not let him 'fix the register later', and I wouldn't touch his bag or escalate physically.\n\n3. His wife: suggest lawful routes tonight, such as an after-hours GP, an ACT walk-in centre or telehealth, or the emergency department if the pain is severe, with non-prescription pain relief in the meantime.\n\n4. Notify the owner tonight. If the tablets aren't returned, the loss has to be reported to ACT Health, and to the police as appropriate. The 10-tablet shortfall last month should be re-examined and reported as well.\n\n5. Mandatory notification: diverting S8 stock is a significant departure from professional standards that puts the public at risk. Together with the earlier shortfall, it raises the possibility of a pattern or of personal use. If I form a reasonable belief, I'm legally required to notify Ahpra. That isn't disloyalty: it protects the public and can get him help. I'd also mention the Pharmacists' Support Service to him.\n\n6. Document what I saw, what he said and what I did, dated and factual.\n\n7. Prevent recurrence: tighter safe access, regular witnessed S8 balance checks, discrepancies always investigated and reported, and staff training."
+  },
+  "review": {"status": "draft", "version": "0.1"},
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 07/10/2026 PM session, Part B)",
+    "Needs pharmacist review: ACT setting chosen by the drafter; 20 tablets, a balance of 60, the colleague being pharmacist in charge, and the earlier 10-tablet shortfall are invented (the shortfall strengthens the mandatory notification case and may go beyond the recall); the ACT loss or theft reporting route (ACT Health / Chief Health Officer) and the Canberra Script name; whether witnessing a return removes the need to report tonight's event to ACT Health. Answer key written from current Australian practice."
+  ]
+}

@@ -1,0 +1,289 @@
+{
+  "id": "metoclopramide-galantamine-nausea",
+  "title": "Something for the nausea",
+  "category": "clinical",
+  "problemType": "Adverse drug reaction and prescribing cascade (dose re-titration after interruption)",
+  "specialty": "neurology",
+  "setting": "Community pharmacy, Mandurah WA",
+  "questionSheet": "Mrs Dorothy Pearce, an older woman who is a regular at your pharmacy, presents a new prescription from her GP, Dr Wu, for metoclopramide 10 mg tablets, one three times daily when required for nausea, for 5 days. She saw Dr Wu this morning. Dr Wu can be contacted by phone. Manage the situation as you would in practice. You may contact the prescriber.",
+  "documents": {
+    "prescription": {
+      "item": "Metoclopramide 10 mg tablets · Qty 25 · No repeats",
+      "directions": "One tablet three times daily when required for nausea, for up to 5 days",
+      "footer": "Dr H. Wu (GP) · Dorothy Pearce, DOB 22/08/1947",
+      "date": "07/10/2026"
+    },
+    "dispensingHistory": [
+      {
+        "date": "15 Sep 2026",
+        "item": "Perindopril erbumine 4 mg tablets (generic)",
+        "directions": "One tablet in the morning",
+        "quantity": "30",
+        "prescriber": "Dr H. Wu (GP)"
+      },
+      {
+        "date": "15 Sep 2026",
+        "item": "Atorvastatin 20 mg tablets (generic)",
+        "directions": "One tablet at night",
+        "quantity": "30",
+        "prescriber": "Dr H. Wu (GP)"
+      },
+      {
+        "date": "1 Sep 2026",
+        "item": "Galantamine 16 mg modified-release capsules (Reminyl PRC)",
+        "directions": "One capsule each morning with breakfast",
+        "quantity": "28",
+        "prescriber": "Dr H. Wu (GP)"
+      },
+      {
+        "date": "16 Aug 2026",
+        "item": "Perindopril erbumine 4 mg tablets (generic)",
+        "directions": "One tablet in the morning",
+        "quantity": "30",
+        "prescriber": "Dr H. Wu (GP)"
+      },
+      {
+        "date": "16 Aug 2026",
+        "item": "Atorvastatin 20 mg tablets (generic)",
+        "directions": "One tablet at night",
+        "quantity": "30",
+        "prescriber": "Dr H. Wu (GP)"
+      },
+      {
+        "date": "4 Aug 2026",
+        "item": "Galantamine 16 mg modified-release capsules (Reminyl PRC)",
+        "directions": "One capsule each morning with breakfast",
+        "quantity": "28",
+        "prescriber": "Dr H. Wu (GP)"
+      },
+      {
+        "date": "7 Jul 2026",
+        "item": "Galantamine 16 mg modified-release capsules (Reminyl PRC)",
+        "directions": "One capsule each morning with breakfast",
+        "quantity": "28",
+        "prescriber": "Dr H. Wu (GP)"
+      }
+    ],
+    "notes": [
+      "Today's date: 7 Oct 2026."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient · Mrs Pearce",
+      "name": "Mrs Pearce",
+      "description": "A 79-year-old retired school librarian with mild Alzheimer's disease, gentle and polite, who looks pale and a little wan. She is chatty but sometimes loses the thread and repeats herself; she answers simple, specific questions well and gets muddled by long or several questions at once. She is a little embarrassed about forgetting her capsules. She wants something to stop feeling sick so she can eat again. She becomes anxious if told she has done something dangerous, and settles when given a simple plan, ideally written down, and when the pharmacist offers to involve her husband Ron, who usually helps with her tablets.",
+      "bio": {
+        "Full name": "Dorothy Pearce",
+        "Date of birth": "22 August 1947",
+        "Age": "79",
+        "Address": "27 Banksia Road, Mandurah WA 6210",
+        "Phone": "0491 572 549",
+        "Occupation": "Retired school librarian"
+      },
+      "avatar": "rosie-costa",
+      "voice": "au-soft-woman",
+      "openingLine": "Hello love. Dr Wu's given me something for my tummy. I've been feeling ever so sick this week.",
+      "publicFacts": [
+        "She has felt sick in the stomach for about five days and has gone off her food.",
+        "Dr Wu saw her this morning and wrote the script.",
+        "She takes a 'memory capsule' each morning and blood pressure and cholesterol tablets.",
+        "Her husband Ron usually helps her with her tablets."
+      ]
+    },
+    "prescriber": {
+      "label": "Call Dr Wu",
+      "name": "Dr Wu",
+      "description": "An experienced GP in her forties, firm and efficient; she wants a reason and a clear plan before changing anything. Her first response is that the patient is miserable and needs something for the nausea. She changes the plan once the pharmacist identifies the galantamine interruption and restart as the cause and recommends a specific re-titration with a reason to avoid metoclopramide. She asks which reference the pharmacist is relying on.",
+      "bio": {
+        "Full name": "Dr Helen Wu",
+        "Role": "General practitioner",
+        "Workplace": "Peel Estuary Medical Centre, Mandurah WA"
+      },
+      "avatar": "dr-tan",
+      "voice": "au-woman-professional",
+      "openingLine": "Helen Wu here. I'm between patients, so please be quick.",
+      "publicFacts": [
+        "Dorothy Pearce is your patient. She has mild Alzheimer's disease, diagnosed about 18 months ago, and has been stable on galantamine 16 mg modified-release once daily for over a year.",
+        "She also takes perindopril 4 mg and atorvastatin 20 mg.",
+        "You saw her this morning with five days of nausea and two episodes of vomiting; her abdomen was soft and non-tender and you thought it was a mild gastro-type illness.",
+        "Her heart rate this morning was 58 and her blood pressure 112/68."
+      ]
+    }
+  },
+  "hiddenFacts": [
+    {
+      "id": "galantamine-interrupted",
+      "agent": "patient",
+      "fact": "You spent about ten days at your daughter's in Bunbury in late September and forgot to pack your memory capsules, so you didn't take any while you were there. When you got home last Thursday (1 October) you started taking one 16 mg capsule every morning again straight away, the same as before. The sickness started the next day.",
+      "triggers": [
+        "missed",
+        "miss",
+        "forgot",
+        "forget",
+        "skipped",
+        "away",
+        "holiday",
+        "trip",
+        "stop memory",
+        "memory capsule",
+        "galantamine",
+        "reminyl",
+        "restart",
+        "start again",
+        "every day",
+        "changes medicine",
+        "recently changed"
+      ],
+      "unlockHint": "“Have there been any changes to your medicines lately, or any days you've missed your memory capsule?”"
+    },
+    {
+      "id": "gp-not-told",
+      "agent": "patient",
+      "fact": "You didn't tell Dr Wu about missing the capsules because you were embarrassed and didn't think it mattered.",
+      "triggers": [
+        "tell doctor",
+        "doctor know",
+        "mention",
+        "dr wu know",
+        "tell dr wu",
+        "doctor aware"
+      ],
+      "unlockHint": "“Did you tell Dr Wu that you'd missed your capsules and then restarted them?”"
+    },
+    {
+      "id": "symptoms-detail",
+      "agent": "patient",
+      "fact": "You feel sick mostly in the hour or two after your morning capsule. You've vomited twice, had some loose bowels and stomach cramps, and you've barely eaten for days. You feel a bit dizzy and light-headed when you stand up, and you're not drinking much. There's no blood in the vomit, no fever and no tummy pain to speak of. Nobody else at home has been sick.",
+      "triggers": [
+        "vomit",
+        "vomiting",
+        "diarrhoea",
+        "diarrhea",
+        "bowels",
+        "dizzy",
+        "light headed",
+        "faint",
+        "eating",
+        "drinking",
+        "fluids",
+        "fever",
+        "blood",
+        "worse time",
+        "after capsule",
+        "anyone else sick",
+        "symptoms"
+      ],
+      "unlockHint": "“Tell me more about the sickness: when is it worst, have you vomited or had diarrhoea, and are you managing to drink?”"
+    },
+    {
+      "id": "falls-and-carer",
+      "agent": "patient",
+      "fact": "You had a wobble and nearly fell getting out of bed yesterday. Ron fills your tablet box on Sundays but he was away fishing the week you were at your daughter's, and he doesn't know you skipped them.",
+      "triggers": [
+        "fall",
+        "falls",
+        "fell",
+        "wobbly",
+        "balance",
+        "husband",
+        "ron",
+        "help tablets",
+        "tablet box",
+        "dosette",
+        "webster",
+        "blister pack",
+        "carer",
+        "who helps",
+        "manage tablets"
+      ],
+      "unlockHint": "“Who helps you with your tablets, and have you had any falls or near-falls lately?”"
+    },
+    {
+      "id": "gp-agrees-retitrate",
+      "agent": "prescriber",
+      "fact": "You didn't know she had stopped galantamine for about ten days and restarted at the full 16 mg dose. If the pharmacist explains that after an interruption of more than a few days galantamine must be restarted at the lowest dose and re-titrated, and that the timing points to cholinergic adverse effects rather than gastro, you agree to: withhold galantamine until the nausea and vomiting settle (a day or two), then restart at 8 mg modified-release once daily with breakfast for 4 weeks before going back up to 16 mg. You will send a new prescription for the 8 mg capsules. You ask, 'So what do I do about the nausea in the meantime?'",
+      "triggers": [
+        "galantamine",
+        "reminyl",
+        "missed doses",
+        "interrupted",
+        "interruption",
+        "restarted",
+        "full dose",
+        "retitrate",
+        "re titrate",
+        "titrate",
+        "titration",
+        "lowest dose",
+        "8 mg",
+        "cholinergic",
+        "cholinesterase"
+      ],
+      "unlockHint": "“She went ten days without galantamine and restarted at 16 mg; the nausea began the next day. It needs to be withheld and re-titrated from 8 mg.”"
+    },
+    {
+      "id": "gp-agrees-cancel-metoclopramide",
+      "agent": "prescriber",
+      "fact": "If the pharmacist explains that metoclopramide in an elderly patient with dementia carries a risk of extrapyramidal effects and tardive dyskinesia, may worsen confusion, and would only be treating an adverse effect of galantamine (a prescribing cascade), you agree to cancel it. You accept supportive care (small frequent meals, oral rehydration) and, only if she still needs an antiemetic once galantamine is withheld, a short course of domperidone 10 mg up to three times daily at the lowest dose, with QT caution. You agree to hold perindopril while she is vomiting and not drinking, and to review her in a week, including pulse and blood pressure. You agree her husband should be involved and that a dose administration aid would help.",
+      "triggers": [
+        "metoclopramide",
+        "maxolon",
+        "extrapyramidal",
+        "tardive",
+        "dyskinesia",
+        "parkinsonism",
+        "prescribing cascade",
+        "elderly",
+        "domperidone",
+        "antiemetic",
+        "cancel",
+        "perindopril",
+        "dehydrated",
+        "sick day",
+        "dose administration aid",
+        "webster"
+      ],
+      "unlockHint": "“I'd suggest we don't use metoclopramide: in an older person with dementia the extrapyramidal risk is high, and it would only treat a galantamine side effect.”"
+    }
+  ],
+  "answerKey": {
+    "plantedProblem": "The nausea and vomiting are cholinergic adverse effects of galantamine: she stopped it for about ten days while away and restarted at the full 16 mg modified-release dose instead of re-titrating from 8 mg (needed after an interruption of more than a few days). Metoclopramide treats the adverse effect rather than the cause (a prescribing cascade) and is a poor choice in a 79-year-old with Alzheimer's disease because of the risk of extrapyramidal effects, tardive dyskinesia and worsened confusion. Secondary issues: she is light-headed, nearly fell, is drinking little and is on perindopril (dehydration, low blood pressure; sick-day advice), her pulse is 58 (galantamine can cause bradycardia), and missed doses show a need for supervised medication management.",
+    "acceptableResolutions": [
+      "Ask about recent changes or missed doses and establish the 10-day galantamine gap, the restart at 16 mg, and the timing of the nausea after restarting and after each morning dose.",
+      "Identify the cholinergic adverse effect and the need to re-titrate; recommend withholding galantamine until symptoms settle, then restarting at 8 mg modified-release once daily with food for 4 weeks before increasing to 16 mg.",
+      "Do not supply metoclopramide; explain to the GP the extrapyramidal and tardive dyskinesia risk in the elderly, possible worsening of cognition, and the prescribing cascade; if an antiemetic is still needed, suggest a short course of domperidone at the lowest dose with QT caution.",
+      "Assess dehydration and falls risk (light-headed, near-fall, poor intake, pulse 58); advise oral rehydration and recommend withholding perindopril while vomiting and not drinking, restarting once eating and drinking normally, with review if dizziness persists or she cannot keep fluids down.",
+      "Involve her husband with her consent and recommend a dose administration aid and a plan for travel, and consider a Home Medicines Review.",
+      "Arrange GP review in about a week (symptoms, pulse, blood pressure, weight) and document the intervention and new plan."
+    ],
+    "unacceptableActions": [
+      "Dispensing metoclopramide without exploring the cause of the nausea (overall fail).",
+      "Advising her to carry on with galantamine 16 mg daily and 'push through' the nausea.",
+      "Telling her to stop galantamine permanently without involving the prescriber.",
+      "Recommending prochlorperazine or another antipsychotic antiemetic as the solution in an elderly patient with dementia.",
+      "Giving complex verbal-only instructions to a patient with cognitive impairment without involving her carer or writing them down."
+    ],
+    "counsellingPoints": [
+      "Your memory capsule is the likely cause of the sickness: after a break your body needs to get used to it again on a lower dose.",
+      "Don't take the memory capsule until the sickness has settled, as Dr Wu agreed; then start the new 8 mg capsule once each morning with breakfast.",
+      "After four weeks on 8 mg, Dr Wu will check how you are and move you back up to 16 mg; don't go back to the 16 mg capsules on your own, and put the old ones aside.",
+      "If you ever miss your memory capsule for more than a few days, don't just restart: ask your pharmacist or doctor first.",
+      "Sip fluids often, such as an oral rehydration solution like Hydralyte, and try small, plain meals.",
+      "Leave out your blood pressure tablet (perindopril) while you're being sick and not drinking much, and restart it once you're eating and drinking normally again.",
+      "Stand up slowly and sit on the edge of the bed first; get help straight away if you faint, have a fall, feel your heart is very slow or irregular, or can't keep any fluids down for a day.",
+      "Ron can help by filling a Webster-pak or tablet box each week, and by packing your medicines whenever you go away; we can set that up."
+    ],
+    "codePrinciples": [],
+    "legal": [],
+    "modelAnswer": "1. Set-up: introduce self, confirm identity (name, DOB, address), ask if she would like to sit down and talk in the consultation room, and ask whether she'd like her husband involved. Use short, single questions because of her cognitive impairment. 2. Gather information: what the nausea is like, when it started (about 5 days ago), when it is worst (an hour or two after the morning capsule), vomiting (twice), diarrhoea, intake (barely eating, drinking little), dizziness on standing and a near-fall, red flags (no blood, no fever, no significant pain, no contacts unwell). Ask about any recent changes or missed doses: she went 10 days without galantamine while away and restarted at 16 mg on 1 October; nausea began the next day; Dr Wu wasn't told. Check the dispensing history: no galantamine supply since 1 September, consistent with the gap. Ask who manages her medicines (Ron fills a box; he was away too). 3. Identify and explain: galantamine is a cholinesterase inhibitor; nausea, vomiting, diarrhoea, anorexia and weight loss are common, dose-related cholinergic effects that are minimised by slow titration. After an interruption of more than a few days, tolerance is lost and it should be restarted at the lowest dose and re-titrated. Restarting at 16 mg caused the symptoms. Metoclopramide is a dopamine antagonist with a higher risk of extrapyramidal effects and tardive dyskinesia in older people, can worsen confusion, and would be a prescribing cascade. Galantamine can also cause bradycardia and syncope (pulse 58), and dehydration on perindopril adds to dizziness and falls risk. 4. Check references: AMH (galantamine, metoclopramide), the galantamine product information on restarting after interruption, eTG and APF. 5. Phone Dr Wu (ISBAR) with a specific recommendation: cancel metoclopramide; withhold galantamine until nausea settles (1–2 days), then restart galantamine 8 mg modified-release once daily with breakfast for 4 weeks, then 16 mg if tolerated; new script for 8 mg capsules. When asked about the nausea in the meantime, recommend supportive care first and, only if needed, short-term domperidone 10 mg up to three times daily at the lowest effective dose, noting QT risk in the elderly. Recommend withholding perindopril while vomiting and poorly hydrated, and a review in a week including pulse, blood pressure and weight. Name references when asked. 6. Counsel Mrs Pearce, ideally with Ron present or by phone with her consent, with written instructions: withhold the capsule, restart at 8 mg, don't use the old 16 mg capsules until told, hydration, perindopril sick-day advice, falls precautions, when to seek help. 7. Follow-up: arrange a dose administration aid, suggest a Home Medicines Review, and phone in 2–3 days to check symptoms. 8. Document the missed doses, the advice, the call with Dr Wu, the cancelled metoclopramide and the new titration plan."
+  },
+  "review": {
+    "status": "draft",
+    "version": "0.1"
+  },
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 07/10/2026 AM session, Part C)",
+    "Needs pharmacist review: the recall gives the metoclopramide script, Alzheimer's, and galantamine 16 mg interrupted and restarted at full dose. Invented or interpreted: a 10-day interruption while travelling; the re-titration plan (withhold until settled, then 8 mg MR daily for 4 weeks, then 16 mg; check the product information threshold for restarting after interruption); domperidone as a fallback antiemetic; the perindopril sick-day advice, pulse 58, near-fall and dose administration aid; WA setting; brands and pack sizes in the history."
+  ]
+}

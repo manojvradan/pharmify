@@ -1,0 +1,73 @@
+{
+  "id": "staff-discussing-patients-overheard",
+  "title": "Behind the counter",
+  "category": "ethical",
+  "problemType": "Patient confidentiality and privacy in the pharmacy",
+  "setting": "Community pharmacy, Hobart, Tasmania (you are an employee pharmacist)",
+  "questionSheet": "You are an employee pharmacist at a busy community pharmacy in Hobart, Tasmania. While checking scripts, you overhear two pharmacy assistants, Leanne and Kate, chatting at the front dispensary counter. They are talking about a regular patient by name: that she has 'just started on antidepressants since her husband left', and that 'the young bloke on the opioid program' was in again. Several customers are waiting within a couple of metres of the counter. When you mention it to the owner, she says: 'It's fine. They keep their voices down and nobody has ever complained.' Explain what you would do and why, referring to your professional and ethical obligations.",
+  "documents": {
+    "notes": [
+      "The front dispensary counter is open to the waiting area. Customers stand about 2 metres away.",
+      "Information overheard: a named patient's new antidepressant and her marriage breakdown; another patient's participation in the opioid treatment program.",
+      "The pharmacy has a privacy policy in the staff manual, but no staff privacy training has been run in the past two years.",
+      "There is a private consulting room next to the dispensary."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Pharmacy assistant · Leanne",
+      "name": "Leanne",
+      "avatar": "penny-okafor",
+      "voice": "au-woman-40s",
+      "description": "A pharmacy assistant in her forties who has worked here for eight years and knows most regulars well. Warm and caring; she sees the chat as concern for the patients, not gossip. She is embarrassed and a little defensive at first, but responds well to a private, respectful conversation that explains the harm, and is willing to change.",
+      "bio": {"Full name": "Leanne Hart", "Role": "Pharmacy assistant", "Workplace": "This pharmacy, eight years"},
+      "openingLine": "Oh, we were only saying how worried we are about her. We weren't being loud.",
+      "publicFacts": [
+        "She has worked at the pharmacy for eight years and knows many regular patients.",
+        "She thinks she and Kate were speaking quietly.",
+        "The owner has never raised it with staff."
+      ]
+    }
+  },
+  "hiddenFacts": [],
+  "answerKey": {
+    "plantedProblem": "A breach of patient confidentiality: staff are discussing identifiable patients' sensitive health information (mental health treatment, opioid treatment program) where customers can hear, and the owner is condoning it because 'they're quiet and nobody has complained'. Whether it is quiet, or whether anyone has complained, doesn't matter. Privacy law and the professional codes require health information to be used only for care and protected from disclosure. The pharmacist has a duty to act even though the owner disagrees: speak to the staff, raise it properly with the owner, assess whether the disclosure needs further action, and fix the system.",
+    "acceptableResolutions": [
+      "Identify the issue as a breach of confidentiality and privacy involving sensitive health information, made worse by stigma (mental health, opioid treatment), and explain why the owner's reasons do not justify it.",
+      "Stop the conversation discreetly at the time, without embarrassing staff in front of customers, for example by quietly asking them to continue in the back.",
+      "Speak to the staff members privately and respectfully, explaining the harm (patients could be identified, stigmatised or deterred from coming in) and what is expected.",
+      "Raise it with the owner professionally, explaining the legal and professional obligations and the risk to patients and the pharmacy, and propose practical changes.",
+      "Consider whether the disclosure needs further action: whether any customer could identify the patients and whether serious harm is likely, which would need assessment under the Notifiable Data Breaches scheme; record and escalate as needed.",
+      "Put in prevention: privacy training for all staff, a rule that patient matters are discussed only in private areas and only when needed for care, use of the consulting room, and a review of the counter layout.",
+      "Document the incident, the conversations and the actions agreed.",
+      "If the owner refuses to act and breaches continue, seek advice from the PSA or an indemnity insurer, and consider contacting the Office of the Australian Information Commissioner."
+    ],
+    "unacceptableActions": [
+      "Accepting the owner's view and doing nothing because no one has complained.",
+      "Reprimanding or shaming the staff in front of customers.",
+      "Joining in, or treating the discussion of patients' personal lives as harmless chat.",
+      "Telling other customers or the patients concerned about the conversation in a way that spreads the information further.",
+      "Assuming that staff who aren't pharmacists aren't bound by confidentiality."
+    ],
+    "counsellingPoints": [],
+    "codePrinciples": [
+      "Pharmacy Board of Australia (Ahpra shared) Code of Conduct, confidentiality and privacy: protect patients' privacy and the confidentiality of their health information, and ensure staff and systems do the same.",
+      "PSA Code of Ethics, Care principle 2c: respect and protect the patient's privacy and confidentiality.",
+      "PSA Code of Ethics, Care principle 2j: provide a safe, respectful environment for patients, which includes not exposing their health information to others.",
+      "PSA Code of Ethics, Integrity principle: uphold the reputation of and public trust in the profession, which depends on patients being confident their information is safe.",
+      "PSA Code of Ethics, Competence and Collaboration principles: pharmacists share responsibility for the conduct and training of the staff they supervise, and should raise concerns with colleagues and employers constructively.",
+      "Pharmacy Board of Australia Code of Conduct: practitioners must act on concerns about practices that put patients at risk, even when an employer disagrees."
+    ],
+    "legal": [
+      "Privacy Act 1988 (Cth) and the Australian Privacy Principles: every private-sector health service provider, including a community pharmacy of any size, must use and disclose health information only for the purpose it was collected (APP 6) and take reasonable steps to protect it from unauthorised disclosure (APP 11).",
+      "Notifiable Data Breaches scheme (Privacy Act 1988 (Cth), Part IIIC): an unauthorised disclosure of personal information likely to cause serious harm must be assessed and, if it is an eligible data breach, notified to the affected individuals and the Office of the Australian Information Commissioner.",
+      "PSA Professional Practice Standards: provide private counselling areas and staff training so that patient confidentiality is maintained."
+    ],
+    "modelAnswer": "1. Name the dilemma: staff are discussing identifiable patients' sensitive health information, a new antidepressant after a marriage breakdown and participation in the opioid treatment program, where waiting customers can hear. The owner says it's fine because they're quiet and no one has complained. The conflict is between my duty to protect patient confidentiality and a wish to keep good relations with colleagues and my employer.\n\n2. The people affected: the two patients, who could be identified, stigmatised or put off coming to the pharmacy; other customers, who will reasonably wonder whether their own information is safe; the staff; the owner; and public trust in pharmacy.\n\n3. The obligations: under the Privacy Act 1988 (Cth) and the Australian Privacy Principles, the pharmacy may use health information only for care and must protect it from disclosure. The Code of Conduct and the PSA Code of Ethics (Care principle 2c) require me to protect confidentiality and to ensure the staff I supervise do too. Being quiet, or the absence of complaints, doesn't make it acceptable, because patients usually don't know they've been discussed.\n\n4. Options: (a) do nothing, as the owner suggests, which lets the harm continue and breaches my obligations; (b) publicly reprimand the staff, which humiliates them and breaks the trust I need to change behaviour; (c) act discreetly, raise it properly and fix the system. I would choose (c).\n\n5. Act and communicate: at the time, I'd quietly ask Leanne and Kate to continue in the back. Later, I'd speak to them privately and kindly, acknowledging that they care about these patients, and explain the harm and what's expected. I'd then meet the owner, explain the legal and professional risks calmly, and propose privacy training, a rule that patient matters are discussed only in private and only when needed for care, use of the consulting room, and a review of the counter layout. I'd also assess with the owner whether this disclosure could be an eligible data breach.\n\n6. Document the incident, the conversations and the agreed actions.\n\n7. If the owner refused and the breaches continued, I'd seek advice from the PSA or my indemnity insurer and consider contacting the Office of the Australian Information Commissioner."
+  },
+  "review": {"status": "draft", "version": "0.1"},
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 13/10/2026 PM session, Part B)",
+    "Needs pharmacist review: Tasmanian setting; the details overheard (a named patient's antidepressant and marriage breakdown, an opioid treatment program patient), the staff names, the counter layout and the lack of recent privacy training are invented; whether an overheard verbal disclosure would be assessed under the Notifiable Data Breaches scheme; the PSA Code of Ethics principle numbers (Care 2c, 2j); the answer key is written from current Australian practice because the recall row gives no answer."
+  ]
+}

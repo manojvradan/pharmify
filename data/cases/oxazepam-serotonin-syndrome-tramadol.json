@@ -1,0 +1,284 @@
+{
+  "id": "oxazepam-serotonin-syndrome-tramadol",
+  "title": "Something for my nerves",
+  "category": "clinical",
+  "problemType": "Adverse drug reaction from a drug interaction (serotonin toxicity)",
+  "specialty": "mental-health",
+  "setting": "Community pharmacy, Melbourne VIC",
+  "questionSheet": "It is Monday morning. Mr Darren Kowalski, a man in his forties and a regular customer, presents an electronic prescription for oxazepam 15 mg tablets from his GP, Dr Brennan, who saw him by telehealth this morning. He says he has been feeling anxious and on edge. His dispensing history at your pharmacy is attached. Dr Brennan can be contacted by phone. Manage the situation as you would in practice. You may contact the prescriber.",
+  "documents": {
+    "prescription": {
+      "item": "Oxazepam 15 mg tablets (Serepax) · Qty 25 · No repeats",
+      "directions": "One tablet up to three times a day when required for anxiety",
+      "footer": "Dr S. Brennan (GP) · Darren Kowalski, DOB 02/07/1980",
+      "prescriber": "Dr Sophie Brennan",
+      "prescriberDetail": "General practitioner · Sunshine Medical Clinic, VIC (telehealth consultation)",
+      "date": "09/11/2026",
+      "quantity": "25",
+      "repeats": "0"
+    },
+    "dispensingHistory": [
+      {
+        "date": "23 Oct 2026",
+        "item": "Venlafaxine 150 mg modified-release capsules (Efexor-XR)",
+        "directions": "One capsule in the morning",
+        "quantity": "28",
+        "prescriber": "Dr S. Brennan (GP)"
+      },
+      {
+        "date": "25 Sep 2026",
+        "item": "Venlafaxine 150 mg modified-release capsules (Efexor-XR)",
+        "directions": "One capsule in the morning",
+        "quantity": "28",
+        "prescriber": "Dr S. Brennan (GP)"
+      },
+      {
+        "date": "28 Aug 2026",
+        "item": "Venlafaxine 150 mg modified-release capsules (Efexor-XR)",
+        "directions": "One capsule in the morning",
+        "quantity": "28",
+        "prescriber": "Dr S. Brennan (GP)"
+      },
+      {
+        "date": "31 Jul 2026",
+        "item": "Venlafaxine 150 mg modified-release capsules (Efexor-XR)",
+        "directions": "One capsule in the morning",
+        "quantity": "28",
+        "prescriber": "Dr S. Brennan (GP)"
+      }
+    ],
+    "notes": [
+      "Today's date: 9 Nov 2026 (morning).",
+      "Mr Kowalski is limping and his right ankle is strapped. He looks flushed and sweaty, and his leg keeps jiggling while he stands at the counter."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient · Mr Kowalski",
+      "name": "Mr Kowalski",
+      "description": "A 46-year-old carpenter, normally easygoing but today restless, irritable and short-tempered. He is sweating, keeps shifting his weight and can't stand still. He wants 'something to calm me down' and to get back to the car, where his partner is waiting. He gets impatient with long or vague questioning, but cooperates when the pharmacist explains briefly why a question matters. He didn't think the painkillers from the after-hours doctor were worth mentioning to anyone. He is alarmed if told bluntly he has a 'syndrome', but calms down and follows advice when it is explained clearly and he is given a plan. He is fully alert and makes sense; he is not confused.",
+      "bio": {
+        "Full name": "Darren Kowalski",
+        "Date of birth": "2 July 1980",
+        "Age": "46",
+        "Address": "15 Station Street, Sunshine VIC 3020",
+        "Phone": "0491 571 491",
+        "Occupation": "Carpenter"
+      },
+      "avatar": "wally-morris",
+      "voice": "au-man-40s",
+      "openingLine": "Mate, can you do this one quick? Doctor sent it through this morning. I'm all over the place.",
+      "publicFacts": [
+        "Since about Friday (three days ago) you have felt anxious, agitated and irritable, you are sweating a lot and your muscles keep twitching.",
+        "You spoke to Dr Brennan on the phone this morning and she sent through the oxazepam for anxiety.",
+        "You have taken venlafaxine every morning for depression for about two years. It has worked well and the dose hasn't changed.",
+        "You rolled your right ankle on a building site last Wednesday. It's strapped and still sore."
+      ]
+    },
+    "prescriber": {
+      "label": "Call the GP",
+      "name": "Dr Brennan",
+      "description": "A GP in her fifties, busy but fair. She did a short telehealth consult this morning and assumed it was a flare of anxiety in someone with a known history. At first she says 'He's had anxiety before; the oxazepam will settle him, please just dispense it.' If the pharmacist only says it's 'an interaction' without detail, she asks what interaction and what symptoms they are seeing. She changes her view quickly when given the tramadol details, the timing and the specific symptoms, and she welcomes a clear recommendation.",
+      "bio": {
+        "Full name": "Dr Sophie Brennan",
+        "Role": "General practitioner",
+        "Workplace": "Sunshine Medical Clinic, VIC"
+      },
+      "avatar": "dr-holt",
+      "voice": "au-woman-professional",
+      "openingLine": "Sophie Brennan speaking. I'm between patients, how can I help?",
+      "publicFacts": [
+        "Darren Kowalski is your patient. He has depression and anxiety, well controlled on venlafaxine 150 mg each morning for about two years.",
+        "This morning by telehealth he said he had felt anxious, on edge and unable to sleep for a few days. You thought it was an anxiety flare and sent an e-script for oxazepam 15 mg, up to three times a day when needed, 25 tablets.",
+        "He didn't mention any new medicines during the call and you didn't examine him."
+      ]
+    }
+  },
+  "hiddenFacts": [
+    {
+      "id": "tramadol-naproxen-after-hours",
+      "agent": "patient",
+      "fact": "Last Wednesday night (5 days ago) you went to an after-hours clinic for the ankle. The doctor there gave you tramadol 50 mg capsules, 1 to 2 every 4 to 6 hours when needed for pain, and naproxen 500 mg twice a day with food. You filled them at a late-night chemist near the clinic, not here. You've been taking 2 tramadol capsules about four times a day because the ankle throbs. You didn't tell Dr Brennan because you didn't think painkillers mattered.",
+      "triggers": [
+        "tramadol",
+        "naproxen",
+        "painkiller",
+        "painkillers",
+        "pain relief",
+        "pain medicine",
+        "ankle",
+        "other medicine",
+        "anything else",
+        "new medicine",
+        "started recently",
+        "other doctor",
+        "after hours",
+        "other pharmacy",
+        "injury"
+      ],
+      "unlockHint": "“Have you started any new medicines recently, for example for your ankle, from any doctor or pharmacy?”"
+    },
+    {
+      "id": "symptom-detail",
+      "agent": "patient",
+      "fact": "Your legs jerk and twitch, worse when you move your feet, and your hands are shaky. You've had diarrhoea a few times a day since Saturday, your heart feels like it's racing, and you feel hot, but you haven't checked your temperature. You haven't felt confused, and your muscles aren't stiff. You haven't slept properly for two nights. It started two days after you began the tramadol and feels nothing like your usual anxiety.",
+      "triggers": [
+        "twitching",
+        "jerking",
+        "muscles",
+        "shaking",
+        "shaky",
+        "tremor",
+        "diarrhoea",
+        "stomach",
+        "heart racing",
+        "palpitations",
+        "temperature",
+        "fever",
+        "hot",
+        "confused",
+        "stiff",
+        "describe symptoms",
+        "when start",
+        "usual anxiety"
+      ],
+      "unlockHint": "“Can you describe exactly what you're feeling, when it started, and whether you've had twitching, shaking, diarrhoea, a racing heart or a fever?”"
+    },
+    {
+      "id": "no-other-serotonergics",
+      "agent": "patient",
+      "fact": "You haven't taken any other medicines, supplements or cough and cold products. No St John's wort, no recreational drugs. You had a couple of beers on Saturday.",
+      "triggers": [
+        "supplements",
+        "herbal",
+        "st johns wort",
+        "recreational",
+        "drugs",
+        "alcohol",
+        "beer",
+        "drinking",
+        "cough cold",
+        "over counter"
+      ],
+      "unlockHint": "“Have you had any supplements, cough or cold products, alcohol or recreational drugs?”"
+    },
+    {
+      "id": "partner-driving",
+      "agent": "patient",
+      "fact": "Your partner, Jodie, drove you here and is waiting in the car out the front. You couldn't drive with the ankle anyway.",
+      "triggers": [
+        "drive",
+        "drove",
+        "driving",
+        "car",
+        "lift",
+        "someone with",
+        "here alone",
+        "partner",
+        "family",
+        "get home",
+        "anyone with",
+        "get here"
+      ],
+      "unlockHint": "“How did you get here today? Is anyone with you?”"
+    },
+    {
+      "id": "last-doses",
+      "agent": "patient",
+      "fact": "You took 2 tramadol capsules and your venlafaxine at about 7 o'clock this morning, and a naproxen with breakfast.",
+      "triggers": [
+        "last dose",
+        "this morning",
+        "last took",
+        "last take",
+        "when take",
+        "how many",
+        "how often",
+        "taken today"
+      ],
+      "unlockHint": "“When did you last take the tramadol and the venlafaxine, and how many are you taking each day?”"
+    },
+    {
+      "id": "gp-unaware-tramadol",
+      "agent": "prescriber",
+      "fact": "You didn't know about the tramadol or naproxen from the after-hours clinic. Once the pharmacist explains that he's on venlafaxine, started tramadol up to 400 mg a day five days ago, and two days later developed agitation, sweating, twitching (clonus), tremor, diarrhoea and a racing heart, you agree this is likely serotonin toxicity, not anxiety. Your plan: he must take no more tramadol; don't dispense the oxazepam today; he needs to be assessed in person now and, as you can't examine him by phone, he should go to the emergency department straight away, driven by his partner, not driving himself. He should not take tomorrow's venlafaxine until the hospital has assessed him and advised when to restart. Ask the pharmacist to give him a note listing his medicines and doses for ED.",
+      "triggers": [
+        "tramadol",
+        "serotonin",
+        "serotonin syndrome",
+        "serotonin toxicity",
+        "after hours",
+        "painkiller",
+        "naproxen",
+        "clonus",
+        "twitching",
+        "sweating",
+        "interaction",
+        "venlafaxine tramadol",
+        "emergency",
+        "hospital"
+      ],
+      "unlockHint": "“He started tramadol up to 400 mg a day from an after-hours clinic five days ago, on top of venlafaxine, and now has agitation, sweating, twitching and diarrhoea. I'm concerned this is serotonin toxicity rather than anxiety and he needs urgent assessment.”"
+    },
+    {
+      "id": "gp-pain-plan",
+      "agent": "prescriber",
+      "fact": "For the ankle once he's been assessed: regular paracetamol (1 g up to four times a day), ice, compression, elevation and rest. He can continue naproxen for a few days only, with food, but you'd rather keep it short because an SNRI with an NSAID increases the bleeding risk. No tramadol or other serotonergic painkillers. You'll see him later this week to review the ankle, his mood and the venlafaxine.",
+      "triggers": [
+        "pain relief",
+        "analgesia",
+        "paracetamol",
+        "ankle pain",
+        "ankle",
+        "instead",
+        "alternative",
+        "naproxen",
+        "bleeding",
+        "follow up",
+        "review"
+      ],
+      "unlockHint": "“What would you like him to use for the ankle pain instead of tramadol, and when would you like to review him?”"
+    }
+  ],
+  "answerKey": {
+    "plantedProblem": "Serotonin toxicity (serotonin syndrome) from tramadol added to venlafaxine, not an anxiety flare. Five days ago an after-hours doctor prescribed tramadol 50 mg capsules (he is taking 2 four times a day, 400 mg/day) and naproxen for a sprained ankle, filled at another pharmacy; his GP is unaware. Two days later he developed agitation, anxiety, irritability, sweating, muscle twitching/jerking (clonus), tremor, diarrhoea and tachycardia, which together meet the Hunter criteria. Dispensing oxazepam as an anxiety treatment would mask and miss the diagnosis.",
+    "acceptableResolutions": [
+      "Do not supply the oxazepam for 'anxiety' without further assessment; recognise the presentation (agitation, sweating, clonus/twitching, tremor, diarrhoea, tachycardia) as possible serotonin toxicity.",
+      "Take a full medication history that uncovers the tramadol and naproxen from the after-hours clinic and another pharmacy, the doses he is actually taking, timing of onset, and his venlafaxine.",
+      "Advise him to take no more tramadol, and explain that tramadol plus venlafaxine can cause serotonin toxicity.",
+      "Phone Dr Brennan with a structured message: new tramadol up to 400 mg/day five days ago, symptoms starting two days later, likely serotonin toxicity; recommend urgent in-person medical assessment today (ED) and holding the oxazepam supply.",
+      "Arrange safe transport (partner drives; he must not drive), give a written list of medicines and doses to take to ED, and explain red-flag symptoms.",
+      "Suggest non-serotonergic analgesia for the ankle (paracetamol, RICE; short-course naproxen with food, noting the SNRI plus NSAID bleeding risk) and advise avoiding tramadol and other serotonergic medicines in future.",
+      "Document the intervention, record the adverse reaction on his profile, and consider reporting it to the TGA; follow up with him after assessment."
+    ],
+    "unacceptableActions": [
+      "Dispensing the oxazepam as written and sending him home without identifying serotonin toxicity (the core problem missed).",
+      "Failing to ask about other medicines or prescribers, or not exploring the ankle injury.",
+      "Telling him to keep taking tramadol, or suggesting a different serotonergic opioid (e.g. tapentadol, pethidine) or codeine combination as 'safer'.",
+      "Letting him drive himself to hospital, or simply telling him to 'see the GP next week'.",
+      "Advising him to stop venlafaxine permanently on his own instead of leaving that decision to the doctor assessing him.",
+      "Phoning the GP with only 'there's an interaction' and no symptoms, doses or recommendation."
+    ],
+    "counsellingPoints": [
+      "Don't take any more tramadol: together with your venlafaxine it can cause serotonin toxicity, which is what I think is causing the twitching, sweating, diarrhoea and feeling wired.",
+      "You need to be checked by a doctor in person now: Dr Brennan wants you to go to the emergency department straight away.",
+      "Don't drive. Jodie should take you, and if you feel much worse on the way (very hot, stiff muscles, confused, or a pounding heart) call 000.",
+      "Don't take tomorrow's venlafaxine until the hospital has seen you and tells you when to restart; don't stop it long term on your own.",
+      "Take this list of your medicines and doses (venlafaxine 150 mg, tramadol 2 capsules four times a day since Wednesday, last doses at 7 am, naproxen 500 mg twice a day) and show it to the triage nurse.",
+      "We're not supplying the oxazepam today: your symptoms aren't your usual anxiety, and the doctors at the hospital will decide if you need something to settle the symptoms.",
+      "For the ankle: paracetamol 1 g up to four times a day (no more than 4 g a day), ice, compression and elevation. If you use naproxen keep it to a few days, take it with food, and stop if you get stomach pain or black stools.",
+      "In future, tell every doctor and pharmacist that you take venlafaxine, and avoid tramadol and other medicines that raise serotonin, including some other strong painkillers, some cough medicines and St John's wort."
+    ],
+    "codePrinciples": [],
+    "legal": [],
+    "modelAnswer": "1. Set-up: greet Mr Kowalski, confirm identity and DOB, notice he is sweating, restless and limping, and take him to the consultation room. Explain briefly that I need to ask a few quick questions before supplying a sedative. 2. Gather information: what exactly he's feeling and when it started (since Friday: agitation, sweating, muscle twitching and leg jerking, tremor, diarrhoea, racing heart, feels hot, poor sleep; not confused, not stiff); how it compares with his usual anxiety (different); his regular medicines (venlafaxine 150 mg mane, stable two years); and specifically any new medicines from any doctor or pharmacy, including for the ankle. This uncovers tramadol 50 mg from an after-hours clinic five days ago, 2 capsules four times a day (400 mg/day), plus naproxen 500 mg BD, filled elsewhere, GP unaware. Also ask about OTC, supplements (St John's wort), cough and cold products, alcohol and recreational drugs, last doses (7 am today) and how he got here. 3. Identify and explain: tramadol inhibits serotonin reuptake and venlafaxine is an SNRI; together, at the maximum tramadol dose, they cause serotonin excess. Onset within days of starting tramadol, with neuromuscular signs (clonus, tremor), autonomic signs (sweating, tachycardia, diarrhoea) and mental status change (agitation) meets the Hunter criteria. It can progress to severe toxicity with hyperthermia and rigidity. Treating it as anxiety with oxazepam would mask it and miss the cause. Tramadol also lowers the seizure threshold, adding to risk with venlafaxine, and SNRI plus NSAID raises bleeding risk. 4. Check references: AMH interactions (tramadol with SNRIs), eTG Toxicology (serotonin toxicity), APF; in Victoria, also check SafeScript, as oxazepam and tramadol are monitored medicines, which would show the tramadol supply. 5. Phone Dr Brennan using ISBAR: Mr Kowalski, DOB, oxazepam e-script; new tramadol 400 mg/day plus naproxen from an after-hours clinic five days ago; symptoms from day two; likely serotonin toxicity. Recommend: no further tramadol, hold the oxazepam, urgent in-person assessment today in ED, venlafaxine withheld until assessed. When she says 'just dispense it', explain the timing, symptoms and mechanism. 6. Agreed plan: oxazepam not supplied; ED now, driven by his partner; written medicine list provided. 7. Counsel: stop tramadol, ED now and don't drive, red flags for 000, hold venlafaxine until the hospital advises, paracetamol/RICE for the ankle, short-course naproxen with food, and avoiding serotonergic medicines in future. Check understanding. 8. Follow-up: phone him tomorrow to check on him, record the reaction on his profile and consider a TGA adverse event report. 9. Document the symptoms, medicines found, the call with Dr Brennan, the plan, and that the oxazepam was not dispensed."
+  },
+  "review": {
+    "status": "draft",
+    "version": "0.1"
+  },
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 16/10/2026 AM session, Part C)",
+    "Needs pharmacist review: the doses (venlafaxine XR 150 mg; tramadol 50 mg 1-2 every 4-6 hours, taken as 2 four times a day = 400 mg/day; naproxen 500 mg BD; oxazepam 15 mg up to TDS PRN, 25 tablets), the extra symptoms added (tremor, diarrhoea, tachycardia, feeling hot, no confusion or rigidity), the decision to send him to ED rather than a same-day GP visit, holding the venlafaxine until assessed, not supplying the oxazepam (benzodiazepines are used for serotonin toxicity under medical supervision), and that SafeScript in Victoria would show the tramadol supply (tramadol and benzodiazepines are monitored medicines; checking before dispensing a monitored medicine is mandatory for pharmacists)."
+  ]
+}

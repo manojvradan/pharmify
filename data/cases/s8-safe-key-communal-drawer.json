@@ -1,0 +1,71 @@
+{
+  "id": "s8-safe-key-communal-drawer",
+  "title": "Five pharmacists on",
+  "category": "legal",
+  "problemType": "Secure storage of Schedule 8 medicines and control of the safe key",
+  "setting": "Large community pharmacy, Brisbane, Qld (you are one of the pharmacists on shift)",
+  "questionSheet": "You have recently started at a very large, busy community pharmacy in Brisbane. There are five pharmacists on shift at any one time, as well as dispensary technicians, pharmacy assistants, a delivery driver and casual staff who restock the dispensary. You notice that the key to the Schedule 8 safe is kept in an unlocked communal drawer under the dispensing bench, which anyone working in the dispensary can open. When you raise it, the owner, Michelle, says: 'We dispense so many S8s that we need to be able to grab them quickly. Having the key in the drawer saves everyone time. It's never been a problem.' Explain the legal issues, what you would do, and how the pharmacy could meet its obligations without slowing down S8 dispensing.",
+  "documents": {
+    "notes": [
+      "About 80 to 100 S8 dispensings a day, including opioid treatment program doses.",
+      "The S8 safe is a fixed, keyed safe in the dispensary.",
+      "The communal drawer also holds pens, labels and the till float key. It is not locked.",
+      "Staff with access to the dispensary include 5 pharmacists per shift, technicians, pharmacy assistants, a delivery driver and casual restocking staff.",
+      "S8 balance checks are done monthly. The last check balanced."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Pharmacy owner · Michelle",
+      "name": "Michelle",
+      "avatar": "dr-tan",
+      "voice": "au-woman-professional",
+      "standing": "professional",
+      "description": "The pharmacist owner, in her forties. Runs a high-volume pharmacy and values speed. Brisk and a little impatient ('it's never been a problem'), but practical: she will accept a change if it is explained clearly with the legal basis and comes with a workable, efficient alternative.",
+      "bio": {"Full name": "Michelle Hartigan", "Role": "Pharmacist and owner of this pharmacy", "Workplace": "This large community pharmacy in Brisbane"},
+      "situation": "You own the pharmacy and are talking to the pharmacist in the dispensary.",
+      "knowsPatient": true,
+      "openingLine": "We need to be able to grab the S8s quickly. The drawer saves everyone time.",
+      "publicFacts": [
+        "The pharmacy dispenses a very large number of S8s every day.",
+        "You think the key in the drawer has never caused a problem."
+      ]
+    }
+  },
+  "hiddenFacts": [],
+  "answerKey": {
+    "plantedProblem": "Schedule 8 medicines must be kept in secure storage that only authorised people can access. Keeping the safe key in an unlocked communal drawer gives effective access to technicians, assistants, drivers and casual staff, so the S8s are not securely stored, which breaches Queensland law and the departmental standard for secure storage of S8 medicines, and creates a diversion and theft risk. Convenience and volume do not justify it. Every pharmacist who handles S8s, not only the owner, shares responsibility for their safe custody.",
+    "acceptableResolutions": [
+      "Identify that the S8 storage is not secure: the key gives anyone with drawer access entry to the safe, so the safe's protection is defeated.",
+      "State the legal requirement: S8 medicines must be stored in a safe or secure storage meeting the Queensland departmental standard, with the key or access code kept under the control of an authorised person (a pharmacist) and not left where unauthorised people can get it.",
+      "Raise it with Michelle respectfully and promptly, explaining the legal obligations, the diversion and staff-safety risks, and the consequences (regulatory action, loss of approval or registration issues, and a hold-up target if the key's location becomes known).",
+      "Offer efficient alternatives: key on a lanyard or wristband worn by a designated 'S8 pharmacist' for each shift with handover logged; an electronic or keypad safe with individual PINs and an audit trail; a secure key cabinet with individual access; batching S8 retrievals; and a separate locked area for opioid treatment program doses as permitted.",
+      "Act immediately in the meantime: remove the key from the drawer and keep it on the pharmacist in charge, and do an S8 balance check of all stock to confirm nothing is missing.",
+      "Improve controls: more frequent balance checks for high-turnover S8s, a written S8 policy, staff training, and reporting any unexplained loss to the Queensland Health Monitored Medicines Unit (Medicines Regulation and Quality) and police.",
+      "Document the concern raised and the agreed changes; if the owner refuses and the risk continues, seek advice and consider notifying Queensland Health and/or the Pharmacy Board."
+    ],
+    "unacceptableActions": [
+      "Accepting the arrangement because the owner wants it or because 'it's never been a problem'.",
+      "Leaving the key in the lock of the safe or in another unsecured place as a 'compromise'.",
+      "Giving non-pharmacist staff unsupervised access to S8 stock.",
+      "Ignoring the issue because you are new, or because the owner is responsible for the premises."
+    ],
+    "counsellingPoints": [],
+    "codePrinciples": [
+      "Ahpra shared Code of Conduct: practise lawfully, and raise concerns about workplace systems that put patients, staff or the public at risk.",
+      "PSA Code of Ethics, Integrity principle: do not let commercial or convenience pressures compromise legal and professional obligations."
+    ],
+    "legal": [
+      "Medicines and Poisons Act 2019 (Qld) and Medicines and Poisons (Medicines) Regulation 2021 (Qld): Schedule 8 medicines must be stored securely in accordance with the departmental standard.",
+      "Queensland Health departmental standard 'Secure storage of S8 medicines': S8s are kept in a safe or other approved secure storage, and the key, combination or access code must be kept secure and controlled by an authorised person, not left accessible to others.",
+      "Medicines and Poisons (Medicines) Regulation 2021 (Qld): S8 records must be kept, and loss or theft of S8 medicines must be reported to Queensland Health (and police if theft is suspected).",
+      "Pharmacy Board of Australia Guidelines for dispensing of medicines and PSA Professional Practice Standards: pharmacists are responsible for the safe custody of medicines of dependence."
+    ],
+    "modelAnswer": "1. The legal issue: under the Medicines and Poisons Act 2019 and the Medicines and Poisons (Medicines) Regulation 2021 (Qld), S8 medicines must be kept in secure storage that meets the Queensland Health departmental standard for secure storage of S8 medicines. A safe only works if its key is controlled. With the key in an unlocked communal drawer, technicians, assistants, a delivery driver and casual staff all effectively have access, so the S8s aren't securely stored. That's a breach, a serious diversion and theft risk, and a staff safety risk if the key's location becomes known.\n\n2. My responsibility: as a pharmacist handling S8s, I share responsibility for their safe custody. The owner's convenience argument doesn't change the law, and 'it's never been a problem' isn't evidence; with monthly balance checks a loss could go unnoticed for weeks.\n\n3. Raise it with Michelle respectfully, as a problem to solve together: 'I understand speed matters with this volume, but the key in the drawer means the safe isn't secure under the Queensland rules. Here are some options that keep us fast.'\n\n4. Offer practical alternatives: a designated S8 pharmacist each shift who wears the key on a lanyard or wristband, with handovers logged; or, better for five pharmacists, an electronic or keypad safe with individual PINs and an audit trail, or a secure key cabinet with individual access. Batching S8 retrievals and good organisation of the safe keep things quick.\n\n5. Act straight away: take the key out of the drawer and keep it on the pharmacist in charge, and do a full S8 balance check to confirm nothing is missing. Any unexplained loss is reported to Queensland Health and to police if theft is suspected.\n\n6. Prevent recurrence: a written S8 security procedure, staff training, more frequent balance checks for high-turnover lines, and regular review.\n\n7. Document the concern, the conversation and the agreed changes. If Michelle refuses and the risk continues, I'd seek advice and consider notifying Queensland Health or the Pharmacy Board."
+  },
+  "review": {"status": "draft", "version": "0.1"},
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 16/10/2026 AM session, Part B)",
+    "Needs pharmacist review: Queensland setting; the volume (80 to 100 S8s a day), opioid treatment program doses, the staff mix with drawer access and monthly balance checks were invented. Check the name and content of the Queensland departmental standard for secure storage of S8 medicines (key control requirements), the Queensland Health unit for loss/theft reporting, and whether keypad/electronic safes meet the standard as described. No section numbers cited."
+  ]
+}

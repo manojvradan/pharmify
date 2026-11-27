@@ -1,0 +1,87 @@
+{
+  "id": "expired-tramadol-prescription",
+  "title": "A Friday repeat",
+  "category": "legal",
+  "problemType": "Prescription validity: repeat presented more than 12 months after the prescription date",
+  "setting": "Community pharmacy, Geelong, Vic (Friday afternoon)",
+  "questionSheet": "It is 4:30 pm on Friday 16 October 2026 at your community pharmacy in Geelong, Victoria. Mrs Helen Pappas, 58, a regular patient, hands you the repeat authorisation for her tramadol and asks for her last repeat. The original prescription, written by her GP Dr R. Mehta, is dated 2 October 2025. She uses it for flare-ups of chronic low back pain, says she has a bad flare at the moment and has two tablets left, and that Dr Mehta is on leave until the week after next. She says: 'It's the same as always, can't you just give me the last one? I can't be without it over the weekend.' Her GP clinic is open until 6 pm today and other GPs there offer same-day telehealth. Explain the legal issues and what you would do.",
+  "documents": {
+    "prescription": {
+      "item": "Tramadol hydrochloride 100 mg modified-release tablets (Tramal SR 100)",
+      "directions": "One tablet twice a day during flare-ups of back pain · Quantity 20 · 5 repeats · Repeat authorisation: 1 repeat remaining",
+      "footer": "Dr R. Mehta (GP) · Helen Pappas, DOB 11/06/1968",
+      "prescriber": "Dr R. Mehta",
+      "prescriberDetail": "General practitioner · Bellarine Street Medical Centre, Geelong, Vic",
+      "date": "02/10/2025",
+      "quantity": "20",
+      "repeats": "5",
+      "pbs": true
+    },
+    "dispensingHistory": [
+      {"date": "21 Aug 2026", "item": "Tramadol 100 mg MR tablets (Tramal SR 100)", "directions": "One tablet twice a day during flare-ups of back pain", "quantity": "20", "prescriber": "Dr R. Mehta (GP)"},
+      {"date": "26 May 2026", "item": "Tramadol 100 mg MR tablets (Tramal SR 100)", "directions": "One tablet twice a day during flare-ups of back pain", "quantity": "20", "prescriber": "Dr R. Mehta (GP)"},
+      {"date": "4 Mar 2026", "item": "Tramadol 100 mg MR tablets (Tramal SR 100)", "directions": "One tablet twice a day during flare-ups of back pain", "quantity": "20", "prescriber": "Dr R. Mehta (GP)"},
+      {"date": "18 Dec 2025", "item": "Tramadol 100 mg MR tablets (Tramal SR 100)", "directions": "One tablet twice a day during flare-ups of back pain", "quantity": "20", "prescriber": "Dr R. Mehta (GP)"},
+      {"date": "2 Oct 2025", "item": "Tramadol 100 mg MR tablets (Tramal SR 100)", "directions": "One tablet twice a day during flare-ups of back pain", "quantity": "20", "prescriber": "Dr R. Mehta (GP)"}
+    ],
+    "notes": [
+      "Tramadol is a Schedule 4 (Prescription Only) medicine and is a monitored medicine on SafeScript in Victoria.",
+      "SafeScript check today: tramadol from Dr Mehta only, dispensed only at this pharmacy, at the intervals shown. No other monitored medicines. No alerts.",
+      "Other regular medicines: none relevant. No known allergies.",
+      "Bellarine Street Medical Centre is open until 6 pm today; other GPs there offer same-day telehealth appointments and electronic prescriptions."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient · Mrs Pappas",
+      "name": "Mrs Pappas",
+      "avatar": "rosie-costa",
+      "voice": "au-woman-40s",
+      "description": "A 58-year-old school office manager and long-standing patient. Polite but in pain and worried about the weekend. A bit frustrated at first ('it's the same as always'), but accepts the answer once the pharmacist explains clearly and helps her get a new prescription today.",
+      "bio": {"Full name": "Helen Pappas", "Date of birth": "11 June 1968", "Age": "58", "Address": "14 Aberdeen Street, Newtown, Vic", "Phone": "0491 570 158", "Occupation": "School office manager"},
+      "openingLine": "Hi love, just my last repeat of the tramadol please. My back's playing up again.",
+      "publicFacts": [
+        "Her back is in a bad flare-up and she has two tablets left.",
+        "Her GP, Dr Mehta, is on leave until the week after next.",
+        "She wants the last repeat before the weekend."
+      ]
+    }
+  },
+  "hiddenFacts": [],
+  "answerKey": {
+    "plantedProblem": "The prescription was written on 2 October 2025 and it is now 16 October 2026, more than 12 months later. In Victoria a Schedule 4 prescription (including its repeats) cannot be dispensed more than 12 months after the date it was written, and the PBS also does not allow supply more than 12 months after the date of prescribing. The remaining repeat has expired and cannot lawfully be dispensed, even though the patient is known, the supply pattern is appropriate and SafeScript is clear. Tramadol is S4 (not S8) but is a SafeScript-monitored opioid in Victoria. The patient still needs a timely, lawful way to continue her pain management.",
+    "acceptableResolutions": [
+      "Identify that the prescription is dated 2 October 2025 and the repeat is being presented on 16 October 2026, more than 12 months later, so the repeat has expired and cannot be dispensed (Victorian regulations and PBS rules).",
+      "State tramadol's scheduling correctly: Schedule 4 Prescription Only Medicine nationally, monitored on SafeScript in Victoria (checking before dispensing), not Schedule 8.",
+      "Explain this to Mrs Pappas empathetically and clearly, without implying she has done anything wrong.",
+      "Help her get a new valid prescription today: phone the clinic before 6 pm to arrange a same-day appointment or telehealth consult with another GP, who can issue an electronic prescription that the pharmacy can dispense today.",
+      "Briefly assess her pain and red flags (new weakness or numbness, bladder or bowel changes, fever, a fall), and advise non-drug measures and appropriate interim analgesia (for example regular paracetamol, with a topical or oral NSAID if suitable), referring urgently if red flags are present.",
+      "Recognise that a no-prescription emergency supply is not appropriate when a prescriber can be reached today, and that state restrictions on supplying monitored or dependence-forming medicines without a prescription would need to be checked before considering it.",
+      "Mark the expired repeat as not dispensed or cancelled per pharmacy procedure (or return it with an explanation), and document the presentation, SafeScript check, advice given and the outcome."
+    ],
+    "unacceptableActions": [
+      "Dispensing the expired repeat because she is a regular patient or because 'it's only a couple of weeks over'.",
+      "Altering the date or otherwise falsifying the prescription or dispensing record.",
+      "Simply refusing and sending her away in pain without helping her get a new prescription or interim advice.",
+      "Describing tramadol as a Schedule 8 medicine or claiming the issue is that it needs an S8 permit."
+    ],
+    "counsellingPoints": [],
+    "codePrinciples": [
+      "Ahpra shared Code of Conduct and PSA Code of Ethics (Care principle): act in the patient's best interests and make sure she is not left without timely care.",
+      "PSA Code of Ethics (Integrity principle): practise within the law even when pressured by a known patient."
+    ],
+    "legal": [
+      "Drugs, Poisons and Controlled Substances Regulations 2017 (Vic): a pharmacist must not dispense a prescription for a Schedule 4 poison more than 12 months after the date it was written, and this includes repeats.",
+      "National Health Act 1953 (Cth) and National Health (Pharmaceutical Benefits) Regulations 2017: a PBS prescription, including its repeats, cannot be supplied more than 12 months after the date of prescribing.",
+      "Poisons Standard (Cth): tramadol is Schedule 4 (Prescription Only Medicine).",
+      "Drugs, Poisons and Controlled Substances Act 1981 (Vic) and Regulations: tramadol is a SafeScript monitored poison, and Victorian pharmacists must check SafeScript before dispensing a monitored poison (subject to the stated exemptions).",
+      "Victorian emergency (no-prescription) supply provisions are limited and are not a substitute for a valid prescription when the prescriber or clinic can be contacted."
+    ],
+    "modelAnswer": "1. Identify the legal issue: the prescription is dated 2 October 2025 and today is 16 October 2026, so it's more than 12 months old. Under the Drugs, Poisons and Controlled Substances Regulations 2017 (Vic), a Schedule 4 prescription, including its repeats, can't be dispensed more than 12 months after the date of writing, and PBS rules also stop supply after 12 months. The last repeat has therefore expired, even though she's a known patient, her use pattern is appropriate and SafeScript is clear.\n\n2. Be accurate about scheduling: tramadol is an S4 Prescription Only Medicine, not S8, but in Victoria it is a SafeScript-monitored opioid, so I check SafeScript before any dispensing. I've done that, and it shows one prescriber, one pharmacy and no alerts.\n\n3. Explain to Mrs Pappas kindly: 'Prescriptions only last 12 months, including the repeats, and this one ran out two weeks ago, so legally I can't fill it. It's nothing you've done wrong. Let's get you a new one today.'\n\n4. Solve the access problem: with her permission, phone the clinic now, before it closes at 6 pm, to arrange a same-day or telehealth appointment with another GP. The GP can send an electronic prescription that I can dispense this afternoon. I would mention to the GP the pattern of use, the current flare and the SafeScript result.\n\n5. Check for red flags (new leg weakness or numbness, bladder or bowel changes, fever, trauma) and refer urgently if any are present. Give interim advice: regular paracetamol, an NSAID if suitable, heat and gentle movement.\n\n6. A no-prescription emergency supply isn't the right route here, because a prescriber is reachable today and supply of a monitored opioid without a prescription is tightly restricted.\n\n7. Mark the expired repeat as not dispensed under pharmacy procedure, and document the presentation, the SafeScript check, my advice, the GP contact and the outcome.\n\n8. To prevent it recurring, flag repeat expiry dates in the dispensing software and remind patients when a prescription is close to its 12-month limit."
+  },
+  "review": {"status": "draft", "version": "0.1"},
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 15/10/2026 AM session, Part B)",
+    "Needs pharmacist review: Victorian setting; the product (tramadol 100 mg MR), the dates (written 2 Oct 2025, presented 16 Oct 2026), the dispensing history, the SafeScript result and the open GP clinic with telehealth were invented. Check the Victorian 12-month S4 validity rule and the PBS 12-month rule as stated; that tramadol is on the Victorian SafeScript monitored list with mandatory pharmacist checking; and the exact scope of Victorian emergency supply for tramadol (whether tramadol is treated as a drug of dependence for this purpose). The answer deliberately avoids relying on emergency supply."
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "id": "diazepam-given-to-neighbour",
+  "title": "Asking for Carol",
+  "category": "legal",
+  "problemType": "Unauthorised supply of a Schedule 4 Appendix D medicine by a staff member",
+  "setting": "Community pharmacy, Wollongong, New South Wales (you are the pharmacist in charge)",
+  "questionSheet": "You are the pharmacist in charge at a community pharmacy in Wollongong. Mrs Doris Kemp, an 81-year-old regular customer, comes to the counter and asks for Carol, your dispensary technician. Carol is on a day off. Mrs Kemp tells you that Carol, who lives next door to her, gave her \"ten of those little yellow sleeping tablets\" from the pharmacy last week because she hasn't been sleeping since her husband died, and asks whether she can have some more. You check: Mrs Kemp has never been prescribed diazepam, and an open pack of diazepam 5 mg tablets on the dispensary shelf is 10 tablets short of the balance recorded at your last stocktake. Explain what you would do and why, including the legal issues, who you would contact, and how you would prevent it happening again.",
+  "documents": {
+    "notes": [
+      "Mrs Kemp, 81, lives alone. Her husband died six weeks ago.",
+      "Her regular medicines at this pharmacy are perindopril 5 mg, atorvastatin 40 mg and paracetamol modified release. She has no prescription for diazepam or any other sedative.",
+      "She says she has been taking one tablet at night, and two on 'bad nights'. She has about three left at home.",
+      "She mentions she felt unsteady getting up to the toilet one night last week, but didn't fall.",
+      "Diazepam 5 mg tablets (pack of 50) on the dispensary shelf: 10 tablets short of the stocktake count. No prescription was dispensed to account for it.",
+      "Carol is a dispensary technician, not a registered pharmacist. She is back at work tomorrow."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Customer · Mrs Kemp",
+      "name": "Mrs Kemp",
+      "avatar": "rosie-costa",
+      "voice": "au-soft-woman",
+      "description": "A widow of 81, gentle, grieving and a little lonely. She is grateful to her neighbour Carol and has no idea that anything was wrong; she thinks Carol did her a kindness. She would be upset to think she had got Carol into trouble. She responds well to warmth and a patient, unhurried explanation.",
+      "bio": {"Full name": "Doris Kemp", "Date of birth": "3 February 1945", "Age": "81", "Address": "Fairy Meadow NSW", "Occupation": "Retired school secretary"},
+      "openingLine": "Hello love, is Carol in today? She was so kind to me last week.",
+      "publicFacts": [
+        "Her husband died six weeks ago and she has not been sleeping.",
+        "Her neighbour Carol works at this pharmacy and gave her some tablets to help her sleep.",
+        "She would like some more."
+      ]
+    }
+  },
+  "hiddenFacts": [],
+  "answerKey": {
+    "plantedProblem": "A dispensary technician has taken diazepam, a Schedule 4 medicine that is also an Appendix D (prescribed restricted) substance in NSW, from the dispensary and given it to her neighbour without a prescription or any pharmacist involvement. That is unlawful supply and a loss or theft of pharmacy stock, which must be reported. The recipient is an 81-year-old who lives alone, is grieving, is taking up to two tablets a night and has already felt unsteady, so she is at risk of falls, oversedation and dependence. The candidate must look after Mrs Kemp first and kindly, then address the stock loss, the reporting, the staff member and the pharmacy's controls.",
+    "acceptableResolutions": [
+      "Identify that diazepam is Schedule 4 and an Appendix D (prescribed restricted) substance in NSW, which may be supplied only by a pharmacist on a valid prescription; a technician taking it from the shelf and giving it away is unlawful supply and may be theft.",
+      "Look after Mrs Kemp first: speak privately and kindly, decline further supply, and explain without blaming her or Carol that it can't be supplied without a prescription.",
+      "Assess her safety: ask how much she has taken and when, about alcohol and other medicines, and about the unsteadiness; advise her not to take the remaining tablets, especially with alcohol, and that diazepam raises the risk of falls and drowsiness the next day, particularly at her age.",
+      "Offer to take back the remaining tablets for safe disposal.",
+      "Arrange follow-up: encourage a GP appointment soon (offer to help book it) to discuss sleep and grief, and mention grief support, such as GriefLine or the GP referring her for counselling; give non-drug sleep advice.",
+      "Report: notify the pharmacy owner, and report the loss or theft of an Appendix D substance to the NSW Health Pharmaceutical Regulatory Unit; police involvement is a matter for the owner.",
+      "Speak to Carol on her return, with the owner, as an employment and conduct matter. She is not registered, so Ahpra is not involved for her, but she must not have unsupervised access to restricted medicines while this is dealt with.",
+      "Review stock: do a full count of diazepam and other Appendix D and Schedule 4 items for other discrepancies.",
+      "Document the conversation with Mrs Kemp, the advice given, the stock discrepancy and the notifications.",
+      "Prevent recurrence: keep Appendix D medicines in a secure, restricted location with regular reconciliations, limit and monitor dispensary access, train staff on the law and the consequences, and set up an SOP for investigating discrepancies."
+    ],
+    "unacceptableActions": [
+      "Supplying Mrs Kemp more diazepam, or 'just a few' to tide her over (fail).",
+      "Ignoring the stock discrepancy or writing it off as a counting error.",
+      "Blaming or scolding Mrs Kemp, or discussing Carol's conduct with her in a way that breaches Carol's privacy.",
+      "Sending Mrs Kemp away without assessing her safety, advising about the remaining tablets, or arranging GP follow-up.",
+      "Dealing with it only informally, without telling the owner or reporting the loss."
+    ],
+    "counsellingPoints": [],
+    "codePrinciples": [],
+    "legal": [
+      "Poisons and Therapeutic Goods Act 1966 and Poisons and Therapeutic Goods Regulation 2008 (NSW): a Schedule 4 restricted substance may be supplied only on a prescription by a pharmacist (or by an authorised prescriber); supply by anyone else is an offence.",
+      "Poisons and Therapeutic Goods Regulation 2008 (NSW), Appendix D: diazepam, like other benzodiazepines, is a prescribed restricted substance with extra requirements for secure storage and record keeping, and its loss or theft must be reported to the NSW Health Pharmaceutical Regulatory Unit.",
+      "Pharmacy Board of Australia Code of Conduct and guidelines: the pharmacist in charge is responsible for supervising dispensary staff and for the security of medicines, and must act on unlawful supply and keep accurate records.",
+      "PSA Professional Practice Standards: medicines are stored securely with access limited to authorised staff, and stock discrepancies are investigated and documented.",
+      "Criminal law: taking pharmacy stock without authority may be theft; reporting to police is a matter for the owner."
+    ],
+    "modelAnswer": "1. The legal issue: diazepam is a Schedule 4 medicine and, in NSW, an Appendix D prescribed restricted substance under the Poisons and Therapeutic Goods Regulation 2008. Only a pharmacist can supply it, on a valid prescription. Carol is a technician, so taking ten tablets from the shelf and giving them to her neighbour is unlawful supply and possibly theft, and the loss of an Appendix D substance has to be reported.\n\n2. Mrs Kemp comes first. I'd take her somewhere private, offer my condolences, and explain gently that I can't give her more because it needs a prescription. She has done nothing wrong, and I wouldn't discuss Carol's conduct with her.\n\n3. Her safety: she's 81, lives alone, has been taking up to two tablets a night and already felt unsteady. I'd ask about alcohol, other medicines and any falls, advise her not to take the remaining tablets, explain the risk of falls and next-day drowsiness, and offer to dispose of them for her.\n\n4. Follow-up: I'd help her book a GP appointment soon to talk about her sleep and her grief, and give non-drug sleep advice and information about grief support.\n\n5. Report: tell the owner today, and report the loss of an Appendix D substance to the NSW Health Pharmaceutical Regulatory Unit. Whether to involve the police is the owner's decision.\n\n6. Carol: speak to her with the owner when she's back. She isn't registered, so this is an employment and conduct matter rather than an Ahpra one, but her access to restricted medicines should be limited meanwhile.\n\n7. Do a full stock check of diazepam and other Appendix D items, and document everything.\n\n8. Prevent recurrence: secure storage for Appendix D medicines, regular reconciliations, restricted dispensary access and staff training."
+  },
+  "review": {"status": "draft", "version": "0.1"},
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 08/10/2026 PM session, Part B)",
+    "Needs pharmacist review: the recall does not say who took the diazepam; the drafter made it a dispensary technician (a non-registered staff member) who lives next door to the recipient, so Ahpra is not involved for her; if the examiners meant a pharmacist, add a mandatory notification point. Also invented: NSW setting, Mrs Kemp's age, bereavement, other medicines, dose taken and unsteadiness, ten tablets of 5 mg ('little yellow' tablets), the stocktake shortfall. Check diazepam's Appendix D status and the loss or theft reporting duty under the current NSW Regulation, and whether the Medicines, Poisons and Therapeutic Goods Act 2022 (NSW) has replaced the 1966 Act and 2008 Regulation by the time of use. Answer key written from current Australian practice."
+  ]
+}

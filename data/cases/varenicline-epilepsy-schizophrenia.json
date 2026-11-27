@@ -1,0 +1,358 @@
+{
+  "id": "varenicline-epilepsy-schizophrenia",
+  "title": "Ready to quit",
+  "category": "clinical",
+  "problemType": "Contraindication / precaution (seizure risk) and choice of smoking cessation therapy",
+  "specialty": "neurology",
+  "setting": "Community pharmacy, Brisbane QLD",
+  "questionSheet": "Mr Luke Harrington, a man in his late thirties and a regular customer, presents a new prescription from his usual GP, Dr Whitford, for a varenicline initiation pack with standard starting instructions. He says he wants to give up smoking. His pharmacy profile and dispensing history are attached. Dr Whitford can be contacted by phone. Manage the situation as you would in practice. You may contact the prescriber.",
+  "documents": {
+    "prescription": {
+      "item": "Varenicline 0.5 mg and 1 mg tablets, initiation pack (11 × 0.5 mg, 42 × 1 mg) · Qty 1 pack · No repeats",
+      "directions": "Days 1–3: one 0.5 mg tablet once daily. Days 4–7: one 0.5 mg tablet twice daily. Day 8 onwards: one 1 mg tablet twice daily. Take after food with a full glass of water. Set a quit date between day 8 and day 14.",
+      "footer": "Dr A. Whitford (GP) · Luke Harrington, DOB 02/05/1988",
+      "date": "14/10/2026",
+      "pbs": true
+    },
+    "dispensingHistory": [
+      {
+        "date": "2 Oct 2026",
+        "item": "Topiramate 100 mg tablets (Topamax)",
+        "directions": "One tablet twice daily",
+        "quantity": "60",
+        "prescriber": "Dr A. Whitford (GP)"
+      },
+      {
+        "date": "2 Oct 2026",
+        "item": "Carbamazepine 400 mg controlled-release tablets (Tegretol CR)",
+        "directions": "One tablet twice daily",
+        "quantity": "100",
+        "prescriber": "Dr A. Whitford (GP)"
+      },
+      {
+        "date": "3 Sep 2026",
+        "item": "Topiramate 100 mg tablets (Topamax)",
+        "directions": "One tablet twice daily",
+        "quantity": "60",
+        "prescriber": "Dr A. Whitford (GP)"
+      },
+      {
+        "date": "21 Aug 2026",
+        "item": "Mometasone 0.1% cream (Elocon) 45 g",
+        "directions": "Apply thinly once daily to eczema flares when required",
+        "quantity": "1",
+        "prescriber": "Dr A. Whitford (GP)"
+      },
+      {
+        "date": "13 Aug 2026",
+        "item": "Carbamazepine 400 mg controlled-release tablets (Tegretol CR)",
+        "directions": "One tablet twice daily",
+        "quantity": "100",
+        "prescriber": "Dr A. Whitford (GP)"
+      },
+      {
+        "date": "4 Aug 2026",
+        "item": "Topiramate 100 mg tablets (Topamax)",
+        "directions": "One tablet twice daily",
+        "quantity": "60",
+        "prescriber": "Dr A. Whitford (GP)"
+      }
+    ],
+    "notes": [
+      "Pharmacy patient profile · Conditions recorded: eczema; epilepsy (stable); schizophrenia (stable). Risperidone long-acting injection, every 2 weeks, is supplied and given at the community mental health clinic. No known drug allergies.",
+      "Today's date: 14 Oct 2026, morning."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient · Mr Harrington",
+      "name": "Mr Harrington",
+      "description": "A 38-year-old man who works part-time in a hardware store warehouse. Friendly, a bit shy and earnest, with average health literacy. He is genuinely motivated to quit and pleased he finally went to the GP. He is disappointed and a little deflated if told he can't have the tablets, and may say 'so nothing works for me then', but he is happy to try a proper plan if the pharmacist explains why in plain words and shows him exactly how to use it. He answers questions honestly but briefly and doesn't volunteer details about how he used the lozenges, his seizures, his mood or his coffee unless asked. He gets anxious if his schizophrenia is discussed bluntly or in front of other customers, and relaxes when the pharmacist is matter-of-fact and private.",
+      "bio": {
+        "Full name": "Luke Harrington",
+        "Date of birth": "2 May 1988",
+        "Age": "38",
+        "Address": "14 Jacaranda Street, Chermside QLD 4032",
+        "Phone": "0491 570 157",
+        "Occupation": "Warehouse storeman (part-time), hardware store"
+      },
+      "avatar": "felix-romano",
+      "voice": "au-man-mid-30s",
+      "openingLine": "Morning. The doctor's given me these quit-smoking tablets. My mate used them and swears by them, so I'm keen to get going.",
+      "publicFacts": [
+        "He wants to quit smoking for good; he's sick of the cost and of getting puffed.",
+        "He tried nicotine lozenges once before and they didn't work for him.",
+        "A friend told him varenicline worked for him, so he went to his usual GP, Dr Whitford, and asked for it.",
+        "He has epilepsy and schizophrenia. He says both are 'stable, all under control'.",
+        "He takes carbamazepine and topiramate for epilepsy, gets a risperidone injection at the mental health clinic, and uses a steroid cream for eczema now and then."
+      ]
+    },
+    "prescriber": {
+      "label": "Call the GP",
+      "name": "Dr Whitford",
+      "description": "A GP in her fifties, busy but fair and open to a clear, brief, well-reasoned call. She first defends the prescription: varenicline is the most effective single quit medicine, the patient asked for it, and the seizure warning is a precaution, not a contraindication. If the pharmacist just says 'he has epilepsy, you can't use it', she says 'On what basis? It isn't contraindicated.' She changes her mind when the pharmacist explains the specific risk-benefit for this patient and offers a concrete alternative plan with doses. She asks which reference the pharmacist is using.",
+      "bio": {
+        "Full name": "Dr Anna Whitford",
+        "Role": "General practitioner",
+        "Workplace": "Chermside Family Practice, QLD"
+      },
+      "avatar": "dr-holt",
+      "voice": "au-woman-professional",
+      "openingLine": "Anna Whitford speaking. I'm between patients, what can I do for you?",
+      "publicFacts": [
+        "Luke Harrington has been your patient for about eight years.",
+        "You wrote him a varenicline initiation pack this morning because he asked about it and wants to quit.",
+        "His epilepsy is managed with carbamazepine and topiramate, which you prescribe; a neurologist reviews him once a year.",
+        "His schizophrenia is managed by the community mental health team with a risperidone long-acting injection.",
+        "Your first view is that varenicline is the most effective option and that the seizure warning is a precaution, not a contraindication."
+      ]
+    }
+  },
+  "hiddenFacts": [
+    {
+      "id": "smoking-dependence",
+      "agent": "patient",
+      "fact": "You smoke about 25 cigarettes a day and have your first one within 5 minutes of waking up. You've smoked since you were 16. You smoke more when you're stressed.",
+      "triggers": [
+        "how many cigarettes",
+        "cigarettes day",
+        "much smoke",
+        "per day",
+        "first cigarette",
+        "wake up",
+        "morning cigarette",
+        "packs",
+        "how long smoked",
+        "smoking history",
+        "heavy smoker",
+        "since age"
+      ],
+      "unlockHint": "“How many cigarettes do you smoke a day, and how soon after waking do you have your first one?”"
+    },
+    {
+      "id": "lozenge-use",
+      "agent": "patient",
+      "fact": "About two years ago you bought a pack of 2 mg nicotine lozenges. You only had three or four a day, you sucked them quickly and chewed them like lollies, and they gave you hiccups and heartburn, so you gave up after about a week. You didn't use a patch with them and you didn't get any support like Quitline. You've never tried patches or gum.",
+      "triggers": [
+        "lozenges",
+        "lozenge",
+        "nrt",
+        "nicotine replacement",
+        "patches",
+        "patch",
+        "gum",
+        "how used",
+        "strength",
+        "tried before",
+        "quit before",
+        "old attempt",
+        "didnt work",
+        "quitline"
+      ],
+      "unlockHint": "“Tell me about the lozenges: what strength, how many a day, how you used them and for how long?”"
+    },
+    {
+      "id": "seizure-history",
+      "agent": "patient",
+      "fact": "Your last seizure was about three years ago, a big one with shaking, when you'd missed some doses. Since then you've had none. The neurologist sees you once a year. You don't drive.",
+      "triggers": [
+        "seizure",
+        "seizures",
+        "fit",
+        "fits",
+        "last seizure",
+        "epilepsy",
+        "neurologist",
+        "convulsion",
+        "blackout",
+        "drive",
+        "driving",
+        "well controlled"
+      ],
+      "unlockHint": "“When did you last have a seizure? Who looks after your epilepsy?”"
+    },
+    {
+      "id": "mental-health",
+      "agent": "patient",
+      "fact": "Your schizophrenia has been stable for about four years; your last hospital stay was in 2022. You see a case manager at the community mental health clinic every two weeks when you get your injection. Your mood is okay and you have no thoughts of harming yourself. You worry that quitting will make you stressed and irritable, because smoking 'calms you down'. Your case manager thinks quitting is a good idea.",
+      "triggers": [
+        "mood",
+        "mental health",
+        "schizophrenia",
+        "case manager",
+        "psychiatrist",
+        "voices",
+        "depression",
+        "depressed",
+        "suicidal",
+        "self harm",
+        "stress",
+        "anxious",
+        "irritable",
+        "injection",
+        "risperidone"
+      ],
+      "unlockHint": "“How has your mental health been lately, and does your mental health team know you're planning to quit?”"
+    },
+    {
+      "id": "caffeine-alcohol",
+      "agent": "patient",
+      "fact": "You drink about six cups of strong instant coffee a day and an energy drink most afternoons. You have two or three beers on a weekend. You don't use any other drugs.",
+      "triggers": [
+        "coffee",
+        "caffeine",
+        "energy drink",
+        "cola",
+        "tea",
+        "alcohol",
+        "beer",
+        "drinking",
+        "drugs",
+        "cannabis",
+        "marijuana",
+        "recreational"
+      ],
+      "unlockHint": "“How much coffee or energy drinks do you have a day? Any alcohol or other drugs?”"
+    },
+    {
+      "id": "other-medicines-skin",
+      "agent": "patient",
+      "fact": "You take the carbamazepine and topiramate every morning and night from a pill box and rarely miss now. You don't take anything from the supermarket or health food shop. Your eczema is mild at the moment, on your inner elbows and the backs of your hands.",
+      "triggers": [
+        "other medicine",
+        "anything else",
+        "over counter",
+        "supplements",
+        "vitamins",
+        "herbal",
+        "carbamazepine",
+        "topiramate",
+        "tegretol",
+        "eczema",
+        "skin",
+        "mometasone",
+        "cream",
+        "miss doses"
+      ],
+      "unlockHint": "“Are you taking anything else, including over-the-counter products, and how is your eczema at the moment?”"
+    },
+    {
+      "id": "gp-accepts-seizure-risk",
+      "agent": "prescriber",
+      "fact": "You didn't think hard about the seizure warning. If the pharmacist explains that seizures have been reported with varenicline and it should be used with caution in epilepsy, that he has epilepsy needing two antiepileptics (last seizure three years ago), that he also has schizophrenia (neuropsychiatric effects need monitoring), and that nicotine replacement has never been properly tried, you agree to hold off on varenicline and cancel the script. You'd only reconsider varenicline later, after discussing it with his neurologist, if properly used combination NRT fails.",
+      "triggers": [
+        "seizure",
+        "seizures",
+        "seizure threshold",
+        "epilepsy",
+        "convulsions",
+        "fit",
+        "neuropsychiatric",
+        "schizophrenia",
+        "psychiatric",
+        "precaution",
+        "risk benefit",
+        "cancel script",
+        "not dispense"
+      ],
+      "unlockHint": "“Varenicline has been linked with seizures and should be used with caution in epilepsy. He's on two antiepileptics and also has schizophrenia, and NRT hasn't been tried properly. I'd recommend we don't start it.”"
+    },
+    {
+      "id": "gp-nrt-plan",
+      "agent": "prescriber",
+      "fact": "You accept a specific combination NRT plan: a 21 mg/24-hour nicotine patch plus a fast-acting form such as 4 mg lozenges or gum for cravings, for at least 12 weeks, with Quitline support. You're happy to write a PBS prescription for the patches if the pharmacist asks, and you'll see him in two weeks. You ask the pharmacist to refer him to Quitline and to let the mental health team know he's quitting.",
+      "triggers": [
+        "combination",
+        "nicotine replacement",
+        "nrt",
+        "patch",
+        "patches",
+        "21 mg",
+        "lozenge",
+        "gum",
+        "quitline",
+        "pbs",
+        "follow up",
+        "review two weeks",
+        "mental health team"
+      ],
+      "unlockHint": "“I'd recommend combination NRT instead: a 21 mg/24-hour patch plus 4 mg lozenges for cravings for at least 12 weeks, with Quitline. Could you write a PBS script for the patches and review him in two weeks?”"
+    },
+    {
+      "id": "gp-bupropion",
+      "agent": "prescriber",
+      "fact": "Once varenicline is off the table, you wonder aloud whether bupropion (Zyban) would do instead. You accept straight away if the pharmacist says bupropion is contraindicated in seizure disorders.",
+      "triggers": [
+        "bupropion",
+        "zyban",
+        "other tablet",
+        "another tablet",
+        "other option",
+        "instead",
+        "alternative",
+        "nortriptyline"
+      ],
+      "unlockHint": "“Bupropion isn't an option either: it's contraindicated in epilepsy because it lowers the seizure threshold.”"
+    },
+    {
+      "id": "gp-cyp1a2",
+      "agent": "prescriber",
+      "fact": "You ask whether quitting will change any of his other medicines, since you've heard smoking affects drug levels. You're reassured if told that the effect is through CYP1A2 induction by tobacco smoke, that risperidone, carbamazepine and topiramate aren't significantly affected, and that his caffeine intake should be reduced.",
+      "triggers": [
+        "cyp1a2",
+        "enzyme",
+        "induction",
+        "drug levels",
+        "interaction",
+        "interact",
+        "caffeine",
+        "coffee",
+        "clozapine",
+        "olanzapine",
+        "levels"
+      ],
+      "unlockHint": "“Stopping smoking removes CYP1A2 induction. His risperidone, carbamazepine and topiramate aren't significantly affected, but caffeine levels can rise, so he should cut down on coffee.”"
+    }
+  ],
+  "answerKey": {
+    "plantedProblem": "A new varenicline prescription for a man with epilepsy controlled on two antiepileptics (carbamazepine and topiramate; last seizure three years ago) and stable schizophrenia on a risperidone long-acting injection. Seizures have been reported with varenicline, and the product information advises caution in people with a history of seizures or a lowered seizure threshold; it also needs neuropsychiatric monitoring. In this patient the benefit does not outweigh the risk while first-line nicotine replacement has never been used properly (2 mg lozenges, 3–4 a day, chewed, for a week, no patch, no support). The pharmacist should not dispense, recommend properly dosed combination NRT with behavioural support, and avoid bupropion (contraindicated in seizure disorders). Quitting stops tobacco-smoke CYP1A2 induction; his current medicines are not significantly affected, but caffeine levels rise.",
+    "acceptableResolutions": [
+      "Takes a smoking history (25/day, first cigarette within 5 minutes of waking, previous lozenge attempt and how it was used) and a seizure and mental health history before deciding.",
+      "Identifies that varenicline should be avoided or used only with great caution in this patient because of seizure risk with two antiepileptics, plus schizophrenia; holds the script and phones Dr Whitford with a clear risk-benefit explanation.",
+      "Recommends a specific combination NRT regimen: 21 mg/24-hour patch (or 25 mg/16-hour) plus a fast-acting form such as 4 mg lozenges or gum for cravings, for at least 12 weeks, and offers to supply it or asks for a PBS patch prescription.",
+      "Explains why the lozenges failed (too low a dose, too few, chewed rather than dissolved, too short, no patch, no support) and teaches correct technique.",
+      "Rules out bupropion because it is contraindicated in seizure disorders, if raised.",
+      "Addresses the CYP1A2 effect of quitting: no significant change expected for risperidone, carbamazepine or topiramate, but advise him to roughly halve his caffeine intake; informs the mental health team he is quitting.",
+      "Refers to Quitline (13 7848), arranges follow-up within 1–2 weeks and monitoring of mood and seizure control, and documents the intervention."
+    ],
+    "unacceptableActions": [
+      "Dispensing varenicline without exploring his seizure history and discussing the risk with the prescriber.",
+      "Recommending bupropion as the alternative (contraindicated in epilepsy).",
+      "Telling him NRT 'doesn't work for him' or sending him away with lozenges alone and no technique, dose or duration advice.",
+      "Telling him to stop or change his antiepileptics or antipsychotic, or claiming quitting will raise his risperidone levels and needs a dose cut, without basis.",
+      "Discouraging him from quitting or leaving him without any plan or support."
+    ],
+    "counsellingPoints": [
+      "We won't start the varenicline today: in people with epilepsy it may increase the chance of a seizure, and with your two epilepsy medicines and your mental health history there's a safer option to try first.",
+      "Use a 21 mg 24-hour patch every morning on clean, dry, hairless skin on your upper arm, chest or back, away from your eczema patches and not where you've used the mometasone; change the spot each day. If it gives you vivid dreams, take it off at bedtime.",
+      "Also use a 4 mg lozenge for cravings, roughly one every 1–2 hours while awake to start with: let it dissolve slowly, moving it around your mouth, and don't chew or swallow it; it takes about 20–30 minutes. Avoid coffee, cola or energy drinks for 15 minutes before and while using it.",
+      "Using a patch and lozenges together is safe and works much better than either alone; keep going for at least 12 weeks, then reduce slowly. Set a quit date and stop smoking completely from then.",
+      "Expect cravings, irritability, poor sleep and increased appetite in the first 2–4 weeks; they settle. Call Quitline on 13 7848; they have counsellors experienced with people who have mental health conditions.",
+      "Quitting makes caffeine build up in your body, so cut your coffee and energy drinks to about half to avoid jitters, poor sleep and feeling on edge.",
+      "Keep taking your carbamazepine, topiramate and injection exactly as usual; let your case manager know you're quitting. If your mood drops, you feel agitated, your symptoms come back, or you have any seizure, contact your GP or the mental health team straight away.",
+      "Don't take bupropion (Zyban) if someone suggests it; it isn't suitable with epilepsy.",
+      "Come back or call in a week so we can see how you're going and adjust the doses."
+    ],
+    "codePrinciples": [],
+    "legal": [],
+    "modelAnswer": "1. Set-up: introduce self, confirm identity (Luke Harrington, DOB 2 May 1988), praise his decision to quit, get consent and move to the consultation area because mental health will be discussed. 2. Gather information: smoking history (about 25 a day, first within 5 minutes of waking: high dependence; smoking since 16); previous quit attempts and exactly how he used the lozenges (2 mg, 3–4 a day, chewed, one week, no patch, no support; hiccups and heartburn from chewing); epilepsy history (last tonic-clonic seizure three years ago with missed doses, annual neurologist, adherent with a pill box); mental health (schizophrenia stable four years, case manager, mood fine, no suicidal thoughts, worries about stress); other medicines and OTC (none), eczema status, caffeine (six coffees and an energy drink a day) and alcohol. 3. Identify and explain: varenicline is effective, but seizures have been reported with it and the product information advises caution in patients with a history of seizures or conditions lowering the threshold; he has epilepsy needing two antiepileptics. He also has schizophrenia, so neuropsychiatric effects need monitoring (the EAGLES trial was reassuring, but this adds to the burden). The risk is not justified while first-line NRT, which is safe in epilepsy and psychiatric illness, has never been used properly. Bupropion is contraindicated in seizure disorders. Tobacco smoke (polycyclic aromatic hydrocarbons, not nicotine) induces CYP1A2: on quitting, CYP1A2 substrates such as clozapine, olanzapine, theophylline and caffeine rise. Risperidone (CYP2D6/3A4), carbamazepine (CYP3A4) and topiramate are not significantly affected, but caffeine levels can roughly double, so intake should be halved. Varenicline has no significant pharmacokinetic interaction with carbamazepine (renally cleared), so the concern is pharmacodynamic. 4. References: AMH (varenicline, bupropion, nicotine), varenicline product information, RACGP Supporting smoking cessation guide, eTG, and an interaction reference for CYP1A2. 5. Hold the script and phone Dr Whitford using ISBAR: explain the seizure risk and psychiatric history, the inadequate NRT trial, and recommend combination NRT: 21 mg/24-hour patch plus 4 mg lozenges (first cigarette within 30 minutes) for at least 12 weeks with Quitline; ask her to cancel the varenicline and, if she wishes, write a PBS patch prescription. When she says it's only a precaution, give the patient-specific risk-benefit; if she suggests bupropion, explain it is contraindicated. Agree that varenicline could be reconsidered later with neurologist input if properly used NRT fails, with close monitoring. 6. Counsel on patch use and site selection away from eczema and mometasone, lozenge technique, dosing, duration and tapering, withdrawal symptoms, caffeine reduction, keeping his medicines unchanged, and warning signs (mood change, agitation, return of psychotic symptoms, seizure). 7. Follow-up: Quitline referral, tell the mental health team (with his consent) he is quitting, review in 1–2 weeks to adjust doses, GP review in two weeks. 8. Document: the history, the reason varenicline was not supplied, the call and agreed plan, NRT supplied and counselling given."
+  },
+  "review": {
+    "status": "draft",
+    "version": "0.1"
+  },
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 14/10/2026 AM session, Part C)",
+    "Needs pharmacist review: the recall says simply 'varenicline may increase seizure risk, don't dispense'; the product information lists epilepsy as a precaution (use with caution), not an absolute contraindication, so the key frames it as a risk-benefit decision made with the GP, favouring properly used combination NRT first. Invented details: smoking 25/day with first cigarette within 5 minutes, how the lozenges were misused, last seizure three years ago, schizophrenia stable four years with a case manager, six coffees a day, the GP's pushback and her bupropion suggestion, the NRT doses (21 mg patch + 4 mg lozenge), brands, pack sizes and dispensing dates. The CYP1A2 conclusion (risperidone, carbamazepine and topiramate not significantly affected; caffeine rises) should be checked."
+  ]
+}

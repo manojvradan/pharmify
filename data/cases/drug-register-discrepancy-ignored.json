@@ -1,0 +1,74 @@
+{
+  "id": "drug-register-discrepancy-ignored",
+  "title": "Before opening",
+  "category": "legal",
+  "problemType": "Unexplained Schedule 8 register discrepancy and pressure not to report it",
+  "setting": "Community pharmacy, Perth, WA (you are one of the rostered pharmacists)",
+  "questionSheet": "You are a pharmacist at a busy suburban community pharmacy in Perth. Before opening on Tuesday morning you do the pharmacy's weekly Schedule 8 (drug of dependence) balance check. The register balance for oxycodone 10 mg modified-release tablets (OxyContin) is 58 tablets, but only 38 tablets are in the safe: 20 tablets are unaccounted for. You recount twice with a technician as witness and get the same result. Last Tuesday's check balanced and was signed off by the pharmacist manager, Craig. Craig comes in and you show him. He says: 'Just leave it. It's probably a miscount on a busy Saturday and it'll sort itself out by next week. Don't worry about it, and don't go ringing the Department, the last thing I need is an audit.' Explain the legal issues, what you would do and why, and how this could be prevented in future.",
+  "documents": {
+    "notes": [
+      "Oxycodone 10 mg MR (OxyContin) register balance: 58 tablets. Physical count this morning: 38 tablets (counted twice, witnessed by a technician).",
+      "Last week's balance check (Tuesday) matched the register and was signed by Craig.",
+      "Since then the register shows three oxycodone 10 mg MR dispensings, each matched by a dispensing record and a prescription in the dispensing software.",
+      "No oxycodone 10 mg MR stock has been received from the wholesaler since the last check, and no returns or destructions are recorded.",
+      "Four different pharmacists, including Craig, have worked shifts and had access to the S8 safe key in the past week.",
+      "The pharmacy's S8 register is a bound paper register."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Pharmacist manager · Craig",
+      "name": "Craig",
+      "avatar": "dr-kapoor",
+      "voice": "au-man-40s",
+      "standing": "professional",
+      "description": "The pharmacist manager, in his forties. Busy, stressed about staffing and keen to avoid scrutiny from the Department. Dismissive at first and pushes the candidate to drop it, but he is not hostile and accepts the process once the legal obligations are explained clearly.",
+      "bio": {"Full name": "Craig Donnelly", "Role": "Pharmacist manager of this pharmacy", "Workplace": "This suburban community pharmacy in Perth"},
+      "situation": "You are the pharmacist manager, standing in the dispensary before opening, talking to the pharmacist who did the count.",
+      "knowsPatient": true,
+      "openingLine": "Just leave it. It'll sort itself out by next week.",
+      "publicFacts": [
+        "You think it is probably a miscount from a busy Saturday.",
+        "You don't want the Department of Health involved or an audit."
+      ]
+    }
+  },
+  "hiddenFacts": [],
+  "answerKey": {
+    "plantedProblem": "An unexplained Schedule 8 stock discrepancy (20 oxycodone 10 mg MR tablets missing, confirmed by a witnessed recount, with all recorded dispensings reconciled) is a possible loss or theft of a drug of dependence. Under WA law it must be investigated, recorded accurately and reported to the Department of Health WA; ignoring it, adjusting the balance, or waiting for it to 'sort itself out' is not lawful. The manager's instruction does not remove the candidate's own legal and professional responsibility.",
+    "acceptableResolutions": [
+      "Decline the manager's instruction politely but firmly, explaining that an unexplained S8 discrepancy cannot be left and that every pharmacist handling S8s is personally responsible for its custody and records.",
+      "Investigate promptly to try to resolve it: recheck the register arithmetic and page carry-overs, look for entries made on the wrong page or under the wrong strength, reconcile against the dispensing software, prescriptions and e-script records, wholesaler invoices, returns and destruction records, and check whether stock was misplaced (another strength's box, the fridge, owing or 'to collect' bags).",
+      "Do not alter, obliterate or 'balance' the register to hide the shortfall; record the actual balance and add a signed, dated note of the discrepancy and the recount.",
+      "If it cannot be explained quickly, report the loss or discrepancy to the Department of Health WA (Medicines and Poisons Regulation Branch) as soon as practicable, and report to WA Police if theft is suspected.",
+      "Secure the remaining stock and review who has access to the safe and key in the meantime.",
+      "Document everything: the counts, witnesses, the investigation steps and findings, the conversation with the manager, and who was notified and when.",
+      "If diversion by a pharmacist or staff member is suspected, recognise possible impairment or misconduct; follow pharmacy procedures and consider a notification to Ahpra (mandatory if the threshold is met, for example a practitioner practising while intoxicated or impaired in a way that places the public at substantial risk).",
+      "Prevention: more frequent (for example daily or per-shift) balance checks of high-turnover S8s, a running balance on every entry, key held on the person of the pharmacist in charge with a sign-out log, two-person checks of S8 receipts, an electronic S8 register with audit trail, CCTV over the safe, and staff training on S8 procedures."
+    ],
+    "unacceptableActions": [
+      "Following the instruction to leave it and waiting for it to 'sort itself out'.",
+      "Changing, crossing out or adjusting the register balance to match the safe, or inventing an entry to explain the shortfall.",
+      "Not reporting an unexplained S8 loss to the Department of Health WA because the manager wants to avoid an audit.",
+      "Accusing a named colleague of theft without evidence, or confronting staff instead of following a proper process."
+    ],
+    "counsellingPoints": [],
+    "codePrinciples": [
+      "Pharmacy Board / Ahpra shared Code of Conduct: practise lawfully and honestly, and raise concerns about systems or colleagues that put patients or the public at risk.",
+      "PSA Code of Ethics, Integrity principle: act honestly and do not let pressure from an employer or manager compromise legal and professional obligations."
+    ],
+    "legal": [
+      "Medicines and Poisons Act 2014 (WA) and Medicines and Poisons Regulations 2016 (WA): Schedule 8 medicines must be stored securely and a register of every receipt and supply kept accurately and contemporaneously.",
+      "Medicines and Poisons Regulations 2016 (WA): register entries must not be altered, cancelled or obliterated; any correction is made by a signed and dated marginal note or footnote.",
+      "Medicines and Poisons Regulations 2016 (WA): the loss or theft of a Schedule 8 medicine must be reported to the Department of Health WA (Medicines and Poisons Regulation Branch) as soon as practicable; suspected theft is also reported to WA Police.",
+      "Health Practitioner Regulation National Law (WA): mandatory notification to Ahpra applies if a practitioner is reasonably believed to be practising while intoxicated or impaired, or to have placed the public at substantial risk of harm; otherwise a voluntary notification may be made.",
+      "Pharmacy Board of Australia Guidelines for dispensing of medicines and PSA Professional Practice Standards: pharmacists are responsible for the safe custody of and accurate records for drugs of dependence."
+    ],
+    "modelAnswer": "1. The legal issue: twenty oxycodone 10 mg MR tablets are unaccounted for after a witnessed recount, and every recorded dispensing reconciles. That is a possible loss or theft of a Schedule 8 medicine, a drug with high diversion risk. Under the Medicines and Poisons Act 2014 and Medicines and Poisons Regulations 2016 (WA), S8s must be held securely, the register must be accurate, and a loss or theft must be reported to the Department of Health WA. Ignoring it is not an option, and an instruction from my manager doesn't remove my own responsibility as a pharmacist who handles S8s.\n\n2. Respond to Craig calmly and respectfully: 'I understand you don't want the hassle, but I can't leave an unexplained S8 shortfall. We both have legal obligations here, and if it's a simple miscount the investigation will show it.'\n\n3. Investigate straight away to try to resolve it: check the register arithmetic and carry-forwards; look for entries made on the wrong page or under another strength; reconcile against the dispensing software, prescriptions and e-script tokens, wholesaler invoices, returns and destruction records; and search for misplaced stock such as owing bags, prescriptions waiting to be collected, the wrong shelf in the safe, or another strength's box.\n\n4. If it stays unexplained, record the true balance in the register with a signed, dated note of the discrepancy and the witnessed recount. I wouldn't alter or obliterate any entry or adjust the balance to match. I would then report to the Department of Health WA (Medicines and Poisons Regulation Branch) as soon as practicable, and to WA Police if theft is suspected. I'd tell Craig I'm doing this and encourage him to make the report with me as manager.\n\n5. Secure the remaining stock and limit access to the safe and key while this is looked at. If the evidence points to a staff member or pharmacist diverting stock, follow a fair process and don't make accusations. If a pharmacist may be impaired, consider an Ahpra notification, which is mandatory if the threshold is met.\n\n6. Document everything: counts, witnesses, investigation steps, findings, the conversation with Craig, and who was notified and when.\n\n7. Prevent recurrence: running balances and daily or per-shift checks for high-turnover S8s; the key kept on the pharmacist in charge with a sign-out log; two-person checks of S8 deliveries; an electronic register with an audit trail; CCTV over the safe; and staff training on S8 procedures."
+  },
+  "review": {"status": "draft", "version": "0.1"},
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 14/10/2026 AM session, Part B)",
+    "Needs pharmacist review: WA setting; the drug (oxycodone 10 mg MR), the 20-tablet shortfall, the weekly check routine, reconciled dispensings and four pharmacists with key access were all invented. Also check the manager being a pharmacist (the recall says only 'the manager'), the WA reporting body and wording (Medicines and Poisons Regulation Branch, loss/theft notification 'as soon as practicable'), and the register-correction rule as applied in the WA Regulations. No section numbers cited."
+  ]
+}

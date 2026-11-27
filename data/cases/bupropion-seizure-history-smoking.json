@@ -1,0 +1,293 @@
+{
+  "id": "bupropion-seizure-history-smoking",
+  "title": "Another go at quitting",
+  "category": "clinical",
+  "problemType": "Contraindication: history of seizures",
+  "specialty": "respiratory",
+  "setting": "Community pharmacy, Geelong VIC",
+  "questionSheet": "Mr Darren Kowalski, a man in his fifties, presents a new prescription from his GP, Dr Brennan, for bupropion 150 mg modified-release tablets to help him quit smoking. He says he tried another quit medicine earlier this year. Dr Brennan can be contacted by phone. Manage the situation as you would in practice. You may contact the prescriber.",
+  "documents": {
+    "prescription": {
+      "item": "Bupropion hydrochloride 150 mg modified-release tablets (Zyban) · Qty 30 · 1 repeat",
+      "directions": "One tablet each morning for 3 days, then one tablet twice daily. Set a quit date in the second week.",
+      "footer": "Dr F. Brennan (GP) · Darren Kowalski, DOB 03/06/1974",
+      "date": "13/10/2026"
+    },
+    "dispensingHistory": [
+      {
+        "date": "28 Sep 2026",
+        "item": "Perindopril arginine 5 mg tablets (Coversyl)",
+        "directions": "One tablet in the morning",
+        "quantity": "30",
+        "prescriber": "Dr F. Brennan (GP)"
+      },
+      {
+        "date": "28 Sep 2026",
+        "item": "Rosuvastatin 10 mg tablets (generic)",
+        "directions": "One tablet at night",
+        "quantity": "30",
+        "prescriber": "Dr F. Brennan (GP)"
+      },
+      {
+        "date": "30 Aug 2026",
+        "item": "Perindopril arginine 5 mg tablets (Coversyl)",
+        "directions": "One tablet in the morning",
+        "quantity": "30",
+        "prescriber": "Dr F. Brennan (GP)"
+      },
+      {
+        "date": "30 Aug 2026",
+        "item": "Rosuvastatin 10 mg tablets (generic)",
+        "directions": "One tablet at night",
+        "quantity": "30",
+        "prescriber": "Dr F. Brennan (GP)"
+      },
+      {
+        "date": "1 Aug 2026",
+        "item": "Perindopril arginine 5 mg tablets (Coversyl)",
+        "directions": "One tablet in the morning",
+        "quantity": "30",
+        "prescriber": "Dr F. Brennan (GP)"
+      },
+      {
+        "date": "1 Aug 2026",
+        "item": "Rosuvastatin 10 mg tablets (generic)",
+        "directions": "One tablet at night",
+        "quantity": "30",
+        "prescriber": "Dr F. Brennan (GP)"
+      },
+      {
+        "date": "12 May 2026",
+        "item": "Varenicline 0.5 mg and 1 mg tablets, initiation pack (generic)",
+        "directions": "As directed on pack: 0.5 mg daily for 3 days, 0.5 mg twice daily for 4 days, then 1 mg twice daily",
+        "quantity": "1 pack (53)",
+        "prescriber": "Dr F. Brennan (GP)"
+      }
+    ],
+    "notes": [
+      "Today's date: 13 Oct 2026."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient · Mr Kowalski",
+      "name": "Mr Kowalski",
+      "description": "A 52-year-old self-employed plumber, blunt, a bit impatient and on his lunch break, with average health literacy. He is genuinely motivated to quit this time because of his heart risk and his young grandkids. He thinks the epilepsy he had years ago is 'ancient history' and doesn't mention it unless asked about medical history or seizures. He refuses to try varenicline again. He gets defensive if lectured about smoking, but responds well to being treated as capable and given a concrete plan. If the bupropion is refused without an alternative, he is annoyed that he has 'wasted a trip'.",
+      "bio": {
+        "Full name": "Darren Kowalski",
+        "Date of birth": "3 June 1974",
+        "Age": "52",
+        "Address": "9 Station Street, Norlane VIC 3214",
+        "Phone": "0491 571 491",
+        "Occupation": "Plumber (self-employed)"
+      },
+      "avatar": "wally-morris",
+      "voice": "au-man-40s",
+      "openingLine": "G'day mate. Doc's given me these to give the smokes another crack. Can you do it quick? I'm on lunch.",
+      "publicFacts": [
+        "He wants to quit smoking; this is his third serious attempt.",
+        "He tried a quit tablet back in May but couldn't stick with it.",
+        "He has high blood pressure and cholesterol and takes tablets for both.",
+        "His GP said his heart risk is high and he needs to stop."
+      ]
+    },
+    "prescriber": {
+      "label": "Call Dr Brennan",
+      "name": "Dr Brennan",
+      "description": "A GP in her fifties, friendly and open to suggestions, listens if the pharmacist is clear and brief. She chose bupropion because the patient didn't tolerate varenicline. She is surprised by new history and asks 'Is that really a problem if it was years ago?'. She agrees to change once the pharmacist explains why and gives a specific, dosed alternative. She asks which guideline the pharmacist is using.",
+      "bio": {
+        "Full name": "Dr Fiona Brennan",
+        "Role": "General practitioner",
+        "Workplace": "Corio Bay Family Practice, Geelong VIC"
+      },
+      "avatar": "dr-holt",
+      "voice": "au-woman-professional",
+      "openingLine": "Fiona Brennan speaking. How can I help?",
+      "publicFacts": [
+        "Darren Kowalski is your patient. You see him for hypertension and hyperlipidaemia; his cardiovascular risk is high.",
+        "You prescribed bupropion today because he stopped varenicline in May after side effects.",
+        "He smokes about 25 cigarettes a day."
+      ]
+    }
+  },
+  "hiddenFacts": [
+    {
+      "id": "epilepsy-history",
+      "agent": "patient",
+      "fact": "You were diagnosed with epilepsy at 17 after a couple of seizures and took sodium valproate (Epilim) until your early thirties. Your neurologist in Melbourne weaned you off it about 20 years ago. You've had one seizure since, about 8 years ago, after a big weekend of drinking and not sleeping. You didn't tell Dr Brennan because it's 'old news' and she's only been your GP for two years.",
+      "triggers": [
+        "seizure",
+        "seizures",
+        "epilepsy",
+        "fits",
+        "convulsions",
+        "blackouts",
+        "head injury",
+        "medical history",
+        "medical conditions",
+        "health conditions",
+        "health problems",
+        "neurologist",
+        "epilim",
+        "valproate",
+        "brain"
+      ],
+      "unlockHint": "“Do you have any other medical conditions, or have you ever had a seizure or epilepsy?”"
+    },
+    {
+      "id": "varenicline-side-effects",
+      "agent": "patient",
+      "fact": "On varenicline in May you had bad nausea and vomited most mornings, and you had horrible, vivid nightmares and were snappy and low in mood. Your wife told you to stop it after about two weeks and you did. You won't take it again.",
+      "triggers": [
+        "varenicline",
+        "champix",
+        "quit tablet",
+        "side effects",
+        "why stop",
+        "stop it",
+        "what happened",
+        "nausea",
+        "nightmares",
+        "dreams",
+        "mood",
+        "last time",
+        "tried old",
+        "last attempt"
+      ],
+      "unlockHint": "“What happened with the varenicline in May, and why did you stop it?”"
+    },
+    {
+      "id": "smoking-pattern",
+      "agent": "patient",
+      "fact": "You smoke about 25 cigarettes a day and have your first one within five minutes of waking. You've smoked since 15. You've tried patches on their own years ago from the supermarket, but only for a week, and you never used them with gum or lozenges.",
+      "triggers": [
+        "how many",
+        "cigarettes day",
+        "smoke day",
+        "how much",
+        "first cigarette",
+        "waking",
+        "morning",
+        "patches",
+        "nicotine",
+        "gum",
+        "lozenges",
+        "nrt",
+        "tried old",
+        "how long smoked"
+      ],
+      "unlockHint": "“How many cigarettes do you smoke a day, how soon after waking is the first, and have you tried nicotine replacement before?”"
+    },
+    {
+      "id": "alcohol",
+      "agent": "patient",
+      "fact": "You have four or five beers most nights after work, more on weekends.",
+      "triggers": [
+        "alcohol",
+        "drink",
+        "drinking",
+        "beers",
+        "beer",
+        "grog",
+        "wine",
+        "spirits",
+        "how much drink"
+      ],
+      "unlockHint": "“How much alcohol do you drink in a usual week?”"
+    },
+    {
+      "id": "other-medicines",
+      "agent": "patient",
+      "fact": "Apart from your blood pressure and cholesterol tablets you take nothing else: no supplements, no sleeping tablets or other medicines from other doctors.",
+      "triggers": [
+        "other medicine",
+        "anything else",
+        "supplements",
+        "over counter",
+        "sleeping tablets",
+        "other tablets",
+        "other doctors",
+        "vitamins"
+      ],
+      "unlockHint": "“Do you take any other medicines, supplements or anything from other doctors?”"
+    },
+    {
+      "id": "gp-unaware-seizures",
+      "agent": "prescriber",
+      "fact": "You didn't know he had epilepsy or a seizure history; it isn't in your notes. At first you ask 'Is that really a problem if it was years ago?'. If the pharmacist explains that bupropion lowers the seizure threshold and is contraindicated in anyone with a current or past seizure disorder, and that his regular alcohol intake adds to the risk, you agree to cancel the bupropion.",
+      "triggers": [
+        "seizure",
+        "seizures",
+        "epilepsy",
+        "seizure threshold",
+        "convulsions",
+        "fits",
+        "contraindicated",
+        "contraindication",
+        "valproate",
+        "neurologist"
+      ],
+      "unlockHint": "“He has a history of epilepsy and a seizure 8 years ago. Bupropion lowers the seizure threshold and is contraindicated with any history of seizures.”"
+    },
+    {
+      "id": "gp-agrees-nrt",
+      "agent": "prescriber",
+      "fact": "If the pharmacist recommends combination nicotine replacement therapy with a dose (for example a 21 mg/24 hour patch daily plus a fast-acting form such as 4 mg gum or lozenges, or the mouth spray, for cravings, for at least 12 weeks) and behavioural support such as Quitline, you agree. You will write a PBS prescription for the nicotine patches and send it to the pharmacy, and suggest he buys the fast-acting form over the counter. You ask whether varenicline could be retried; if the pharmacist explains his mood changes and nightmares make a retry unwise and he refuses it, you accept that. You also agree to record the seizure history.",
+      "triggers": [
+        "nicotine replacement",
+        "nrt",
+        "patch",
+        "patches",
+        "gum",
+        "lozenge",
+        "lozenges",
+        "mouth spray",
+        "combination",
+        "alternative",
+        "recommend",
+        "quitline",
+        "instead"
+      ],
+      "unlockHint": "“I'd recommend combination NRT instead: a 21 mg/24 hour patch daily plus 4 mg gum or lozenges for cravings, for at least 12 weeks, with Quitline support.”"
+    }
+  ],
+  "answerKey": {
+    "plantedProblem": "Bupropion is contraindicated in a patient with a current or past seizure disorder because it lowers the seizure threshold (dose-related). Mr Kowalski has a history of epilepsy treated with valproate and a provoked seizure 8 years ago, unknown to his GP; his regular heavy alcohol use adds to the risk. Varenicline caused significant adverse effects (nausea and vomiting, vivid nightmares, irritability and low mood) and he refuses to retry it. The appropriate recommendation is combination nicotine replacement therapy (long-acting patch plus fast-acting oral form) with behavioural support.",
+    "acceptableResolutions": [
+      "Take a medical history before supplying and identify the epilepsy and previous seizure; also ask about alcohol, other medicines, and the details of the varenicline adverse effects.",
+      "Recognise that bupropion is contraindicated with a history of seizures and do not supply it; explain why to the patient without alarming him.",
+      "Phone Dr Brennan, explain the contraindication when she asks whether an old history matters, and recommend combination NRT: nicotine 21 mg/24 hour patch daily (remove at bedtime or use a 16-hour patch if sleep is disturbed) plus 4 mg gum or lozenge, or 1 mg mouth spray, as needed for cravings, for at least 12 weeks then taper.",
+      "Assess nicotine dependence (25 a day, first cigarette within 5 minutes of waking) to justify the higher-strength combination.",
+      "Refer to Quitline (13 7848) and support a quit plan with a quit date and follow-up; offer to see him again in 1–2 weeks.",
+      "Address alcohol intake as a relapse trigger and health risk, and document the contraindication, the intervention and the agreed plan, asking the GP to record the seizure history."
+    ],
+    "unacceptableActions": [
+      "Dispensing bupropion without asking about seizure history, or after learning of it (overall fail).",
+      "Recommending he restart varenicline at full dose despite his previous neuropsychiatric and gastrointestinal effects without discussion.",
+      "Recommending a single low-strength NRT product alone for a heavily dependent smoker without justification.",
+      "Telling him to cut down gradually without any pharmacotherapy or support.",
+      "Lecturing or shaming him about smoking so he disengages."
+    ],
+    "counsellingPoints": [
+      "Don't take the bupropion: it can make seizures more likely, and with your epilepsy history that risk isn't worth it.",
+      "Put on one 21 mg patch each morning on clean, hairless skin on your upper arm or chest, and move it to a new spot each day. If it gives you vivid dreams, take it off at bedtime.",
+      "Use the gum or lozenge as well whenever you get a craving: chew the gum until it tingles then park it in your cheek, or let the lozenge dissolve slowly; don't eat or drink for 15 minutes before or while using it.",
+      "Stop smoking completely on your quit day and use both products for at least 12 weeks, then step the patch down over a few weeks; ask for help before stopping early.",
+      "Mild side effects like skin redness under the patch, hiccups or a sore jaw from the gum are common; see your doctor if you get chest pain or palpitations.",
+      "Call Quitline on 13 7848: combining their support with NRT more than doubles your chances of quitting.",
+      "Cut back on alcohol while you quit: it's a big trigger for lighting up, and heavy drinking is also a seizure risk.",
+      "Tell any doctor or pharmacist about your epilepsy history before starting a new medicine."
+    ],
+    "codePrinciples": [],
+    "legal": [],
+    "modelAnswer": "1. Set-up: introduce self, confirm identity (name, DOB, address), acknowledge he is in a hurry and ask for a few minutes to make sure the medicine is safe; congratulate him on deciding to quit. 2. Gather information: smoking history and dependence (25 a day, first cigarette within 5 minutes of waking, smoking since 15); previous quit attempts (patches alone briefly; varenicline in May); exactly what happened on varenicline (nausea and vomiting, vivid nightmares, irritability and low mood; stopped after 2 weeks; refuses a retry); medical history, asking specifically about seizures, epilepsy, head injury, eating disorders and mental health, which reveals epilepsy treated with valproate until his thirties and a provoked seizure 8 years ago; alcohol (4–5 beers most nights); and other medicines (perindopril, rosuvastatin only). 3. Identify and explain: bupropion lowers the seizure threshold in a dose-related way and is contraindicated in patients with a current or past seizure disorder; heavy alcohol use further increases the risk. It must not be supplied. Varenicline is not a good option given the neuropsychiatric effects and his refusal. 4. Check references: AMH (bupropion contraindications, nicotine replacement), the RACGP Supporting smoking cessation guide, APF, and the PBS Schedule for nicotine patch listings. 5. Phone Dr Brennan (ISBAR): Mr Kowalski prescribed bupropion; he has a history of epilepsy and a seizure 8 years ago, not in her notes; bupropion is contraindicated. When she asks if old history matters, explain the contraindication covers any history of seizures and the alcohol use adds risk. Recommend combination NRT: nicotine 21 mg/24 hour patch daily plus 4 mg gum or lozenge (or 1 mg mouth spray) for breakthrough cravings, for at least 12 weeks with gradual taper, plus Quitline referral; if she asks about varenicline, explain why a retry isn't advised. Ask for a PBS script for the patches and that she record the seizure history. 6. Counsel on patch application and rotation, removing at night if dreams, correct oral NRT technique, using both together, quit date, duration, side effects, alcohol as a trigger, and Quitline. 7. Follow-up: offer to review him in 1–2 weeks after the quit date to adjust doses (e.g. increase fast-acting use if cravings persist); note that stopping smoking can change the effects of some medicines (CYP1A2), though none of his current ones are significantly affected. 8. Document the seizure history as a contraindication alert, the call with Dr Brennan, the recommendation, the outcome and the counselling given."
+  },
+  "review": {
+    "status": "draft",
+    "version": "0.1"
+  },
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 06/10/2026 PM session, Part C)",
+    "Needs pharmacist review: the recall gives only 'history of seizures, side effects with varenicline, recommended NRT'. Invented or interpreted: epilepsy on valproate weaned 20 years ago with a provoked seizure 8 years ago; the varenicline effects (nausea, vivid nightmares, irritability, low mood) and the May 2026 initiation pack; 25 cigarettes a day and alcohol intake; the specific combination NRT regimen (21 mg/24 h patch plus 4 mg gum/lozenge or 1 mg spray, 12 weeks) per RACGP guidance; the Zyban pack size, repeats and PBS details on the script and for NRT patches; Victorian setting and the perindopril/rosuvastatin history."
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "id": "owners-daughter-takes-s4",
+  "title": "The owner's daughter",
+  "category": "legal",
+  "problemType": "Supply of a Schedule 4 medicine without a prescription",
+  "setting": "Community pharmacy, Perth, Western Australia (you are the only pharmacist on duty)",
+  "questionSheet": "You are an employee pharmacist at a community pharmacy in suburban Perth, Western Australia, and the only pharmacist on duty this Saturday. The owner, Michael Tran, is a pharmacist but is not working today. His daughter, Jess (22), works in the pharmacy as a pharmacy assistant. You see Jess take a box of amoxicillin 500 mg capsules (20) from the dispensary shelf and put it in her handbag. When you ask her about it, she says: 'I've had a sore throat since Thursday. Dad always says staff can just grab antibiotics if they need them. I'll get a script from my GP on Monday to cover it.' She has not taken any yet. There is no prescription for her on file. Explain the legal issues, what you would do, and how you would prevent this from happening again.",
+  "documents": {
+    "notes": [
+      "Item: amoxicillin 500 mg capsules, 20 (Schedule 4, Prescription Only Medicine).",
+      "No prescription or previous supply of amoxicillin for Jess Tran is recorded in the dispensing software.",
+      "Jess says she has a sore throat for two days, no fever that she knows of, and no trouble swallowing or breathing.",
+      "The owner is contactable by phone."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Pharmacy assistant · Jess",
+      "name": "Jess",
+      "avatar": "kiki-nguyen",
+      "voice": "au-young-woman",
+      "description": "The owner's 22-year-old daughter, a pharmacy assistant for three years while she studies part time. A little embarrassed at being asked, then defensive, because her father has always told staff this was fine. She respects a calm, private, non-judgemental explanation and hands the box back if the pharmacist is clear and kind; she becomes upset if embarrassed in front of customers or colleagues.",
+      "bio": {"Full name": "Jessica Tran", "Date of birth": "2 April 2004", "Age": "22", "Role": "Pharmacy assistant", "Workplace": "This pharmacy (owned by her father, Michael Tran)"},
+      "openingLine": "Oh, it's just some amoxicillin for my throat. Dad says it's fine for staff.",
+      "publicFacts": [
+        "She has had a sore throat since Thursday.",
+        "Her father has told staff they can take antibiotics from the shelf if they need them.",
+        "She plans to get a prescription from her GP on Monday."
+      ]
+    }
+  },
+  "hiddenFacts": [],
+  "answerKey": {
+    "plantedProblem": "A pharmacy assistant has taken a Schedule 4 medicine from dispensary stock for herself without a prescription or any pharmacist assessment. In Western Australia an S4 medicine may only be supplied by a pharmacist on a valid prescription (or under a specific lawful exception, none of which applies here), so this is unlawful supply and possession and an unrecorded loss of stock. The owner's apparent policy that staff may 'grab antibiotics' is itself unlawful, and the fact that she is the owner's daughter does not change the pharmacist's obligations. A sore throat is also usually viral, so the antibiotic is likely not indicated at all.",
+    "acceptableResolutions": [
+      "Speak to Jess calmly and privately, away from customers and other staff.",
+      "Explain that amoxicillin is a Schedule 4 Prescription Only Medicine that can only be supplied by a pharmacist on a valid prescription, and that a prescription obtained afterwards does not make the supply lawful.",
+      "Ask her to return the box, return it to stock (or quarantine it if its integrity is uncertain), and do not supply it.",
+      "Recognise that pharmacist emergency supply does not apply: it is for continuing therapy the patient is already established on, not a new course of antibiotics.",
+      "Offer her proper care: assess her sore throat, recommend symptomatic treatment (paracetamol or ibuprofen, lozenges or a sore throat spray, fluids, rest), explain that most sore throats are viral, and refer her to a GP, urgently if red flags develop such as high fever, difficulty swallowing or breathing, drooling, or one-sided swelling.",
+      "Contact the owner, explain what happened and why the 'staff can take antibiotics' practice is unlawful and unsafe, and ask him to stop it.",
+      "Document the incident, the conversation and the actions taken.",
+      "Prevent recurrence: a written policy that staff obtain medicines only on a prescription and by the normal dispensing process with payment, restricted access to dispensary stock, staff training on scheduling and stock control, and periodic stock reconciliation."
+    ],
+    "unacceptableActions": [
+      "Letting her keep the antibiotics because she is the owner's daughter or because the owner allows it.",
+      "Dispensing it now under her name, or creating a record backdated to a prescription she might get on Monday.",
+      "Calling it an emergency supply, which does not apply to starting a new antibiotic course.",
+      "Reprimanding or humiliating her in front of customers or colleagues.",
+      "Ignoring the owner's practice and saying nothing to him."
+    ],
+    "counsellingPoints": [],
+    "codePrinciples": [
+      "Pharmacy Board of Australia Code of Conduct: practise within the law, and manage conflicts of interest (here, the owner's family relationship) so they do not affect professional judgement."
+    ],
+    "legal": [
+      "Medicines and Poisons Act 2014 (WA) and Medicines and Poisons Regulations 2016 (WA): a Schedule 4 medicine may only be supplied by an authorised person, such as a pharmacist dispensing on a valid prescription. A pharmacy assistant has no authority to supply or possess S4 stock for herself, and supplying or possessing it without authority is an offence.",
+      "Medicines and Poisons Regulations 2016 (WA): a pharmacist may make an emergency supply of a limited quantity of an S4 medicine without a prescription only for a patient already established on that therapy. That is not the case here.",
+      "Poisons Standard (SUSMP): amoxicillin is Schedule 4 (Prescription Only Medicine).",
+      "Pharmacy Board of Australia Guidelines for dispensing of medicines and Guidelines for proprietor pharmacists: medicines must be dispensed on a valid prescription and properly recorded, and proprietors are responsible for systems that keep stock secure and supply lawful."
+    ],
+    "modelAnswer": "1. The legal issue: amoxicillin is a Schedule 4 Prescription Only Medicine. Under the Medicines and Poisons Act 2014 (WA) and Medicines and Poisons Regulations 2016 (WA), it may only be supplied by a pharmacist on a valid prescription. Jess is a pharmacy assistant with no authority to take S4 stock for herself, so taking it is unlawful supply and possession and an unrecorded loss of stock. A prescription she gets on Monday cannot make it lawful after the fact. Emergency supply does not apply either, because it covers continuing therapy, not a new antibiotic course. The owner's informal policy is unlawful, and her being his daughter does not change my obligations as the pharmacist on duty.\n\n2. Steps: I would speak to Jess privately and calmly, without accusing or embarrassing her. I would explain the law, ask her to give the box back and return it to stock, and make clear I'm not trying to get her into trouble.\n\n3. Care for her: I would assess her sore throat (duration, fever, difficulty swallowing or breathing, swollen glands, any recent contacts) and explain that most sore throats are viral and antibiotics usually don't help. I'd recommend paracetamol or ibuprofen, lozenges, fluids and rest, and suggest she see her GP if it isn't improving in a few days, or urgently if red flags appear.\n\n4. Notify: I would phone the owner the same day, tell him what happened, and explain respectfully that staff helping themselves to S4 medicines is unlawful and puts the pharmacy's licence and his registration at risk. If the practice continued, I would seek advice from my indemnity insurer or the PSA, and from the WA Department of Health's medicines and poisons regulators.\n\n5. Document the incident, the conversation with Jess, the stock returned and the call with the owner.\n\n6. Prevent recurrence: a written staff-purchase policy (medicines only through normal dispensing, on a prescription, recorded and paid for), restricted dispensary access, staff training on medicine schedules, and regular stock reconciliation."
+  },
+  "review": {"status": "draft", "version": "0.1"},
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 09/10/2026 PM session, Part B)",
+    "Needs pharmacist review: WA setting; the medicine (amoxicillin 500 mg), the sore-throat reason and the owner's 'staff can grab antibiotics' remark are invented; the owner being a pharmacist who is off duty; the exact WA provisions on S4 authority, possession offences and pharmacist emergency supply."
+  ]
+}

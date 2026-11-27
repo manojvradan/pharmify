@@ -1,0 +1,74 @@
+{
+  "id": "technician-does-all-counselling",
+  "title": "Your first week",
+  "category": "ethical",
+  "problemType": "Employer pressure, delegation and the pharmacist's duty to counsel",
+  "setting": "Busy community pharmacy, Adelaide, SA (you are a newly registered pharmacist)",
+  "questionSheet": "You are a newly registered pharmacist in your first week at a very busy community pharmacy in suburban Adelaide. The pharmacist owner, Sandra, tells you: 'Your job is to dispense and check, that's it. Jess has been our dispensary technician for fifteen years. She does all the counselling at scripts-out and hands out every bag, and patients love her. It keeps the queue moving.' You notice Jess handing out all prescriptions, including new medicines, Schedule 8 medicines and Pharmacist Only (S3) medicines, without a pharmacist speaking to the patient. Sandra is not in the dispensary most of the day. Today's scripts-out queue includes a patient starting methotrexate 10 mg once weekly for rheumatoid arthritis, an older man collecting fentanyl patches for the first time after his palliative care doctor switched him from oral morphine, a mother collecting amoxicillin liquid for her toddler, and someone asking for a Pharmacist Only medicine at the counter. Explain what you would do and why, referring to your professional, ethical and legal obligations.",
+  "documents": {
+    "notes": [
+      "You are the only pharmacist rostered in the dispensary most of the day; the owner is in the office or off site.",
+      "Jess is an experienced dispensary technician (not a pharmacist).",
+      "About 300 prescriptions a day; scripts-out is at the far end of the counter from the dispensing bench.",
+      "Today's queue includes: new methotrexate 10 mg once weekly; fentanyl 25 microgram/hour patches (S8), first supply after a switch from oral morphine; amoxicillin oral suspension for a 2-year-old; a counter request for a Pharmacist Only (S3) medicine."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Pharmacy owner · Sandra",
+      "name": "Sandra",
+      "avatar": "dr-holt",
+      "voice": "au-woman-professional",
+      "standing": "professional",
+      "description": "The pharmacist owner, in her fifties. Commercially minded, proud of her efficient pharmacy and very loyal to Jess. Defensive if criticised or lectured, but listens to a new pharmacist who is respectful, specific about patient risk and offers a workable solution that does not slow the queue too much.",
+      "bio": {"Full name": "Sandra Kosmas", "Role": "Pharmacist and owner of this pharmacy", "Workplace": "This community pharmacy in suburban Adelaide"},
+      "situation": "You own the pharmacy and are talking to the new pharmacist in the dispensary.",
+      "knowsPatient": true,
+      "openingLine": "Your job is to dispense and check. Jess looks after scripts-out.",
+      "publicFacts": [
+        "Jess has worked here for fifteen years and patients love her.",
+        "You want the queue kept moving; the pharmacy is very busy."
+      ]
+    }
+  },
+  "hiddenFacts": [],
+  "answerKey": {
+    "plantedProblem": "A conflict between the employer's business model and the pharmacist's professional duty. The pharmacist remains responsible for every supply they dispense, including making sure the patient receives the information needed to use the medicine safely. Tasks can be delegated to a technician, but responsibility cannot, and counselling on new, changed or high-risk medicines (methotrexate weekly dosing, a first S8 fentanyl patch, a child's liquid dose) and the supply of Pharmacist Only medicines need the pharmacist's personal involvement. Being new and under pressure from the owner does not change this.",
+    "acceptableResolutions": [
+      "Name the dilemma: the owner's direction and efficiency, and respect for an experienced colleague, against the pharmacist's own duty of care and accountability for each supply.",
+      "Recognise that the pharmacist can delegate handing out, but stays responsible, and must personally counsel or check understanding for new medicines, changed doses, high-risk medicines (methotrexate, opioids and other S8s, anticoagulants, insulin), paediatric doses, and whenever the patient has questions.",
+      "Recognise that a Pharmacist Only (S3) supply needs the pharmacist's personal involvement, not a technician's decision.",
+      "Act today to keep patients safe: personally counsel the patient starting methotrexate (once weekly, which day, folic acid, blood tests, signs of toxicity), the first-time fentanyl patch patient (how to apply and change, heat, disposal, sedation, naloxone) and the child's carer (measured dose, course), and handle the S3 request.",
+      "Talk to Sandra privately and respectfully, explaining patient risk and professional obligations, and propose a workable model: Jess hands out unchanged repeats after the pharmacist's final check and flags anything new or any question to the pharmacist, with pharmacist counselling at scripts-out for flagged items (e.g. stickers or a software flag).",
+      "Work with Jess respectfully as a valued team member, recognising her skills and scope rather than undermining her in front of patients.",
+      "Document the agreed workflow and any concerns raised; seek advice from a mentor, the PSA or the pharmacists' professional association if the owner refuses.",
+      "If the owner insists on an unsafe system that puts patients at risk, escalate appropriately (including considering a notification to the Pharmacy Board/Ahpra, since the owner is a registered pharmacist) and consider whether you can safely continue working there."
+    ],
+    "unacceptableActions": [
+      "Simply complying and letting the technician counsel and hand out all medicines, including new high-risk and S8 medicines, without pharmacist involvement.",
+      "Allowing the technician to decide on and supply Pharmacist Only (S3) medicines.",
+      "Confronting or criticising Jess or the owner in front of patients, or refusing to work without offering a solution.",
+      "Assuming that because you are new or the owner is your employer, responsibility for the supply lies with them rather than you."
+    ],
+    "counsellingPoints": [],
+    "codePrinciples": [
+      "PSA Code of Ethics, Care principle: the health and wellbeing of the patient is the pharmacist's first priority, and the pharmacist makes sure the patient has the information needed to use medicines safely.",
+      "PSA Code of Ethics, Integrity principle: keep professional independence and do not let commercial interests or an employer's direction compromise patient care.",
+      "PSA Code of Ethics, Collaboration principle: work respectfully with colleagues and support staff, recognising their skills and scope of practice.",
+      "Ahpra shared Code of Conduct (adopted by the Pharmacy Board): when delegating, make sure the person has the competence to do the task and keep responsibility for the patient's overall care.",
+      "Ahpra shared Code of Conduct: raise concerns when workplace systems, policies or pressures put patient safety at risk.",
+      "Pharmacy Board of Australia Guidelines for dispensing of medicines: dispensing includes giving the patient the information and counselling needed for safe and effective use, and the pharmacist is responsible for the supply even when support staff assist."
+    ],
+    "legal": [
+      "Poisons Standard and Controlled Substances (Poisons) Regulations 2011 (SA): Pharmacist Only Medicines (Schedule 3) require the pharmacist's personal involvement in the supply.",
+      "Controlled Substances Act 1984 (SA): dispensing of prescription (S4) and Schedule 8 medicines is a pharmacist's responsibility; support staff assist only under the pharmacist's supervision.",
+      "Health Practitioner Regulation National Law (South Australia): the Board's codes and guidelines can be used as evidence of what constitutes appropriate professional conduct."
+    ],
+    "modelAnswer": "1. Name the dilemma: my employer wants an efficient model where an experienced technician does all counselling and hand-outs. I respect Jess's experience, and I'm new and want to fit in. But I'm the pharmacist dispensing these medicines, and I stay professionally and legally responsible for each supply, including making sure the patient knows how to use it safely. Tasks can be delegated; responsibility can't.\n\n2. The people affected are the patients, who may miss vital information; Jess, who is being asked to work beyond her scope; Sandra, who carries business and professional risk; me; and public trust in pharmacists.\n\n3. Today, I would keep patients safe without causing a scene. I'd ask Jess to flag certain patients to me before handing out, then personally counsel them: the methotrexate patient on once-weekly dosing, a fixed day, folic acid, blood tests and warning signs; the first fentanyl patch patient on application, changing every 72 hours, avoiding heat, safe disposal, sedation, and naloxone; and the toddler's carer on accurate measuring and finishing the course. I'd handle the Pharmacist Only request myself, because an S3 supply needs my personal involvement.\n\n4. The options: (a) comply, which is unsafe and leaves me accountable for supplies I haven't counselled on; (b) refuse outright, which damages relationships and doesn't fix the system; (c) negotiate a safe model. I'd choose (c).\n\n5. Speak to Sandra privately and respectfully, with specific risks rather than criticism: 'Jess is great, and I want to keep the queue moving. I'd suggest she hands out unchanged repeats after my final check, and flags new medicines, dose changes, S8s, high-risk medicines, children's medicines, S3s and any questions to me.' A sticker or software flag makes this quick.\n\n6. Document the agreed workflow and any concerns. If Sandra refuses and the system stays unsafe, I'd seek advice from a mentor, the PSA or my professional association, and consider escalating to the Pharmacy Board, since Sandra is a registered pharmacist. I'd also consider whether I can safely keep working there."
+  },
+  "review": {"status": "draft", "version": "0.1"},
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 14/10/2026 PM session, Part B)",
+    "Needs pharmacist review: classified ethical (professional duty and employer pressure) rather than legal; SA setting; the owner being a pharmacist, the technician's 15 years, ~300 scripts a day, and the example queue (methotrexate, first fentanyl patch, child's amoxicillin, S3 request) were invented to make the risk concrete. Check that the SA legislation points (S3 personal involvement; S4/S8 supply under pharmacist supervision) are stated accurately, and that a Board/Ahpra notification about the owner is proportionate as an escalation step."
+  ]
+}

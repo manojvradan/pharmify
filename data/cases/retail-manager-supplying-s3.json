@@ -1,0 +1,69 @@
+{
+  "id": "retail-manager-supplying-s3",
+  "title": "Lunchtime rush",
+  "category": "legal",
+  "problemType": "Supply of Pharmacist Only (Schedule 3) medicines without a pharmacist",
+  "setting": "Community pharmacy, Adelaide, South Australia (you are the only pharmacist on duty)",
+  "questionSheet": "You are the only pharmacist on duty at a busy community pharmacy in Adelaide. The owner, a pharmacist, is off site today. During the lunchtime rush, while you are counselling a patient, you see the retail manager, Sharon, take a pack of levonorgestrel emergency contraception and a pseudoephedrine cold and flu product from behind the dispensary counter and sell them to two customers, and she handed a salbutamol inhaler to another customer earlier. When you ask her about it afterwards, she says: \"Tony [the owner] told us we can do the Pharmacist Only ones ourselves if the customer's had them before. I just go through the questions on the card. It saves you time.\" Explain the legal issues, what you would do now, who you would contact, and how you would prevent it happening again.",
+  "documents": {
+    "notes": [
+      "Sharon has worked in pharmacy retail for 12 years and holds a Certificate III in Community Pharmacy. She is not a pharmacist.",
+      "The owner gave this instruction verbally at a staff meeting two months ago. It is not written down.",
+      "The laminated 'S3 questions' cards are kept at the front counter.",
+      "Supplies seen today: levonorgestrel 1.5 mg emergency contraception (one pack); a pseudoephedrine-containing cold and flu product (one pack, not recorded in the real-time recording system the pharmacy uses for pseudoephedrine); a salbutamol 100 microgram inhaler (one).",
+      "The customer who bought the emergency contraception left a few minutes ago."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Retail manager · Sharon",
+      "name": "Sharon",
+      "avatar": "rosie-costa",
+      "voice": "au-woman-40s",
+      "description": "The retail manager, in her fifties, experienced, capable and loyal to the owner. She believes she is helping a busy pharmacist and following the owner's instructions. She is a bit hurt to be questioned, but cooperative once it is explained clearly and respectfully, and worried about getting into trouble.",
+      "bio": {"Full name": "Sharon Pappas", "Role": "Retail manager", "Workplace": "The community pharmacy where you work, Adelaide SA"},
+      "openingLine": "Tony said it was fine as long as they'd had it before. I go through the card every time.",
+      "publicFacts": [
+        "She is the retail manager and has worked in pharmacy for 12 years.",
+        "She says the owner told staff they could supply Pharmacist Only medicines to customers who had had them before.",
+        "She uses the question card at the front counter."
+      ]
+    }
+  },
+  "hiddenFacts": [],
+  "answerKey": {
+    "plantedProblem": "Schedule 3 (Pharmacist Only) medicines are being supplied by a non-pharmacist with no pharmacist involvement, on the owner's instruction. Under the SUSMP and South Australian law, an S3 medicine must be supplied by a pharmacist or with the pharmacist's personal involvement in each supply: the pharmacist must assess the person's need and decide. A question card and 'had it before' do not replace this. Each of today's supplies carries specific risks (emergency contraception timing, interactions and follow-up; pseudoephedrine misuse and recording; poorly controlled asthma). The owner's direction does not make it lawful. The pharmacist on duty must stop it now, deal with today's supplies, raise it with the owner, and report if it continues.",
+    "acceptableResolutions": [
+      "Identify that S3 medicines may only be supplied by a pharmacist or with the pharmacist's direct personal involvement in each supply, and that a retail manager acting alone, even with a protocol card, is not authorised.",
+      "Stop it immediately: tell Sharon kindly but clearly that from now on every S3 request must come to you, and that the owner's instruction cannot override the law; move the question cards so they are used only as a prompt for the pharmacist.",
+      "Deal with today's supplies: check the salbutamol and pseudoephedrine customers if still in the store or contactable, record the pseudoephedrine sale in the real-time recording system if possible, and, if the emergency contraception customer can be reached through a record or loyalty account, offer a private follow-up on timing, interactions and next steps.",
+      "Explain the risks: emergency contraception needs an assessment of timing, other medicines (for example enzyme inducers), and follow-up; pseudoephedrine is open to diversion and must be recorded; frequent salbutamol use may signal poorly controlled asthma needing review.",
+      "Contact the owner the same day: explain the legal and professional problem, that both the owner and the pharmacist on duty are accountable, and ask for the instruction to be formally withdrawn.",
+      "If the owner refuses or the practice continues, report it to SA Health (the Controlled Substances or Medicines and Technology Programs area) and consider a notification to Ahpra about the owner, since directing unlawful S3 supply is a departure from professional standards.",
+      "Document what was seen, what was supplied, the conversation with Sharon and the contact with the owner.",
+      "Prevent recurrence: a written S3 procedure (staff refer every S3 request to the pharmacist, the pharmacist assesses and hands over or directly supervises), S3 stock kept where the public cannot reach it, staff training, and adequate pharmacist staffing at busy times."
+    ],
+    "unacceptableActions": [
+      "Allowing the practice to continue because the owner approved it or because it saves time.",
+      "Telling staff they may supply S3 medicines if they use the card or the customer has had it before.",
+      "Reprimanding Sharon publicly in front of customers, or blaming her alone when she followed the owner's direction.",
+      "Ignoring today's supplies and making no attempt to follow up where possible.",
+      "Moving S3 medicines to open shelves for self-selection to ease the workload."
+    ],
+    "counsellingPoints": [],
+    "codePrinciples": [],
+    "legal": [
+      "Standard for the Uniform Scheduling of Medicines and Poisons (Poisons Standard): Schedule 3, Pharmacist Only Medicine, covers substances that need professional advice and should be available to the public only from a pharmacist without a prescription.",
+      "Controlled Substances Act 1984 (SA) and Controlled Substances (Poisons) Regulations 2011 (SA): a Pharmacist Only medicine must be sold or supplied by a pharmacist, or with the pharmacist's personal involvement, and must be stored so the public cannot help themselves.",
+      "Pharmacy Board of Australia Code of Conduct and guidelines: the pharmacist on duty is responsible for the supply of S2 and S3 medicines in the pharmacy, and an owner must not direct staff to practise in a way that compromises patient safety or breaches the law.",
+      "PSA Professional Practice Standards and PSA guidance on providing Pharmacist Only medicines: the pharmacist must personally assess each request (who it is for, symptoms, other medicines, previous use) and decide whether to supply, counsel or refer.",
+      "Health Practitioner Regulation National Law (South Australia): a pharmacist may notify Ahpra about another practitioner's conduct; a mandatory notification is required where there is a reasonable belief of a significant departure from accepted professional standards placing the public at risk of substantial harm."
+    ],
+    "modelAnswer": "1. The legal issue: emergency contraception, pseudoephedrine cold and flu products and salbutamol inhalers are Schedule 3, Pharmacist Only, medicines. Under the Poisons Standard and the Controlled Substances (Poisons) Regulations 2011 (SA), they must be supplied by a pharmacist, or with the pharmacist's personal involvement in each sale. A retail manager using a question card, however experienced, is not authorised, and 'they've had it before' isn't an assessment. The owner's instruction doesn't make it lawful.\n\n2. Act now: I'd speak to Sharon privately, thank her for trying to help, but explain that every S3 request must come to me from now on, and that she isn't in trouble with me for following the owner's direction. The cards can stay as a prompt, but the decision is mine.\n\n3. Today's supplies: emergency contraception needs a check of timing, interacting medicines and follow-up, so I'd try to reach that customer if a record allows and offer a private consultation. I'd record the pseudoephedrine sale in the recording system if possible, because pseudoephedrine is open to diversion. Frequent salbutamol use can mean poorly controlled asthma, so I'd check that customer if they're still in the store or can be contacted.\n\n4. Contact the owner today: explain that this breaches the law and both our professional obligations, and ask that the instruction be withdrawn in writing.\n\n5. Report: if the owner refuses or it continues, I'd report it to SA Health and consider notifying Ahpra about the owner's conduct.\n\n6. Document what I saw, the supplies, and the conversations.\n\n7. Prevent recurrence: a written S3 procedure, S3 stock kept out of public reach, staff training on when to refer to the pharmacist, and enough pharmacist cover at peak times."
+  },
+  "review": {"status": "draft", "version": "0.1"},
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 08/10/2026 AM session, Part B)",
+    "Needs pharmacist review: South Australian setting chosen by the drafter; the three S3 products, the question cards, the verbal staff-meeting instruction, and the pseudoephedrine real-time recording system are invented; check the exact SA wording on pharmacist 'personal involvement' or supervision for S3 supply and storage, and the right SA Health unit to report to; whether an Ahpra notification about the owner is appropriate at the first occurrence. Answer key written from current Australian practice."
+  ]
+}

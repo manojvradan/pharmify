@@ -1,0 +1,305 @@
+{
+  "id": "mefloquine-sotalol-malaria-prophylaxis",
+  "title": "Off overseas soon",
+  "category": "clinical",
+  "problemType": "Drug interaction (QT prolongation and bradycardia)",
+  "specialty": "infectious-disease",
+  "setting": "Community pharmacy, Brisbane QLD",
+  "questionSheet": "Mr Ross Hendry, a 62-year-old man, presents a private prescription from Dr Ong at a travel medicine clinic for Lariam (mefloquine) 250 mg tablets, one tablet once a week, for malaria prophylaxis. He is a regular customer of the pharmacy. Dr Ong can be contacted by phone. Manage the situation as you would in practice. You may contact the prescriber.",
+  "documents": {
+    "prescription": {
+      "item": "Mefloquine 250 mg tablets (Lariam) · Qty 16 (2 x 8) · No repeats · Private",
+      "directions": "One tablet once a week on the same day. Start 2 to 3 weeks before travel, continue weekly while away and for 4 weeks after return.",
+      "footer": "Dr R. Ong (Travel medicine) · Ross Hendry, DOB 02/07/1964",
+      "prescriberDetail": "Travel medicine physician · Brisbane City Travel Health Clinic, QLD",
+      "date": "19/11/2026",
+      "pbs": false
+    },
+    "dispensingHistory": [
+      {
+        "date": "6 Nov 2026",
+        "item": "Sotalol 80 mg tablets (Sotacor)",
+        "directions": "One tablet twice daily",
+        "quantity": "60",
+        "prescriber": "Dr A. Brennan (Cardiologist)"
+      },
+      {
+        "date": "6 Nov 2026",
+        "item": "Apixaban 5 mg tablets (Eliquis)",
+        "directions": "One tablet twice daily",
+        "quantity": "60",
+        "prescriber": "Dr A. Brennan (Cardiologist)"
+      },
+      {
+        "date": "6 Nov 2026",
+        "item": "Atorvastatin 20 mg tablets (generic)",
+        "directions": "One tablet at night",
+        "quantity": "30",
+        "prescriber": "Dr K. Willis (GP)"
+      },
+      {
+        "date": "7 Oct 2026",
+        "item": "Sotalol 80 mg tablets (Sotacor)",
+        "directions": "One tablet twice daily",
+        "quantity": "60",
+        "prescriber": "Dr A. Brennan (Cardiologist)"
+      },
+      {
+        "date": "7 Oct 2026",
+        "item": "Apixaban 5 mg tablets (Eliquis)",
+        "directions": "One tablet twice daily",
+        "quantity": "60",
+        "prescriber": "Dr A. Brennan (Cardiologist)"
+      },
+      {
+        "date": "7 Oct 2026",
+        "item": "Atorvastatin 20 mg tablets (generic)",
+        "directions": "One tablet at night",
+        "quantity": "30",
+        "prescriber": "Dr K. Willis (GP)"
+      },
+      {
+        "date": "8 Sep 2026",
+        "item": "Sotalol 80 mg tablets (Sotacor)",
+        "directions": "One tablet twice daily",
+        "quantity": "60",
+        "prescriber": "Dr A. Brennan (Cardiologist)"
+      },
+      {
+        "date": "8 Sep 2026",
+        "item": "Apixaban 5 mg tablets (Eliquis)",
+        "directions": "One tablet twice daily",
+        "quantity": "60",
+        "prescriber": "Dr A. Brennan (Cardiologist)"
+      }
+    ],
+    "notes": [
+      "Today's date: 20 Nov 2026."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient · Mr Hendry",
+      "name": "Mr Hendry",
+      "description": "A 62-year-old retired civil engineer, warm, chatty and excited about his trip, with good health literacy. He is a bit disorganised about his medicines and didn't think to mention his heart tablets at the travel clinic because the appointment was 'all about vaccines'. He liked the idea of a once-a-week tablet. He is worried when he hears about a heart interaction and wants reassurance that he can still go. He settles quickly with a clear explanation and a plan, and is happy to take a daily tablet instead once he understands why. If the pharmacist is vague, he asks 'So is it safe or not?'",
+      "bio": {
+        "Full name": "Ross Hendry",
+        "Date of birth": "2 July 1964",
+        "Age": "62",
+        "Address": "14 Wattle Street, Carindale QLD 4152",
+        "Phone": "0491 571 491",
+        "Occupation": "Retired civil engineer"
+      },
+      "avatar": "bertie-walsh",
+      "voice": "au-older-man",
+      "openingLine": "Morning! I'm off overseas in a couple of weeks and the travel doctor gave me this for malaria. Can you sort it out for me?",
+      "publicFacts": [
+        "He's going to Papua New Guinea for three weeks with a church volunteer group, helping rebuild a school.",
+        "He leaves on 5 December and gets back on 26 December.",
+        "He saw the travel doctor yesterday and had his vaccinations done.",
+        "He hasn't started the malaria tablets yet."
+      ]
+    },
+    "prescriber": {
+      "label": "Call the travel clinic",
+      "name": "Dr Ong",
+      "description": "A travel medicine physician in her forties, firm and precise, who wants a reason and a clear plan. She chose mefloquine for weekly dosing. She asks 'Which interaction exactly, and how significant is it?' and expects the pharmacist to name the mechanism and a reference. She agrees to change once the interaction is explained, and asks the pharmacist for a specific alternative with dose and duration for this itinerary. She is annoyed with herself, not the pharmacist, that the medication history was missed.",
+      "bio": {
+        "Full name": "Dr Rebecca Ong",
+        "Role": "Travel medicine physician",
+        "Workplace": "Brisbane City Travel Health Clinic, QLD"
+      },
+      "avatar": "dr-tan",
+      "voice": "au-woman-professional",
+      "openingLine": "Rebecca Ong, travel clinic. How can I help?",
+      "publicFacts": [
+        "Ross Hendry saw you yesterday before a three-week volunteer trip to Papua New Guinea, including the highlands and coastal Madang province.",
+        "You gave his travel vaccines and prescribed mefloquine (Lariam) 250 mg weekly for malaria prophylaxis because he preferred a once-weekly tablet.",
+        "Your notes record no regular medicines and no medical conditions; he filled in the form himself."
+      ]
+    }
+  },
+  "hiddenFacts": [
+    {
+      "id": "heart-history",
+      "agent": "patient",
+      "fact": "You have paroxysmal atrial fibrillation, diagnosed about three years ago. Your cardiologist, Dr Brennan, has you on sotalol 80 mg twice daily for rhythm control and apixaban 5 mg twice daily as a blood thinner. You also take atorvastatin 20 mg at night. You didn't mention any of these at the travel clinic because you thought it was just about vaccines and you ticked 'no' on the form without thinking.",
+      "triggers": [
+        "other medicine",
+        "regular medicine",
+        "anything else",
+        "other tablet",
+        "heart",
+        "atrial fibrillation",
+        "af",
+        "irregular heartbeat",
+        "sotalol",
+        "sotacor",
+        "apixaban",
+        "eliquis",
+        "blood thinner",
+        "medical conditions",
+        "health problems",
+        "tell travel doctor"
+      ],
+      "unlockHint": "“What other medicines do you take, and did the travel doctor know about your heart condition and your sotalol?”"
+    },
+    {
+      "id": "heart-symptoms",
+      "agent": "patient",
+      "fact": "Your AF has been well controlled for about a year. Your heart rate at rest is usually in the high 50s. You sometimes feel a bit light-headed if you stand up quickly. You've never fainted and you had an ECG with Dr Brennan about four months ago, which she said was fine.",
+      "triggers": [
+        "heart rate",
+        "pulse",
+        "dizzy",
+        "dizziness",
+        "light headed",
+        "faint",
+        "fainting",
+        "palpitations",
+        "ecg",
+        "controlled",
+        "slow heart",
+        "blackouts"
+      ],
+      "unlockHint": "“How has your heart been? Any dizziness, fainting or palpitations, and when was your last ECG?”"
+    },
+    {
+      "id": "supplements",
+      "agent": "patient",
+      "fact": "You take a magnesium tablet most mornings for leg cramps, and you've bought some Gastro-Stop (loperamide) and oral rehydration sachets for the trip. No herbal products.",
+      "triggers": [
+        "supplements",
+        "vitamins",
+        "magnesium",
+        "over counter",
+        "herbal",
+        "natural",
+        "cramps",
+        "travel kit",
+        "gastro",
+        "diarrhoea",
+        "first aid"
+      ],
+      "unlockHint": "“Do you take any supplements or over-the-counter medicines, or have you bought anything for the trip?”"
+    },
+    {
+      "id": "mental-health-seizures",
+      "agent": "patient",
+      "fact": "You have never had depression, anxiety, other mental health problems or seizures, and no one in your family has. You have no liver or kidney problems that you know of.",
+      "triggers": [
+        "depression",
+        "anxiety",
+        "mental health",
+        "psychiatric",
+        "seizures",
+        "epilepsy",
+        "fits",
+        "mood",
+        "liver",
+        "kidney"
+      ],
+      "unlockHint": "“Have you ever had depression, anxiety or other mental health problems, or seizures?”"
+    },
+    {
+      "id": "trip-details",
+      "agent": "patient",
+      "fact": "You'll be outdoors building most days in the sun, staying in a village guesthouse with mosquito nets. You plan to swim at the coast at the end of the trip. You haven't been to a malaria area before.",
+      "triggers": [
+        "where staying",
+        "accommodation",
+        "outdoors",
+        "sun",
+        "activities",
+        "itinerary",
+        "mosquito",
+        "nets",
+        "insect repellent",
+        "malaria area",
+        "travelled old",
+        "rural"
+      ],
+      "unlockHint": "“What will you be doing there, where will you stay, and will you be out in the sun?”"
+    },
+    {
+      "id": "dr-ong-agrees-interaction",
+      "agent": "prescriber",
+      "fact": "You didn't know he has paroxysmal AF on sotalol 80 mg twice daily and apixaban. Once the pharmacist explains that mefloquine can prolong the QT interval and cause bradycardia and conduction effects, that sotalol is a class III antiarrhythmic and beta-blocker that also prolongs QT, and that the combination increases the risk of torsades de pointes and should be avoided, you agree to cancel the mefloquine. You ask 'What would you use instead, and for how long?'",
+      "triggers": [
+        "sotalol",
+        "atrial fibrillation",
+        "af",
+        "antiarrhythmic",
+        "qt",
+        "qt prolongation",
+        "torsades",
+        "arrhythmia",
+        "bradycardia",
+        "beta blocker",
+        "interaction",
+        "heart condition",
+        "heart medicine"
+      ],
+      "unlockHint": "“He has paroxysmal AF and takes sotalol. Mefloquine and sotalol together increase the risk of QT prolongation, bradycardia and torsades, so I'd recommend avoiding mefloquine.”"
+    },
+    {
+      "id": "dr-ong-accepts-doxycycline",
+      "agent": "prescriber",
+      "fact": "You accept doxycycline 100 mg once daily, starting 1 to 2 days before arriving in PNG, daily while there, and for 4 weeks after leaving (about 51 tablets for this trip, so you'll write 60). You agree there is no significant interaction with sotalol, apixaban or atorvastatin. If the pharmacist suggests atovaquone with proguanil (Malarone) one tablet daily from 1 to 2 days before, during, and for 7 days after, you say that is also acceptable but costs more, and you're happy to go with doxycycline. You ask the pharmacist to counsel him on doxycycline and on bite avoidance, and you'll send a new private prescription.",
+      "triggers": [
+        "doxycycline",
+        "doxy",
+        "alternative",
+        "instead",
+        "suggest",
+        "recommend",
+        "atovaquone",
+        "proguanil",
+        "malarone",
+        "daily tablet"
+      ],
+      "unlockHint": "“Could we use doxycycline 100 mg daily instead, starting 1 to 2 days before he arrives and continuing for 4 weeks after he leaves?”"
+    }
+  ],
+  "answerKey": {
+    "plantedProblem": "Mefloquine prescribed for malaria prophylaxis in a man with paroxysmal AF on sotalol 80 mg twice daily, which the travel doctor didn't know about. Mefloquine can prolong the QT interval and cause bradycardia and cardiac conduction disturbances; sotalol is a beta-blocker with class III antiarrhythmic activity that prolongs QT and slows heart rate. Together they increase the risk of torsades de pointes and symptomatic bradycardia, so the combination should be avoided. Mefloquine's long half-life means any problem would persist for weeks. The fix: do not dispense mefloquine; recommend doxycycline 100 mg daily, from 1 to 2 days before entering the malarious area, daily during, and for 4 weeks after leaving (atovaquone/proguanil as an alternative).",
+    "acceptableResolutions": [
+      "Introduce self, confirm identity, and take a full medication and medical history, identifying paroxysmal AF on sotalol and apixaban (also visible in the dispensing history) that the travel doctor didn't know about.",
+      "Identify the interaction: mefloquine plus sotalol increases the risk of QT prolongation, torsades de pointes and bradycardia; check AMH/eTG and screen for other mefloquine cautions (psychiatric history, seizures).",
+      "Do not dispense the mefloquine; phone Dr Ong with a structured message explaining the mechanism and its significance.",
+      "Recommend doxycycline 100 mg orally once daily, starting 1 to 2 days before arriving, daily during the trip, and for 4 weeks after leaving (about 51 tablets for this itinerary); offer atovaquone/proguanil 250/100 mg daily (1 to 2 days before, during, 7 days after) as an alternative.",
+      "Confirm no clinically significant interaction between doxycycline and sotalol, apixaban or atorvastatin, and advise separating doxycycline from his magnesium supplement.",
+      "Counsel on doxycycline administration, photosensitivity, bite avoidance, and that no prophylaxis is 100% effective; advise that diarrhoea or vomiting while away can upset electrolytes, which matters with sotalol.",
+      "Document the intervention, the call, the agreed plan and the supply of the new prescription."
+    ],
+    "unacceptableActions": [
+      "Dispensing the mefloquine without identifying the sotalol interaction (overall fail).",
+      "Telling him to stop or withhold his sotalol so he can take mefloquine.",
+      "Recommending an alternative with the wrong duration (e.g. stopping doxycycline on return) or no clear start and stop dates.",
+      "Recommending another QT-prolonging antimalarial, or chloroquine, for this patient and destination.",
+      "Leaving him without any malaria prophylaxis plan before travel."
+    ],
+    "counsellingPoints": [
+      "Don't take the Lariam: together with your sotalol it can slow your heart and cause a dangerous heart rhythm. Dr Ong is changing you to doxycycline instead.",
+      "Take one doxycycline 100 mg tablet daily, starting 1 to 2 days before you arrive in PNG, every day while you're there, and for 4 full weeks after you leave, even though you're home by then.",
+      "Take doxycycline with food and a full glass of water, and stay upright for at least 30 minutes afterwards; don't take it at bedtime, because it can cause painful ulcers in the gullet.",
+      "Take your magnesium tablet at least 2 to 3 hours away from the doxycycline, and the same for antacids, iron or calcium, as they stop it being absorbed.",
+      "Doxycycline makes you burn much more easily: use SPF 50+ sunscreen, a hat, sunglasses and long sleeves, especially working outside and swimming.",
+      "No tablet is 100% effective: use an insect repellent containing DEET or picaridin, wear long sleeves and trousers at dusk and dawn, and sleep under a treated mosquito net.",
+      "If you get a fever while away or in the months after you return, see a doctor urgently and say you've been to a malaria area.",
+      "If you get bad diarrhoea or vomiting while away, use your rehydration sachets and seek medical care if it doesn't settle within a day or so, as losing salts can affect your heart rhythm on sotalol; keep taking your sotalol and apixaban as usual.",
+      "Seek urgent help if you feel faint, blackout, or notice a very slow or racing heartbeat."
+    ],
+    "codePrinciples": [],
+    "legal": [],
+    "modelAnswer": "1. Set-up: introduce self, confirm Mr Hendry's identity and DOB, and check the details of the trip (Papua New Guinea, highlands and coast, 5 to 26 December, volunteer building work). 2. Gather information: has he started the mefloquine (no); full medication history including the dispensing record (sotalol 80 mg twice daily and apixaban 5 mg twice daily from his cardiologist for paroxysmal AF, atorvastatin 20 mg), OTC and supplements (magnesium, loperamide, ORS), whether the travel doctor knew about his heart condition (no), heart symptoms and last ECG (well controlled, resting rate high 50s, ECG four months ago), mefloquine contraindications (psychiatric history, seizures: none), allergies, and activities (outdoors in sun, swimming). 3. Identify and explain: mefloquine can prolong the QT interval and cause bradycardia and conduction abnormalities; sotalol is a non-selective beta-blocker with class III activity that prolongs QT and slows heart rate. The combination increases the risk of torsades de pointes and symptomatic bradycardia and should be avoided; mefloquine's long half-life (about 2 to 3 weeks) means the risk would persist after stopping. Travellers' diarrhoea and vomiting causing low potassium or magnesium would further increase the risk. 4. References: AMH (mefloquine, sotalol interactions), eTG Antibiotic (malaria prevention), the Lariam product information, and current advice on malaria risk for PNG. 5. Do not dispense the mefloquine; explain this to Mr Hendry and reassure him he can still travel. 6. Phone Dr Ong (ISBAR): he has paroxysmal AF on sotalol, not recorded at the clinic; explain the QT and bradycardia interaction and its significance. Recommend doxycycline 100 mg orally once daily, starting 1 to 2 days before entering the malarious area, daily during, and for 4 weeks after leaving (about 51 tablets for this trip; e.g. quantity 60 on a private script). Offer atovaquone/proguanil 250/100 mg once daily from 1 to 2 days before, during and for 7 days after as an alternative. Confirm no clinically significant interaction of doxycycline with sotalol, apixaban or atorvastatin. Suggest the clinic updates his record. 7. Counsel on why mefloquine was not supplied, doxycycline dose and duration, taking it with food and water and upright, separating from magnesium, photosensitivity and sunscreen, bite avoidance, no prophylaxis is complete, fever after return, managing diarrhoea and its relevance to sotalol, continuing sotalol and apixaban, and cardiac red flags. Provide written dosing dates. 8. Follow-up: dispense the new doxycycline script when received and invite him back with any questions before departure; suggest he lets his cardiologist know about the trip. 9. Document the intervention, the interaction, the call with Dr Ong, the agreed change and counselling in the dispensing record."
+  },
+  "review": {
+    "status": "draft",
+    "version": "0.1"
+  },
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 13/10/2026 AM session, Part C)",
+    "Needs pharmacist review: destination (Papua New Guinea), trip dates and activities; the patient's AF history, sotalol 80 mg twice daily, apixaban, atorvastatin and magnesium (invented); the Lariam quantity (16), private script and directions, and whether Lariam is currently available in Australia; doxycycline dose and duration (100 mg daily, 1 to 2 days before to 4 weeks after) and atovaquone/proguanil as the alternative, checked against current eTG malaria prevention guidance."
+  ]
+}

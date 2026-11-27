@@ -1,0 +1,356 @@
+{
+  "id": "prochlorperazine-pregabalin-dizziness",
+  "title": "Tablets for vertigo",
+  "category": "clinical",
+  "problemType": "Adverse drug reaction treated with another medicine (prescribing cascade) in an older patient",
+  "specialty": "neurology",
+  "setting": "Community pharmacy, Perth WA",
+  "questionSheet": "Mrs Margaret Ellison, a woman in her seventies, presents a new prescription for prochlorperazine 5 mg tablets (Stemetil) for 'vertigo'. It was written this morning by Dr Mehra, a locum GP at her usual medical centre. Her dispensing history at your pharmacy is attached. Dr Mehra can be contacted by phone. Manage the situation as you would in practice. You may contact the prescriber.",
+  "documents": {
+    "prescription": {
+      "item": "Prochlorperazine 5 mg tablets (Stemetil) · Qty 25",
+      "directions": "One tablet three times daily when required for vertigo",
+      "footer": "Dr S. Mehra (locum GP) · Margaret Ellison, DOB 14/07/1954",
+      "date": "06/11/2026"
+    },
+    "dispensingHistory": [
+      {
+        "date": "2 Nov 2026",
+        "item": "Pregabalin 150 mg capsules (generic)",
+        "directions": "One capsule twice daily",
+        "quantity": "56",
+        "prescriber": "Dr J. Hartley (GP)"
+      },
+      {
+        "date": "21 Oct 2026",
+        "item": "Pregabalin 75 mg capsules (generic)",
+        "directions": "One capsule twice daily",
+        "quantity": "56",
+        "prescriber": "Dr J. Hartley (GP)"
+      },
+      {
+        "date": "21 Oct 2026",
+        "item": "Amlodipine 5 mg tablets (generic)",
+        "directions": "One tablet daily",
+        "quantity": "30",
+        "prescriber": "Dr J. Hartley (GP)"
+      },
+      {
+        "date": "21 Oct 2026",
+        "item": "Atorvastatin 20 mg tablets (generic)",
+        "directions": "One tablet at night",
+        "quantity": "30",
+        "prescriber": "Dr J. Hartley (GP)"
+      },
+      {
+        "date": "25 Sep 2026",
+        "item": "Valaciclovir 500 mg tablets (generic)",
+        "directions": "Two tablets three times daily for 7 days",
+        "quantity": "42",
+        "prescriber": "Dr J. Hartley (GP)"
+      },
+      {
+        "date": "22 Sep 2026",
+        "item": "Amlodipine 5 mg tablets (generic)",
+        "directions": "One tablet daily",
+        "quantity": "30",
+        "prescriber": "Dr J. Hartley (GP)"
+      },
+      {
+        "date": "22 Sep 2026",
+        "item": "Atorvastatin 20 mg tablets (generic)",
+        "directions": "One tablet at night",
+        "quantity": "30",
+        "prescriber": "Dr J. Hartley (GP)"
+      },
+      {
+        "date": "25 Aug 2026",
+        "item": "Amlodipine 5 mg tablets (generic)",
+        "directions": "One tablet daily",
+        "quantity": "30",
+        "prescriber": "Dr J. Hartley (GP)"
+      },
+      {
+        "date": "25 Aug 2026",
+        "item": "Atorvastatin 20 mg tablets (generic)",
+        "directions": "One tablet at night",
+        "quantity": "30",
+        "prescriber": "Dr J. Hartley (GP)"
+      }
+    ],
+    "notes": [
+      "Today's date: 6 Nov 2026, morning."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient · Mrs Ellison",
+      "name": "Mrs Ellison",
+      "description": "A 72-year-old retired school librarian who lives alone. Chatty, polite and articulate, with good health literacy, but she calls any dizziness 'vertigo' because that's the word the locum used. She holds onto the counter now and then. She answers questions fully but doesn't volunteer her other medicines, because the locum didn't ask and she didn't think they were related. She is relieved, not offended, if the pharmacist links the dizziness to her nerve pain capsules, but she worries the shingles pain will come back if they're stopped. She is reassured by a clear plan to reduce rather than stop them. She gets anxious if told to go to hospital without an explanation, and she doesn't want to give up driving.",
+      "bio": {
+        "Full name": "Margaret Ellison",
+        "Date of birth": "14 July 1954",
+        "Age": "72",
+        "Address": "9 Jacaranda Way, Morley WA 6062",
+        "Phone": "0491 571 804",
+        "Occupation": "Retired school librarian"
+      },
+      "avatar": "rosie-costa",
+      "voice": "au-soft-woman",
+      "openingLine": "Good morning, love. The doctor's given me these for my vertigo. I've been so dizzy this past week I can hardly think straight.",
+      "publicFacts": [
+        "She saw Dr Mehra, a locum, this morning because her usual GP, Dr Hartley, was away.",
+        "She has been dizzy on and off for about a week and it's getting her down.",
+        "Dr Mehra said it sounded like vertigo and gave her these tablets.",
+        "She has had shingles recently."
+      ]
+    },
+    "prescriber": {
+      "label": "Call Dr Mehra",
+      "name": "Dr Mehra",
+      "description": "A locum GP in his forties covering a busy morning list at an unfamiliar practice. Rushed, gives short answers, and is a bit defensive at first: 'Sounds like vertigo, Stemetil's standard. What's the problem?' He hasn't looked through the patient's full medication list. He listens if the pharmacist is brief and specific: the medicine, the timing, the dose increase, the type of dizziness, and the risks of prochlorperazine in an older person. He agrees once given a clear alternative. He pushes back on vague concerns and asks what dose the pharmacist suggests and what reference it comes from.",
+      "bio": {
+        "Full name": "Dr Sanjay Mehra",
+        "Role": "Locum general practitioner",
+        "Workplace": "Morley Medical Group, Morley WA"
+      },
+      "avatar": "dr-kapoor",
+      "voice": "au-man-professional",
+      "openingLine": "Mehra here, I'm between patients. Quick as you can.",
+      "publicFacts": [
+        "Margaret Ellison came in this morning with about a week of dizziness. You saw her for ten minutes, thought it was probably vestibular or positional vertigo, and prescribed prochlorperazine 5 mg three times daily as needed.",
+        "You are a locum and her usual GP is Dr Hartley, who is on leave this week.",
+        "You know she has hypertension on amlodipine and takes atorvastatin.",
+        "At first you'd like the script dispensed: 'Stemetil's standard for vertigo.'"
+      ]
+    }
+  },
+  "hiddenFacts": [
+    {
+      "id": "pregabalin-started-increased",
+      "agent": "patient",
+      "fact": "About two weeks ago Dr Hartley started you on 'nerve pain capsules' (pregabalin 75 mg twice a day) for burning pain on your left side after shingles. On 2 November he doubled them to 150 mg twice a day. You still have most of a box of the 75 mg capsules at home. You didn't mention them to Dr Mehra because he didn't ask.",
+      "triggers": [
+        "pregabalin",
+        "lyrica",
+        "nerve pain",
+        "capsules",
+        "shingles pain",
+        "other medicine",
+        "anything else",
+        "new medicine",
+        "recently started",
+        "regular medicine",
+        "dose increase",
+        "increased",
+        "changed",
+        "what take"
+      ],
+      "unlockHint": "“What other medicines do you take? Has anything been started or changed recently?”"
+    },
+    {
+      "id": "dizziness-character",
+      "agent": "patient",
+      "fact": "It isn't the room spinning. You feel woozy, unsteady and light-headed, 'like I've had a few sherries', and your eyes are a bit blurry. You're sleepy in the day too. It started a few days after the nerve pain capsules and got much worse after the dose went up. It's there most of the day, not just when you turn your head. You have no hearing loss, ringing in the ears, headache, weakness, numbness, slurred speech or double vision.",
+      "triggers": [
+        "spinning",
+        "room spin",
+        "describe",
+        "unsteady",
+        "light headed",
+        "blurry",
+        "vision",
+        "sleepy",
+        "drowsy",
+        "hearing",
+        "ringing",
+        "ears",
+        "headache",
+        "started",
+        "when begin",
+        "worse",
+        "turn head",
+        "slurred",
+        "weakness"
+      ],
+      "unlockHint": "“Can you describe the dizziness? Is the room spinning, or do you feel unsteady? When did it start, and is anything else happening, like hearing changes, headache or weakness?”"
+    },
+    {
+      "id": "near-fall-lives-alone",
+      "agent": "patient",
+      "fact": "Two nights ago you nearly fell getting up to the toilet and had to grab the doorframe. You live alone.",
+      "triggers": [
+        "fall",
+        "fallen",
+        "nearly fell",
+        "trip",
+        "balance",
+        "live alone",
+        "anyone home",
+        "at home",
+        "toilet",
+        "night time",
+        "injured",
+        "hurt",
+        "falls",
+        "near falls",
+        "live anyone"
+      ],
+      "unlockHint": "“Have you had any falls or near-falls? Do you live with anyone?”"
+    },
+    {
+      "id": "restavit-otc",
+      "agent": "patient",
+      "fact": "You've been taking Restavit (doxylamine), one tablet most nights for the past week, because the pain was keeping you awake. You bought it here last week.",
+      "triggers": [
+        "sleep",
+        "sleeping",
+        "restavit",
+        "doxylamine",
+        "sleeping tablet",
+        "over counter",
+        "insomnia",
+        "night",
+        "supplements",
+        "vitamins",
+        "herbal",
+        "anything else",
+        "other medicine",
+        "bought"
+      ],
+      "unlockHint": "“Are you taking anything from the pharmacy or supermarket, like something to help you sleep?”"
+    },
+    {
+      "id": "driving",
+      "agent": "patient",
+      "fact": "You drove yourself here this morning and you still drive to the shops and to see your grandchildren.",
+      "triggers": [
+        "drive",
+        "driving",
+        "drove",
+        "car",
+        "get here",
+        "get home",
+        "transport",
+        "lift"
+      ],
+      "unlockHint": "“Are you driving at the moment? How did you get here today?”"
+    },
+    {
+      "id": "pain-now",
+      "agent": "patient",
+      "fact": "The shingles pain is much better than it was. The burning is mild now, about 3 out of 10, and it was already easing on the lower dose before it went up.",
+      "triggers": [
+        "pain now",
+        "how pain",
+        "pain control",
+        "burning",
+        "pain score",
+        "out of ten",
+        "better",
+        "helping",
+        "working",
+        "lower dose"
+      ],
+      "unlockHint": "“How is the shingles pain now? Was it controlled on the lower dose?”"
+    },
+    {
+      "id": "gp-agrees-pregabalin",
+      "agent": "prescriber",
+      "fact": "You didn't know she had started pregabalin two weeks ago or that the dose was doubled on 2 November. Once the pharmacist explains that her dizziness is non-rotational unsteadiness with blurred vision and sleepiness, which started with pregabalin and worsened after the increase (dose-related dizziness, ataxia and somnolence), and that prochlorperazine adds sedation, postural hypotension, extrapyramidal and anticholinergic effects and falls risk in a 72-year-old, you agree: cancel the prochlorperazine and reduce the pregabalin back to 75 mg twice daily, using the 75 mg capsules she already has. Don't stop it abruptly. You'll ask Dr Hartley to review titration. If the pharmacist only says 'Stemetil isn't suitable', ask 'Then what's causing it?'.",
+      "triggers": [
+        "pregabalin",
+        "lyrica",
+        "nerve pain",
+        "shingles",
+        "dose increase",
+        "doubled",
+        "150 mg",
+        "side effect",
+        "adverse effect",
+        "ataxia",
+        "prescribing cascade",
+        "not spinning",
+        "reduce dose",
+        "75 mg"
+      ],
+      "unlockHint": "“She started pregabalin two weeks ago and it was doubled on 2 November. Her dizziness is unsteadiness and blurred vision, not spinning, so I think it's pregabalin. Could we cancel the prochlorperazine and reduce pregabalin back to 75 mg twice daily?”"
+    },
+    {
+      "id": "gp-renal",
+      "agent": "prescriber",
+      "fact": "If asked, you check her file: her eGFR in August 2026 was 48 mL/min/1.73 m². You accept that pregabalin is renally cleared and her dose should be kept within the renal limit and titrated slowly.",
+      "triggers": [
+        "kidney",
+        "kidneys",
+        "renal",
+        "egfr",
+        "creatinine",
+        "kidney function",
+        "clearance",
+        "crcl",
+        "blood test"
+      ],
+      "unlockHint": "“Do you have her most recent kidney function? Pregabalin is renally cleared.”"
+    },
+    {
+      "id": "gp-restavit-falls",
+      "agent": "prescriber",
+      "fact": "You didn't know she was taking doxylamine at night or that she nearly fell. You agree she should stop the doxylamine, avoid driving until the dizziness settles, and be reviewed by Dr Hartley within a week, sooner if she is no better.",
+      "triggers": [
+        "restavit",
+        "doxylamine",
+        "sleeping tablet",
+        "antihistamine",
+        "fall",
+        "nearly fell",
+        "falls risk",
+        "driving",
+        "lives alone",
+        "follow up",
+        "review"
+      ],
+      "unlockHint": "“She's also taking doxylamine most nights and nearly fell two nights ago. I'd suggest stopping it, no driving for now, and a review in a week.”"
+    }
+  ],
+  "answerKey": {
+    "plantedProblem": "The 'vertigo' is an adverse effect of pregabalin, and the prescription for prochlorperazine is a prescribing cascade. Pregabalin was started two weeks ago (75 mg twice daily) for pain after shingles and doubled to 150 mg twice daily on 2 Nov. The dizziness is non-rotational unsteadiness with blurred vision and daytime sleepiness, which began after pregabalin started and worsened after the increase. Pregabalin causes dose-related dizziness, ataxia, blurred vision and somnolence. It is renally cleared, and her eGFR is 48. The locum didn't know she was taking it. Prochlorperazine would add sedation, postural hypotension, anticholinergic effects and extrapyramidal effects, which raise the falls risk in a 72-year-old who lives alone, has already nearly fallen, and also takes OTC doxylamine at night. She is also still driving.",
+    "acceptableResolutions": [
+      "Confirm identity and take a full medicine history, including recently started or changed medicines and OTC products. Find the pregabalin start (21 Oct) and the dose increase (2 Nov) in the dispensing history and with the patient.",
+      "Characterise the dizziness (non-rotational, constant, with blurred vision and sleepiness, temporal link to pregabalin) and screen for red flags of a central cause (sudden onset, headache, weakness, speech or visual disturbance, hearing loss).",
+      "Identify pregabalin as the likely cause and the prochlorperazine as a prescribing cascade with added falls risk in an older person. Do not dispense the prochlorperazine.",
+      "Phone Dr Mehra with a specific recommendation: cancel the prochlorperazine and reduce pregabalin to the previously tolerated 75 mg twice daily (from the capsules she has), without stopping it abruptly. Raise her renal function (eGFR 48) and the need for slower, renally adjusted titration, and ask for a review with Dr Hartley.",
+      "Recommend stopping the doxylamine. Give falls-prevention advice, and advise no driving until the dizziness has settled.",
+      "Counsel clearly, make sure she knows which capsules to take tonight (75 mg, not 150 mg), arrange follow-up, and document the intervention."
+    ],
+    "unacceptableActions": [
+      "Dispensing the prochlorperazine without asking about other medicines or recognising pregabalin as the cause (overall fail).",
+      "Telling her to stop pregabalin abruptly at 150 mg twice daily (risk of withdrawal effects and pain flare) instead of reducing it under the prescriber's direction.",
+      "Recommending another OTC sedating antihistamine (e.g. promethazine, dimenhydrinate) for the dizziness.",
+      "Ignoring the near-fall, the doxylamine, or her driving.",
+      "Telling the prescriber only that 'Stemetil isn't suitable' without identifying the cause or offering a plan."
+    ],
+    "counsellingPoints": [
+      "Don't take the Stemetil. Your dizziness is most likely a side effect of the nerve pain capsules (pregabalin), especially since the dose was doubled, so another tablet would add to it.",
+      "From tonight, take one 75 mg capsule twice a day (from the box you already have) instead of the 150 mg capsules, as Dr Mehra has agreed. Put the 150 mg capsules aside and don't take both.",
+      "Don't stop the pregabalin suddenly on your own. Stopping it suddenly can cause withdrawal symptoms like trouble sleeping, nausea and anxiety, and can bring the pain back.",
+      "Stop the Restavit. It adds to drowsiness and unsteadiness, especially at night when you get up to the toilet.",
+      "Until the dizziness settles, get up slowly, sit on the edge of the bed before standing, use a night light, and keep a phone with you, since you live alone.",
+      "Please don't drive while you feel dizzy, sleepy or blurry. Pregabalin can affect your driving, and it should only restart when you feel normal again.",
+      "The dizziness should start to ease within a few days of the lower dose. If it doesn't, or the shingles pain becomes hard to manage, see Dr Hartley.",
+      "Call 000 or go to the emergency department straight away if you get sudden severe dizziness with headache, weakness or numbness, slurred speech, double vision or a fall with injury.",
+      "Avoid alcohol while you're taking pregabalin, because it makes the drowsiness and unsteadiness worse."
+    ],
+    "codePrinciples": [],
+    "legal": [],
+    "modelAnswer": "1. Set-up: introduce self, confirm Mrs Ellison's identity and DOB, get consent and offer her a seat in the consultation area, since she is unsteady. 2. Gather information. Ask her to describe the dizziness: spinning, or unsteady and light-headed (unsteady, woozy, blurred vision, sleepy, constant, not positional). Ask about onset and course (about a week, worse since the dose went up), and red flags: hearing loss, tinnitus, headache, weakness or numbness, speech or visual change, sudden onset (none). Ask about falls (a near-fall two nights ago, lives alone) and driving (drove here today). Take a full medicine history: what she takes regularly and what has changed. The history shows pregabalin 75 mg twice daily from 21 Oct, increased to 150 mg twice daily on 2 Nov, after valaciclovir for shingles in September. Ask about OTC and sleep aids (doxylamine most nights) and how her pain is now (3/10, settling). 3. Identify and explain: pregabalin commonly causes dose-related dizziness, ataxia, blurred vision and somnolence, especially early in treatment and after increases, and more so in older people and in renal impairment, since it is renally cleared. The timing fits. This is not true vertigo, so prochlorperazine would be a prescribing cascade, adding sedation, postural hypotension, anticholinergic effects and extrapyramidal effects. Doxylamine adds sedation and anticholinergic burden. All of these increase her falls risk. 4. References: AMH (pregabalin adverse effects and renal dose adjustment, prochlorperazine in older people), eTG (Neurology: dizziness and vertigo; Pain: neuropathic pain), APF, and the Beers criteria or STOPP for falls-risk medicines. 5. Do not dispense the prochlorperazine. Phone Dr Mehra (ISBAR): 'Mrs Ellison, 72, started pregabalin on 21 Oct, doubled to 150 mg twice daily on 2 Nov. Her dizziness is non-rotational unsteadiness with blurred vision and sleepiness, with no central red flags, and she nearly fell. She also takes doxylamine. I think it's pregabalin. I recommend cancelling the prochlorperazine and reducing pregabalin back to 75 mg twice daily (she has capsules at home), not stopping it abruptly, and checking her renal function, which may limit the dose and titration.' When he asks 'then what's causing it?', give the timing and the type of dizziness. If asked, name AMH as the reference for renal dosing (eGFR 48). Also recommend stopping the doxylamine, no driving for now, and a review with Dr Hartley within a week. 6. Counsel as above, with written instructions on which capsules to take, and check her understanding with teach-back. Make sure she can get home safely without driving (a family member or taxi). 7. Follow-up: phone her in 2–3 days. Send a note to Dr Hartley, and consider a Home Medicines Review referral given her falls risk. 8. Document the assessment, the call, the agreed dose change, the non-supply of prochlorperazine and the counselling."
+  },
+  "review": {
+    "status": "draft",
+    "version": "0.1"
+  },
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 08/10/2026 AM session, Part C)",
+    "Needs pharmacist review: invented the indication (pain after shingles, valaciclovir in September), the dose increase from 75 mg to 150 mg twice daily on 2 Nov, an eGFR of 48 (which sits pregabalin at its renal maximum of about 300 mg/day), the OTC doxylamine, the near-fall and the driving. The recommended plan (reduce to the previously tolerated 75 mg twice daily instead of stopping, using her own 75 mg capsules) and the specialty (neurology) also need checking."
+  ]
+}

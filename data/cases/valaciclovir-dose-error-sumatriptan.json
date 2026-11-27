@@ -1,0 +1,322 @@
+{
+  "id": "valaciclovir-dose-error-sumatriptan",
+  "title": "Two scripts from the GP",
+  "category": "clinical",
+  "problemType": "Prescribing error (wrong dose)",
+  "specialty": "infectious-disease",
+  "setting": "Community pharmacy, SA",
+  "questionSheet": "Mr Darren Pickett, a man in his late forties, hands you a new prescription from his GP, Dr Sandhu, written this morning. It has two items: valaciclovir 500 mg tablets, one tablet three times daily for 7 days (quantity 42), and sumatriptan 50 mg tablets, one tablet at the onset of migraine (quantity 4). He is a regular customer and says he'd like to start the first one today. Dr Sandhu can be contacted by phone. Manage the situation as you would in practice. You may contact the prescriber.",
+  "documents": {
+    "prescription": {
+      "item": "Valaciclovir 500 mg tablets · Qty 42 · No repeats",
+      "directions": "One tablet three times daily for 7 days",
+      "footer": "Dr N. Sandhu (GP) · Darren Pickett, DOB 14/02/1979",
+      "date": "09/10/2026"
+    },
+    "dispensingHistory": [
+      {
+        "date": "12 Sep 2026",
+        "item": "Perindopril arginine 5 mg tablets (Coversyl)",
+        "directions": "One tablet daily",
+        "quantity": "30",
+        "prescriber": "Dr N. Sandhu (GP)"
+      },
+      {
+        "date": "22 Aug 2026",
+        "item": "Sumatriptan 50 mg tablets (generic)",
+        "directions": "One tablet at the onset of migraine. If it returns, may repeat after 2 hours. No more than 300 mg in 24 hours",
+        "quantity": "4",
+        "prescriber": "Dr N. Sandhu (GP)"
+      },
+      {
+        "date": "14 Aug 2026",
+        "item": "Perindopril arginine 5 mg tablets (Coversyl)",
+        "directions": "One tablet daily",
+        "quantity": "30",
+        "prescriber": "Dr N. Sandhu (GP)"
+      },
+      {
+        "date": "15 Jul 2026",
+        "item": "Perindopril arginine 5 mg tablets (Coversyl)",
+        "directions": "One tablet daily",
+        "quantity": "30",
+        "prescriber": "Dr N. Sandhu (GP)"
+      },
+      {
+        "date": "19 Jun 2026",
+        "item": "Sumatriptan 50 mg tablets (generic)",
+        "directions": "One tablet at the onset of migraine. If it returns, may repeat after 2 hours. No more than 300 mg in 24 hours",
+        "quantity": "4",
+        "prescriber": "Dr N. Sandhu (GP)"
+      },
+      {
+        "date": "16 Jun 2026",
+        "item": "Perindopril arginine 5 mg tablets (Coversyl)",
+        "directions": "One tablet daily",
+        "quantity": "30",
+        "prescriber": "Dr N. Sandhu (GP)"
+      }
+    ],
+    "notes": [
+      "Second item on the same prescription: Sumatriptan 50 mg tablets · One tablet at the onset of migraine; may repeat after 2 hours if it returns; max 300 mg in 24 hours · Qty 4 · Dr N. Sandhu (GP) · Darren Pickett, DOB 14/02/1979.",
+      "Today's date: Friday 9 Oct 2026, morning."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient · Mr Pickett",
+      "name": "Mr Pickett",
+      "description": "A 47-year-old electrician, gruff, sore and in a hurry; he has a job to get back to. Average health literacy. He wants the tablets now and answers in short sentences, giving details only when asked a specific question. If the pharmacist explains clearly why a quick call to the doctor matters (the dose affects how well the shingles tablets work), he is happy to wait. If he is kept waiting with no explanation, he gets irritable and asks why it's taking so long. He wants to know how long he'll be contagious and whether he can keep working.",
+      "bio": {
+        "Full name": "Darren Pickett",
+        "Date of birth": "14 February 1979",
+        "Age": "47",
+        "Address": "17 Kestrel Court, Morphett Vale SA 5162",
+        "Phone": "0491 570 157",
+        "Occupation": "Electrician"
+      },
+      "avatar": "wally-morris",
+      "voice": "au-man-40s",
+      "openingLine": "G'day mate, can you do these for me? Doc says I've got shingles. I need to get back to work, so if you could be quick that'd be great.",
+      "publicFacts": [
+        "Dr Sandhu saw you this morning and said you've got shingles.",
+        "The second tablet is your usual migraine tablet; you're running low.",
+        "You want to start the shingles tablets today.",
+        "You're sore and not sleeping well."
+      ]
+    },
+    "prescriber": {
+      "label": "Call Dr Sandhu",
+      "name": "Dr Sandhu",
+      "description": "A GP in his forties, rushed and between patients, giving short answers. Medium pushback: if the pharmacist only says 'the dose looks wrong' he says 'Just give what I wrote, it's fine', but he listens and agrees straight away when the pharmacist states the indication, the eTG dose and the problem clearly. He appreciates a brief, specific recommendation he can say yes to.",
+      "bio": {
+        "Full name": "Dr Navdeep Sandhu",
+        "Role": "General practitioner",
+        "Workplace": "Reynella Family Medical Practice, SA"
+      },
+      "avatar": "dr-kapoor",
+      "voice": "au-doctor",
+      "openingLine": "Sandhu here, I've got about a minute. What's up?",
+      "publicFacts": [
+        "Darren Pickett is your patient. You saw him this morning and diagnosed herpes zoster (shingles) on the left side of his chest.",
+        "You prescribed valaciclovir and a repeat of his sumatriptan, which he uses for migraine.",
+        "He has hypertension, well controlled on perindopril 5 mg daily, and no other known conditions.",
+        "His routine bloods last month, including kidney function, were normal."
+      ]
+    }
+  },
+  "hiddenFacts": [
+    {
+      "id": "rash-onset",
+      "agent": "patient",
+      "fact": "You had burning, tingling pain on the left side of your chest and round to your back for a couple of days, then a band of red blisters came up yesterday morning (about 30 hours ago). It hasn't spread anywhere else. There's nothing on your face, near your eye or on your forehead.",
+      "triggers": [
+        "rash",
+        "blisters",
+        "when start",
+        "how long ago",
+        "first appear",
+        "where rash",
+        "which side",
+        "spread",
+        "face",
+        "eye",
+        "forehead",
+        "chest",
+        "pain start",
+        "first notice"
+      ],
+      "unlockHint": "“When did the rash first come out, and where exactly is it? Is any of it on your face or near your eye?”"
+    },
+    {
+      "id": "pain-and-painkillers",
+      "agent": "patient",
+      "fact": "The pain is a burning, stabbing pain, about 7 out of 10, and it's keeping you up at night. You've been taking two Nurofen (ibuprofen 200 mg) three times a day and sometimes Panadol as well. It only takes the edge off.",
+      "triggers": [
+        "pain",
+        "painkillers",
+        "pain relief",
+        "nurofen",
+        "ibuprofen",
+        "panadol",
+        "paracetamol",
+        "sore",
+        "how bad",
+        "sleeping",
+        "taken anything",
+        "anti inflammatory"
+      ],
+      "unlockHint": "“How bad is the pain, and have you taken anything for it?”"
+    },
+    {
+      "id": "general-health",
+      "agent": "patient",
+      "fact": "Apart from blood pressure (on perindopril) and migraines, you're healthy. You've never had kidney problems, you're not on any steroids or treatment that lowers your immunity, and you've no allergies. You had chickenpox as a kid.",
+      "triggers": [
+        "kidney",
+        "kidneys",
+        "renal",
+        "immune",
+        "immunity",
+        "steroids",
+        "allergies",
+        "allergic",
+        "medical conditions",
+        "health problems",
+        "other conditions",
+        "chickenpox",
+        "other medicine",
+        "anything else"
+      ],
+      "unlockHint": "“Do you have any other medical conditions, such as kidney problems or anything that affects your immune system? Any allergies?”"
+    },
+    {
+      "id": "migraine-use",
+      "agent": "patient",
+      "fact": "You get about two migraines a month. One sumatriptan usually fixes it; you've never needed a second dose. You've never had chest pain or tightness with it. You haven't had a migraine since the shingles pain started.",
+      "triggers": [
+        "migraine",
+        "migraines",
+        "sumatriptan",
+        "imigran",
+        "how often",
+        "headache",
+        "headaches",
+        "chest tightness",
+        "chest pain",
+        "triptan",
+        "how many",
+        "works"
+      ],
+      "unlockHint": "“How often are you getting migraines, and how is the sumatriptan working for you? Any chest tightness with it?”"
+    },
+    {
+      "id": "pregnant-daughter",
+      "agent": "patient",
+      "fact": "Your daughter is 30 weeks pregnant and comes round for dinner most Sundays. You don't know if she's had chickenpox. You also work on building sites, mostly in a shirt.",
+      "triggers": [
+        "contagious",
+        "catch",
+        "spread others",
+        "pregnant",
+        "pregnancy",
+        "family",
+        "home",
+        "live with",
+        "grandchildren",
+        "babies",
+        "contact",
+        "visitors",
+        "work",
+        "cover rash"
+      ],
+      "unlockHint": "“Is there anyone at home or that you see often who is pregnant, a newborn, or has a weak immune system?”"
+    },
+    {
+      "id": "gp-dose-error",
+      "agent": "prescriber",
+      "fact": "You meant to prescribe the herpes zoster dose: valaciclovir 1 g (two 500 mg tablets) three times daily for 7 days, which is why you wrote quantity 42. Writing 'one tablet' was a slip. Once the pharmacist explains it, you agree straight away: dispense 1 g (two tablets) three times daily for 7 days, quantity 42, and you'll note the correction in his record. You confirm his kidney function was normal last month, so no dose adjustment is needed.",
+      "triggers": [
+        "valaciclovir",
+        "valtrex",
+        "dose",
+        "dosing",
+        "1 g",
+        "one gram",
+        "two tablets",
+        "1000 mg",
+        "three times daily",
+        "quantity 42",
+        "zoster dose",
+        "shingles dose",
+        "wrong dose",
+        "underdose",
+        "etg"
+      ],
+      "unlockHint": "“For herpes zoster the eTG dose of valaciclovir is 1 g three times daily for 7 days. You've written one 500 mg tablet, but the quantity of 42 suits two tablets. Can I dispense 1 g three times daily?”"
+    },
+    {
+      "id": "gp-pain-plan",
+      "agent": "prescriber",
+      "fact": "You didn't know he was taking ibuprofen 400 mg three times a day with his perindopril, and you didn't prescribe anything for pain. You agree he should take regular paracetamol, keep ibuprofen to the lowest dose for the shortest time and drink plenty of fluids, and come back if the pain isn't controlled (you'd consider a short course of something stronger or a neuropathic pain medicine).",
+      "triggers": [
+        "pain",
+        "pain relief",
+        "analgesia",
+        "ibuprofen",
+        "nurofen",
+        "nsaid",
+        "anti inflammatory",
+        "paracetamol",
+        "perindopril",
+        "kidney",
+        "blood pressure",
+        "not sleeping"
+      ],
+      "unlockHint": "“He's taking ibuprofen 400 mg three times a day with his perindopril and the pain is still 7 out of 10. Could we put him on regular paracetamol and review his pain if it isn't controlled?”"
+    },
+    {
+      "id": "gp-infection-control",
+      "agent": "prescriber",
+      "fact": "You didn't know his daughter is 30 weeks pregnant. You agree he should keep the rash covered and avoid contact with her until the blisters have crusted over, and that she should check with her own doctor or midwife about her chickenpox immunity.",
+      "triggers": [
+        "pregnant",
+        "pregnancy",
+        "daughter",
+        "chickenpox",
+        "varicella",
+        "immunity",
+        "contagious",
+        "contact",
+        "cover rash",
+        "crusted"
+      ],
+      "unlockHint": "“His daughter is 30 weeks pregnant and visits often. Should he avoid contact until the blisters crust, and should she check her varicella immunity?”"
+    }
+  ],
+  "answerKey": {
+    "plantedProblem": "The valaciclovir dose is wrong for the indication. Mr Pickett has acute herpes zoster (thoracic dermatome, rash onset about 30 hours ago, within the 72-hour treatment window, no facial or ophthalmic involvement, normal renal function). The eTG/AMH dose for herpes zoster is valaciclovir 1 g orally three times daily for 7 days. The prescription says one 500 mg tablet three times daily for 7 days (1.5 g/day, half the intended dose), which would under-treat the zoster; the quantity of 42 (two tablets three times daily for 7 days) shows the prescriber intended 1 g. The sumatriptan repeat is appropriate (about two migraines a month, single-dose response, no cardiovascular symptoms, blood pressure controlled). Secondary issues: poorly controlled zoster pain with regular ibuprofen alongside an ACE inhibitor, and infection-control advice because his daughter is 30 weeks pregnant.",
+    "acceptableResolutions": [
+      "Confirm identity and gather a focused history: indication, rash onset and site (within 72 hours, no eye or face involvement), renal function, immune status, allergies, other medicines including OTC painkillers.",
+      "Identify the dosing discrepancy, check the herpes zoster dose in eTG (Antibiotic) or AMH (1 g three times daily for 7 days), note that the quantity of 42 matches 1 g three times daily, and confirm renal function is normal so no adjustment is needed.",
+      "Contact Dr Sandhu before dispensing, explain the problem clearly and recommend valaciclovir 1 g (two 500 mg tablets) three times daily for 7 days; dispense the corrected dose today once confirmed, with the label reading 'Take TWO tablets three times a day for 7 days'.",
+      "Annotate the prescription with the confirmed change, the prescriber's name, date and time, and record it in the dispensing software.",
+      "Dispense the sumatriptan after checking use frequency, effectiveness and cardiovascular red flags.",
+      "Address pain: recommend regular paracetamol, minimise ibuprofen with perindopril (or seek GP review), maintain hydration, and refer back if pain is uncontrolled.",
+      "Counsel on completing the course, spacing doses, infection control (cover the rash, avoid pregnant women, newborns and the immunocompromised until lesions crust), red flags (eye or face involvement, spreading rash, fever, confusion), and the risk of post-herpetic neuralgia."
+    ],
+    "unacceptableActions": [
+      "Dispensing valaciclovir 500 mg three times daily as written without querying it (overall fail).",
+      "Changing the dose on their own judgement without contacting the prescriber, or dispensing the 1 g dose without confirmation and annotation.",
+      "Refusing or delaying treatment until next week, losing the 72-hour window.",
+      "Recommending a lower dose for renal impairment without establishing renal function.",
+      "Advising that the rash is not contagious, or ignoring his pregnant daughter.",
+      "Recommending more ibuprofen or exceeding paracetamol limits to manage the pain."
+    ],
+    "counsellingPoints": [
+      "Take TWO of the 500 mg valaciclovir tablets (1 g) three times a day, roughly every 8 hours, for 7 days, and finish the whole course even if the rash improves.",
+      "Start the first dose today: valaciclovir works best when started within 72 hours of the rash appearing.",
+      "Drink plenty of water while taking valaciclovir; common side effects are headache, nausea and tummy upset. Stop and seek help if you become confused or notice much less urine.",
+      "Keep the rash covered with loose clothing or a dry dressing and don't scratch. Until all the blisters have crusted over, avoid contact with your pregnant daughter, newborn babies and anyone with a weak immune system, because they can catch chickenpox from the fluid.",
+      "For pain, take paracetamol regularly (two 500 mg tablets up to four times a day, no more than 4 g in 24 hours). Keep ibuprofen to the lowest dose for the shortest time, because with your blood pressure tablet it can affect your kidneys and blood pressure.",
+      "See a doctor urgently if the rash spreads to your face, forehead, nose or near your eye, if you get eye pain or vision changes, a high fever, or the rash spreads widely.",
+      "If burning pain continues after the rash heals (post-herpetic neuralgia), go back to Dr Sandhu, as there are treatments for it.",
+      "Keep using sumatriptan as before: one tablet at the start of a migraine; if it comes back you can take another after 2 hours, no more than 300 mg in 24 hours. Stop and get help if you get chest pain or tightness.",
+      "Once you've recovered, ask your GP about the shingles vaccine (Shingrix) to reduce the chance of it coming back."
+    ],
+    "codePrinciples": [],
+    "legal": [
+      "Before dispensing a dose that differs from what is written, confirm it with the prescriber and annotate the prescription (change, prescriber's name, date and time, pharmacist's initials), consistent with the Pharmacy Board's Guidelines for dispensing of medicines and the SA Controlled Substances (Poisons) Regulations 2011 requirements for dispensing records.",
+      "PSA Professional Practice Standards: the pharmacist is responsible for checking that a prescribed dose is appropriate before supply, and for documenting clinical interventions."
+    ],
+    "modelAnswer": "1. Set-up: introduce self, confirm Mr Pickett's identity and date of birth, and explain I need a couple of minutes to check both items, which helps him tolerate the wait. 2. Gather information: what the doctor said the valaciclovir is for (shingles); when the pain and rash started and where (pain for a couple of days, blisters about 30 hours ago, left chest to back, nothing on the face or near the eye); other conditions (hypertension on perindopril; no kidney problems, not immunocompromised, no allergies); pain severity and what he has taken (ibuprofen 400 mg three times a day plus paracetamol, pain 7/10, not sleeping); migraine frequency and response to sumatriptan, and any chest symptoms; and who he lives with or sees (daughter 30 weeks pregnant). 3. Identify and explain the problem: for herpes zoster the eTG Antibiotic and AMH dose of valaciclovir is 1 g three times daily for 7 days, ideally started within 72 hours of rash onset to shorten the illness and reduce acute pain and possibly post-herpetic neuralgia. The prescription says one 500 mg tablet three times daily, half the intended dose, which risks under-treating the infection. The quantity of 42 matches two tablets three times daily for 7 days, so it is most likely a transcription slip. Renal function is normal, so no dose reduction is needed (if creatinine clearance were reduced the dose would need adjusting, and toxicity such as confusion is a risk). Sumatriptan use is appropriate: about two migraines a month, no chest pain, blood pressure controlled. 4. References: eTG Antibiotic (herpes zoster), AMH (valaciclovir dosing and renal adjustment; sumatriptan contraindications), APF for counselling. 5. Contact Dr Sandhu promptly using ISBAR: identify myself and the patient, state the problem, and recommend valaciclovir 1 g (two 500 mg tablets) three times daily for 7 days, quantity 42, to start today. If he says to give what he wrote, restate the indication and the eTG dose briefly. Also mention the ibuprofen with perindopril and uncontrolled pain: recommend regular paracetamol, minimal NSAID use, hydration and review if uncontrolled; and mention the pregnant daughter. 6. Dispense: annotate the script with the confirmed dose, prescriber's name, date and time, label clearly 'Take TWO tablets three times a day for 7 days', and dispense the sumatriptan. 7. Counsel: two tablets three times daily for the full 7 days starting now; fluids and side effects; rash care and avoiding his pregnant daughter, newborns and immunocompromised people until the lesions crust, with his daughter to check her varicella immunity with her midwife; pain plan; red flags such as facial or eye involvement, fever or spreading rash; post-herpetic neuralgia; sumatriptan use and chest-pain warning; Shingrix later. 8. Follow-up: invite him to return or call if pain is uncontrolled or the rash spreads, and offer a check-in in a few days. 9. Document the intervention, the prescriber's confirmation and the counselling in the dispensing record."
+  },
+  "review": {
+    "status": "draft",
+    "version": "0.1"
+  },
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 09/10/2026 AM session, Part C)",
+    "Needs pharmacist review: the recall row only says the valaciclovir dose was wrong; the indication (thoracic herpes zoster within 72 hours), the specific error (500 mg three times daily written instead of 1 g three times daily, with quantity 42 as a clue), normal renal function, the ibuprofen-with-perindopril pain issue, the pregnant daughter, and the sumatriptan pack size (4 tablets) and label directions were all invented. The SA legislation citation for annotating a prescription is general; check the exact provision."
+  ]
+}
