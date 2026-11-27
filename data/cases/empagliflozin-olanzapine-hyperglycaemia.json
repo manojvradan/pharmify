@@ -1,0 +1,359 @@
+{
+  "id": "empagliflozin-olanzapine-hyperglycaemia",
+  "title": "A new diabetes script",
+  "category": "clinical",
+  "problemType": "Prescribing cascade (antipsychotic-induced hyperglycaemia)",
+  "specialty": "endocrinology",
+  "setting": "Community pharmacy, Brisbane QLD",
+  "questionSheet": "It is a Tuesday afternoon. Ms Tara Mensah, a woman in her thirties and a regular customer, presents a new prescription from her GP, Dr Whitby, for empagliflozin 10 mg tablets, one in the morning. She says the doctor told her it is because her blood sugar has gone up on recent blood tests. Her dispensing history at your pharmacy is attached. Dr Whitby can be contacted by phone. Manage the situation as you would in practice. You may contact the prescriber.",
+  "documents": {
+    "prescription": {
+      "item": "Empagliflozin 10 mg tablets (Jardiance) · Qty 30 · 5 repeats",
+      "directions": "One tablet in the morning",
+      "footer": "Dr L. Whitby (GP) · Tara Mensah, DOB 14/03/1992",
+      "prescriber": "Dr Lauren Whitby",
+      "prescriberDetail": "General practitioner · Stafford Family Practice, QLD",
+      "date": "10/11/2026",
+      "quantity": "30",
+      "repeats": "5"
+    },
+    "dispensingHistory": [
+      {
+        "date": "2 Nov 2026",
+        "item": "Olanzapine 20 mg tablets (generic)",
+        "directions": "One tablet at night",
+        "quantity": "28",
+        "prescriber": "Dr R. Fielding (Psychiatrist)"
+      },
+      {
+        "date": "5 Oct 2026",
+        "item": "Olanzapine 20 mg tablets (generic)",
+        "directions": "One tablet at night",
+        "quantity": "28",
+        "prescriber": "Dr R. Fielding (Psychiatrist)"
+      },
+      {
+        "date": "7 Sep 2026",
+        "item": "Olanzapine 20 mg tablets (generic)",
+        "directions": "One tablet at night",
+        "quantity": "28",
+        "prescriber": "Dr R. Fielding (Psychiatrist)"
+      },
+      {
+        "date": "10 Aug 2026",
+        "item": "Olanzapine 10 mg tablets (generic)",
+        "directions": "One tablet at night",
+        "quantity": "28",
+        "prescriber": "Dr R. Fielding (Psychiatrist)"
+      },
+      {
+        "date": "20 Jul 2026",
+        "item": "Levonorgestrel 150 microgram / ethinylestradiol 30 microgram tablets (Levlen ED)",
+        "directions": "One tablet daily as directed",
+        "quantity": "4 x 28",
+        "prescriber": "Dr L. Whitby (GP)"
+      },
+      {
+        "date": "13 Jul 2026",
+        "item": "Olanzapine 10 mg tablets (generic)",
+        "directions": "One tablet at night",
+        "quantity": "28",
+        "prescriber": "Dr R. Fielding (Psychiatrist)"
+      },
+      {
+        "date": "15 Jun 2026",
+        "item": "Olanzapine 10 mg tablets (generic)",
+        "directions": "One tablet at night",
+        "quantity": "28",
+        "prescriber": "Dr R. Fielding (Psychiatrist)"
+      }
+    ],
+    "notes": [
+      "Today's date: 10 Nov 2026 (afternoon)."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient · Ms Mensah",
+      "name": "Ms Mensah",
+      "description": "A 34-year-old retail assistant, friendly, articulate and a little self-conscious about her weight, with good health literacy. Her bipolar disorder is currently stable and she is open about it if asked respectfully. She volunteers little beyond the basics but answers honestly when asked specific questions. If the pharmacist suggests stopping or changing her olanzapine without involving her psychiatrist she becomes worried and defensive, because stopping medicines in the past ended in a hospital admission. She relaxes when the pharmacist explains things calmly, involves her doctors and makes a clear plan. She appreciates practical advice about the new tablet.",
+      "bio": {
+        "Full name": "Tara Mensah",
+        "Date of birth": "14 March 1992",
+        "Age": "34",
+        "Address": "22 Jacaranda Street, Stafford QLD 4053",
+        "Phone": "0491 570 157",
+        "Occupation": "Retail assistant"
+      },
+      "avatar": "penny-okafor",
+      "voice": "au-woman-40s",
+      "openingLine": "Hi, the doctor's given me this new one for my sugar. Can I get it filled today?",
+      "publicFacts": [
+        "The new tablet is for your blood sugar. Dr Whitby rang you last week after a routine blood test and said it had gone up.",
+        "You have never had a diabetes medicine before.",
+        "You have bipolar disorder, which is managed by your psychiatrist, Dr Fielding. Your mood is good at the moment.",
+        "You have no allergies that you know of."
+      ]
+    },
+    "prescriber": {
+      "label": "Call the GP",
+      "name": "Dr Whitby",
+      "description": "A GP in her forties: firm, organised and a little defensive about her prescribing at first. She expects a clear reason before changing a plan. If the pharmacist just says 'this is a prescribing cascade' without explaining, she asks 'What makes you say that?'. She responds well to a structured message with the dose history, timing and a concrete recommendation, and is happy to work with the psychiatrist once she understands what happened.",
+      "bio": {
+        "Full name": "Dr Lauren Whitby",
+        "Role": "General practitioner",
+        "Workplace": "Stafford Family Practice, QLD"
+      },
+      "avatar": "dr-tan",
+      "voice": "au-woman-professional",
+      "openingLine": "Dr Whitby. I've got a few minutes between patients, what's this about?",
+      "publicFacts": [
+        "Tara Mensah is your patient. Routine bloods last week showed HbA1c 7.3% and fasting glucose 8.4 mmol/L. A year ago her HbA1c was 5.6%. Kidney function is normal (eGFR above 90).",
+        "You diagnosed type 2 diabetes and prescribed empagliflozin 10 mg each morning. You chose it because it is once daily and may help with weight.",
+        "Your records list olanzapine 10 mg at night, prescribed by her psychiatrist, Dr Fielding, for bipolar disorder.",
+        "You were planning to review her diabetes in about three months."
+      ]
+    }
+  },
+  "hiddenFacts": [
+    {
+      "id": "olanzapine-dose-increased",
+      "agent": "patient",
+      "fact": "Dr Fielding increased your olanzapine from 10 mg to 20 mg at night in early September, after a manic episode in August. Your mood has been stable since. You didn't mention the dose change to Dr Whitby because you assumed the doctors share notes.",
+      "triggers": [
+        "olanzapine",
+        "zyprexa",
+        "dose",
+        "increase",
+        "increased",
+        "20 mg",
+        "psychiatrist",
+        "bipolar",
+        "mood medicine",
+        "mental health",
+        "changed",
+        "recent change",
+        "dose change",
+        "antipsychotic"
+      ],
+      "unlockHint": "“I can see your olanzapine went from 10 mg to 20 mg in September. Can you tell me about that change, and does Dr Whitby know?”"
+    },
+    {
+      "id": "weight-appetite-thirst",
+      "agent": "patient",
+      "fact": "Since the olanzapine dose went up you have put on about 7 kg. You feel hungry all the time and crave sweet things. For the last few weeks you have been very thirsty, drinking a lot (including soft drinks) and getting up at night to pass urine.",
+      "triggers": [
+        "weight",
+        "weight gain",
+        "appetite",
+        "hungry",
+        "hunger",
+        "thirsty",
+        "thirst",
+        "drinking lot",
+        "urine",
+        "toilet",
+        "wee",
+        "symptoms",
+        "cravings",
+        "eating more",
+        "how feeling"
+      ],
+      "unlockHint": "“Have you noticed any changes in your weight, appetite or thirst, or needing to pass urine more?”"
+    },
+    {
+      "id": "blood-tests",
+      "agent": "patient",
+      "fact": "Dr Whitby said your sugar 'average' was 'seven point something' and that it was early type 2 diabetes. A blood test at the same clinic about a year ago was normal. Nobody in your family has diabetes.",
+      "triggers": [
+        "blood test",
+        "results",
+        "sugar level",
+        "hba1c",
+        "diabetes",
+        "diagnosis",
+        "fasting",
+        "glucose",
+        "last year",
+        "family history"
+      ],
+      "unlockHint": "“What did the blood test show, and have your sugars ever been checked before?”"
+    },
+    {
+      "id": "keto-diet",
+      "agent": "patient",
+      "fact": "Two weeks ago you started a strict low-carb 'keto' diet you saw online, to try to lose the weight. You are eating almost no bread, rice, pasta or fruit.",
+      "triggers": [
+        "diet",
+        "keto",
+        "low carb",
+        "carbs",
+        "carbohydrate",
+        "food",
+        "lose weight",
+        "fasting diet",
+        "exercise",
+        "lifestyle",
+        "skipping meals"
+      ],
+      "unlockHint": "“Are you following any particular diet at the moment, such as low-carb or fasting?”"
+    },
+    {
+      "id": "past-thrush",
+      "agent": "patient",
+      "fact": "You have had vaginal thrush a few times in the past, the last time about a year ago. No urine infections recently.",
+      "triggers": [
+        "thrush",
+        "yeast",
+        "fungal",
+        "genital",
+        "itch",
+        "urine infection",
+        "uti",
+        "infections",
+        "bladder"
+      ],
+      "unlockHint": "“Have you had thrush or urine infections before?”"
+    },
+    {
+      "id": "other-medicines",
+      "agent": "patient",
+      "fact": "Apart from olanzapine you take the Levlen ED pill and occasional paracetamol for headaches. No supplements, herbal products or recreational drugs. You don't drink much alcohol.",
+      "triggers": [
+        "other medicine",
+        "anything else",
+        "other tablet",
+        "contraceptive",
+        "the pill",
+        "supplements",
+        "herbal",
+        "vitamins",
+        "over counter",
+        "alcohol",
+        "recreational"
+      ],
+      "unlockHint": "“What other medicines do you take, including the pill, anything over the counter or any supplements?”"
+    },
+    {
+      "id": "fear-of-stopping",
+      "agent": "patient",
+      "fact": "You are scared of anyone changing your olanzapine. Three years ago you stopped your medicine on your own and ended up in hospital with mania. You would only want it changed by Dr Fielding, slowly.",
+      "triggers": [
+        "stop olanzapine",
+        "come off",
+        "change olanzapine",
+        "switch",
+        "different medicine",
+        "reduce",
+        "lower dose",
+        "worried",
+        "concerns",
+        "hospital",
+        "adjusting olanzapine",
+        "adjust olanzapine"
+      ],
+      "unlockHint": "“How would you feel if your psychiatrist looked at adjusting the olanzapine?”"
+    },
+    {
+      "id": "gp-unaware-olanzapine-increase",
+      "agent": "prescriber",
+      "fact": "You didn't know the olanzapine had been increased to 20 mg in September; the psychiatrist's letter hasn't reached you and your records still say 10 mg. Once the pharmacist explains the timing (dose doubled two months ago, then weight gain, thirst and the HbA1c rise) you agree this is most likely olanzapine-induced hyperglycaemia and that treating it with a new medicine without addressing the cause is a prescribing cascade. You agree olanzapine must not be stopped suddenly and that any change is up to Dr Fielding.",
+      "triggers": [
+        "olanzapine",
+        "20 mg",
+        "dose increase",
+        "increased",
+        "doubled",
+        "antipsychotic",
+        "psychiatrist",
+        "prescribing cascade",
+        "cascade",
+        "cause",
+        "side effect",
+        "metabolic",
+        "weight gain"
+      ],
+      "unlockHint": "“Her olanzapine was doubled from 10 to 20 mg two months ago, and since then she has gained 7 kg and become thirsty. I think the raised HbA1c is olanzapine-induced. Were you aware of the dose change?”"
+    },
+    {
+      "id": "gp-plan",
+      "agent": "prescriber",
+      "fact": "Your plan once the cause is clear: her HbA1c still needs treating, so keep the empagliflozin 10 mg each morning for now and dispense it today with full counselling. You will see her again in one week (sugars, tolerability, weight, kidney function) rather than in three months, and you will contact Dr Fielding today to ask him to review the olanzapine (for example a lower dose once she is stable, or a switch to a more metabolically neutral antipsychotic such as aripiprazole) and to start regular metabolic monitoring. If the pharmacist recommends metformin instead, with reasons, you agree it is a reasonable first-line choice with evidence in antipsychotic-related weight gain and say you will consider it at the one-week review, but you are happy for the empagliflozin to be supplied today.",
+      "triggers": [
+        "review",
+        "follow up",
+        "one week",
+        "plan",
+        "contact psychiatrist",
+        "talk psychiatrist",
+        "aripiprazole",
+        "reduce dose",
+        "lower dose",
+        "switch antipsychotic",
+        "metformin",
+        "still dispense",
+        "go ahead",
+        "monitoring"
+      ],
+      "unlockHint": "“Would you like to keep the empagliflozin for now, review her sooner, and ask Dr Fielding to review the olanzapine? Would metformin be an option?”"
+    },
+    {
+      "id": "gp-keto",
+      "agent": "prescriber",
+      "fact": "You didn't know she had started a strict keto diet. You agree she should not follow a very low-carbohydrate diet while taking empagliflozin because it raises the risk of ketoacidosis, and you will refer her to a dietitian.",
+      "triggers": [
+        "keto",
+        "low carb",
+        "diet",
+        "ketoacidosis",
+        "dka",
+        "ketones",
+        "dietitian",
+        "carbohydrate"
+      ],
+      "unlockHint": "“She has started a strict keto diet. With empagliflozin that raises the risk of ketoacidosis; could she see a dietitian instead?”"
+    }
+  ],
+  "answerKey": {
+    "plantedProblem": "Prescribing cascade: the GP has prescribed empagliflozin for new hyperglycaemia (HbA1c 7.3%, previously 5.6%) that is most likely caused by olanzapine, whose dose the psychiatrist doubled from 10 mg to 20 mg at night two months ago (visible in the dispensing history). Since then she has gained about 7 kg, has increased appetite, thirst and nocturia. The GP is unaware of the dose increase. Secondary: she has just started a strict keto diet (raises the risk of euglycaemic ketoacidosis with an SGLT2 inhibitor) and has a history of thrush.",
+    "acceptableResolutions": [
+      "Confirm identity, take a full medication history and spot the olanzapine dose increase (10 mg to 20 mg in September) in the dispensing history; link its timing to the weight gain, hyperglycaemic symptoms and the HbA1c rise.",
+      "Explain that olanzapine commonly causes weight gain, insulin resistance and hyperglycaemia in a dose-related way, so treating the glucose without addressing the cause is a prescribing cascade.",
+      "Phone Dr Whitby with a structured message: dose history, timing, symptoms; recommend she liaises with the psychiatrist about the olanzapine (dose reduction once stable, or a switch to a more metabolically neutral antipsychotic such as aripiprazole) and does not stop it abruptly.",
+      "Agree the plan with the GP: dispense empagliflozin today with full counselling and a GP review in one week; metformin may be suggested as a reasonable first-line alternative with evidence for antipsychotic-associated weight gain.",
+      "Counsel on empagliflozin: genital hygiene and thrush, hydration, sick day rules (stop if vomiting, unable to eat or drink, or before surgery), ketoacidosis symptoms even with normal glucose, and to avoid the strict keto diet.",
+      "Reassure her she must not stop or change olanzapine herself, and that any change will be made by Dr Fielding; recommend ongoing metabolic monitoring (weight, waist, glucose/HbA1c, lipids, blood pressure).",
+      "Document the intervention and the agreed plan; offer a follow-up conversation after her one-week review."
+    ],
+    "unacceptableActions": [
+      "Dispensing empagliflozin with standard counselling without recognising the olanzapine dose increase as the likely cause (the core problem missed).",
+      "Advising her to stop, halve or skip olanzapine herself, risking relapse of bipolar disorder.",
+      "Refusing to supply the empagliflozin outright and sending her away without a plan or contacting the GP.",
+      "Telling the GP only that 'it's a prescribing cascade' without the dose history, timing or a recommendation.",
+      "Failing to counsel on ketoacidosis and sick day rules, or endorsing the keto diet while she starts empagliflozin.",
+      "Discussing her bipolar disorder at the open counter without privacy."
+    ],
+    "counsellingPoints": [
+      "Take one empagliflozin 10 mg tablet each morning, with or without food. On its own it rarely causes low blood sugar.",
+      "You'll pass more urine at first, so drink enough water through the day, but cut out sugary soft drinks.",
+      "It puts sugar into the urine, so thrush is more likely: keep the genital area clean and dry, and see us or the doctor early if you get itching or discharge, or burning when passing urine.",
+      "Stop the strict keto diet: very low-carbohydrate diets with empagliflozin raise the risk of ketoacidosis. Eat regular balanced meals; Dr Whitby can refer you to a dietitian for safe weight loss.",
+      "Sick day rule: if you're vomiting, have diarrhoea, can't eat or drink normally, or are having surgery or a procedure, stop empagliflozin and contact your doctor; restart once eating and drinking normally.",
+      "Get urgent medical help (ED) if you have nausea, vomiting, stomach pain, fast breathing, unusual tiredness or confusion, even if your blood sugar reading is normal; these can be signs of ketoacidosis.",
+      "Keep taking your olanzapine 20 mg at night exactly as Dr Fielding prescribed. Don't stop or reduce it yourself; Dr Whitby will talk to him about whether it can be adjusted.",
+      "Olanzapine can increase appetite, weight and blood sugar, so regular checks of weight, waist, blood sugar and cholesterol are important while you take it.",
+      "See Dr Whitby again in one week as arranged, so she can check how you're going on the new tablet and update you on what Dr Fielding thinks."
+    ],
+    "codePrinciples": [],
+    "legal": [],
+    "modelAnswer": "1. Set-up: greet Ms Mensah, confirm identity and DOB, explain I'd like to ask a few questions about the new medicine, and move to the consultation room for privacy. 2. Gather information: what the doctor said and what the blood test showed (HbA1c 'seven point something', normal a year ago, no family history); hyperglycaemia symptoms (thirst, nocturia, polyuria); weight and appetite changes (7 kg gain, cravings); her other medicines, confirming the olanzapine history from the dispensing record, when and why it was increased (manic episode in August, 20 mg since early September), and whether Dr Whitby knows (she doesn't); diet (strict keto for 2 weeks); past thrush or UTIs; the pill, OTC, supplements, alcohol; allergies; and how she feels about her mental health treatment (afraid of changes after a past relapse). 3. Identify and explain: olanzapine has one of the highest risks of weight gain, insulin resistance and new-onset diabetes among antipsychotics, and the risk is dose related; the timing (dose doubled, then weight gain, thirst and an HbA1c rise from 5.6% to 7.3%) strongly suggests olanzapine-induced hyperglycaemia. Adding empagliflozin without addressing the cause is a prescribing cascade. Abruptly stopping olanzapine risks relapse, so the solution is coordinated review, not cessation. The keto diet adds a risk of euglycaemic ketoacidosis with an SGLT2 inhibitor. 4. References: AMH (olanzapine, empagliflozin), eTG Psychotropic (metabolic adverse effects and monitoring of antipsychotics) and eTG Diabetes, RANZCP guidance on physical health monitoring, APF counselling. 5. Phone Dr Whitby using ISBAR: Ms Mensah, DOB, new empagliflozin; olanzapine doubled to 20 mg by Dr Fielding two months ago, followed by 7 kg gain, thirst and nocturia; likely olanzapine-induced hyperglycaemia. Recommend: contact Dr Fielding to review the olanzapine (lower dose once stable, or switch to a more metabolically neutral agent such as aripiprazole, not an abrupt stop); because HbA1c is 7.3% it still needs treating, so continuing empagliflozin 10 mg each morning is reasonable, with metformin (e.g. modified-release 500 mg with the evening meal, titrated) as a first-line alternative with evidence in antipsychotic-related weight gain; bring the review forward to one week; mention the keto diet and suggest a dietitian; ongoing metabolic monitoring. Answer 'what makes you say that?' with the dates and doses. 6. Agreed outcome: dispense empagliflozin today; GP review in one week; GP to liaise with Dr Fielding. 7. Counsel: dose and timing, hydration, thrush and UTI signs, sick day rules and stopping before surgery, ketoacidosis symptoms even with normal glucose, stop the keto diet, keep taking olanzapine as prescribed, metabolic monitoring. Check understanding with teach-back and reassure her that no one will change her olanzapine suddenly. 8. Follow-up: offer to check in after the one-week review; flag the profile for metabolic monitoring. 9. Document the history, the cascade identified, the conversation with Dr Whitby, the agreed plan and the counselling given."
+  },
+  "review": {
+    "status": "draft",
+    "version": "0.1"
+  },
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 15/10/2026 PM session, Part C)",
+    "Needs pharmacist review: the HbA1c and glucose values (7.3%, 8.4 mmol/L, previously 5.6%), 7 kg weight gain, timing of the olanzapine increase (early September after a manic episode), the GP being unaware of the dose change, the strict keto diet and past thrush, the Levlen ED pill, the GP's reason for choosing empagliflozin, metformin offered as an alternative, aripiprazole as the suggested switch, and PBS eligibility of empagliflozin as initial monotherapy for type 2 diabetes (PBS listings generally expect metformin first; not addressed on the script)."
+  ]
+}

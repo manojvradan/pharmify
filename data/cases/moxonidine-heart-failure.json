@@ -1,0 +1,346 @@
+{
+  "id": "moxonidine-heart-failure",
+  "title": "Another blood pressure tablet",
+  "category": "clinical",
+  "problemType": "Contraindication (drug-disease)",
+  "specialty": "cardiology",
+  "setting": "Community pharmacy, Adelaide SA",
+  "questionSheet": "It is Monday afternoon. Mr Graham Pollard, a regular customer in his late sixties, presents a new prescription from his GP, Dr Mehta, for moxonidine 200 microgram tablets, one in the morning. He says the doctor told him his blood pressure has been 'too high' and this is to add on to his other tablets. His dispensing history at your pharmacy is attached. Dr Mehta can be contacted by phone. Manage the situation as you would in practice. You may contact the prescriber.",
+  "documents": {
+    "prescription": {
+      "item": "Moxonidine 200 microgram tablets (Physiotens) · Qty 30 · 5 repeats",
+      "directions": "One tablet in the morning",
+      "footer": "Dr A. Mehta (GP) · Graham Pollard, DOB 09/05/1957",
+      "prescriber": "Dr Arjun Mehta",
+      "prescriberDetail": "General practitioner · Southern Vales Medical Centre, SA",
+      "date": "16/11/2026",
+      "quantity": "30",
+      "repeats": "5"
+    },
+    "dispensingHistory": [
+      {
+        "date": "26 Oct 2026",
+        "item": "Carvedilol 12.5 mg tablets (generic)",
+        "directions": "One tablet twice a day with food",
+        "quantity": "60",
+        "prescriber": "Dr A. Mehta (GP)"
+      },
+      {
+        "date": "26 Oct 2026",
+        "item": "Lisinopril 10 mg tablets (generic)",
+        "directions": "One tablet in the morning",
+        "quantity": "30",
+        "prescriber": "Dr A. Mehta (GP)"
+      },
+      {
+        "date": "26 Oct 2026",
+        "item": "Empagliflozin 10 mg tablets (Jardiance)",
+        "directions": "One tablet in the morning",
+        "quantity": "30",
+        "prescriber": "Dr A. Mehta (GP)"
+      },
+      {
+        "date": "26 Oct 2026",
+        "item": "Sertraline 100 mg tablets (generic)",
+        "directions": "One tablet in the morning",
+        "quantity": "30",
+        "prescriber": "Dr A. Mehta (GP)"
+      },
+      {
+        "date": "26 Oct 2026",
+        "item": "Atorvastatin 40 mg tablets (generic)",
+        "directions": "One tablet at night",
+        "quantity": "30",
+        "prescriber": "Dr A. Mehta (GP)"
+      },
+      {
+        "date": "26 Oct 2026",
+        "item": "Metformin 1000 mg modified-release tablets (generic)",
+        "directions": "One tablet with the evening meal",
+        "quantity": "60",
+        "prescriber": "Dr A. Mehta (GP)"
+      },
+      {
+        "date": "28 Sep 2026",
+        "item": "Carvedilol 12.5 mg tablets (generic)",
+        "directions": "One tablet twice a day with food",
+        "quantity": "60",
+        "prescriber": "Dr A. Mehta (GP)"
+      },
+      {
+        "date": "28 Sep 2026",
+        "item": "Lisinopril 10 mg tablets (generic)",
+        "directions": "One tablet in the morning",
+        "quantity": "30",
+        "prescriber": "Dr A. Mehta (GP)"
+      },
+      {
+        "date": "28 Sep 2026",
+        "item": "Empagliflozin 10 mg tablets (Jardiance)",
+        "directions": "One tablet in the morning",
+        "quantity": "30",
+        "prescriber": "Dr A. Mehta (GP)"
+      },
+      {
+        "date": "28 Sep 2026",
+        "item": "Sertraline 100 mg tablets (generic)",
+        "directions": "One tablet in the morning",
+        "quantity": "30",
+        "prescriber": "Dr A. Mehta (GP)"
+      },
+      {
+        "date": "28 Sep 2026",
+        "item": "Atorvastatin 40 mg tablets (generic)",
+        "directions": "One tablet at night",
+        "quantity": "30",
+        "prescriber": "Dr A. Mehta (GP)"
+      },
+      {
+        "date": "14 Sep 2026",
+        "item": "Frusemide 40 mg tablets (Lasix)",
+        "directions": "One tablet in the morning",
+        "quantity": "100",
+        "prescriber": "Dr A. Mehta (GP)"
+      },
+      {
+        "date": "14 Sep 2026",
+        "item": "Spironolactone 25 mg tablets (Aldactone)",
+        "directions": "One tablet in the morning",
+        "quantity": "100",
+        "prescriber": "Dr A. Mehta (GP)"
+      },
+      {
+        "date": "31 Aug 2026",
+        "item": "Metformin 1000 mg modified-release tablets (generic)",
+        "directions": "One tablet with the evening meal",
+        "quantity": "60",
+        "prescriber": "Dr A. Mehta (GP)"
+      }
+    ],
+    "notes": [
+      "Today's date: 16 Nov 2026 (afternoon)."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient · Mr Pollard",
+      "name": "Mr Pollard",
+      "description": "A 69-year-old retired electrician, warm, chatty and a bit vague about the names of his tablets ('the fluid one', 'the heart one'), with average health literacy. He trusts his doctors and is a little surprised if the pharmacist questions the script, but is reassured when the pharmacist explains clearly that they are checking it's safe with his heart. He takes his medicines reliably from a dose administration aid he packs himself. He gets confused by jargon and appreciates simple explanations and written instructions.",
+      "bio": {
+        "Full name": "Graham Pollard",
+        "Date of birth": "9 May 1957",
+        "Age": "69",
+        "Address": "41 Kingfisher Drive, Morphett Vale SA 5162",
+        "Phone": "0491 572 549",
+        "Occupation": "Retired electrician"
+      },
+      "avatar": "bertie-walsh",
+      "voice": "au-older-man",
+      "openingLine": "G'day. Doctor says my blood pressure's been playing up, so he's given me another one to go with the rest. Can you do that for me?",
+      "publicFacts": [
+        "This is a new tablet for blood pressure. Dr Mehta said your readings have been too high for a month or so.",
+        "You take quite a few tablets every day and never miss them.",
+        "Dr Mehta checked your blood pressure twice this morning and said it was still high."
+      ]
+    },
+    "prescriber": {
+      "label": "Call the GP",
+      "name": "Dr Mehta",
+      "description": "A GP in his forties, busy and a little rushed, with medium pushback. He likes moxonidine and uses it often as an add-on, and his first response is 'It's a good add-on, I use it all the time.' If the pharmacist just says 'it's contraindicated' without saying in what or why, he asks 'Contraindicated in what, exactly?'. He accepts a clear, referenced explanation and then proposes his own alternative. He listens to concerns about that alternative if they are specific to this patient's medicines and blood results, and appreciates a concrete recommendation with monitoring.",
+      "bio": {
+        "Full name": "Dr Arjun Mehta",
+        "Role": "General practitioner",
+        "Workplace": "Southern Vales Medical Centre, SA"
+      },
+      "avatar": "dr-kapoor",
+      "voice": "au-doctor",
+      "openingLine": "Arjun Mehta here. I've only got a minute, what's the problem?",
+      "publicFacts": [
+        "Graham Pollard is your patient. He has heart failure with reduced ejection fraction (LVEF 35% on his last echo), type 2 diabetes, high cholesterol and depression. His heart failure is stable and managed with the heart failure clinic at Flinders Medical Centre, whom he sees every six months.",
+        "His blood pressure today was 162/96 and 158/94, and his home readings have been around 150-158/90-95 for four weeks. He is adherent.",
+        "His bloods three weeks ago: sodium 134 mmol/L, potassium 5.2 mmol/L, eGFR 58, HbA1c 7.0%. Resting pulse today was 62.",
+        "You prescribed moxonidine 200 microgram each morning as an add-on for blood pressure."
+      ]
+    }
+  },
+  "hiddenFacts": [
+    {
+      "id": "heart-failure-history",
+      "agent": "patient",
+      "fact": "You have heart failure, a 'weak heart pump', diagnosed three years ago after a heart attack. You see the heart failure clinic at Flinders every six months; the last visit in May said things were stable. You weigh yourself every morning and your weight has been steady. Your ankles aren't swollen and you can walk to the shops without getting short of breath.",
+      "triggers": [
+        "heart",
+        "heart failure",
+        "medical conditions",
+        "medical history",
+        "health problems",
+        "cardiologist",
+        "specialist",
+        "heart attack",
+        "fluid tablet",
+        "frusemide",
+        "swelling",
+        "breathless",
+        "short breath",
+        "weigh",
+        "conditions"
+      ],
+      "unlockHint": "“What conditions do you take your medicines for? Do you have any heart problems?”"
+    },
+    {
+      "id": "other-conditions",
+      "agent": "patient",
+      "fact": "You also have type 2 diabetes, high cholesterol, and depression that has been well controlled on sertraline for years.",
+      "triggers": [
+        "diabetes",
+        "sugar",
+        "cholesterol",
+        "depression",
+        "mood",
+        "sertraline",
+        "metformin",
+        "other conditions"
+      ],
+      "unlockHint": "“Do you have any other health conditions, such as diabetes or depression?”"
+    },
+    {
+      "id": "pulse-and-dizziness",
+      "agent": "patient",
+      "fact": "Your watch says your heart rate is usually around 60 to 65. You don't get dizzy or faint, though you sometimes feel a bit lightheaded if you stand up very quickly.",
+      "triggers": [
+        "pulse",
+        "heart rate",
+        "dizzy",
+        "dizziness",
+        "lightheaded",
+        "faint",
+        "falls",
+        "stand up",
+        "slow heart"
+      ],
+      "unlockHint": "“Do you know what your pulse usually is? Any dizziness or light-headedness?”"
+    },
+    {
+      "id": "recent-bloods",
+      "agent": "patient",
+      "fact": "You had a blood test about three weeks ago. Dr Mehta said your kidneys were 'a bit tired but stable' and your salts were 'not too bad'. You don't remember the numbers.",
+      "triggers": [
+        "blood test",
+        "kidneys",
+        "kidney",
+        "potassium",
+        "sodium",
+        "salts",
+        "electrolytes",
+        "results",
+        "pathology"
+      ],
+      "unlockHint": "“When did you last have a blood test, and what did the doctor say about your kidneys and salts?”"
+    },
+    {
+      "id": "no-otc-nsaids",
+      "agent": "patient",
+      "fact": "Apart from the prescribed tablets you only take paracetamol now and then for your knees. No anti-inflammatories, no cold and flu tablets, no supplements. You've been cutting back on salt as the clinic told you.",
+      "triggers": [
+        "other medicine",
+        "anything else",
+        "over counter",
+        "anti inflammatory",
+        "ibuprofen",
+        "nurofen",
+        "voltaren",
+        "cold flu",
+        "supplements",
+        "herbal",
+        "salt",
+        "painkillers"
+      ],
+      "unlockHint": "“Do you take anything over the counter, like anti-inflammatories, cold and flu tablets or supplements?”"
+    },
+    {
+      "id": "gp-moxonidine-contraindication",
+      "agent": "prescriber",
+      "fact": "You hadn't considered heart failure when you chose moxonidine. If the pharmacist explains that moxonidine is contraindicated in heart failure (the MOXCON trial in heart failure was stopped early because of higher mortality with moxonidine), and that it would add to the slowing of his heart rate with carvedilol (pulse 62) and cause rebound hypertension if stopped suddenly, you agree to cancel it. You then say: 'Fine, I'll switch him to hydrochlorothiazide 12.5 mg each morning instead, and see him in one week.'",
+      "triggers": [
+        "heart failure",
+        "hfref",
+        "ejection fraction",
+        "contraindicated",
+        "contraindication",
+        "moxcon",
+        "mortality",
+        "moxonidine",
+        "carvedilol",
+        "bradycardia",
+        "heart rate",
+        "rebound"
+      ],
+      "unlockHint": "“Moxonidine is contraindicated in heart failure because of increased mortality in the MOXCON trial, and he has HFrEF on carvedilol. Could we use an alternative?”"
+    },
+    {
+      "id": "gp-hctz-concerns",
+      "agent": "prescriber",
+      "fact": "If the pharmacist raises specific concerns about adding hydrochlorothiazide (he is already on frusemide, so adding a thiazide causes much stronger diuresis with risk of dehydration, kidney injury, low sodium and low potassium; his sodium is already 134 and sertraline also lowers sodium; empagliflozin adds to fluid loss; thiazides can raise glucose and uric acid), you accept either option: (a) keep hydrochlorothiazide 12.5 mg each morning but with electrolytes and kidney function checked in one week, daily weights and a clear plan to stop it if he becomes dizzy or dry; or (b) the pharmacist's suggestion of amlodipine 5 mg each morning, which is safe in heart failure with reduced ejection fraction, with a one-week review, while you ask the heart failure clinic whether his heart failure medicines can be optimised (for example switching lisinopril to sacubitril/valsartan). You prefer whichever the pharmacist recommends with reasons.",
+      "triggers": [
+        "hydrochlorothiazide",
+        "thiazide",
+        "frusemide",
+        "two diuretics",
+        "sodium",
+        "hyponatraemia",
+        "potassium",
+        "electrolytes",
+        "kidney function",
+        "dehydration",
+        "sertraline",
+        "amlodipine",
+        "sacubitril",
+        "entresto",
+        "heart failure clinic",
+        "alternative"
+      ],
+      "unlockHint": "“Hydrochlorothiazide on top of frusemide risks marked diuresis and hyponatraemia, especially with his sodium at 134 and sertraline. Would amlodipine be an option, or if you prefer the thiazide, can we check electrolytes and kidney function in a week?”"
+    }
+  ],
+  "answerKey": {
+    "plantedProblem": "Moxonidine is contraindicated in heart failure: Mr Pollard has HFrEF (LVEF 35%, stable, on frusemide, spironolactone, carvedilol, lisinopril and empagliflozin). In the MOXCON trial, moxonidine in heart failure was associated with increased mortality. It would also add to bradycardia with carvedilol (resting pulse 62) and carries a risk of rebound hypertension if stopped abruptly. The GP's first alternative, hydrochlorothiazide, needs scrutiny: on top of frusemide it gives sequential nephron blockade with risk of over-diuresis, AKI, hyponatraemia (sodium already 134, plus sertraline) and hypokalaemia, with extra volume loss from empagliflozin. If used, it requires electrolytes and renal function in about one week; amlodipine (neutral in HFrEF) or optimising heart failure therapy with the heart failure clinic is generally the better choice.",
+    "acceptableResolutions": [
+      "Confirm identity and take a full medical and medication history, identifying HFrEF from the medicines (frusemide, spironolactone, carvedilol, empagliflozin) and confirming it with the patient.",
+      "Recognise that moxonidine is contraindicated in heart failure (increased mortality, MOXCON) and do not dispense it; also note the additive bradycardia with carvedilol.",
+      "Phone Dr Mehta with a structured message, answer 'contraindicated in what?' with the specific reason and reference, and recommend an alternative.",
+      "When hydrochlorothiazide is proposed, raise the specific risks (combined loop and thiazide diuresis, hyponatraemia with sodium 134 and sertraline, hypokalaemia, dehydration with empagliflozin, kidney function) and recommend amlodipine 5 mg daily as a safer add-on in HFrEF, and/or that the heart failure clinic optimise his therapy (e.g. sacubitril/valsartan).",
+      "If the GP keeps hydrochlorothiazide 12.5 mg, accept it only with electrolytes and kidney function checked in about one week, daily weights, a review in one week, and counselling on dehydration and low sodium symptoms.",
+      "Dispense the agreed new medicine (new prescription or documented verbal instruction per SA requirements), update his dose administration aid, and counsel; check BP technique and adherence.",
+      "Document the intervention, the call, the agreed plan and monitoring; suggest informing the heart failure clinic."
+    ],
+    "unacceptableActions": [
+      "Dispensing moxonidine without recognising the heart failure contraindication (the core problem missed).",
+      "Accepting hydrochlorothiazide without considering the combined effect with frusemide or arranging electrolyte and kidney function monitoring.",
+      "Recommending a non-dihydropyridine calcium channel blocker (verapamil or diltiazem), which worsens HFrEF, or another agent that harms heart failure.",
+      "Advising him to stop or change any of his heart failure medicines himself.",
+      "Telling the GP only 'it's contraindicated' without the condition, reason or an alternative.",
+      "Recommending increased lisinopril or other potassium-raising changes without noting his potassium of 5.2 and spironolactone."
+    ],
+    "counsellingPoints": [
+      "We won't be supplying the moxonidine: it isn't safe for people with heart failure, so Dr Mehta has changed it.",
+      "Keep taking all your usual heart failure tablets (fluid tablet, spironolactone, carvedilol, lisinopril and the Jardiance) exactly as before; don't stop any of them yourself.",
+      "If the new tablet is amlodipine 5 mg: take one each morning. It can cause ankle swelling, flushing or headache; tell us or the doctor if your ankles swell, because that can also be a sign your heart failure needs checking.",
+      "If the new tablet is hydrochlorothiazide 12.5 mg: take it in the morning, as it adds to your fluid tablet and you'll pass more urine. Get your blood test for salts and kidneys done within a week as Dr Mehta asked.",
+      "With an extra blood pressure tablet, stand up slowly. Stop the new tablet and call the doctor if you feel dizzy, faint, very thirsty, confused, have muscle cramps or weakness, or are unusually tired; these can mean dehydration or low salt levels.",
+      "If you're unwell with vomiting, diarrhoea or can't eat and drink, contact your doctor; your fluid tablets, Jardiance, metformin and lisinopril may need to be paused for a day or two (sick day plan).",
+      "Keep weighing yourself every morning: tell the doctor if your weight drops by more than about 2 kg or rises by 2 kg over two or three days.",
+      "Keep a home blood pressure diary (seated, rested, twice a day) and bring it to your review with Dr Mehta in one week."
+    ],
+    "codePrinciples": [],
+    "legal": [],
+    "modelAnswer": "1. Set-up: greet Mr Pollard, confirm identity and DOB, and explain I'll check the new tablet fits safely with his others. 2. Gather information: why the new tablet (BP 162/96 and 158/94 today; home readings 150s/90s for a month); his conditions, especially his heart (HFrEF after an MI three years ago, stable, under the Flinders heart failure clinic, daily weights steady, no oedema or breathlessness); other conditions (T2DM, dyslipidaemia, depression on sertraline); adherence (reliable, packs his own dose aid); pulse (60-65) and dizziness; recent bloods; OTC medicines that raise BP (NSAIDs, decongestants), salt and alcohol; allergies. 3. Identify and explain: moxonidine is a centrally acting imidazoline agonist; it is contraindicated in heart failure because the MOXCON trial in heart failure was stopped early for excess mortality. It also adds to bradycardia with carvedilol and causes rebound hypertension if stopped abruptly, especially with a beta-blocker. 4. References: AMH (moxonidine contraindications), eTG Cardiovascular (hypertension and heart failure), the National Heart Foundation/CSANZ heart failure guideline, the product information. 5. Phone Dr Mehta (ISBAR): Mr Pollard, DOB, moxonidine 200 microgram; HFrEF LVEF 35% on carvedilol; moxonidine is contraindicated in heart failure with increased mortality; recommend not starting it. When he says 'it's a good add-on' or 'contraindicated in what?', give the specific reason and reference. When he proposes hydrochlorothiazide 12.5 mg, raise the concerns: added to frusemide it causes sequential nephron blockade with risk of over-diuresis and AKI; sodium is already 134 and sertraline and thiazides both cause hyponatraemia in older people; hypokalaemia; extra volume loss with empagliflozin; thiazides can raise glucose and uric acid. Recommend amlodipine 5 mg daily (neutral in HFrEF) as the add-on, with a one-week review, and that the heart failure clinic consider optimising therapy, such as switching lisinopril to sacubitril/valsartan with the 36-hour ACE inhibitor washout; carvedilol up-titration is limited by his pulse, and higher lisinopril is limited by his potassium of 5.2 on spironolactone. If he still prefers hydrochlorothiazide, request U&E, eGFR and sodium within one week, daily weights and clear stopping criteria. Avoid verapamil and diltiazem. 6. Supply the agreed medicine on a new or legally documented prescription and update his dose aid. 7. Counsel: why moxonidine was stopped, keep all heart failure medicines, the new medicine's use and side effects, dizziness and dehydration or low-sodium symptoms, sick day plan, daily weights, home BP diary, blood test and one-week review. Use teach-back. 8. Follow-up: check in after his review and blood results; suggest the GP lets the heart failure clinic know. 9. Document the contraindication found, the call, the agreed alternative and monitoring."
+  },
+  "review": {
+    "status": "draft",
+    "version": "0.1"
+  },
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 16/10/2026 PM session, Part C)",
+    "Needs pharmacist review: all doses (atorvastatin 40 mg, frusemide 40 mg, empagliflozin 10 mg, spironolactone 25 mg, carvedilol 12.5 mg BD, sertraline 100 mg, lisinopril 10 mg, metformin XR 1000 mg, moxonidine 200 microgram, HCTZ 12.5 mg) and pack sizes; LVEF 35%, BP readings, pulse 62, sodium 134, potassium 5.2 and eGFR 58, all invented to make the HCTZ discussion concrete; the recall's answer (switch to hydrochlorothiazide, review in one week) is kept as the GP's first plan and acceptable only with electrolyte and renal monitoring, while the key prefers amlodipine and optimising heart failure therapy with the heart failure clinic; the moxonidine contraindication in heart failure (Australian PI wording and MOXCON) should be confirmed against the current PI/AMH."
+  ]
+}

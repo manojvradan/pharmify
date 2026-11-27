@@ -1,0 +1,295 @@
+{
+  "id": "carbamazepine-rash-trigeminal-neuralgia",
+  "title": "Cream for a rash",
+  "category": "clinical",
+  "problemType": "Serious adverse drug reaction (suspected carbamazepine hypersensitivity)",
+  "specialty": "neurology",
+  "setting": "Community pharmacy, Norwood SA",
+  "questionSheet": "Mrs Margaret Doyle, a 60-year-old woman, presents two new prescriptions written this morning by Dr Kapoor, a locum GP at her usual medical practice: betamethasone valerate 0.02% cream, apply to the rash twice daily, and loratadine 10 mg tablets, one daily. She has a rash across her trunk. She is a regular customer of the pharmacy. Dr Kapoor can be contacted by phone. Manage the situation as you would in practice. You may contact the prescriber.",
+  "documents": {
+    "prescription": {
+      "item": "Betamethasone valerate 0.02% cream (Celestone-M) · 100 g · No repeats",
+      "directions": "Apply thinly to the rash twice daily",
+      "footer": "Dr V. Kapoor (Locum GP) · Margaret Doyle, DOB 05/02/1966",
+      "prescriberDetail": "Locum general practitioner · Parade Family Practice, Norwood SA",
+      "date": "24/11/2026"
+    },
+    "dispensingHistory": [
+      {
+        "date": "13 Nov 2026",
+        "item": "Carbamazepine 100 mg tablets (Tegretol)",
+        "directions": "Two tablets twice daily",
+        "quantity": "100",
+        "prescriber": "Dr P. Whitfield (GP)"
+      },
+      {
+        "date": "28 Oct 2026",
+        "item": "Rosuvastatin 10 mg tablets (generic)",
+        "directions": "One tablet at night",
+        "quantity": "30",
+        "prescriber": "Dr P. Whitfield (GP)"
+      },
+      {
+        "date": "7 Oct 2026",
+        "item": "Carbamazepine 100 mg tablets (Tegretol)",
+        "directions": "One tablet twice daily",
+        "quantity": "100",
+        "prescriber": "Dr P. Whitfield (GP)"
+      },
+      {
+        "date": "29 Sep 2026",
+        "item": "Rosuvastatin 10 mg tablets (generic)",
+        "directions": "One tablet at night",
+        "quantity": "30",
+        "prescriber": "Dr P. Whitfield (GP)"
+      },
+      {
+        "date": "1 Sep 2026",
+        "item": "Rosuvastatin 10 mg tablets (generic)",
+        "directions": "One tablet at night",
+        "quantity": "30",
+        "prescriber": "Dr P. Whitfield (GP)"
+      }
+    ],
+    "notes": [
+      "Second prescription presented today (new): Loratadine 10 mg tablets · One tablet daily · Qty 30 · Dr V. Kapoor (Locum GP) · Margaret Doyle, DOB 05/02/1966.",
+      "Today's date: 24 Nov 2026."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient · Mrs Doyle",
+      "name": "Mrs Doyle",
+      "description": "A 60-year-old part-time bookkeeper, chatty and pleasant, with good health literacy. She thinks the rash is from a new laundry powder and is keen to get the cream. She is very relieved the nerve pain in her face has finally settled since the dose went up, and is frightened of it coming back: if told to stop the carbamazepine without a reason or a plan she says 'Absolutely not, you don't know what that pain was like'. She agrees once the pharmacist explains calmly why the rash could be a reaction to the tablets, what to watch for, and that the doctor will see her today about other options for the pain.",
+      "bio": {
+        "Full name": "Margaret Doyle",
+        "Date of birth": "5 February 1966",
+        "Age": "60",
+        "Address": "31 Beulah Road, Norwood SA 5067",
+        "Phone": "0491 572 549",
+        "Occupation": "Part-time bookkeeper"
+      },
+      "avatar": "rosie-costa",
+      "voice": "au-woman-40s",
+      "openingLine": "Hello love, the doctor's given me a cream and some antihistamines for this rash. It's driving me mad, the itch.",
+      "publicFacts": [
+        "She has an itchy red rash across her chest, tummy and back.",
+        "She saw a locum doctor at her usual practice this morning for about ten minutes.",
+        "The doctor thought it might be a heat rash or a reaction to something on her skin.",
+        "She recently changed to a cheaper laundry powder and thinks that's probably the cause."
+      ]
+    },
+    "prescriber": {
+      "label": "Call the locum GP",
+      "name": "Dr Kapoor",
+      "description": "A locum GP in his forties, rushed and between patients, with short answers and medium pushback. He first says it's a mild itchy rash, probably contact dermatitis, and that he doesn't want to stop a medicine that is finally controlling severe nerve pain. He changes his mind when the pharmacist explains that a new rash within the first two months of carbamazepine, soon after a dose increase, must be treated as a possible serious hypersensitivity reaction (SJS/TEN or DRESS) and the drug stopped. He wants a clear recommendation and asks what he should use for the pain instead.",
+      "bio": {
+        "Full name": "Dr Vikram Kapoor",
+        "Role": "Locum general practitioner",
+        "Workplace": "Parade Family Practice, Norwood SA"
+      },
+      "avatar": "dr-kapoor",
+      "voice": "au-doctor",
+      "openingLine": "Kapoor speaking, I've got someone in the room, so quickly please.",
+      "publicFacts": [
+        "You saw Margaret Doyle this morning for an itchy truncal rash and thought it was contact dermatitis or heat rash.",
+        "You prescribed betamethasone valerate 0.02% cream twice daily and loratadine 10 mg daily.",
+        "You are covering for her usual GP, Dr Whitfield, this week and had not reviewed her full medication list.",
+        "When you look at her file, it shows trigeminal neuralgia, with carbamazepine started by Dr Whitfield about seven weeks ago and increased recently."
+      ]
+    }
+  },
+  "hiddenFacts": [
+    {
+      "id": "carbamazepine-timeline",
+      "agent": "patient",
+      "fact": "You have trigeminal neuralgia: stabbing pains in your right cheek and jaw. Dr Whitfield started you on carbamazepine (Tegretol) 100 mg, one tablet twice daily, about seven weeks ago, and increased it to two tablets twice daily on 13 November because the pain wasn't controlled. The rash appeared three days ago, about ten days after the increase. You didn't mention the carbamazepine to the locum because he didn't ask and you thought it was just a nerve pain tablet.",
+      "triggers": [
+        "other medicine",
+        "regular medicine",
+        "anything else",
+        "new medicine",
+        "other tablet",
+        "carbamazepine",
+        "tegretol",
+        "nerve pain",
+        "trigeminal",
+        "neuralgia",
+        "face pain",
+        "dose increase",
+        "dose changed",
+        "started recently",
+        "tell doctor"
+      ],
+      "unlockHint": "“What other medicines are you taking, and have any been started or changed recently?”"
+    },
+    {
+      "id": "rash-description",
+      "agent": "patient",
+      "fact": "The rash started three days ago on your chest and has spread a little to your tummy and back. It's lots of small red spots and flat red patches that join together in places, and it's very itchy. It isn't blistered, peeling or painful to touch, just itchy. You haven't had anything like it before.",
+      "triggers": [
+        "rash",
+        "when start",
+        "how long",
+        "spread",
+        "spreading",
+        "look like",
+        "describe",
+        "spots",
+        "blisters",
+        "blistering",
+        "peeling",
+        "skin painful",
+        "itchy",
+        "itch"
+      ],
+      "unlockHint": "“When did the rash start, what does it look like, and is it spreading, blistering or painful?”"
+    },
+    {
+      "id": "red-flags-negative",
+      "agent": "patient",
+      "fact": "You haven't had a fever, chills or flu-like feelings. You have no sores or ulcers in your mouth, eyes, or genital area, your eyes aren't red or sore, your face isn't swollen, and you haven't noticed swollen glands. You haven't been yellow and your urine is a normal colour. Apart from the itch you feel well.",
+      "triggers": [
+        "fever",
+        "temperature",
+        "unwell",
+        "flu",
+        "mouth",
+        "ulcers",
+        "sores",
+        "eyes",
+        "lips",
+        "genital",
+        "swelling",
+        "swollen face",
+        "glands",
+        "lymph nodes",
+        "yellow",
+        "jaundice",
+        "feel otherwise"
+      ],
+      "unlockHint": "“Have you had any fever, mouth or eye sores, blisters, facial swelling or swollen glands, or felt generally unwell?”"
+    },
+    {
+      "id": "pain-control-and-fear",
+      "agent": "patient",
+      "fact": "Since the dose went up the face pain has nearly gone, and before that it was the worst pain of your life: you couldn't eat or brush your teeth. You're very scared it will come back if you stop the tablets.",
+      "triggers": [
+        "pain",
+        "how pain",
+        "controlled",
+        "stop carbamazepine",
+        "stop tablet",
+        "worried",
+        "concerns"
+      ],
+      "unlockHint": "“How is the face pain now, and how would you feel about stopping the carbamazepine?”"
+    },
+    {
+      "id": "other-history",
+      "agent": "patient",
+      "fact": "You take rosuvastatin 10 mg at night for cholesterol and occasional paracetamol. No supplements or herbal products. You have no known drug allergies, have never had epilepsy or seizures, and no blood test was done for a gene test before starting the carbamazepine. Your family is of Irish and English background.",
+      "triggers": [
+        "allergies",
+        "allergy",
+        "allergic",
+        "reaction old",
+        "supplements",
+        "vitamins",
+        "herbal",
+        "over counter",
+        "epilepsy",
+        "seizures",
+        "background",
+        "ancestry",
+        "gene test",
+        "hla"
+      ],
+      "unlockHint": "“Do you have any allergies or past reactions to medicines, and do you take anything else, including over the counter?”"
+    },
+    {
+      "id": "gp-agrees-stop",
+      "agent": "prescriber",
+      "fact": "You didn't link the rash to the carbamazepine. At first you say it's a mild rash and you don't want her in pain. Once the pharmacist explains that a new rash within the first two months of carbamazepine, soon after a dose increase, can be the start of a serious hypersensitivity reaction (SJS/TEN or DRESS) and carbamazepine should be stopped and not restarted, and that stopping suddenly is safe here because it is for trigeminal neuralgia, not epilepsy, you agree: she stops carbamazepine now, the cream and loratadine can be dispensed for the itch, and you'll see her again this afternoon at 4 pm to examine her and order bloods (FBC with eosinophils, LFTs, kidney function). You'll send her to the emergency department if she develops red flags.",
+      "triggers": [
+        "carbamazepine",
+        "tegretol",
+        "hypersensitivity",
+        "sjs",
+        "stevens johnson",
+        "toxic epidermal",
+        "dress",
+        "drug reaction",
+        "drug rash",
+        "adverse reaction",
+        "stop carbamazepine",
+        "dose increase",
+        "trigeminal",
+        "neuralgia"
+      ],
+      "unlockHint": "“Mrs Doyle started carbamazepine seven weeks ago and the dose was doubled ten days ago; this new rash could be an early hypersensitivity reaction. I'd recommend stopping carbamazepine and reviewing her today.”"
+    },
+    {
+      "id": "gp-pain-plan",
+      "agent": "prescriber",
+      "fact": "You ask what to use for her pain instead. You accept that oxcarbazepine should be avoided because of cross-sensitivity, and that other aromatic anticonvulsants (phenytoin, lamotrigine) need caution. You'll discuss options such as baclofen or gabapentin/pregabalin at today's review, contact Dr Whitfield, and arrange a neurology referral. You agree to record carbamazepine as an adverse reaction and you're happy for the pharmacist to report it to the TGA.",
+      "triggers": [
+        "pain instead",
+        "alternative",
+        "instead",
+        "oxcarbazepine",
+        "cross sensitivity",
+        "cross reactivity",
+        "baclofen",
+        "gabapentin",
+        "pregabalin",
+        "lamotrigine",
+        "neurologist",
+        "neurology",
+        "referral",
+        "tga",
+        "report"
+      ],
+      "unlockHint": "“For her pain, oxcarbazepine should be avoided because of cross-sensitivity. Could you consider options such as baclofen or gabapentin and a neurology referral?”"
+    }
+  ],
+  "answerKey": {
+    "plantedProblem": "A new, spreading, itchy maculopapular rash across the trunk about seven weeks after starting carbamazepine for trigeminal neuralgia and ten days after the dose was doubled (100 mg one twice daily to two twice daily). The locum who prescribed the steroid cream and antihistamine did not know about the carbamazepine. This must be treated as a possible carbamazepine hypersensitivity reaction, which can progress to SJS/TEN or DRESS. There are currently no red flags (no fever, mucosal involvement, blistering, skin pain, facial swelling, lymphadenopathy or jaundice), so the right plan is: dispense the betamethasone cream and loratadine for symptom relief, stop carbamazepine now (safe to stop abruptly as it is not for epilepsy), and have the doctor review her today, with clear criteria for going to the emergency department.",
+    "acceptableResolutions": [
+      "Introduce self, confirm identity, and take a full medication history including recent changes, identifying carbamazepine started about seven weeks ago and increased ten days ago (also visible in the dispensing history).",
+      "Assess the rash (onset, distribution, appearance, spread, itch versus pain) and actively screen for red flags: fever, mucosal ulcers (mouth, eyes, genitals), blistering or peeling, skin pain, facial swelling, swollen glands, jaundice, feeling unwell.",
+      "Recognise a possible carbamazepine hypersensitivity reaction (risk of SJS/TEN or DRESS, highest in the first 2 to 3 months); recognise no current red flags, so same-day review rather than ED.",
+      "Phone Dr Kapoor with a structured message: recommend stopping carbamazepine now and not restarting, same-day review with examination and bloods (FBC with eosinophils, LFTs, kidney function), and ED if red flags develop; handle his pushback with clinical reasons.",
+      "Dispense the betamethasone valerate cream and loratadine for symptomatic relief once the plan is agreed, explaining they treat the itch, not the cause.",
+      "Address pain: explain stopping is safe in trigeminal neuralgia (not epilepsy), advise avoiding oxcarbazepine (cross-sensitivity) and caution with other aromatic anticonvulsants, and suggest the GP consider alternatives (e.g. baclofen, gabapentin/pregabalin) and neurology referral.",
+      "Record carbamazepine as a suspected adverse drug reaction in the pharmacy record, report to the TGA, document the call and plan, and follow up with the patient."
+    ],
+    "unacceptableActions": [
+      "Dispensing the cream and loratadine without asking about other medicines or linking the rash to carbamazepine (overall fail).",
+      "Advising her to continue carbamazepine, or to keep taking it until 'the cream works'.",
+      "Failing to screen for or give clear red-flag (SJS/TEN/DRESS) advice and when to go to the emergency department.",
+      "Recommending oxcarbazepine as the replacement, or a rechallenge with carbamazepine later.",
+      "Telling her to stop carbamazepine without contacting the prescriber or arranging same-day medical review."
+    ],
+    "counsellingPoints": [
+      "Stop taking the carbamazepine (Tegretol) now, starting with tonight's dose: the rash may be an allergic-type reaction to it, and these reactions can become serious if the medicine is continued.",
+      "Stopping it suddenly is safe for you because it's for nerve pain, not epilepsy, but the face pain may come back; Dr Kapoor will talk to you about other options at 4 pm today.",
+      "Go to the emergency department straight away, or call 000, if you get a fever, blisters or peeling skin, painful skin, sores in your mouth, eyes or genitals, red or sore eyes, a swollen face, swollen glands, yellow skin or eyes, or you feel unwell.",
+      "Apply the betamethasone cream thinly to the itchy areas twice daily for up to a week or two; it eases the itch and redness but doesn't treat the cause.",
+      "Take one loratadine tablet daily for the itch; it's non-drowsy for most people. Cool showers and a fragrance-free moisturiser can also help.",
+      "Never take carbamazepine again, and avoid oxcarbazepine; tell every doctor and pharmacist you've had this reaction, and keep it on your My Health Record.",
+      "Bring your remaining carbamazepine tablets back to the pharmacy for safe disposal once the doctor confirms the plan."
+    ],
+    "codePrinciples": [],
+    "legal": [],
+    "modelAnswer": "1. Set-up: introduce self, confirm Mrs Doyle's identity and DOB, and offer the consultation room so you can talk about the rash privately. 2. Gather information: rash onset, where it started and how it has spread (three days, chest then tummy and back), appearance (small red spots and confluent flat patches), itch versus pain, blistering or peeling; full medication history including anything new or changed in the last two months (carbamazepine 100 mg one twice daily started about seven weeks ago for trigeminal neuralgia, increased to two twice daily ten days ago; rosuvastatin; occasional paracetamol; no supplements); whether the locum knew about the carbamazepine (no); allergies; and a red-flag screen: fever, mouth, eye or genital ulcers, red eyes, facial swelling, swollen glands, jaundice, feeling unwell (all negative). Ask how the face pain is and her feelings about stopping. 3. Identify and explain: a new maculopapular rash in the first two months of carbamazepine, soon after a dose increase, is a common presentation of carbamazepine hypersensitivity, which can progress to SJS/TEN (mucosal involvement, blistering) or DRESS (fever, lymphadenopathy, facial oedema, eosinophilia, liver involvement). The safe response is to stop the drug and not rechallenge. HLA-B*1502 and HLA-A*3101 increase risk in some ancestries; she is of Irish/English background. Because there are no red flags now, this needs same-day medical review rather than ED. 4. References: AMH (carbamazepine adverse effects), eTG Neurology (trigeminal neuralgia), eTG Dermatology (drug eruptions), APF. 5. Phone Dr Kapoor (ISBAR): new rash in the carbamazepine titration window; recommend stopping carbamazepine now, same-day review with examination and FBC with eosinophils, LFTs and kidney function, ED if red flags develop. If he pushes back about pain, explain the risk of SJS/TEN/DRESS, that abrupt stopping is safe in trigeminal neuralgia, avoid oxcarbazepine (cross-sensitivity) and caution with other aromatic anticonvulsants, and suggest baclofen or gabapentin/pregabalin and neurology referral, plus liaison with Dr Whitfield. 6. Dispense the betamethasone cream and loratadine with counselling. 7. Counsel: stop carbamazepine now, why, the pain may return and the plan for it, ED red flags, how to use the cream and loratadine, never take carbamazepine again or oxcarbazepine, tell all prescribers, return unused tablets. 8. Follow-up: confirm she has the 4 pm appointment, offer to phone her tomorrow, report the suspected reaction to the TGA. 9. Document the rash, red-flag screen, the call, the agreed plan, what was dispensed, the ADR in her pharmacy record, and the TGA report."
+  },
+  "review": {
+    "status": "draft",
+    "version": "0.1"
+  },
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 13/10/2026 PM session, Part C)",
+    "Needs pharmacist review: the timeline (carbamazepine 100 mg started seven weeks ago, increased from one to two tablets twice daily ten days before the rash); the rash description and the all-negative red-flag screen, which is what makes same-day GP review (not ED) appropriate; the locum GP set-up, betamethasone valerate 0.02% 100 g and loratadine quantities; the interim pain options (baclofen, gabapentin/pregabalin), avoiding oxcarbazepine, and the bloods suggested at review."
+  ]
+}

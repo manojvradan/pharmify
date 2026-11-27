@@ -2,43 +2,115 @@
 import case_ai_risk_tool from "@/data/cases/ai-risk-tool.json";
 import case_amitriptyline_elderly_cardiac_falls from "@/data/cases/amitriptyline-elderly-cardiac-falls.json";
 import case_atorvastatin_doubling_up from "@/data/cases/atorvastatin-doubling-up.json";
+import case_bupropion_seizure_history_smoking from "@/data/cases/bupropion-seizure-history-smoking.json";
 import case_bush_medicine from "@/data/cases/bush-medicine.json";
 import case_capecitabine_warfarin_toxicity from "@/data/cases/capecitabine-warfarin-toxicity.json";
+import case_carbamazepine_rash_trigeminal_neuralgia from "@/data/cases/carbamazepine-rash-trigeminal-neuralgia.json";
 import case_carbimazole_sore_throat_agranulocytosis from "@/data/cases/carbimazole-sore-throat-agranulocytosis.json";
+import case_celebrity_patient_social_media from "@/data/cases/celebrity-patient-social-media.json";
+import case_clarithromycin_pertussis_erythromycin_allergy from "@/data/cases/clarithromycin-pertussis-erythromycin-allergy.json";
 import case_clarithromycin_warfarin_simvastatin_interaction from "@/data/cases/clarithromycin-warfarin-simvastatin-interaction.json";
 import case_conscientious_objection_ecp from "@/data/cases/conscientious-objection-ecp.json";
 import case_conscientious_objection_emergency_contraception from "@/data/cases/conscientious-objection-emergency-contraception.json";
+import case_delivery_driver_s8_safe from "@/data/cases/delivery-driver-s8-safe.json";
+import case_diazepam_given_to_neighbour from "@/data/cases/diazepam-given-to-neighbour.json";
+import case_dispensing_error_double_dose_repeat from "@/data/cases/dispensing-error-double-dose-repeat.json";
+import case_doxycycline_minocycline_allergy_acne from "@/data/cases/doxycycline-minocycline-allergy-acne.json";
+import case_drug_register_discrepancy_ignored from "@/data/cases/drug-register-discrepancy-ignored.json";
 import case_dyspepsia_alarm_features_ppi_clopidogrel from "@/data/cases/dyspepsia-alarm-features-ppi-clopidogrel.json";
+import case_emergency_supply_full_boxes_s4 from "@/data/cases/emergency-supply-full-boxes-s4.json";
+import case_empagliflozin_olanzapine_hyperglycaemia from "@/data/cases/empagliflozin-olanzapine-hyperglycaemia.json";
+import case_excessive_oxycodone_prescriber_wont_explain from "@/data/cases/excessive-oxycodone-prescriber-wont-explain.json";
+import case_expired_tramadol_prescription from "@/data/cases/expired-tramadol-prescription.json";
 import case_forged_s8_prescription from "@/data/cases/forged-s8-prescription.json";
 import case_glp1_shortage from "@/data/cases/glp1-shortage.json";
 import case_imipramine_panic_disorder from "@/data/cases/imipramine-panic-disorder.json";
 import case_levothyroxine_early_pregnancy from "@/data/cases/levothyroxine-early-pregnancy.json";
+import case_lomotil_bulk_overseas from "@/data/cases/lomotil-bulk-overseas.json";
+import case_loperamide_colchicine_toxicity from "@/data/cases/loperamide-colchicine-toxicity.json";
 import case_mdma_sertraline from "@/data/cases/mdma-sertraline.json";
+import case_mefloquine_sotalol_malaria_prophylaxis from "@/data/cases/mefloquine-sotalol-malaria-prophylaxis.json";
 import case_methotrexate_trimethoprim_interaction from "@/data/cases/methotrexate-trimethoprim-interaction.json";
+import case_metoclopramide_galantamine_nausea from "@/data/cases/metoclopramide-galantamine-nausea.json";
+import case_moxonidine_heart_failure from "@/data/cases/moxonidine-heart-failure.json";
+import case_nurofen_plus_morphine_anaphylaxis from "@/data/cases/nurofen-plus-morphine-anaphylaxis.json";
+import case_owners_daughter_takes_s4 from "@/data/cases/owners-daughter-takes-s4.json";
+import case_oxazepam_serotonin_syndrome_tramadol from "@/data/cases/oxazepam-serotonin-syndrome-tramadol.json";
+import case_patient_data_sold_to_marketing from "@/data/cases/patient-data-sold-to-marketing.json";
+import case_pharmacist_takes_endone_for_wife from "@/data/cases/pharmacist-takes-endone-for-wife.json";
+import case_phentermine_sertraline_serotonin_toxicity from "@/data/cases/phentermine-sertraline-serotonin-toxicity.json";
 import case_prescribing_for_family from "@/data/cases/prescribing-for-family.json";
+import case_prochlorperazine_pregabalin_dizziness from "@/data/cases/prochlorperazine-pregabalin-dizziness.json";
+import case_retail_manager_supplying_s3 from "@/data/cases/retail-manager-supplying-s3.json";
+import case_retired_doctor_no_registration_antibiotics from "@/data/cases/retired-doctor-no-registration-antibiotics.json";
+import case_rivaroxaban_dvt_combined_pill from "@/data/cases/rivaroxaban-dvt-combined-pill.json";
+import case_s8_emergency_supply_dexamphetamine from "@/data/cases/s8-emergency-supply-dexamphetamine.json";
+import case_s8_safe_key_communal_drawer from "@/data/cases/s8-safe-key-communal-drawer.json";
+import case_semaglutide_mirtazapine_weight_gain from "@/data/cases/semaglutide-mirtazapine-weight-gain.json";
+import case_staff_discussing_patients_overheard from "@/data/cases/staff-discussing-patients-overheard.json";
 import case_tca_depression_af_falls_risk from "@/data/cases/tca-depression-af-falls-risk.json";
+import case_technician_does_all_counselling from "@/data/cases/technician-does-all-counselling.json";
 import case_telehealth_cannabis from "@/data/cases/telehealth-cannabis.json";
+import case_trimethoprim_allergy_uti from "@/data/cases/trimethoprim-allergy-uti.json";
+import case_valaciclovir_dose_error_sumatriptan from "@/data/cases/valaciclovir-dose-error-sumatriptan.json";
+import case_varenicline_epilepsy_schizophrenia from "@/data/cases/varenicline-epilepsy-schizophrenia.json";
 import case_wrong_patient_disclosure from "@/data/cases/wrong-patient-disclosure.json";
 
 export const RAW_CASES: unknown[] = [
   case_ai_risk_tool,
   case_amitriptyline_elderly_cardiac_falls,
   case_atorvastatin_doubling_up,
+  case_bupropion_seizure_history_smoking,
   case_bush_medicine,
   case_capecitabine_warfarin_toxicity,
+  case_carbamazepine_rash_trigeminal_neuralgia,
   case_carbimazole_sore_throat_agranulocytosis,
+  case_celebrity_patient_social_media,
+  case_clarithromycin_pertussis_erythromycin_allergy,
   case_clarithromycin_warfarin_simvastatin_interaction,
   case_conscientious_objection_ecp,
   case_conscientious_objection_emergency_contraception,
+  case_delivery_driver_s8_safe,
+  case_diazepam_given_to_neighbour,
+  case_dispensing_error_double_dose_repeat,
+  case_doxycycline_minocycline_allergy_acne,
+  case_drug_register_discrepancy_ignored,
   case_dyspepsia_alarm_features_ppi_clopidogrel,
+  case_emergency_supply_full_boxes_s4,
+  case_empagliflozin_olanzapine_hyperglycaemia,
+  case_excessive_oxycodone_prescriber_wont_explain,
+  case_expired_tramadol_prescription,
   case_forged_s8_prescription,
   case_glp1_shortage,
   case_imipramine_panic_disorder,
   case_levothyroxine_early_pregnancy,
+  case_lomotil_bulk_overseas,
+  case_loperamide_colchicine_toxicity,
   case_mdma_sertraline,
+  case_mefloquine_sotalol_malaria_prophylaxis,
   case_methotrexate_trimethoprim_interaction,
+  case_metoclopramide_galantamine_nausea,
+  case_moxonidine_heart_failure,
+  case_nurofen_plus_morphine_anaphylaxis,
+  case_owners_daughter_takes_s4,
+  case_oxazepam_serotonin_syndrome_tramadol,
+  case_patient_data_sold_to_marketing,
+  case_pharmacist_takes_endone_for_wife,
+  case_phentermine_sertraline_serotonin_toxicity,
   case_prescribing_for_family,
+  case_prochlorperazine_pregabalin_dizziness,
+  case_retail_manager_supplying_s3,
+  case_retired_doctor_no_registration_antibiotics,
+  case_rivaroxaban_dvt_combined_pill,
+  case_s8_emergency_supply_dexamphetamine,
+  case_s8_safe_key_communal_drawer,
+  case_semaglutide_mirtazapine_weight_gain,
+  case_staff_discussing_patients_overheard,
   case_tca_depression_af_falls_risk,
+  case_technician_does_all_counselling,
   case_telehealth_cannabis,
+  case_trimethoprim_allergy_uti,
+  case_valaciclovir_dose_error_sumatriptan,
+  case_varenicline_epilepsy_schizophrenia,
   case_wrong_patient_disclosure,
 ];

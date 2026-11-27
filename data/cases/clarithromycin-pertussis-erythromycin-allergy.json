@@ -1,0 +1,289 @@
+{
+  "id": "clarithromycin-pertussis-erythromycin-allergy",
+  "title": "A cough that won't quit",
+  "category": "clinical",
+  "problemType": "Contraindication: drug allergy (macrolide cross-reactivity)",
+  "specialty": "infectious-disease",
+  "setting": "Community pharmacy, Toowoomba QLD",
+  "questionSheet": "Ms Leanne Whitford, a woman in her forties, presents a new prescription from Dr Mehta, a GP at a local medical centre, for clarithromycin 500 mg tablets, one twice daily for 7 days. She tells you the doctor rang her this morning to say her swab came back positive for whooping cough (pertussis). Dr Mehta can be contacted by phone. Manage the situation as you would in practice. You may contact the prescriber.",
+  "documents": {
+    "prescription": {
+      "item": "Clarithromycin 500 mg tablets · Qty 14 · No repeats",
+      "directions": "One tablet twice daily for 7 days",
+      "footer": "Dr A. Mehta (GP) · Leanne Whitford, DOB 12/03/1980",
+      "date": "14/10/2026"
+    },
+    "dispensingHistory": [
+      {
+        "date": "2 Oct 2026",
+        "item": "Salbutamol 100 microgram inhaler (Ventolin)",
+        "directions": "1-2 puffs when required for cough or wheeze",
+        "quantity": "1 (200 doses)",
+        "prescriber": "Dr A. Mehta (GP)"
+      },
+      {
+        "date": "20 Sep 2026",
+        "item": "Sertraline 100 mg tablets (generic)",
+        "directions": "One tablet in the morning",
+        "quantity": "30",
+        "prescriber": "Dr A. Mehta (GP)"
+      },
+      {
+        "date": "21 Aug 2026",
+        "item": "Sertraline 100 mg tablets (generic)",
+        "directions": "One tablet in the morning",
+        "quantity": "30",
+        "prescriber": "Dr A. Mehta (GP)"
+      },
+      {
+        "date": "22 Jul 2026",
+        "item": "Sertraline 100 mg tablets (generic)",
+        "directions": "One tablet in the morning",
+        "quantity": "30",
+        "prescriber": "Dr A. Mehta (GP)"
+      }
+    ],
+    "notes": [
+      "Today's date: 14 Oct 2026.",
+      "Pharmacy patient record: Allergies / adverse reactions: nil recorded."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient · Ms Whitford",
+      "name": "Ms Whitford",
+      "description": "A 46-year-old office administrator, tired and hoarse from coughing, with good health literacy. She is keen to get started on the antibiotic and doesn't think to mention her allergy because the doctor 'didn't say erythromycin' and she assumes clarithromycin is a different kind of antibiotic. She stops to cough during the conversation. She answers clearly when asked specific questions. If the pharmacist explains that clarithromycin is in the same family as erythromycin, she is alarmed and grateful. If she is sent away without a plan she gets frustrated because she wants to protect her new grandson. She settles when given a clear plan and told the pharmacist will sort it out with the doctor.",
+      "bio": {
+        "Full name": "Leanne Whitford",
+        "Date of birth": "12 March 1980",
+        "Age": "46",
+        "Address": "14 Jacaranda Street, Toowoomba QLD 4350",
+        "Phone": "0491 570 157",
+        "Occupation": "Office administrator"
+      },
+      "avatar": "penny-okafor",
+      "voice": "au-woman-40s",
+      "openingLine": "Hi, the doctor's sent me in with this antibiotic. Apparently it's whooping cough, can you believe it?",
+      "publicFacts": [
+        "Dr Mehta rang this morning: the nose and throat swab taken two days ago is positive for whooping cough.",
+        "The antibiotic is new; she wants to start it today.",
+        "She is exhausted from coughing, especially at night."
+      ]
+    },
+    "prescriber": {
+      "label": "Call Dr Mehta",
+      "name": "Dr Mehta",
+      "description": "A GP in his forties working a busy session, polite but rushed. He first says clarithromycin is not erythromycin and asks the pharmacist to just dispense it. If that is challenged with the class cross-reactivity, he suggests azithromycin instead; he accepts that azithromycin is also a macrolide only if the pharmacist explains it. He agrees to a non-macrolide alternative when the pharmacist names it with a dose and duration and has checked it is suitable for her. He asks which reference the pharmacist is using. He appreciates a clear, structured call.",
+      "bio": {
+        "Full name": "Dr Arjun Mehta",
+        "Role": "General practitioner",
+        "Workplace": "Range Medical Centre, Toowoomba QLD"
+      },
+      "avatar": "dr-kapoor",
+      "voice": "au-man-professional",
+      "openingLine": "Arjun Mehta. I've only got a minute between patients, what's the problem?",
+      "publicFacts": [
+        "Leanne Whitford is your patient. Her pertussis PCR came back positive this morning and you prescribed clarithromycin 500 mg twice daily for 7 days.",
+        "Her cough started about ten days ago.",
+        "She takes sertraline 100 mg daily for depression and was given a salbutamol inhaler recently for the cough.",
+        "Her record at your clinic doesn't list any allergies; she transferred from another practice last year.",
+        "You will notify Queensland Health public health about the pertussis case, as you do for all notifiable conditions."
+      ]
+    }
+  },
+  "hiddenFacts": [
+    {
+      "id": "erythromycin-anaphylaxis",
+      "agent": "patient",
+      "fact": "When you were about 19 you were given erythromycin for a chest infection and within an hour your face and throat swelled up, you broke out in hives and couldn't breathe properly. You were taken to hospital by ambulance and given adrenaline. You were told never to take erythromycin again. You didn't mention it today because the doctor didn't prescribe erythromycin.",
+      "triggers": [
+        "allergy",
+        "allergies",
+        "allergic",
+        "reaction",
+        "reactions",
+        "erythromycin",
+        "anaphylaxis",
+        "swelling",
+        "hives",
+        "rash",
+        "react badly",
+        "antibiotic before",
+        "had antibiotics",
+        "bad reaction",
+        "sensitivities"
+      ],
+      "unlockHint": "“Do you have any allergies or have you ever had a reaction to an antibiotic or any other medicine?”"
+    },
+    {
+      "id": "sulfa-tolerated",
+      "agent": "patient",
+      "fact": "You have taken Bactrim (trimethoprim with sulfamethoxazole) for a urine infection a few years ago and had no problems. You've had amoxicillin and cefalexin too without any trouble.",
+      "triggers": [
+        "bactrim",
+        "sulfa",
+        "sulfur",
+        "sulphur",
+        "sulfonamide",
+        "trimethoprim",
+        "sulfamethoxazole",
+        "other antibiotics",
+        "amoxicillin",
+        "penicillin",
+        "cefalexin",
+        "urine infection",
+        "antibiotics fine",
+        "tolerated"
+      ],
+      "unlockHint": "“Which other antibiotics have you taken without a problem, for example Bactrim or penicillins?”"
+    },
+    {
+      "id": "newborn-grandson",
+      "agent": "patient",
+      "fact": "Your daughter Mia and her six-week-old baby boy have been staying with you for the past month. You've been helping with night feeds. The baby hasn't had his first vaccinations yet; they are due this week. Your daughter had the whooping cough vaccine when she was pregnant.",
+      "triggers": [
+        "baby",
+        "babies",
+        "infant",
+        "newborn",
+        "grandchild",
+        "grandson",
+        "live with",
+        "home with",
+        "household",
+        "family",
+        "contacts",
+        "close contact",
+        "pregnant",
+        "children",
+        "kids",
+        "who lives"
+      ],
+      "unlockHint": "“Who do you live with or spend time with, especially babies, young children or anyone pregnant?”"
+    },
+    {
+      "id": "cough-timeline",
+      "agent": "patient",
+      "fact": "The cough started about ten days ago. It comes in long fits, sometimes with a 'whoop' and you've vomited after coughing a couple of times. You have no fever now and no chest pain. You're still going to work at the council office because you thought it was just a cold.",
+      "triggers": [
+        "cough start",
+        "how long",
+        "started",
+        "began",
+        "days",
+        "fever",
+        "vomit",
+        "vomiting",
+        "breathing",
+        "chest pain",
+        "work",
+        "symptoms",
+        "coughing fits"
+      ],
+      "unlockHint": "“When did the cough start, and are you still going to work?”"
+    },
+    {
+      "id": "not-pregnant",
+      "agent": "patient",
+      "fact": "You are not pregnant or breastfeeding; you have a Mirena (hormonal IUD). You have no kidney or liver problems that you know of and you don't take any supplements or other medicines apart from sertraline and the Ventolin.",
+      "triggers": [
+        "pregnant",
+        "pregnancy",
+        "breastfeeding",
+        "contraception",
+        "kidney",
+        "kidneys",
+        "liver",
+        "other medicine",
+        "supplements",
+        "health conditions",
+        "medical conditions",
+        "mirena"
+      ],
+      "unlockHint": "“Could you be pregnant or breastfeeding, and do you have any kidney or liver problems or take any other medicines?”"
+    },
+    {
+      "id": "gp-unaware-allergy",
+      "agent": "prescriber",
+      "fact": "You did not know she had anaphylaxis to erythromycin; it isn't on your records. If the pharmacist explains that clarithromycin and erythromycin are both macrolides and cross-reactivity means all macrolides should be avoided after anaphylaxis, you agree not to use clarithromycin. You then suggest 'azithromycin instead, then?'. If the pharmacist explains azithromycin is also a macrolide, you agree to avoid it too and ask what they recommend.",
+      "triggers": [
+        "allergy",
+        "allergic",
+        "anaphylaxis",
+        "erythromycin",
+        "macrolide",
+        "macrolides",
+        "cross reactivity",
+        "cross reactive",
+        "same class",
+        "same family",
+        "reaction",
+        "adrenaline"
+      ],
+      "unlockHint": "“She had anaphylaxis to erythromycin. Clarithromycin is a macrolide too, so there's a real risk of cross-reactivity.”"
+    },
+    {
+      "id": "gp-agrees-trimethoprim-sulfamethoxazole",
+      "agent": "prescriber",
+      "fact": "If the pharmacist recommends trimethoprim with sulfamethoxazole 160/800 mg (Bactrim DS) twice daily for 7 days as the non-macrolide option for pertussis, and confirms she has tolerated it before, isn't pregnant and has no sulfonamide allergy, you agree. You will send a new prescription to the pharmacy and cancel the clarithromycin. You agree to add the allergy to her record. You hadn't thought about the baby at home; if the pharmacist raises it, you agree the baby and its mother need prophylaxis and ask them to book in today, and you'll mention it when you notify public health.",
+      "triggers": [
+        "bactrim",
+        "trimethoprim",
+        "sulfamethoxazole",
+        "cotrimoxazole",
+        "co trimoxazole",
+        "alternative",
+        "non macrolide",
+        "recommend",
+        "instead",
+        "different antibiotic",
+        "baby",
+        "prophylaxis",
+        "contacts"
+      ],
+      "unlockHint": "“Per eTG, trimethoprim with sulfamethoxazole 160/800 mg twice daily for 7 days is the alternative when macrolides can't be used. She's tolerated Bactrim before. Could you prescribe that instead?”"
+    }
+  ],
+  "answerKey": {
+    "plantedProblem": "Severe (anaphylactic) allergy to erythromycin, not recorded by the pharmacy or the GP. Clarithromycin is a macrolide and cross-reactivity within the class means it, azithromycin and roxithromycin should all be avoided. The recommended alternative for pertussis when macrolides are contraindicated (eTG) is trimethoprim with sulfamethoxazole 160/800 mg twice daily for 7 days. She is also a household contact of a six-week-old unvaccinated infant, who needs urgent prophylaxis, and she should not return to work or contact with the baby until she has had 5 days of an effective antibiotic.",
+    "acceptableResolutions": [
+      "Ask about allergies and previous drug reactions before supplying, and establish the nature and severity of the erythromycin reaction (anaphylaxis needing adrenaline).",
+      "Recognise clarithromycin is a macrolide like erythromycin and must not be supplied; also reject azithromycin and roxithromycin when the GP suggests them, explaining the class cross-reactivity.",
+      "Phone Dr Mehta and recommend a specific non-macrolide alternative: trimethoprim with sulfamethoxazole 160/800 mg orally twice daily for 7 days (eTG), after checking for sulfonamide allergy, pregnancy, breastfeeding, renal problems and interactions.",
+      "Identify the six-week-old grandson as a high-risk household contact and advise that he and his mother need same-day medical review for antibiotic prophylaxis, and that the baby's vaccinations should go ahead on time.",
+      "Advise her to stay home from work and avoid the baby and other vulnerable people until she has completed 5 days of the antibiotic (or 21 days have passed since the cough started), and to cover coughs.",
+      "Update the pharmacy record with the erythromycin anaphylaxis (macrolide allergy), ask the GP to update theirs, and document the intervention."
+    ],
+    "unacceptableActions": [
+      "Dispensing clarithromycin without asking about allergies, or after hearing of the erythromycin anaphylaxis (overall fail).",
+      "Accepting azithromycin or roxithromycin as a 'different' antibiotic.",
+      "Recommending amoxicillin, a cephalosporin or doxycycline as the alternative for pertussis without basis in guidelines.",
+      "Telling her she doesn't need treatment because the cough has been going for a while, or ignoring the infant contact.",
+      "Telling her to go to work as normal or to keep caring for the baby before 5 days of treatment."
+    ],
+    "counsellingPoints": [
+      "Don't take clarithromycin, azithromycin, roxithromycin or erythromycin: they are all in the same family and could cause the same severe reaction. Tell every doctor, dentist and pharmacist you are allergic to macrolide antibiotics.",
+      "Take trimethoprim with sulfamethoxazole (Bactrim DS) one tablet twice a day, about 12 hours apart, with food and a full glass of water, for the full 7 days even if the cough doesn't improve straight away.",
+      "Stop Bactrim and seek urgent help if you get a rash, blistering, mouth ulcers, swelling, fever or a sore throat while taking it.",
+      "The antibiotic stops you spreading whooping cough but the cough itself can last weeks; it will settle slowly.",
+      "Stay home from work and keep away from the baby and anyone pregnant until you've had 5 full days of the antibiotic. Cover your cough and wash your hands.",
+      "Your daughter and grandson need to see a doctor today for preventive antibiotics, and his six-week vaccinations should go ahead this week as planned.",
+      "Seek urgent medical help if you have trouble breathing, cough so hard you turn blue or faint, or can't keep fluids down; and for the baby, any pauses in breathing, going blue, poor feeding or a cough.",
+      "Keep taking your sertraline as usual; Ventolin may ease wheeze but won't stop the coughing fits."
+    ],
+    "codePrinciples": [],
+    "legal": [
+      "Pertussis is a notifiable condition in Queensland under the Public Health Act 2005 (Qld); notification is made by the diagnosing doctor and pathology laboratory, and public health may follow up contacts.",
+      "Record the allergy and the clinical intervention in the patient's dispensing record (PSA Professional Practice Standards)."
+    ],
+    "modelAnswer": "1. Set-up: introduce self, confirm identity (name, DOB, address), confirm the script is for her and get consent to ask some questions; move somewhere private because she is infectious (offer a mask). 2. Gather information: what the doctor told her (PCR-positive pertussis); when the cough started (about 10 days ago, so treatment within 21 days is still indicated); symptoms and red flags (paroxysms, post-tussive vomiting, no fever, breathing); allergies and previous reactions to medicines, specifically antibiotics, which reveals anaphylaxis to erythromycin needing ambulance and adrenaline; which antibiotics she has tolerated (Bactrim, amoxicillin, cefalexin); pregnancy or breastfeeding (no, Mirena); kidney or liver disease; current medicines (sertraline 100 mg, Ventolin); and who she lives with or works around, which reveals a six-week-old unvaccinated grandson and his mother at home, and that she is still going to work. 3. Identify and explain: clarithromycin, erythromycin, azithromycin and roxithromycin are macrolides; after anaphylaxis to one macrolide the class should be avoided because of possible cross-reactivity, so clarithromycin must not be supplied. The infant is the person most at risk of severe or fatal pertussis. 4. Check references: eTG Antibiotic (pertussis), AMH (macrolides, trimethoprim+sulfamethoxazole, interactions with sertraline: none significant), the Australian Immunisation Handbook and Queensland Health pertussis guidance for contacts and exclusion. 5. Phone Dr Mehta (ISBAR): Ms Whitford, PCR-positive pertussis, prescribed clarithromycin; she had anaphylaxis to erythromycin, not on either record. Recommend no macrolide; when he suggests azithromycin explain it is also a macrolide. Recommend trimethoprim with sulfamethoxazole 160/800 mg orally 12-hourly for 7 days, the eTG alternative when macrolides cannot be used; she has taken Bactrim before without problems, is not pregnant or breastfeeding and has no renal impairment. Raise the infant household contact: baby and mother need same-day review for prophylaxis (azithromycin is appropriate for them) and the baby's vaccines should not be delayed. Ask him to record the allergy, cancel the clarithromycin and send a new script; name eTG when asked. 6. Supply the new prescription and counsel: dosing with food and water for the full 7 days, rash, mouth ulcers or fever to report, what the antibiotic does and doesn't do for the cough, stay home and away from the baby until 5 days of treatment are complete, cough hygiene, red flags for her and the baby, and to avoid all macrolides in future (consider a medical alert). 7. Follow-up: offer to call in a couple of days to check she is tolerating Bactrim and that the baby has been seen. 8. Documentation: record the erythromycin anaphylaxis as a macrolide allergy in the pharmacy software, the call with Dr Mehta, the agreed change and counselling given."
+  },
+  "review": {
+    "status": "draft",
+    "version": "0.1"
+  },
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 06/10/2026 AM session, Part C)",
+    "Needs pharmacist review: the recall only gives 'severe erythromycin allergy, recommend an alternative per eTG'. Invented or interpreted: the reaction as anaphylaxis at age 19; the alternative as trimethoprim+sulfamethoxazole 160/800 mg twice daily for 7 days (check current eTG wording and dose); cough onset 10 days ago; prior tolerance of Bactrim; the six-week-old grandson at home and the contact prophylaxis and 5-day exclusion advice; Queensland setting and Public Health Act 2005 (Qld) notification point; the sertraline and Ventolin history."
+  ]
+}

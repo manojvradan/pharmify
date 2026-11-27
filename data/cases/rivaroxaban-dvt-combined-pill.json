@@ -1,0 +1,314 @@
+{
+  "id": "rivaroxaban-dvt-combined-pill",
+  "title": "Out of hospital",
+  "category": "clinical",
+  "problemType": "Contraindicated concurrent therapy (oestrogen after VTE) and new anticoagulant counselling",
+  "specialty": "cardiology",
+  "setting": "Community pharmacy, Adelaide SA",
+  "questionSheet": "Ms Emma Carrington, a woman of about thirty, presents a hospital discharge prescription for a rivaroxaban treatment initiation pack. She was diagnosed with a deep vein thrombosis yesterday and was discharged last night. A copy of her discharge summary and her dispensing history are attached. The discharging doctor, Dr Wu, can be contacted by phone. Manage the situation as you would in practice. You may contact the prescriber.",
+  "documents": {
+    "prescription": {
+      "item": "Rivaroxaban 15 mg and 20 mg tablets, treatment initiation pack (Xarelto) (42 × 15 mg, 7 × 20 mg) · Qty 1 pack · No repeats",
+      "directions": "15 mg twice daily with food for 21 days, then 20 mg once daily with food",
+      "footer": "Dr H. Wu (General Medicine) · Emma Carrington, DOB 07/03/1996",
+      "prescriberDetail": "Discharge prescriber · The Queen Elizabeth Hospital, Woodville SA",
+      "date": "14/10/2026",
+      "pbs": true
+    },
+    "dispensingHistory": [
+      {
+        "date": "16 Jul 2026",
+        "item": "Levonorgestrel 150 microgram/ethinylestradiol 30 microgram tablets (Levlen ED)",
+        "directions": "One tablet daily as directed",
+        "quantity": "4 × 28",
+        "prescriber": "Dr K. Marsh (GP)"
+      },
+      {
+        "date": "2 Jun 2026",
+        "item": "Nitrofurantoin 100 mg capsules (Macrodantin)",
+        "directions": "One capsule four times daily with food for 5 days",
+        "quantity": "20",
+        "prescriber": "Dr K. Marsh (GP)"
+      }
+    ],
+    "notes": [
+      "Discharge summary (The Queen Elizabeth Hospital, 14 Oct 2026): Presented with 4 days of left calf pain and swelling. Duplex ultrasound: left popliteal and femoral vein DVT. No PE symptoms. Likely provoked: combined oral contraceptive (restarted July 2026). Weight 68 kg. Hb 132 g/L, platelets 245, eGFR > 90, LFTs normal, serum β-hCG negative. First dose rivaroxaban 15 mg given 14/10 at 20:00. Plan: rivaroxaban 15 mg twice daily for 21 days then 20 mg once daily; total 3 months, then GP review. GP follow-up within 1 week.",
+      "Second hospital prescription presented: Rivaroxaban 20 mg tablets (Xarelto) · One tablet once daily with food, to start after the initiation pack · Qty 28 · 1 repeat · Dr H. Wu.",
+      "Today's date: 15 Oct 2026, morning."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient · Ms Carrington",
+      "name": "Ms Carrington",
+      "description": "A 30-year-old primary school teacher, articulate but shaken by her hospital visit and a bit overwhelmed by all the information. Good health literacy. She assumes the hospital has thought of everything and doesn't mention the contraceptive pill or the ibuprofen unless asked. She is worried about another clot and about getting pregnant if she stops the pill, and becomes anxious if told to stop it without being told what to use instead. She settles when the pharmacist explains the reasons calmly, gives her a clear plan for contraception in the meantime, and arranges for her to see her GP. She appreciates simple written instructions for the tablets.",
+      "bio": {
+        "Full name": "Emma Carrington",
+        "Date of birth": "7 March 1996",
+        "Age": "30",
+        "Address": "5 Wattle Avenue, Norwood SA 5067",
+        "Phone": "0491 572 549",
+        "Occupation": "Primary school teacher"
+      },
+      "avatar": "penny-okafor",
+      "voice": "au-soft-woman",
+      "openingLine": "Hi. I was in hospital yesterday with a clot in my leg, and they gave me these scripts for blood thinners.",
+      "publicFacts": [
+        "She was diagnosed with a blood clot in her left leg yesterday at The Queen Elizabeth Hospital and was sent home last night.",
+        "They gave her the first tablet at the hospital at about 8 pm.",
+        "Her leg is still a bit sore and swollen but better than yesterday.",
+        "She has never had a clot before and wants to make sure she doesn't get another one."
+      ]
+    },
+    "prescriber": {
+      "label": "Call the hospital",
+      "name": "Dr Wu",
+      "description": "A general medicine consultant in her forties, firm and efficient, with hard pushback: she wants a clear reason and a clear plan. Her first response to anything about contraception is that it's for the GP to sort out at follow-up. She agrees to the pharmacist's plan if they explain clearly that oestrogen-containing contraception is contraindicated after a VTE and is the likely trigger, that the patient is still taking it, and that she needs an effective non-oestrogen method because rivaroxaban must be avoided in pregnancy. She may ask which reference the pharmacist is using.",
+      "bio": {
+        "Full name": "Dr Helen Wu",
+        "Role": "Consultant physician, General Medicine",
+        "Workplace": "The Queen Elizabeth Hospital, Woodville SA"
+      },
+      "avatar": "dr-tan",
+      "voice": "au-woman-professional",
+      "openingLine": "Helen Wu, general medicine. I'm on the ward, so make it quick. Who's this about?",
+      "publicFacts": [
+        "Emma Carrington was under your team yesterday with a left popliteal and femoral DVT, discharged last night.",
+        "The team thought the DVT was provoked, most likely by the combined oral contraceptive she restarted in July.",
+        "You prescribed rivaroxaban for 3 months: 15 mg twice daily for 21 days, then 20 mg once daily. Her bloods and kidney function were normal and the pregnancy test was negative.",
+        "Your first view is that contraception is for her GP to sort out at follow-up."
+      ]
+    }
+  },
+  "hiddenFacts": [
+    {
+      "id": "still-on-coc",
+      "agent": "patient",
+      "fact": "You are still taking your Levlen ED contraceptive pill; you took today's one this morning, about day 10 of the active tablets. You told the hospital you were on the pill, but nobody said to stop it, so you assumed it was fine. You went back on it in July, mainly for acne and to make your periods more regular, after about two years off it.",
+      "triggers": [
+        "contraceptive",
+        "contraception",
+        "levlen",
+        "birth control",
+        "combined tablet",
+        "still take",
+        "oestrogen",
+        "estrogen",
+        "hormone",
+        "hormonal",
+        "restarted"
+      ],
+      "unlockHint": "“Are you still taking your contraceptive pill? Did anyone at the hospital talk to you about it?”"
+    },
+    {
+      "id": "ibuprofen-leg-pain",
+      "agent": "patient",
+      "fact": "You've been taking Nurofen (ibuprofen 400 mg) two or three times a day for the leg pain over the last few days, including this morning. You don't take anything else: no vitamins, fish oil or herbal products.",
+      "triggers": [
+        "pain relief",
+        "painkillers",
+        "nurofen",
+        "ibuprofen",
+        "panadol",
+        "paracetamol",
+        "anti inflammatory",
+        "leg pain",
+        "other medicine",
+        "anything else",
+        "over counter",
+        "supplements",
+        "vitamins",
+        "fish oil",
+        "herbal"
+      ],
+      "unlockHint": "“Are you taking anything else, including painkillers, vitamins or herbal products?”"
+    },
+    {
+      "id": "periods",
+      "agent": "patient",
+      "fact": "Before the pill your periods were heavy and irregular, sometimes needing a pad change every couple of hours on the heaviest day.",
+      "triggers": [
+        "periods",
+        "period",
+        "heavy",
+        "menstrual",
+        "cycle",
+        "pads",
+        "flow",
+        "irregular",
+        "monthly"
+      ],
+      "unlockHint": "“What were your periods like before you started the pill?”"
+    },
+    {
+      "id": "pregnancy-plans",
+      "agent": "patient",
+      "fact": "You live with your partner and are sexually active. You don't want to get pregnant for at least a couple of years. You're worried that if you stop the pill you'll get pregnant.",
+      "triggers": [
+        "pregnant",
+        "pregnancy",
+        "partner",
+        "sexually active",
+        "family planning",
+        "baby",
+        "conceive",
+        "children",
+        "condoms",
+        "relationship"
+      ],
+      "unlockHint": "“Are you planning a pregnancy at any stage soon? Are you sexually active?”"
+    },
+    {
+      "id": "gp-tomorrow",
+      "agent": "patient",
+      "fact": "Your GP is Dr Kate Marsh at Norwood. The hospital said to see her within a week, but you haven't booked yet. She usually has appointments the next morning if you ring early.",
+      "triggers": [
+        "regular doctor",
+        "family doctor",
+        "own doctor",
+        "usual doctor",
+        "appointment",
+        "see doctor",
+        "booked",
+        "follow up",
+        "tomorrow",
+        "marsh"
+      ],
+      "unlockHint": "“Who is your GP, and when can you see them?”"
+    },
+    {
+      "id": "lifestyle",
+      "agent": "patient",
+      "fact": "You play netball every Wednesday night, and you have a couple of glasses of wine on weekends. You have no flights or long trips planned.",
+      "triggers": [
+        "sport",
+        "netball",
+        "exercise",
+        "contact sport",
+        "alcohol",
+        "wine",
+        "drink",
+        "travel",
+        "flight",
+        "fall",
+        "active"
+      ],
+      "unlockHint": "“Do you play any sport or do anything where you might get hurt? Any travel planned?”"
+    },
+    {
+      "id": "dosing-confusion",
+      "agent": "patient",
+      "fact": "You thought you'd just take one tablet a day like the pill, in the morning, and you didn't realise it needs to be taken with food.",
+      "triggers": [
+        "how take",
+        "how many",
+        "twice day",
+        "twice daily",
+        "once day",
+        "with food",
+        "understand",
+        "directions",
+        "explained",
+        "know take",
+        "21 days"
+      ],
+      "unlockHint": "“Can you tell me how the hospital said to take these tablets?”"
+    },
+    {
+      "id": "wu-cease-coc",
+      "agent": "prescriber",
+      "fact": "The team documented the pill as the likely cause, but the discharge summary didn't tell her to stop it; that was missed. If the pharmacist explains that she is still taking it, that oestrogen-containing contraception is contraindicated after a VTE, and that she needs effective non-oestrogen contraception because rivaroxaban should be avoided in pregnancy, you agree: stop the combined pill today and never use oestrogen-containing contraception again; use condoms meanwhile; see her GP tomorrow to start a progestogen-only method (a levonorgestrel IUD, an etonogestrel implant or a progestogen-only pill). Avoid the depot medroxyprogesterone injection. You'll send an amended discharge summary to the GP.",
+      "triggers": [
+        "combined tablet",
+        "contraceptive",
+        "contraception",
+        "levlen",
+        "oestrogen",
+        "estrogen",
+        "still take",
+        "stop tablet",
+        "cease",
+        "contraindicated",
+        "progestogen",
+        "iud",
+        "mirena",
+        "implant",
+        "pregnancy"
+      ],
+      "unlockHint": "“She's still taking her combined pill, which likely provoked the DVT and is contraindicated now. I'd recommend she stops it today, uses condoms, and sees her GP tomorrow for a progestogen-only method, since rivaroxaban must be avoided in pregnancy.”"
+    },
+    {
+      "id": "wu-nsaid",
+      "agent": "prescriber",
+      "fact": "You didn't know she's been taking ibuprofen. You agree she should stop it and use paracetamol for the leg pain while on rivaroxaban.",
+      "triggers": [
+        "ibuprofen",
+        "nurofen",
+        "nsaid",
+        "anti inflammatory",
+        "paracetamol",
+        "pain relief",
+        "bleeding risk"
+      ],
+      "unlockHint": "“She has been taking ibuprofen for leg pain, which increases bleeding risk with rivaroxaban. Can she switch to paracetamol?”"
+    },
+    {
+      "id": "wu-heavy-periods",
+      "agent": "prescriber",
+      "fact": "If told her periods were heavy before the pill, you agree that rivaroxaban may make them heavier and that a levonorgestrel IUD would be a good choice, as it also reduces bleeding. Her GP should check her haemoglobin if bleeding is heavy.",
+      "triggers": [
+        "heavy periods",
+        "periods",
+        "menstrual",
+        "heavy bleeding",
+        "menorrhagia",
+        "levonorgestrel iud",
+        "mirena",
+        "haemoglobin",
+        "iron"
+      ],
+      "unlockHint": "“Her periods were heavy before the pill, and rivaroxaban can make them heavier; a levonorgestrel IUD would help both.”"
+    }
+  ],
+  "answerKey": {
+    "plantedProblem": "A 30-year-old woman with a newly diagnosed DVT, most likely provoked by the combined oral contraceptive (levonorgestrel/ethinylestradiol) restarted 3 months ago, is still taking the COC because the discharge plan didn't address it. Oestrogen-containing contraception is contraindicated after VTE (UK/WHO MEC category 4) and should be stopped now. Because rivaroxaban should be avoided in pregnancy, she needs effective non-oestrogen contraception (condoms meanwhile; progestogen-only method such as a levonorgestrel IUD, implant or progestogen-only pill via GP review tomorrow; avoid DMPA). She is also taking ibuprofen, which adds bleeding risk, and misunderstands the rivaroxaban loading regimen (15 mg twice daily with food for 21 days, then 20 mg once daily with food).",
+    "acceptableResolutions": [
+      "Checks the discharge summary and asks about current medicines, identifying that she is still taking the combined pill and that the hospital did not tell her to stop.",
+      "Recommends stopping the combined pill today and avoiding all oestrogen-containing contraception in future, with condoms in the meantime, and explains why.",
+      "Phones Dr Wu with a structured message, handles the 'GP's job' pushback with clinical reasons, and agrees the plan; arranges a GP review tomorrow for a progestogen-only method (levonorgestrel IUD, implant or progestogen-only pill; avoid DMPA).",
+      "Identifies ibuprofen use and advises stopping it in favour of paracetamol, with prescriber agreement.",
+      "Dispenses rivaroxaban and checks her understanding of the regimen: 15 mg twice daily with food for 21 days, then 20 mg once daily with food, for 3 months; missed-dose rules; bleeding and clot warning signs.",
+      "Raises heavy periods as a likely problem on rivaroxaban and supports a levonorgestrel IUD as an option.",
+      "Documents the intervention and communicates with the GP (or asks the hospital to send an amended discharge summary)."
+    ],
+    "unacceptableActions": [
+      "Dispensing rivaroxaban without identifying that she is still taking the combined pill (overall fail).",
+      "Telling her to stop the pill without giving any interim contraception or plan, leaving her at risk of pregnancy on rivaroxaban.",
+      "Recommending another oestrogen-containing method (e.g. a different combined pill, vaginal ring) or the depot medroxyprogesterone injection.",
+      "Failing to explain the twice-daily-with-food loading phase, or letting her take one tablet a day.",
+      "Ignoring her ibuprofen use."
+    ],
+    "counsellingPoints": [
+      "Stop the Levlen today and don't use any contraceptive with oestrogen again (combined pills or the vaginal ring): oestrogen raises clot risk and probably caused this clot.",
+      "Use condoms every time from now until your new contraception is working; see Dr Marsh tomorrow about a hormone-coil (Mirena), implant or progestogen-only pill, which are safe with your clot history.",
+      "Avoid pregnancy while on rivaroxaban, because it may harm a developing baby; if you think you could be pregnant, do a test and tell your doctor straight away.",
+      "For the first 21 days take one 15 mg tablet twice a day, morning and evening with a meal; then switch to one 20 mg tablet once a day with a meal. Food is needed for it to be absorbed properly. The pack is labelled by day to help.",
+      "If you miss a 15 mg dose, take it as soon as you remember that day (you can take two 15 mg tablets together to make up the day's 30 mg); on 20 mg once daily, take a missed dose the same day, but never double up the next day.",
+      "Stop the Nurofen; use paracetamol for leg pain. Avoid aspirin, anti-inflammatories and fish oil unless your doctor says otherwise, and check with a pharmacist before any new medicine or supplement.",
+      "Watch for bleeding: unusual bruising, nosebleeds or bleeding gums that won't stop, blood in urine, black stools, or periods much heavier than usual; tell your doctor. Rivaroxaban can make periods heavier.",
+      "Call 000 for sudden chest pain, breathlessness or coughing blood, a severe headache, or a heavy fall or head knock (especially at netball); see a doctor if the leg gets more swollen or painful.",
+      "Keep walking and moving; carry the rivaroxaban alert card and tell your dentist and other doctors you're on a blood thinner. Treatment is planned for 3 months, then your GP will review it; don't stop early."
+    ],
+    "codePrinciples": [],
+    "legal": [],
+    "modelAnswer": "1. Set-up: introduce self, confirm identity (Emma Carrington, DOB 7 March 1996), acknowledge the stressful hospital visit, get consent and move to the consultation room. 2. Gather information: read the discharge summary (left popliteal/femoral DVT, provoked by COC restarted July, bloods and eGFR normal, β-hCG negative, weight 68 kg, first 15 mg dose given 20:00 yesterday, plan 3 months) and ask: current medicines including the pill (still taking Levlen, took today's dose; nobody told her to stop), OTC and complementary (ibuprofen 400 mg two to three times daily), periods (heavy before the pill), pregnancy plans and sexual activity (partner, not planning pregnancy), her GP and when she can be seen, sport and travel (netball), and what she understands about the rivaroxaban (thought once daily, didn't know about food). 3. Identify and explain: oestrogen increases hepatic production of clotting factors and VTE risk; after a VTE, oestrogen-containing contraception is contraindicated (MEC category 4) and continuing it adds to clot risk during and after treatment. Rivaroxaban should be avoided in pregnancy, so she needs effective non-oestrogen contraception; progestogen-only methods (levonorgestrel IUD, etonogestrel implant, progestogen-only pill) are acceptable, and the levonorgestrel IUD also reduces the heavier menstrual bleeding rivaroxaban can cause; DMPA is best avoided. Ibuprofen adds bleeding risk with an anticoagulant. Check the rivaroxaban regimen and interactions (no strong CYP3A4/P-gp inhibitors or inducers; renal function normal). 4. References: AMH (rivaroxaban, combined hormonal contraception), eTG Cardiovascular (VTE) and Sexual and Reproductive Health, Xarelto product information, UK MEC/FSRH guidance. 5. Phone Dr Wu with ISBAR: she is still on the COC, likely provoking factor, contraindicated; recommend stopping it today, condoms meanwhile, GP review tomorrow for a progestogen-only method, stop ibuprofen and use paracetamol. When told 'contraception is the GP's job', explain she is taking it today and every day matters, and that pregnancy on rivaroxaban must be avoided, so the plan can't wait a week. Ask for an amended discharge summary to the GP. 6. Dispense the initiation pack and the 20 mg script and counsel: loading regimen with food, missed doses, duration, bleeding and PE/DVT warning signs, NSAIDs and supplements, contraception plan, heavy periods, alert card, sport and falls. Use teach-back. 7. Follow-up: help her book the GP for tomorrow morning; offer a call in a few days to check adherence and bleeding; remind her to fill the 20 mg script before the pack runs out. 8. Document the interventions, the call with Dr Wu, the agreed plan and counselling, and send a note to Dr Marsh."
+  },
+  "review": {
+    "status": "draft",
+    "version": "0.1"
+  },
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 15/10/2026 AM session, Part C)",
+    "Needs pharmacist review: the recall gives '30F, hospital script for rivaroxaban for DVT, restarted COC 3 months ago; cease COC, doctor review tomorrow, counsel'. Invented or interpreted: the discharge summary (DVT site, bloods, weight, first-dose time, 3-month duration), the second 20 mg script, Levlen ED as the COC, ibuprofen use, heavy periods, partner and netball, her thinking it is once daily, the hospital consultant's pushback, the progestogen-only options and advice to avoid DMPA, and the missed-dose rules as written. Note some haematology guidance (ISTH 2016) allows hormonal contraception to continue during anticoagulation; the key follows the recall and Australian/MEC practice of stopping oestrogen now."
+  ]
+}

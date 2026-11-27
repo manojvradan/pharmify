@@ -1,0 +1,276 @@
+{
+  "id": "doxycycline-minocycline-allergy-acne",
+  "title": "Something for his skin",
+  "category": "clinical",
+  "problemType": "Contraindication: previous severe drug reaction (class cross-reactivity)",
+  "specialty": "dermatology",
+  "setting": "Community pharmacy, Joondalup WA",
+  "questionSheet": "Mr Daniel Kovac, a 40-year-old man, presents two new prescriptions from his GP, Dr Murray, for acne: doxycycline 50 mg tablets, one twice daily, and adapalene 0.1% gel, apply at night. He has been a customer of the pharmacy for a few months. Dr Murray can be contacted by phone. Manage the situation as you would in practice. You may contact the prescriber.",
+  "documents": {
+    "prescription": {
+      "item": "Doxycycline 50 mg tablets · Qty 50 (2 x 25) · 2 repeats",
+      "directions": "One tablet twice daily with food",
+      "footer": "Dr H. Murray (GP) · Daniel Kovac, DOB 14/03/1986",
+      "prescriberDetail": "General practitioner · Joondalup Coast Medical Centre, WA",
+      "date": "18/11/2026"
+    },
+    "dispensingHistory": [
+      {
+        "date": "28 Oct 2026",
+        "item": "Perindopril arginine 5 mg tablets (Coversyl)",
+        "directions": "One tablet in the morning",
+        "quantity": "30",
+        "prescriber": "Dr H. Murray (GP)"
+      },
+      {
+        "date": "28 Oct 2026",
+        "item": "Rosuvastatin 10 mg tablets (generic)",
+        "directions": "One tablet at night",
+        "quantity": "30",
+        "prescriber": "Dr H. Murray (GP)"
+      },
+      {
+        "date": "29 Sep 2026",
+        "item": "Perindopril arginine 5 mg tablets (Coversyl)",
+        "directions": "One tablet in the morning",
+        "quantity": "30",
+        "prescriber": "Dr H. Murray (GP)"
+      },
+      {
+        "date": "29 Sep 2026",
+        "item": "Rosuvastatin 10 mg tablets (generic)",
+        "directions": "One tablet at night",
+        "quantity": "30",
+        "prescriber": "Dr H. Murray (GP)"
+      },
+      {
+        "date": "1 Sep 2026",
+        "item": "Perindopril arginine 5 mg tablets (Coversyl)",
+        "directions": "One tablet in the morning",
+        "quantity": "30",
+        "prescriber": "Dr H. Murray (GP)"
+      },
+      {
+        "date": "1 Sep 2026",
+        "item": "Rosuvastatin 10 mg tablets (generic)",
+        "directions": "One tablet at night",
+        "quantity": "30",
+        "prescriber": "Dr H. Murray (GP)"
+      }
+    ],
+    "notes": [
+      "Second prescription presented today (new): Adapalene 0.1% gel (Differin) 30 g · Apply a thin layer to affected areas at night · 1 repeat · Dr H. Murray (GP) · Daniel Kovac, DOB 14/03/1986.",
+      "Pharmacy patient record: no allergies or adverse drug reactions recorded.",
+      "Today's date: 18 Nov 2026."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient · Mr Kovac",
+      "name": "Mr Kovac",
+      "description": "A 40-year-old electrician, friendly but in a hurry between jobs, with average health literacy. He is a bit embarrassed about having acne at his age and wants the scripts filled so he can get back to work. He doesn't connect his old hospital reaction with this new antibiotic, because it had a different name and was twenty years ago; he only mentions it if asked directly about allergies or past reactions to medicines. Once he understands, he is grateful and a little shaken, and happy to wait while the pharmacist calls the GP. If the pharmacist is rushed or vague he gets impatient and asks whether he can just take the tablets and see how he goes.",
+      "bio": {
+        "Full name": "Daniel Kovac",
+        "Date of birth": "14 March 1986",
+        "Age": "40",
+        "Address": "22 Banksia Drive, Joondalup WA 6027",
+        "Phone": "0491 570 157",
+        "Occupation": "Electrician"
+      },
+      "avatar": "wally-morris",
+      "voice": "au-man-40s",
+      "openingLine": "G'day, can I get these two filled? Doc says it's for the acne. Bit embarrassing at my age, to be honest.",
+      "publicFacts": [
+        "The scripts are for acne. He saw Dr Murray about it last week for the first time.",
+        "He moved to Perth from Melbourne about six months ago and Dr Murray is his new GP.",
+        "He also takes a blood pressure tablet and a cholesterol tablet, both filled here.",
+        "He'd like to be in and out quickly because he's between jobs."
+      ]
+    },
+    "prescriber": {
+      "label": "Call the GP",
+      "name": "Dr Murray",
+      "description": "A GP in her fifties, busy but fair, who listens if the pharmacist is clear and brief. She is surprised to hear about the old reaction and first suggests that doxycycline is a different drug from minocycline. She agrees to avoid the whole tetracycline class once the pharmacist explains the severity of the reaction and the class cross-reactivity, and then asks what the pharmacist would suggest instead, including the dose. She responds well to a specific recommendation with a reference.",
+      "bio": {
+        "Full name": "Dr Helen Murray",
+        "Role": "General practitioner",
+        "Workplace": "Joondalup Coast Medical Centre, WA"
+      },
+      "avatar": "dr-holt",
+      "voice": "au-woman-professional",
+      "openingLine": "Helen Murray speaking. I've got a minute between patients, what's up?",
+      "publicFacts": [
+        "Daniel Kovac is a fairly new patient. You saw him last week for moderate inflammatory acne on his face, chest and back.",
+        "You prescribed doxycycline 50 mg twice daily and adapalene 0.1% gel at night.",
+        "He is on perindopril 5 mg and rosuvastatin 10 mg, which you have continued from his Melbourne GP.",
+        "You asked about allergies in a hurry at the end of the consult and have none recorded."
+      ]
+    }
+  },
+  "hiddenFacts": [
+    {
+      "id": "minocycline-dress",
+      "agent": "patient",
+      "fact": "When you were about 20, a doctor in Melbourne gave you minocycline (Minomycin) for acne. About three weeks in you got a high fever, a red rash all over, a swollen face and swollen glands, and your liver tests went bad. You were in hospital for about a week and the doctors said it was a severe allergic reaction, something like 'DRESS', and that you must never take minocycline again. You didn't think to tell Dr Murray because it was so long ago and the new tablet has a different name.",
+      "triggers": [
+        "allergy",
+        "allergies",
+        "allergic",
+        "reaction",
+        "reactions",
+        "side effects",
+        "bad reaction",
+        "hospital",
+        "minocycline",
+        "minomycin",
+        "antibiotic old",
+        "had antibiotics",
+        "acne treatment old",
+        "tried old",
+        "tetracycline"
+      ],
+      "unlockHint": "“Do you have any allergies, or have you ever had a bad reaction to a medicine, especially an antibiotic?”"
+    },
+    {
+      "id": "acne-history",
+      "agent": "patient",
+      "fact": "You've had acne on and off since your teens. It has flared over the last year with red, sore lumps on your face, chest and back, and you're starting to get some small scars. You've tried a benzoyl peroxide face wash from the supermarket for a couple of months but it dried your skin out and didn't help much. You've never had isotretinoin or seen a dermatologist.",
+      "triggers": [
+        "how long",
+        "acne",
+        "pimples",
+        "breakouts",
+        "where",
+        "chest",
+        "scars",
+        "scarring",
+        "tried",
+        "benzoyl peroxide",
+        "face wash",
+        "dermatologist",
+        "isotretinoin",
+        "roaccutane"
+      ],
+      "unlockHint": "“How long have you had the acne, where is it, and what have you tried so far?”"
+    },
+    {
+      "id": "other-medicines",
+      "agent": "patient",
+      "fact": "Apart from the blood pressure and cholesterol tablets, you take nothing else regularly: no vitamins, supplements or herbal products. You sometimes take paracetamol for a sore back.",
+      "triggers": [
+        "other medicine",
+        "anything else",
+        "other tablet",
+        "supplements",
+        "vitamins",
+        "herbal",
+        "over counter",
+        "regular medicine",
+        "blood pressure",
+        "cholesterol",
+        "perindopril",
+        "rosuvastatin"
+      ],
+      "unlockHint": "“What other medicines do you take, including anything over the counter, vitamins or supplements?”"
+    },
+    {
+      "id": "outdoor-work",
+      "agent": "patient",
+      "fact": "You work outdoors on building sites most days and get a lot of sun. You wear a hat but don't always bother with sunscreen.",
+      "triggers": [
+        "sun",
+        "sunscreen",
+        "outdoors",
+        "outside",
+        "work",
+        "job",
+        "sunburn",
+        "uv"
+      ],
+      "unlockHint": "“Are you out in the sun much, for work or otherwise?”"
+    },
+    {
+      "id": "gp-agrees-avoid-tetracyclines",
+      "agent": "prescriber",
+      "fact": "You didn't know he had a severe reaction (DRESS-like: fever, rash, facial swelling, lymphadenopathy, abnormal liver tests, hospital admission) to minocycline. At first you say doxycycline is a different drug. Once the pharmacist explains that minocycline and doxycycline are both tetracyclines, that cross-reactivity within the class is possible and that a severe reaction like DRESS means the whole class should be avoided, you agree to cancel the doxycycline and record the allergy. You then ask 'What would you suggest instead, and at what dose?'",
+      "triggers": [
+        "minocycline",
+        "minomycin",
+        "tetracycline",
+        "tetracyclines",
+        "allergy",
+        "allergic",
+        "reaction",
+        "dress",
+        "hypersensitivity",
+        "cross reactivity",
+        "cross reactive",
+        "same class",
+        "hospital",
+        "doxycycline"
+      ],
+      "unlockHint": "“He was hospitalised with a severe hypersensitivity reaction, likely DRESS, to minocycline. Doxycycline is in the same tetracycline class, so I'd recommend avoiding it.”"
+    },
+    {
+      "id": "gp-accepts-alternative",
+      "agent": "prescriber",
+      "fact": "You accept a reasoned alternative: erythromycin 250 to 500 mg orally twice daily (for example 500 mg twice daily), always used with a topical benzoyl peroxide product to limit resistance, so you agree to change the adapalene gel to the adapalene with benzoyl peroxide combination gel (Epiduo) at night, and to review in 6 to 12 weeks with a plan to stop the antibiotic once controlled, usually within 3 to 6 months. You ask the pharmacist to check his other medicines for interactions with erythromycin. You are also happy to refer him to a dermatologist given the early scarring, if the pharmacist raises it. You'll send a new prescription to the pharmacy electronically.",
+      "triggers": [
+        "erythromycin",
+        "macrolide",
+        "alternative",
+        "instead",
+        "suggest",
+        "recommend",
+        "benzoyl peroxide",
+        "epiduo",
+        "dermatologist",
+        "isotretinoin",
+        "referral",
+        "trimethoprim",
+        "topical only"
+      ],
+      "unlockHint": "“Could we use erythromycin 500 mg twice daily instead, with adapalene and benzoyl peroxide gel, and review in 6 to 12 weeks?”"
+    }
+  ],
+  "answerKey": {
+    "plantedProblem": "Mr Kovac had a severe, hospitalised hypersensitivity reaction to minocycline about 20 years ago (fever, widespread rash, facial swelling, lymphadenopathy, deranged LFTs: consistent with DRESS). Doxycycline is in the same tetracycline class, so cross-reactivity is possible and, after a severe reaction like this, the whole class should be avoided. The GP and the pharmacy have no allergy recorded. The pharmacist must not dispense the doxycycline and must recommend an alternative oral agent for moderate acne: erythromycin 250 to 500 mg twice daily, used with topical benzoyl peroxide (e.g. adapalene/benzoyl peroxide gel), with review and a limited duration, or dermatologist referral given early scarring.",
+    "acceptableResolutions": [
+      "Introduce self, confirm identity, and take a medication history that includes allergies and previous adverse drug reactions, drawing out the minocycline reaction and its severity (fever, rash, facial swelling, glands, liver, hospital).",
+      "Recognise that minocycline and doxycycline are both tetracyclines and that a previous severe (DRESS-like) reaction to one contraindicates the class; do not dispense the doxycycline.",
+      "Phone Dr Murray with a structured message and a specific recommendation: erythromycin 250 to 500 mg orally twice daily (e.g. 500 mg twice daily) with topical benzoyl peroxide, review at 6 to 12 weeks, stop once controlled (usually within 3 to 6 months).",
+      "Recommend changing adapalene 0.1% gel to adapalene with benzoyl peroxide gel (Epiduo) at night so the oral antibiotic is always combined with benzoyl peroxide; avoid adding a topical antibiotic alone.",
+      "Check erythromycin against his current medicines (perindopril, rosuvastatin: no clinically significant interaction) and counsel on GI upset and future interaction checks; mention that CYP3A4-metabolised medicines must be checked if added.",
+      "Suggest dermatologist referral given early scarring and long-standing acne, in case isotretinoin is needed.",
+      "Record the minocycline reaction as a severe allergy/ADR in the pharmacy record, ask the GP to record it, and encourage him to have it on his My Health Record and to tell every prescriber."
+    ],
+    "unacceptableActions": [
+      "Dispensing the doxycycline without asking about allergies or after hearing about the minocycline reaction (overall fail).",
+      "Accepting that doxycycline is 'a different drug' and dispensing it on that basis, or suggesting a test dose.",
+      "Switching to another tetracycline (minocycline, or any tetracycline) as the alternative.",
+      "Recommending a topical or oral antibiotic on its own without benzoyl peroxide, or an open-ended antibiotic course with no review.",
+      "Telling the patient to stop treatment altogether without any plan or alternative, or failing to document the allergy."
+    ],
+    "counsellingPoints": [
+      "Don't take the doxycycline: it is in the same family as the minocycline that put you in hospital, and a reaction to it could be just as serious.",
+      "Always tell any doctor, dentist or pharmacist that you had a severe reaction to minocycline and must avoid all tetracycline antibiotics (minocycline, doxycycline, tetracycline); we have recorded it here, and it's worth having it on your My Health Record.",
+      "Erythromycin: take it twice a day as directed; it can cause nausea, stomach cramps or diarrhoea, and taking it with food can help. Tell us or your doctor if you start any new medicine, because erythromycin interacts with a number of medicines.",
+      "Apply the adapalene and benzoyl peroxide gel once at night as a thin layer to the whole affected area (not just the spots) on clean dry skin, avoiding eyes, lips and nostrils; start every second night if it stings, and use a non-comedogenic moisturiser.",
+      "The gel can make your skin dry, red and more sensitive to the sun, and benzoyl peroxide can bleach towels, pillowcases and clothes: use white linen and wash your hands after applying.",
+      "Because you work outdoors, use a broad-spectrum SPF 50+ sunscreen and a hat every day while on this treatment.",
+      "Acne treatment takes 6 to 12 weeks to show a real improvement, and the antibiotic is only for a limited time, so keep the review appointment with Dr Murray.",
+      "If you ever get a fever, widespread rash, swelling of the face or glands, or yellowing of the skin after starting a new medicine, stop it and get urgent medical help."
+    ],
+    "codePrinciples": [],
+    "legal": [],
+    "modelAnswer": "1. Set-up: introduce self, confirm Mr Kovac's identity (name, DOB, address) and that both scripts are new for acne, and ask if he has a few minutes to go through them. 2. Gather information: what the scripts are for and how long he has had acne, where it is and how severe (face, chest and back, inflamed lesions, early scarring), what he has tried (OTC benzoyl peroxide wash), current medicines (perindopril 5 mg, rosuvastatin 10 mg, occasional paracetamol, no supplements), sun exposure (outdoor electrician), and specifically allergies and previous reactions to medicines, especially antibiotics. He reveals minocycline for acne at about 20 caused fever, widespread rash, facial swelling, swollen glands and abnormal liver tests requiring a week in hospital, and he was told never to take it again. 3. Identify and explain: this history is consistent with a severe hypersensitivity reaction such as DRESS. Doxycycline and minocycline are both tetracyclines; cross-reactivity within the class is possible, and after a severe, potentially life-threatening reaction the whole class should be avoided. Rechallenge could cause a more severe reaction. Doxycycline 50 mg twice daily is otherwise a reasonable dose for moderate acne, so the problem is the allergy, not the dose. 4. References: AMH (tetracyclines, erythromycin), eTG Dermatology (acne), APF, and the pharmacy and My Health Record for any recorded allergies. 5. Do not dispense the doxycycline; explain why to Mr Kovac and that you will call his GP. 6. Phone Dr Murray using ISBAR: Mr Kovac, prescribed doxycycline for moderate acne, has a history of hospital admission for a DRESS-like reaction to minocycline; recommend cancelling doxycycline and avoiding all tetracyclines. If she says doxycycline is a different drug, explain the class relationship and the severity. Recommend erythromycin 250 to 500 mg orally twice daily (e.g. 500 mg twice daily) as the oral alternative recommended when tetracyclines cannot be used, always combined with topical benzoyl peroxide to reduce resistance, so change adapalene 0.1% gel to adapalene/benzoyl peroxide gel (Epiduo) at night; review at 6 to 12 weeks and stop the antibiotic once controlled, usually within 3 to 6 months. Confirm no significant interaction with perindopril or rosuvastatin. Suggest dermatologist referral for possible isotretinoin given early scarring. Ask her to record the allergy and send a new script. 7. Counsel: why doxycycline was not supplied, avoid all tetracyclines and tell every prescriber, erythromycin dosing and GI effects and interaction checks, how to apply the gel, irritation, photosensitivity and bleaching, SPF 50+ sunscreen for outdoor work, expected time to response and review, and red flags for any future drug reaction. 8. Follow-up: dispense the new scripts when received; offer to check in after 2 to 4 weeks on tolerability. 9. Document: record minocycline as a severe allergy (DRESS-like, class: tetracyclines) in the dispensing system, the intervention, the call, the agreed plan and that the doxycycline was not dispensed."
+  },
+  "review": {
+    "status": "draft",
+    "version": "0.1"
+  },
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 12/10/2026 PM session, Part C)",
+    "Needs pharmacist review: the nature of the minocycline allergy (invented as a DRESS-like reaction with hospital admission), the acne history, early scarring and outdoor work; the regular medicines (perindopril, rosuvastatin) and dispensing history; the doxycycline quantity/repeats and adapalene pack; the alternative recommended (erythromycin 250 to 500 mg twice daily with benzoyl peroxide, switch to adapalene/benzoyl peroxide gel, review at 6 to 12 weeks, stop within 3 to 6 months), checked against current eTG Dermatology acne guidance."
+  ]
+}

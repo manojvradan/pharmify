@@ -1,0 +1,319 @@
+{
+  "id": "loperamide-colchicine-toxicity",
+  "title": "Something for diarrhoea",
+  "category": "clinical",
+  "problemType": "Adverse drug reaction (colchicine toxicity from excessive dosing) presenting as a symptom",
+  "specialty": "rheumatology",
+  "setting": "Community pharmacy, Brisbane QLD",
+  "questionSheet": "Mr Graham Pearce, a man in his sixties, presents a prescription for loperamide 2 mg capsules from his GP, Dr Whitlock, who saw him by telehealth this morning for diarrhoea. He would like it filled quickly so he can get home. His dispensing history at your pharmacy is attached. Dr Whitlock can be contacted by phone. Manage the situation as you would in practice. You may contact the prescriber.",
+  "documents": {
+    "prescription": {
+      "item": "Loperamide 2 mg capsules · Qty 12",
+      "directions": "Two capsules at once, then one capsule after each loose bowel motion. Maximum 8 capsules in 24 hours.",
+      "footer": "Dr R. Whitlock (GP, telehealth consult) · Graham Pearce, DOB 03/03/1960",
+      "date": "12/11/2026"
+    },
+    "dispensingHistory": [
+      {
+        "date": "21 Oct 2026",
+        "item": "Allopurinol 100 mg tablets (Progout 100)",
+        "directions": "One tablet daily",
+        "quantity": "200",
+        "prescriber": "Dr R. Whitlock (GP)"
+      },
+      {
+        "date": "21 Oct 2026",
+        "item": "Colchicine 500 microgram tablets (Colgout)",
+        "directions": "One tablet once daily to prevent gout flares while starting allopurinol",
+        "quantity": "100",
+        "prescriber": "Dr R. Whitlock (GP)"
+      },
+      {
+        "date": "21 Oct 2026",
+        "item": "Perindopril arginine 5 mg tablets (Coversyl)",
+        "directions": "One tablet in the morning",
+        "quantity": "30",
+        "prescriber": "Dr R. Whitlock (GP)"
+      },
+      {
+        "date": "21 Oct 2026",
+        "item": "Atorvastatin 40 mg tablets (generic)",
+        "directions": "One tablet at night",
+        "quantity": "30",
+        "prescriber": "Dr R. Whitlock (GP)"
+      },
+      {
+        "date": "22 Sep 2026",
+        "item": "Perindopril arginine 5 mg tablets (Coversyl)",
+        "directions": "One tablet in the morning",
+        "quantity": "30",
+        "prescriber": "Dr R. Whitlock (GP)"
+      },
+      {
+        "date": "22 Sep 2026",
+        "item": "Atorvastatin 40 mg tablets (generic)",
+        "directions": "One tablet at night",
+        "quantity": "30",
+        "prescriber": "Dr R. Whitlock (GP)"
+      },
+      {
+        "date": "24 Aug 2026",
+        "item": "Perindopril arginine 5 mg tablets (Coversyl)",
+        "directions": "One tablet in the morning",
+        "quantity": "30",
+        "prescriber": "Dr R. Whitlock (GP)"
+      },
+      {
+        "date": "24 Aug 2026",
+        "item": "Atorvastatin 40 mg tablets (generic)",
+        "directions": "One tablet at night",
+        "quantity": "30",
+        "prescriber": "Dr R. Whitlock (GP)"
+      }
+    ],
+    "notes": [
+      "Today's date: 12 Nov 2026, early afternoon."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient · Mr Pearce",
+      "name": "Mr Pearce",
+      "description": "A 66-year-old retired electrician, friendly and matter-of-fact, average health literacy. He looks pale and a bit washed out, and keeps an eye on the toilet sign. He wants the capsules quickly and thinks he has 'a bit of gastro'. He doesn't connect the diarrhoea with his gout tablets and won't mention how many colchicine tablets he took unless asked about his gout, his other medicines or what he's taken in the last couple of days. Once asked, he is open and a little proud of 'knocking the gout on the head the old way'. He is reluctant to go to hospital ('it's just the runs') but agrees if the pharmacist calmly explains the tablets can be dangerous in large amounts and his kidneys and fluids need checking today. He gets irritated by long lectures while he's desperate for the toilet.",
+      "bio": {
+        "Full name": "Graham Pearce",
+        "Date of birth": "3 March 1960",
+        "Age": "66",
+        "Address": "27 Banksia Street, Chermside QLD 4032",
+        "Phone": "0491 570 157",
+        "Occupation": "Retired electrician"
+      },
+      "avatar": "bertie-walsh",
+      "voice": "au-older-man",
+      "openingLine": "G'day. Doctor did one of those phone appointments this morning and sent this through. Can you do it quick? I've got the runs something terrible.",
+      "publicFacts": [
+        "The diarrhoea started overnight and he thinks it's a stomach bug.",
+        "He spoke to Dr Whitlock by phone this morning and she sent the script to the pharmacy.",
+        "He wants to get home quickly.",
+        "If asked in general how he is, he says he's 'a bit crook in the guts, otherwise fine'."
+      ]
+    },
+    "prescriber": {
+      "label": "Call Dr Whitlock",
+      "name": "Dr Whitlock",
+      "description": "A GP in her fifties at a busy suburban practice, doing telehealth consults between face-to-face patients. Fair and reasonable but initially assumes it is viral gastroenteritis and asks the pharmacist to just supply the loperamide. If the pharmacist only says 'I don't think he should have loperamide' without a reason, she asks 'Why not?'. She changes her plan quickly once given the colchicine dose and timing, his symptoms and his kidney function, and appreciates a clear, structured recommendation. She asks which reference the pharmacist is using for the colchicine dosing.",
+      "bio": {
+        "Full name": "Dr Rachel Whitlock",
+        "Role": "General practitioner",
+        "Workplace": "Northside Family Practice, Chermside QLD"
+      },
+      "avatar": "dr-holt",
+      "voice": "au-woman-professional",
+      "openingLine": "Rachel Whitlock speaking. I've got a patient waiting, so what can I help with?",
+      "publicFacts": [
+        "Graham Pearce is your patient. You did a telehealth consult with him this morning for diarrhoea since overnight and thought it was probably viral gastroenteritis, so you prescribed loperamide.",
+        "He has gout. Three weeks ago you started allopurinol 100 mg daily, with colchicine 500 micrograms once daily as flare prophylaxis (once daily because of his kidney function).",
+        "He has chronic kidney disease stage 3a; his eGFR was 52 mL/min/1.73 m² in October.",
+        "He has hypertension on perindopril 5 mg daily and takes atorvastatin 40 mg at night.",
+        "He weighs about 88 kg.",
+        "At first you'd like the loperamide supplied: 'It's just gastro.'"
+      ]
+    }
+  },
+  "hiddenFacts": [
+    {
+      "id": "colchicine-every-two-hours",
+      "agent": "patient",
+      "fact": "Your big toe flared up two days ago. Yesterday you took the colchicine 'the old way' your dad used to: two tablets at 7 am, then one tablet every two hours 'until the pain goes or your guts play up'. You took nine tablets (4.5 mg) between 7 am and 9 pm. You didn't mention this to Dr Whitlock on the phone because she didn't ask and you didn't think it mattered.",
+      "triggers": [
+        "colchicine",
+        "colgout",
+        "gout",
+        "toe",
+        "flare",
+        "joint",
+        "other medicine",
+        "anything else",
+        "take anything",
+        "new medicine",
+        "regular medicine",
+        "how many tablets",
+        "extra tablets",
+        "dose",
+        "last few days"
+      ],
+      "unlockHint": "“Have you taken anything else in the last few days, or had a gout flare? How have you been taking your colchicine?”"
+    },
+    {
+      "id": "still-taking-today",
+      "agent": "patient",
+      "fact": "You took two more colchicine tablets at 6 am today and planned to keep taking one every couple of hours because the toe is still sore. You have the box with you.",
+      "triggers": [
+        "this morning",
+        "still take",
+        "keep take",
+        "last dose",
+        "last tablet",
+        "plan",
+        "toe still",
+        "since then",
+        "carry on",
+        "continue",
+        "taken today"
+      ],
+      "unlockHint": "“Have you taken any colchicine today? Are you still taking it?”"
+    },
+    {
+      "id": "severity-dehydration",
+      "agent": "patient",
+      "fact": "The diarrhoea is watery, about eight times since 2 am, with bad stomach cramps. You've vomited twice this morning and can't keep much down. No blood in it. You feel weak and light-headed when you stand up and you've hardly passed any urine today.",
+      "triggers": [
+        "how often",
+        "how many times",
+        "vomit",
+        "vomiting",
+        "nausea",
+        "sick",
+        "blood",
+        "watery",
+        "cramps",
+        "stomach pain",
+        "dizzy",
+        "light headed",
+        "fluids",
+        "drinking",
+        "urine",
+        "wee",
+        "dehydrated"
+      ],
+      "unlockHint": "“How many times have you had diarrhoea? Any vomiting, blood, dizziness, or trouble keeping fluids down? Are you passing urine?”"
+    },
+    {
+      "id": "muscle-weakness",
+      "agent": "patient",
+      "fact": "Your thighs feel achy and a bit weak, and your fingertips have felt a bit tingly since last night. You put it down to being run down.",
+      "triggers": [
+        "muscle",
+        "muscles",
+        "aches",
+        "achy",
+        "weak",
+        "weakness",
+        "tingling",
+        "numb",
+        "pins needles",
+        "legs",
+        "other symptoms",
+        "anything else noticed"
+      ],
+      "unlockHint": "“Have you noticed any muscle aches, weakness, tingling or numbness?”"
+    },
+    {
+      "id": "ibuprofen-otc",
+      "agent": "patient",
+      "fact": "You've also been taking Nurofen (ibuprofen 200 mg), two tablets three times a day, for the toe since two days ago. You bought it at the supermarket.",
+      "triggers": [
+        "ibuprofen",
+        "nurofen",
+        "anti inflammatory",
+        "painkiller",
+        "painkillers",
+        "pain relief",
+        "over counter",
+        "supermarket",
+        "bought",
+        "panadol",
+        "other medicine",
+        "anything else"
+      ],
+      "unlockHint": "“Have you taken any pain relief or anti-inflammatories from the supermarket or pharmacy?”"
+    },
+    {
+      "id": "gp-agrees-colchicine-toxicity",
+      "agent": "prescriber",
+      "fact": "You didn't know he took 4.5 mg of colchicine yesterday plus more today. Once the pharmacist explains this, his symptoms and his kidney function, you agree it is likely colchicine toxicity, not gastro: cancel the loperamide, stop the colchicine completely, and he should go to the emergency department today for assessment, fluids and bloods (FBC, UEC, CK, LFTs), with the pharmacist or ED contacting the Poisons Information Centre (13 11 26). You agree he should stop the ibuprofen and withhold perindopril until he is eating and drinking normally. If they only say 'don't give loperamide', ask 'Why not?'.",
+      "triggers": [
+        "colchicine",
+        "colgout",
+        "toxicity",
+        "overdose",
+        "every two hours",
+        "nine tablets",
+        "too many tablets",
+        "too much",
+        "gout",
+        "emergency",
+        "hospital",
+        "poisons",
+        "blood test",
+        "loperamide",
+        "mask"
+      ],
+      "unlockHint": "“He took 4.5 mg of colchicine yesterday for a flare, plus more today, and now has profuse diarrhoea and vomiting with CKD. I think this is colchicine toxicity; loperamide would mask it. Can we stop colchicine and send him to ED for bloods and fluids?”"
+    },
+    {
+      "id": "gp-gout-plan",
+      "agent": "prescriber",
+      "fact": "When asked about the gout flare and the rest of his treatment, you agree: continue allopurinol (don't stop it during a flare), no NSAIDs because of his kidneys and perindopril, and once he has recovered you will treat the flare with oral prednisolone instead of colchicine and review whether and how to restart low-dose colchicine prophylaxis. You'll see him after ED.",
+      "triggers": [
+        "allopurinol",
+        "prednisolone",
+        "steroid",
+        "corticosteroid",
+        "gout plan",
+        "treat flare",
+        "alternative",
+        "ibuprofen",
+        "nurofen",
+        "nsaid",
+        "anti inflammatory",
+        "perindopril",
+        "follow up",
+        "review"
+      ],
+      "unlockHint": "“For the flare, could we use prednisolone instead, keep the allopurinol going, avoid NSAIDs with his kidneys, and review colchicine later?”"
+    }
+  ],
+  "answerKey": {
+    "plantedProblem": "The 'gastro' is colchicine toxicity. He took colchicine 'the old way' for a gout flare yesterday (1 mg then 0.5 mg every 2 hours: 4.5 mg in about 14 hours), and 1 mg more this morning, on top of daily prophylaxis, with CKD stage 3a (eGFR 52). Current dosing (eTG/AMH) is 1 mg then 0.5 mg one hour later (1.5 mg maximum on day one). Diarrhoea, cramps and vomiting are the first sign of toxicity, and he now has signs of dehydration (postural light-headedness, little urine) and muscle aches and tingling. Loperamide would mask the warning sign and delay treatment; he needs to stop colchicine and be assessed in hospital today. Other problems: he is taking OTC ibuprofen, and ibuprofen plus perindopril plus dehydration in CKD puts his kidneys at risk. Atorvastatin also adds to the risk of colchicine-related muscle damage.",
+    "acceptableResolutions": [
+      "Introduce self, confirm identity and DOB, and take a focused history: onset and severity of diarrhoea, vomiting, blood, fluids and urine output, and all medicines, including how the colchicine was taken for the flare, any taken today, and OTC products.",
+      "Identify colchicine toxicity from the dose and timing (4.5 mg yesterday plus more today, against a 1.5 mg first-day maximum, with renal impairment) and explain that the diarrhoea is the toxicity, not gastroenteritis.",
+      "Do not supply loperamide; explain that it would mask the warning sign and could worsen outcomes.",
+      "Tell him to stop the colchicine now. Contact the Poisons Information Centre (13 11 26) for a risk assessment and phone Dr Whitlock with a structured (ISBAR) recommendation.",
+      "Arrange same-day emergency department assessment (fluids and bloods: FBC, UEC, CK, LFTs), given the vomiting, dehydration, muscle symptoms and CKD. He should not drive himself; organise transport or an ambulance if he is unwell.",
+      "Recommend stopping the ibuprofen, and withholding perindopril while he is dehydrated (sick-day advice), and continuing the allopurinol.",
+      "Suggest an alternative for the flare once he is well (e.g. oral prednisolone), and suggest the GP reviews colchicine prophylaxis with renal function and atorvastatin in mind. Document and follow up."
+    ],
+    "unacceptableActions": [
+      "Dispensing the loperamide without asking about other medicines, or failing to recognise colchicine toxicity (overall fail).",
+      "Recognising the overdose but sending him home with oral rehydration and advice to wait and see, without same-day medical assessment.",
+      "Telling him to keep taking colchicine for the flare, or advising a 'proper' extra dose today.",
+      "Recommending ibuprofen or another NSAID for the gout pain.",
+      "Telling him to stop allopurinol because of the flare.",
+      "Telling the GP only 'he shouldn't have loperamide' with no reason or plan."
+    ],
+    "counsellingPoints": [
+      "Don't take any more colchicine, today or for this flare. The diarrhoea and vomiting are signs you have had too much of it, not a stomach bug.",
+      "Don't take the loperamide: it would hide the warning sign while the colchicine is still affecting your body.",
+      "You need to be checked at the hospital today: blood tests for your kidneys, muscles and blood counts, and fluids. Don't drive yourself.",
+      "Over the next few days, seek help urgently if you get a fever, mouth ulcers, unusual bruising or bleeding, more muscle weakness, or you stop passing urine. Colchicine can affect your blood counts and muscles a day or more after an overdose.",
+      "Stop the Nurofen. Anti-inflammatories can damage your kidneys, especially when you're dehydrated and taking perindopril.",
+      "Don't take your perindopril until you're eating and drinking normally again, then restart it. Dr Whitlock will confirm this.",
+      "Keep taking your allopurinol every day, even during a flare. Stopping and starting it makes flares more likely.",
+      "The old 'every two hours until you get diarrhoea' method is no longer used because it's unsafe. If colchicine is prescribed for a flare in future, it's two tablets, then one an hour later, and that's the most for the first day; follow the label and check with us if unsure.",
+      "Bring all your gout tablets and pain relief to your GP review so the flare plan can be written down for you."
+    ],
+    "codePrinciples": [],
+    "legal": [],
+    "modelAnswer": "1. Set-up: introduce self, confirm Mr Pearce's identity and DOB against the script, get consent, and offer a quick private chat (and the toilet) before supplying. 2. Gather information: when the diarrhoea started, how often, watery or bloody, cramps, vomiting, fluids kept down, urine output, dizziness on standing, fever. Then ask about all medicines: what he takes regularly (allopurinol, colchicine, perindopril, atorvastatin per the history), whether he has had a recent gout flare and exactly how he took the colchicine (1 mg at 7 am, then 0.5 mg every 2 hours to 9 pm: 4.5 mg), whether he has taken any today (1 mg at 6 am, planning more), and OTC products (ibuprofen 400 mg three times daily). Ask about muscle aches, weakness and tingling, and confirm his weight. 3. Identify and explain: colchicine has a narrow therapeutic index. Current dosing for an acute flare is 1 mg then 0.5 mg one hour later (1.5 mg maximum on day one, no more than 6 mg per course, and not repeated within 3 days). The old 'every 2 hours until diarrhoea' regimen is abandoned because diarrhoea is the first sign of toxicity. His CKD (eGFR 52), dehydration and atorvastatin all raise the risk. Severe toxicity can progress over 24–72 hours to bone marrow suppression, rhabdomyolysis, renal failure and multi-organ failure. Loperamide would mask the GI warning sign and delay treatment, and the ibuprofen and perindopril add to the risk of acute kidney injury while he is dehydrated. 4. References: eTG (Rheumatology: gout), AMH (colchicine dosing, renal impairment and interactions), APF, and the Queensland Poisons Information Centre (13 11 26) for a risk assessment. 5. Phone Dr Whitlock with an ISBAR message: 'Mr Pearce took 4.5 mg colchicine yesterday and 1 mg today for a flare, on top of prophylaxis, with eGFR 52. He now has profuse watery diarrhoea, vomiting, postural light-headedness, reduced urine and muscle aches. I believe this is colchicine toxicity, not gastro. I recommend not supplying loperamide, stopping colchicine, and sending him to ED today for fluids and bloods (FBC, UEC, CK, LFTs), with stopping the ibuprofen and withholding perindopril.' If she says it's just gastro, give the dose, timing and kidney function. Agree a later plan: continue allopurinol, no NSAIDs, prednisolone for the flare once he is recovered (e.g. as eTG suggests), and review colchicine prophylaxis. Name the references when asked. 6. Action: don't dispense loperamide (cancel or annotate the script), and arrange ED transport (family, taxi, or ambulance if he is unwell). Give him a written note of the doses he took to take with him. 7. Counsel as above: no more colchicine or loperamide, ED today, delayed red flags (fever, mouth ulcers, bruising, weakness, anuria), stop ibuprofen, sick-day perindopril, keep allopurinol, the correct flare regimen for the future. 8. Follow-up: phone him or the GP the next day. Offer a MedsCheck or dose administration aid and a written flare plan, and suggest the GP update the label directions. 9. Document the history, doses, Poisons Information Centre advice, the call with Dr Whitlock, the agreed plan and the non-supply of loperamide."
+  },
+  "review": {
+    "status": "draft",
+    "version": "0.1"
+  },
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 07/10/2026 PM session, Part C)",
+    "Needs pharmacist review: the invented doses (4.5 mg over about 14 hours yesterday plus 1 mg today, about 88 kg), the CKD 3a eGFR of 52, the daily colchicine prophylaxis started with allopurinol 3 weeks ago, the OTC ibuprofen, the plan of ED referral plus a Poisons Information Centre call (a symptomatic dose of about 0.05 mg/kg is in the lower range; ED here rests on vomiting, dehydration, CKD and muscle symptoms), withholding perindopril, prednisolone for the flare, and the current flare dosing quoted (1 mg then 0.5 mg after 1 hour; 6 mg per course; not repeated within 3 days)."
+  ]
+}

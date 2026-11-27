@@ -1,0 +1,81 @@
+{
+  "id": "retired-doctor-no-registration-antibiotics",
+  "title": "A script from Dr Whitfield",
+  "category": "legal",
+  "problemType": "Prescription from a person who is not an authorised prescriber",
+  "setting": "Community pharmacy, Toowoomba, Queensland (you are the pharmacist on duty; the owner is also in the dispensary)",
+  "questionSheet": "It is Thursday afternoon. Dr Graham Whitfield, a well-known local GP who retired from practice three years ago, hands you a handwritten prescription on a notepad from his old surgery, which has since closed. It is for amoxicillin 500 mg capsules for his wife, Margaret, who he says has had a chest infection for four days. You check the Ahpra public register while he waits: there is no current registration for him, as a medical practitioner or in any other profession. When you tell the pharmacy owner, a pharmacist who has known Dr Whitfield for thirty years, the owner says: \"Graham knows more medicine than both of us. Just fill it, I'll take responsibility.\" Explain what you would do and why, including the legal issues, who you would contact, and how you would handle the owner.",
+  "documents": {
+    "prescription": {
+      "item": "Amoxicillin 500 mg capsules",
+      "directions": "One capsule three times a day for 5 days · Quantity 20 · No repeats",
+      "footer": "Dr G. Whitfield (handwritten on the pad of a surgery that closed in 2023) · Margaret Whitfield, DOB 02/07/1953",
+      "prescriber": "Dr G. Whitfield",
+      "prescriberDetail": "Pad from Range Road Family Practice, Toowoomba (closed 2023) · no prescriber number written",
+      "patientName": "Margaret Whitfield",
+      "patientDob": "02/07/1953",
+      "date": "26/11/2026",
+      "pbs": false
+    },
+    "notes": [
+      "Ahpra public register, searched today: no current registration found for Graham Whitfield in any profession.",
+      "Dr Whitfield says he 'let his registration go' when he retired in 2023 but 'is still a doctor'.",
+      "Mrs Whitfield, 73, is waiting in the car. Dr Whitfield says she has a cough and 'a bit of a temperature' and does not want to sit in a waiting room.",
+      "Her usual GP practice is open until 6 pm today. An after-hours GP clinic and 13 HEALTH (13 43 25 84) are also available.",
+      "The pharmacy owner has asked you to dispense it."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Dr Whitfield",
+      "name": "Dr Whitfield",
+      "avatar": "bertie-walsh",
+      "voice": "au-older-man",
+      "description": "A retired GP of 76, courteous, confident and a little affronted at being questioned. He practised in the town for forty years and is respected by many locals. He means well and is worried about his wife, but sees the rules as a formality for someone of his experience.",
+      "bio": {"Full name": "Graham Whitfield", "Date of birth": "14 March 1950", "Age": "76", "Address": "Rangeview Drive, Toowoomba QLD", "Occupation": "Retired general practitioner (no current registration)"},
+      "openingLine": "Afternoon. Just a quick one for Margaret, she's got a chest infection brewing.",
+      "publicFacts": [
+        "He retired from general practice in 2023 and did not renew his registration.",
+        "He wrote the prescription for his wife on an old pad from his former surgery.",
+        "His wife is in the car with a cough and a mild temperature."
+      ]
+    }
+  },
+  "hiddenFacts": [],
+  "answerKey": {
+    "plantedProblem": "The prescription was written by a person who is not registered with Ahpra, so he is not an authorised prescriber under Queensland law and the document is not a valid prescription. Amoxicillin is a Schedule 4 (Prescription Only) medicine, so dispensing it would be an unlawful supply, and emergency supply does not cover starting a new antibiotic. The owner's instruction and offer to 'take responsibility' do not change this: the pharmacist who dispenses remains personally and professionally accountable. Mrs Whitfield still needs a proper assessment, so the candidate must make sure she gets timely care elsewhere.",
+    "acceptableResolutions": [
+      "Identify that only a currently registered medical practitioner (or another authorised prescriber) can lawfully prescribe a Schedule 4 medicine, and that a retired doctor with no registration is not one, so the prescription is invalid.",
+      "Decline to dispense, explaining this respectfully to Dr Whitfield without embarrassing him, and return or retain the prescription in line with pharmacy policy (endorsing it as not dispensed is reasonable).",
+      "Recognise that emergency supply is not an option: it is for continuing a medicine already prescribed to the patient, not for starting a new antibiotic course, and the pharmacist cannot diagnose a chest infection.",
+      "Put Mrs Whitfield's care first: offer to speak with her, check for red flags (shortness of breath, chest pain, confusion, high fever, coughing blood), and arrange timely review by her own GP today, an after-hours GP or telehealth, 13 HEALTH, or the emergency department if she is unwell.",
+      "Handle the owner professionally: explain the law and the professional risk to both of you, state that you will not dispense it, and note that the owner cannot lawfully direct you to and cannot take on your legal responsibility.",
+      "Explain to Dr Whitfield that writing prescriptions, or presenting himself as able to, while unregistered may be an offence under the National Law, and suggest he does not write further prescriptions; consider notifying Ahpra if it continues or if prior scripts are found.",
+      "Check the dispensing records for any earlier prescriptions written by him since 2023 and address any that were dispensed.",
+      "Document the event: the prescription details, the register check, what was said to Dr Whitfield and the owner, the advice given to Mrs Whitfield, and the outcome.",
+      "Prevent recurrence: agree a pharmacy procedure for verifying unfamiliar or unusual prescribers (Ahpra register, prescriber number), and brief all staff, including the owner, on it."
+    ],
+    "unacceptableActions": [
+      "Dispensing the amoxicillin because the owner said so or because he 'used to be a GP' (fail).",
+      "Supplying the antibiotic as an emergency supply or 'owing' supply.",
+      "Sending Mrs Whitfield away without any plan for her to be assessed, or ignoring possible red flags.",
+      "Humiliating or lecturing Dr Whitfield in front of other customers.",
+      "Accepting the owner's offer to 'take responsibility' as if it transfers your legal and professional accountability."
+    ],
+    "counsellingPoints": [],
+    "codePrinciples": [],
+    "legal": [
+      "Medicines and Poisons Act 2019 (Qld) and Medicines and Poisons (Medicines) Regulation 2021 (Qld): a Schedule 4 medicine may be dispensed only on a prescription from an authorised prescriber, such as a medical practitioner holding current registration; dispensing on anything else is an unauthorised supply.",
+      "Medicines and Poisons (Medicines) Regulation 2021 (Qld): pharmacist emergency supply without a prescription is limited to continuing a medicine the person is already being treated with, in a limited quantity; it does not extend to starting a new antibiotic.",
+      "Health Practitioner Regulation National Law (Queensland): a person who is not registered must not use a protected title such as 'medical practitioner' or hold themselves out as registered; Ahpra can receive a notification about this.",
+      "Pharmacy Board of Australia Code of Conduct: the pharmacist is personally accountable for each supply and must practise within the law, whatever an employer directs.",
+      "Pharmacy Board of Australia guidelines on dispensing and the PSA Professional Practice Standards: the pharmacist must be satisfied that a prescription is valid and authentic before dispensing, and must keep accurate records."
+    ],
+    "modelAnswer": "1. The legal issue: amoxicillin is a Schedule 4 medicine and can only be dispensed on a valid prescription from an authorised prescriber. Under the Medicines and Poisons Act 2019 and the Medicines and Poisons (Medicines) Regulation 2021 (Qld), that means a medical practitioner with current registration. The Ahpra register shows Dr Whitfield is no longer registered, so however experienced he is, this is not a valid prescription and I cannot dispense it. Emergency supply doesn't help either: it is for continuing an existing medicine in a limited quantity, not for starting a new antibiotic for a chest infection I haven't diagnosed.\n\n2. Speak to Dr Whitfield privately and respectfully: acknowledge his years of service, explain that because his registration has lapsed I am not legally able to fill it, and that writing prescriptions while unregistered could put him at risk under the National Law, which protects the title of medical practitioner. I'd ask him not to write further scripts, and endorse the script as not dispensed or keep it as per our policy.\n\n3. Look after Mrs Whitfield: offer to speak with her in the car or consulting room, and check for red flags such as breathlessness, chest pain, confusion, high fever or coughing blood. If any are present, she needs urgent care. Otherwise, I'd help them get a same-day appointment with her GP, who is open until 6 pm, or an after-hours clinic, telehealth or 13 HEALTH, and give symptomatic advice in the meantime.\n\n4. Handle the owner: calmly explain that the owner cannot direct me to break the law and cannot take on my accountability; the Code of Conduct makes me personally responsible for the supply, and both our registrations would be at risk. I would not dispense it.\n\n5. Notify and check: search our records for any other scripts from him since 2023. If he keeps writing them or others have been dispensed, notify Ahpra and consider informing Queensland Health.\n\n6. Document the register check, the conversations, the advice and the outcome.\n\n7. Prevent recurrence: a written procedure for verifying unfamiliar prescribers and staff training, agreed with the owner."
+  },
+  "review": {"status": "draft", "version": "0.1"},
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 06/10/2026 AM session, Part B)",
+    "Needs pharmacist review: Queensland setting and legislation chosen by the drafter; the patient being his wife, amoxicillin 500 mg for a 'chest infection', the closed-surgery notepad, retirement in 2023 and no registration in any profession; the owner being a pharmacist who offers to 'take responsibility'; the claim that Qld emergency supply cannot be used to start a new antibiotic; whether a Queensland Health notification is appropriate here. Answer key written from current Australian practice."
+  ]
+}

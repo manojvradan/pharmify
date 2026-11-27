@@ -1,0 +1,301 @@
+{
+  "id": "phentermine-sertraline-serotonin-toxicity",
+  "title": "Repeat and a sleep aid",
+  "category": "clinical",
+  "problemType": "Drug interaction causing serotonin toxicity (self-medication with an old prescription medicine)",
+  "specialty": "mental-health",
+  "setting": "Community pharmacy, Adelaide SA",
+  "questionSheet": "Ms Natasha Morley, a woman in her thirties, presents a repeat prescription for sertraline 100 mg tablets from her GP, Dr Lambert. She also asks for something to help her sleep and to 'calm her down', and mentions she has been wondering about 'those weight-loss injections'. Her dispensing history at your pharmacy is attached. Dr Lambert can be contacted by phone. Manage the situation as you would in practice. You may contact the prescriber.",
+  "documents": {
+    "prescription": {
+      "item": "Sertraline 100 mg tablets (generic) · Qty 30 · Repeat",
+      "directions": "One tablet in the morning",
+      "footer": "Dr E. Lambert (GP) · Natasha Morley, DOB 02/05/1993",
+      "date": "30/09/2026"
+    },
+    "dispensingHistory": [
+      {
+        "date": "21 Oct 2026",
+        "item": "Sertraline 100 mg tablets (generic)",
+        "directions": "One tablet in the morning",
+        "quantity": "30",
+        "prescriber": "Dr E. Lambert (GP)"
+      },
+      {
+        "date": "30 Sep 2026",
+        "item": "Sertraline 100 mg tablets (generic)",
+        "directions": "One tablet in the morning",
+        "quantity": "30",
+        "prescriber": "Dr E. Lambert (GP)"
+      },
+      {
+        "date": "17 Sep 2026",
+        "item": "Sertraline 50 mg tablets (generic)",
+        "directions": "One tablet in the morning",
+        "quantity": "30",
+        "prescriber": "Dr E. Lambert (GP)"
+      },
+      {
+        "date": "2 Sep 2026",
+        "item": "Levonorgestrel 150 microgram / ethinylestradiol 30 microgram tablets (Levlen ED)",
+        "directions": "One tablet daily as directed",
+        "quantity": "4 x 28",
+        "prescriber": "Dr E. Lambert (GP)"
+      },
+      {
+        "date": "19 Aug 2026",
+        "item": "Sertraline 50 mg tablets (generic)",
+        "directions": "Half a tablet in the morning for 1 week, then one tablet in the morning",
+        "quantity": "30",
+        "prescriber": "Dr E. Lambert (GP)"
+      }
+    ],
+    "notes": [
+      "Today's date: 19 Nov 2026, mid-afternoon."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient · Ms Morley",
+      "name": "Ms Morley",
+      "description": "A 33-year-old medical receptionist, getting married in March. Talkative, restless and fidgety, with sweaty hands and a slight tremor. She keeps apologising for being 'all over the place'. Good health literacy. She thinks her anxiety is just pre-wedding stress and wants a sleeping tablet. She feels a bit embarrassed about the weight-loss capsules and only mentions them if asked about weight, diet, other medicines or anything she has started recently. If asked judgementally she gets defensive ('they were prescribed for me!'). If asked kindly she is open. She is scared when told this could be serious, and calms with a clear explanation and plan. She is keen to hear about safer weight-loss options.",
+      "bio": {
+        "Full name": "Natasha Morley",
+        "Date of birth": "2 May 1993",
+        "Age": "33",
+        "Address": "5 Wattle Avenue, Prospect SA 5082",
+        "Phone": "0491 572 549",
+        "Occupation": "Medical receptionist"
+      },
+      "avatar": "penny-okafor",
+      "voice": "au-woman-40s",
+      "openingLine": "Hi! Sorry, can I get my sertraline repeat? And have you got anything to calm me down and help me sleep? I'm so jittery I can't sit still.",
+      "publicFacts": [
+        "She takes sertraline for depression and anxiety. It had been helping a lot until the last couple of days.",
+        "She has hardly slept for two nights and feels 'wired'.",
+        "She's getting married in March and wants to look her best in the photos.",
+        "She's heard about weight-loss injections from friends and wonders if she could have one."
+      ]
+    },
+    "prescriber": {
+      "label": "Call Dr Lambert",
+      "name": "Dr Lambert",
+      "description": "A GP in her fifties at a busy suburban clinic. Fair and listens if the pharmacist is clear and brief. At first she puts the symptoms down to anxiety or adjusting to the higher dose, and suggests a short course of something for sleep. She changes her view once told about the phentermine and the specific features (tremor, sweating, tachycardia, diarrhoea, leg jerks). She asks how severe it is and whether she needs to be seen now. She is open to discussing weight management and asks what the pharmacist would suggest instead.",
+      "bio": {
+        "Full name": "Dr Emma Lambert",
+        "Role": "General practitioner",
+        "Workplace": "Prospect Road Family Clinic, Adelaide SA"
+      },
+      "avatar": "dr-holt",
+      "voice": "au-woman-professional",
+      "openingLine": "Emma Lambert speaking. I've got a minute between patients, what's up?",
+      "publicFacts": [
+        "Natasha Morley is your patient. You started sertraline 50 mg in August for depression with anxiety and increased it to 100 mg at the end of September, with a good response.",
+        "She takes the combined oral contraceptive (Levlen ED).",
+        "You last saw her in late September and she was well. Her BMI then was about 31 (88 kg, 168 cm), and she said she was trying to lose weight for her wedding.",
+        "At first you think it sounds like pre-wedding anxiety and suggest something short term for sleep."
+      ]
+    }
+  },
+  "hiddenFacts": [
+    {
+      "id": "old-phentermine",
+      "agent": "patient",
+      "fact": "Four days ago you started taking old Duromine capsules (phentermine 30 mg), one each morning. They were left over from a prescription a weight-loss clinic doctor gave you in 2023, and the box expired last year. You wanted to drop a few kilos before the wedding. You haven't told Dr Lambert.",
+      "triggers": [
+        "duromine",
+        "phentermine",
+        "weight",
+        "weight loss",
+        "diet",
+        "appetite",
+        "slimming",
+        "other medicine",
+        "anything else",
+        "new medicine",
+        "started anything",
+        "recently started",
+        "old tablets",
+        "supplements",
+        "diet pills"
+      ],
+      "unlockHint": "“Have you started any other medicines recently, including anything for weight loss or anything from an old prescription?”"
+    },
+    {
+      "id": "toxicity-symptoms",
+      "agent": "patient",
+      "fact": "Since yesterday you've been sweating a lot, your hands shake, your heart is pounding and racing, and you feel hot and restless. You've had diarrhoea three times today. Your legs keep jerking and twitching, especially when you lie down, and your calves feel 'twitchy'. You haven't taken your temperature. You aren't confused and you're not short of breath or having chest pain.",
+      "triggers": [
+        "sweating",
+        "sweaty",
+        "shaky",
+        "shaking",
+        "tremor",
+        "heart",
+        "palpitations",
+        "racing",
+        "temperature",
+        "fever",
+        "hot",
+        "twitching",
+        "jerking",
+        "muscles",
+        "diarrhoea",
+        "stomach",
+        "symptoms",
+        "chest pain"
+      ],
+      "unlockHint": "“Apart from the jitteriness, have you noticed sweating, shaking, a racing heart, fever, diarrhoea, or muscle twitching or jerking?”"
+    },
+    {
+      "id": "nothing-else-serotonergic",
+      "agent": "patient",
+      "fact": "You don't take St John's wort, tramadol, cough and cold medicines, migraine tablets or any recreational drugs. You drink alcohol only occasionally and haven't had any this week. You've had a couple of extra coffees because you're tired.",
+      "triggers": [
+        "st john",
+        "herbal",
+        "recreational",
+        "drugs",
+        "party",
+        "ecstasy",
+        "tramadol",
+        "cough medicine",
+        "alcohol",
+        "drinking",
+        "coffee",
+        "caffeine",
+        "energy drinks"
+      ],
+      "unlockHint": "“Have you taken any herbal products, other painkillers, recreational drugs, alcohol or extra caffeine?”"
+    },
+    {
+      "id": "sertraline-supply",
+      "agent": "patient",
+      "fact": "You've taken your sertraline every morning, including today. You have about five tablets left at home.",
+      "triggers": [
+        "how many left",
+        "tablets left",
+        "run out",
+        "enough",
+        "at home",
+        "missed",
+        "taken today",
+        "every day",
+        "regularly",
+        "this morning"
+      ],
+      "unlockHint": "“Have you been taking your sertraline every day? How many tablets do you have left at home?”"
+    },
+    {
+      "id": "weight-goals-pregnancy-plans",
+      "agent": "patient",
+      "fact": "You're about 88 kg and 168 cm. You've tried diets and the gym on and off for years. You'd like to try for a baby about a year after the wedding, and you're on the pill now.",
+      "triggers": [
+        "bmi",
+        "height",
+        "how tall",
+        "kilos",
+        "weigh",
+        "tried",
+        "exercise",
+        "gym",
+        "pregnant",
+        "pregnancy",
+        "baby",
+        "children",
+        "contraception",
+        "pill",
+        "family plans"
+      ],
+      "unlockHint": "“What have you tried for weight so far? Are you planning a pregnancy at any stage?”"
+    },
+    {
+      "id": "gp-agrees-serotonin-toxicity",
+      "agent": "prescriber",
+      "fact": "You didn't know she was taking phentermine. Once the pharmacist explains that she has taken old phentermine 30 mg daily for four days with sertraline 100 mg and now has tremor, sweating, a racing heart, diarrhoea, agitation, insomnia and leg jerks (likely clonus), you agree this is likely serotonin toxicity with added stimulant effects. She should stop the phentermine now, not take a sleeping tablet, and go to the emergency department today for assessment (observations, temperature, clonus and reflexes), because you can't examine her this afternoon. Withhold the sertraline until she has been assessed and the symptoms have settled. You'll see her in a few days to restart it. Don't dispense the repeat today; she has enough at home. If the pharmacist only says she's 'on too many things', ask 'What exactly are you worried about?'.",
+      "triggers": [
+        "phentermine",
+        "duromine",
+        "serotonin",
+        "serotonin syndrome",
+        "serotonin toxicity",
+        "interaction",
+        "weight loss tablets",
+        "clonus",
+        "jerking",
+        "twitching",
+        "tremor",
+        "sweating",
+        "emergency",
+        "hospital",
+        "withhold sertraline"
+      ],
+      "unlockHint": "“She's taken old phentermine for four days with sertraline 100 mg and now has tremor, sweating, tachycardia, diarrhoea and leg jerks. I'm worried about serotonin toxicity. Can she stop the phentermine, withhold sertraline, and be assessed in ED today?”"
+    },
+    {
+      "id": "gp-weight-plan",
+      "agent": "prescriber",
+      "fact": "When asked about weight management, you agree phentermine shouldn't be used with sertraline. You're happy to consider semaglutide (Wegovy), starting at 0.25 mg once weekly and increasing every 4 weeks as tolerated, with diet and activity support, at her review once she has recovered. Her BMI of about 31 meets the criteria. You note she'd usually pay privately for it for weight management, and that she should stop it at least 2 months before trying to conceive. You ask the pharmacist which reference they're using.",
+      "triggers": [
+        "wegovy",
+        "semaglutide",
+        "ozempic",
+        "glp1",
+        "glp 1",
+        "injection",
+        "weight management",
+        "weight loss option",
+        "alternative",
+        "bmi",
+        "obesity",
+        "mounjaro",
+        "tirzepatide"
+      ],
+      "unlockHint": "“Once she's recovered, could you consider a safer weight-management option, such as semaglutide (Wegovy) 0.25 mg weekly with titration, instead of phentermine?”"
+    }
+  ],
+  "answerKey": {
+    "plantedProblem": "Likely serotonin toxicity, with added sympathomimetic toxicity. For four days she has taken leftover, expired phentermine 30 mg (Duromine, from a 2023 prescription) with sertraline 100 mg, which she has taken for 3 months. Features: tremor, diaphoresis, tachycardia, agitation and insomnia, diarrhoea, and spontaneous or inducible leg jerks suggesting clonus. These meet Hunter criteria features and warrant same-day medical assessment. Phentermine with an SSRI is not recommended. She is asking for a sleep aid that would mask the problem and not address it. Her GP doesn't know about the phentermine. Her underlying wish to lose weight before her wedding needs a safer, evidence-based option (e.g. semaglutide 0.25 mg weekly, titrated, via her GP), with her pregnancy plans in mind.",
+    "acceptableResolutions": [
+      "Confirm identity. Ask what's going on with the jitteriness and when it started, and take a full medicine history, including anything recently started, old prescriptions, weight-loss products, herbal and recreational drugs, alcohol and caffeine. Find the phentermine.",
+      "Ask specifically about features of serotonin toxicity (tremor, sweating, tachycardia, fever, diarrhoea, muscle jerks or clonus, confusion). Recognise likely serotonin toxicity from phentermine plus sertraline and judge it as needing same-day medical assessment.",
+      "Do not supply a sedating antihistamine or other sleep aid. Tell her to stop the phentermine immediately and take it to the pharmacy for safe disposal.",
+      "Phone Dr Lambert with a structured recommendation: stop phentermine, withhold sertraline until assessed, ED assessment today (or the Poisons Information Centre on 13 11 26 for advice), and a GP review to restart sertraline once symptoms resolve. Do not dispense the repeat today since she has enough at home, or dispense only as the GP directs.",
+      "Give clear red flags for calling 000 (high fever, rigidity, confusion, worsening jerks, chest pain) and make sure she doesn't drive herself if she is unwell.",
+      "Address the weight-loss goal: suggest the GP consider semaglutide (Wegovy) 0.25 mg once weekly for 4 weeks, then titrated, alongside lifestyle support, once she has recovered. Note the cost, GI adverse effects, and stopping it at least 2 months before trying to conceive.",
+      "Document the intervention and follow up."
+    ],
+    "unacceptableActions": [
+      "Supplying a sleep aid (e.g. doxylamine) or calming product without identifying the phentermine and the toxicity (overall fail).",
+      "Recognising the interaction but telling her it's fine to keep taking phentermine at a lower dose, or to finish the box.",
+      "Telling her to stop sertraline permanently on her own, or not addressing the sertraline at all.",
+      "Dismissing the symptoms as pre-wedding anxiety and sending her home without same-day medical assessment.",
+      "Being judgemental about her using an old prescription, so that she disengages.",
+      "Recommending another stimulant or 'fat-burner' weight-loss product."
+    ],
+    "counsellingPoints": [
+      "Stop the Duromine (phentermine) now and don't take any more. Bring the rest in and we'll dispose of it safely. Medicines prescribed years ago, and now out of date, shouldn't be restarted without your doctor.",
+      "The sweating, shaking, racing heart, diarrhoea and leg jerks are likely serotonin toxicity: the phentermine and your sertraline together are overstimulating your nervous system. It usually settles within a day or so once the cause is stopped, but it needs checking today.",
+      "Please go to the emergency department this afternoon to be checked. Ask someone to drive you; don't drive yourself.",
+      "Call 000 straight away if you get a high temperature, stiff muscles, confusion, worsening jerking, chest pain or fainting.",
+      "Don't take tomorrow's sertraline until you've been assessed. Dr Lambert will tell you when to restart it. Don't stop it long term without her, because your mood and anxiety could come back.",
+      "Don't take a sleeping tablet or anything 'to calm down' for now. It could hide symptoms the doctors need to see. The poor sleep should improve as the toxicity settles.",
+      "Cut back the extra coffee for now. Caffeine adds to the racing heart and jitteriness.",
+      "For weight loss, there are safer options to discuss with Dr Lambert once you're well, such as semaglutide (Wegovy), started at 0.25 mg once a week and increased slowly. It has no serotonin interaction with sertraline. Nausea and stomach upset are common at first.",
+      "If you use Wegovy, stop it at least 2 months before you try for a baby. Keep taking your pill reliably while you're on it."
+    ],
+    "codePrinciples": [],
+    "legal": [
+      "Phentermine is a Schedule 4 (prescription only) medicine under the Poisons Standard and the Controlled Substances Act 1984 (SA) with the Controlled Substances (Poisons) Regulations 2011 (SA). The pharmacist should advise against self-restarting an old prescription supply and offer safe disposal through the Return Unwanted Medicines (RUM) project."
+    ],
+    "modelAnswer": "1. Set-up: introduce self, confirm Ms Morley's identity and DOB, get consent, and move to the consultation room. Note her visible restlessness, sweating and tremor. 2. Gather information without judgement: what's been happening and when it started (worse over 2 days); specific symptoms: sweating, tremor, palpitations, feeling hot or fever, diarrhoea, muscle twitching or jerks, confusion, chest pain. Ask about sertraline adherence and dose (100 mg since late Sept, taken today, 5 left). Take a full medicine history, including anything started recently, old prescriptions, weight-loss products (old Duromine 30 mg daily for 4 days, expired, from 2023), herbal products, tramadol, cough medicines, recreational drugs, alcohol and caffeine. Ask about her weight goals and history, and her contraception and pregnancy plans. 3. Identify and explain: phentermine is a sympathomimetic amine with some serotonergic activity. Use with SSRIs is not recommended, and serotonin toxicity has been reported. Tremor, diaphoresis, tachycardia, agitation, diarrhoea and spontaneous or inducible clonus after a new serotonergic or sympathomimetic agent fit Hunter criteria for serotonin toxicity, here moderate. Stimulant toxicity overlaps, and clonus favours serotonin toxicity. It can progress to hyperthermia and rigidity, so she needs same-day assessment. A sleep aid would mask, not treat it. 4. References: AMH (phentermine, sertraline interactions; serotonin toxicity), eTG (Toxicology and toxinology; Psychotropic), the Duromine product information, and the SA Poisons Information Centre (13 11 26). 5. Phone Dr Lambert (ISBAR): 'Ms Morley, on sertraline 100 mg, took old phentermine 30 mg daily for 4 days and now has tremor, sweating, tachycardia, diarrhoea and leg jerks. I'm concerned about serotonin toxicity. I recommend she stops phentermine, withholds sertraline until assessed, and attends ED today. I won't supply a sleep aid, and I'll hold the repeat as she has enough.' If the GP suggests anxiety, explain the timing and the neuromuscular signs. Then, for after recovery, suggest semaglutide (Wegovy) 0.25 mg once weekly for 4 weeks, increased every 4 weeks as tolerated to the maintenance dose, with lifestyle support. Her BMI is about 31. Mention the private cost, GI effects, and stopping at least 2 months before conception. 6. Counsel as above, arrange safe transport to ED, and take back the phentermine for RUM disposal. 7. Follow-up: phone her tomorrow. Check she has been reviewed and restarts sertraline as directed, and offer weight-management support. 8. Document the history, the phentermine use, the advice, the call with Dr Lambert, the non-supply of a sleep aid, and the deferred repeat."
+  },
+  "review": {
+    "status": "draft",
+    "version": "0.1"
+  },
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 08/10/2026 PM session, Part C)",
+    "Needs pharmacist review: the recall's 'recommended Wegovy 0.25' is interpreted as the pharmacist suggesting the GP consider semaglutide 0.25 mg weekly (the titration starting dose) as a safer weight-management option once the toxicity has resolved; it is not part of managing the toxicity itself. Also invented or interpreted: the presentation (sertraline repeat plus a request for a sleep aid), phentermine 30 mg daily for 4 days from an expired 2023 supply, the symptom set and its severity (moderate, so ED today), withholding sertraline until assessed and deferring the repeat, BMI 31, the pregnancy plans and the advice to stop semaglutide 2 months before conception, Wegovy usually being privately funded for weight management (check the current PBS status), and how strongly AMH and the product information describe the phentermine–SSRI serotonin risk."
+  ]
+}

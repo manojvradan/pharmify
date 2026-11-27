@@ -1,0 +1,319 @@
+{
+  "id": "semaglutide-mirtazapine-weight-gain",
+  "title": "A new injection",
+  "category": "clinical",
+  "problemType": "Adverse drug reaction (prescribing cascade)",
+  "specialty": "mental-health",
+  "setting": "Community pharmacy, Qld",
+  "questionSheet": "Ms Leanne Doyle, a woman in her mid-forties, presents a new private prescription from her GP, Dr Lim, for Wegovy (semaglutide) 0.25 mg FlexTouch pen, 0.25 mg injected subcutaneously once weekly for 4 weeks, for weight management. She is a regular customer. Dr Lim can be contacted by phone. Manage the situation as you would in practice. You may contact the prescriber.",
+  "documents": {
+    "prescription": {
+      "item": "Semaglutide 0.25 mg/dose injection, FlexTouch pen (Wegovy) · Qty 1 pen (4 doses) · Private prescription · 1 repeat",
+      "directions": "Inject 0.25 mg subcutaneously once weekly for 4 weeks, then increase as directed",
+      "footer": "Dr M. Lim (GP) · Leanne Doyle, DOB 03/04/1982",
+      "date": "12/10/2026",
+      "pbs": false
+    },
+    "dispensingHistory": [
+      {
+        "date": "28 Sep 2026",
+        "item": "Esomeprazole 20 mg tablets (generic)",
+        "directions": "One tablet daily before breakfast",
+        "quantity": "30",
+        "prescriber": "Dr M. Lim (GP)"
+      },
+      {
+        "date": "26 Aug 2026",
+        "item": "Esomeprazole 20 mg tablets (generic)",
+        "directions": "One tablet daily before breakfast",
+        "quantity": "30",
+        "prescriber": "Dr M. Lim (GP)"
+      },
+      {
+        "date": "11 Aug 2026",
+        "item": "Mometasone 50 microgram/actuation nasal spray (Nasonex)",
+        "directions": "Two sprays into each nostril once daily",
+        "quantity": "1 (140 doses)",
+        "prescriber": "Dr M. Lim (GP)"
+      },
+      {
+        "date": "24 Jul 2026",
+        "item": "Esomeprazole 20 mg tablets (generic)",
+        "directions": "One tablet daily before breakfast",
+        "quantity": "30",
+        "prescriber": "Dr M. Lim (GP)"
+      },
+      {
+        "date": "22 Jun 2026",
+        "item": "Esomeprazole 20 mg tablets (generic)",
+        "directions": "One tablet daily before breakfast",
+        "quantity": "30",
+        "prescriber": "Dr M. Lim (GP)"
+      }
+    ],
+    "notes": [
+      "Today's date: Monday 12 Oct 2026, morning."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient · Ms Doyle",
+      "name": "Ms Doyle",
+      "description": "A 44-year-old office manager, chatty and keen; she has read about Wegovy online and is excited to start. Good health literacy. She is a little self-conscious about her weight and says she 'just can't stop eating lately'. She doesn't think to mention her night-time tablet because she thinks of it as a sleeping tablet from another doctor and not relevant; she mentions it only when asked about other medicines, other doctors or pharmacies, her mood or her sleep. If told the tablet may be causing the weight gain, her first reaction is 'Then I'll just stop it', and she needs a clear explanation of why she shouldn't stop it suddenly. She is disappointed if told the injection is on hold, but accepts it if the pharmacist is kind, explains the reason, and gives her a clear plan.",
+      "bio": {
+        "Full name": "Leanne Doyle",
+        "Date of birth": "3 April 1982",
+        "Age": "44",
+        "Address": "9 Bottlebrush Street, Carina QLD 4152",
+        "Phone": "0491 572 549",
+        "Occupation": "Office manager"
+      },
+      "avatar": "penny-okafor",
+      "voice": "au-woman-40s",
+      "openingLine": "Morning! I've finally got my script for the weight-loss injection. Can you show me how to use it?",
+      "publicFacts": [
+        "Dr Lim prescribed Wegovy last week to help you lose weight.",
+        "You've put on a lot of weight recently and you're fed up with it.",
+        "You've never used an injection before and you'd like to be shown how.",
+        "You know it's a private script and you're prepared to pay for it."
+      ]
+    },
+    "prescriber": {
+      "label": "Call Dr Lim",
+      "name": "Dr Lim",
+      "description": "A GP in her forties: firm and thorough, with hard pushback. She wants a reason and a clear plan. At first she says the patient meets the criteria for Wegovy and asks why the pharmacist is calling. If the pharmacist only says 'she's on something else' or 'it might not be appropriate', she asks 'Which medicine, what dose, and since when?' She changes her plan when the pharmacist gives the specific facts (mirtazapine 30 mg started about three months ago, weight gain of 8 kg since, increased appetite and night-time cravings) and explains the mechanism and the prescribing cascade. She then asks what the pharmacist suggests for the antidepressant and how to change it safely.",
+      "bio": {
+        "Full name": "Dr Michelle Lim",
+        "Role": "General practitioner",
+        "Workplace": "Carina Medical Practice, Qld"
+      },
+      "avatar": "dr-tan",
+      "voice": "au-woman-professional",
+      "openingLine": "Dr Lim. I've got a patient in the room, so please be quick.",
+      "publicFacts": [
+        "Leanne Doyle is your patient. You saw her last week about weight gain and prescribed Wegovy 0.25 mg weekly, titrating up over 16 weeks to 2.4 mg.",
+        "Her weight was 89 kg and her height 168 cm (BMI about 31.5), so she meets the TGA criteria for Wegovy.",
+        "She told you her only regular medicines are esomeprazole for reflux and a nasal spray.",
+        "Her blood pressure, fasting glucose and lipids last week were normal."
+      ]
+    }
+  },
+  "hiddenFacts": [
+    {
+      "id": "weight-history",
+      "agent": "patient",
+      "fact": "Your weight was steady at about 81 kg for years. Since about July you've put on 8 kg and you're now 89 kg. You're 168 cm tall. Nothing else has changed: same job, and you still walk most days.",
+      "triggers": [
+        "weight gain",
+        "gained",
+        "put on",
+        "how much weight",
+        "kilos",
+        "kg",
+        "weight history",
+        "when weight",
+        "how long weight",
+        "weigh",
+        "height",
+        "bmi",
+        "steady",
+        "sudden",
+        "always been"
+      ],
+      "unlockHint": "“When did the weight gain start, and how much have you put on? Was your weight steady before that?”"
+    },
+    {
+      "id": "mirtazapine",
+      "agent": "patient",
+      "fact": "In early July a GP at a clinic near your work in the city, Dr Hartley, started you on mirtazapine 15 mg at night for low mood and poor sleep after your separation; two weeks later he increased it to 30 mg at night. You fill it at a chemist near your work, not here. You didn't mention it to Dr Lim because you think of it as a sleeping tablet from a different doctor.",
+      "triggers": [
+        "other medicine",
+        "anything else",
+        "other tablet",
+        "regular medicine",
+        "other doctor",
+        "another doctor",
+        "other pharmacy",
+        "another pharmacy",
+        "elsewhere",
+        "antidepressant",
+        "mood",
+        "depression",
+        "sleep",
+        "sleeping tablet",
+        "mirtazapine",
+        "avanza",
+        "new medicine",
+        "recently started"
+      ],
+      "unlockHint": "“Are you taking any other medicines, including anything from another doctor or filled at another pharmacy?”"
+    },
+    {
+      "id": "appetite",
+      "agent": "patient",
+      "fact": "Within a couple of weeks of starting the night tablet you became ravenous, especially for bread, biscuits and sweet things in the evening. You've been snacking after dinner most nights. You also feel a bit sluggish in the mornings.",
+      "triggers": [
+        "appetite",
+        "hungry",
+        "hunger",
+        "cravings",
+        "eating",
+        "snacking",
+        "diet",
+        "food",
+        "sweets",
+        "eat more",
+        "sluggish",
+        "drowsy",
+        "night eating"
+      ],
+      "unlockHint": "“Has your appetite or eating changed recently? When did that start?”"
+    },
+    {
+      "id": "mood-now",
+      "agent": "patient",
+      "fact": "Your mood is much better than in winter and you're sleeping well. You have no thoughts of self-harm or suicide, and never have. You'd hate to feel like you did in June again.",
+      "triggers": [
+        "mood now",
+        "feeling now",
+        "how feeling",
+        "how mood",
+        "depression better",
+        "self harm",
+        "suicidal",
+        "suicide",
+        "hurting yourself",
+        "mental health",
+        "coping",
+        "sleep now",
+        "how sleeping"
+      ],
+      "unlockHint": "“How has your mood been lately? Have you had any thoughts of harming yourself?”"
+    },
+    {
+      "id": "medical-background",
+      "agent": "patient",
+      "fact": "You don't have diabetes, and you've never had pancreatitis, gallstones or gallbladder problems. There's no thyroid cancer in your family. You have a Mirena IUD and aren't planning a pregnancy. Your reflux is well controlled on esomeprazole.",
+      "triggers": [
+        "pancreatitis",
+        "gallbladder",
+        "gallstones",
+        "thyroid cancer",
+        "family history",
+        "diabetes",
+        "medical conditions",
+        "health problems",
+        "pregnant",
+        "pregnancy",
+        "contraception",
+        "mirena",
+        "reflux"
+      ],
+      "unlockHint": "“Do you have any medical conditions, such as pancreatitis, gallbladder problems or a family history of thyroid cancer? Any chance of pregnancy?”"
+    },
+    {
+      "id": "consent-other-gp",
+      "agent": "patient",
+      "fact": "You're happy for the pharmacist to tell Dr Lim about the mirtazapine and for Dr Lim to talk to Dr Hartley. You'd actually prefer Dr Lim to look after everything.",
+      "triggers": [
+        "consent",
+        "permission",
+        "okay tell",
+        "share",
+        "contact doctor",
+        "call doctor",
+        "talk doctor",
+        "dr hartley",
+        "hartley",
+        "one doctor"
+      ],
+      "unlockHint": "“Are you happy for me to let Dr Lim know about the mirtazapine so she can coordinate with Dr Hartley?”"
+    },
+    {
+      "id": "gp-mirtazapine-unknown",
+      "agent": "prescriber",
+      "fact": "You didn't know she was taking mirtazapine; she told you her only medicines were esomeprazole and a nasal spray. Once told the details (mirtazapine started early July, now 30 mg at night, 8 kg gain since then, increased appetite and night-time cravings), you agree the mirtazapine is the most likely cause, and that before it her BMI was about 28.7 with no weight-related conditions, so she wouldn't have met the Wegovy criteria. You agree that adding semaglutide to treat a drug side effect is a prescribing cascade. You ask the pharmacist to hold the Wegovy, and you'll see her this week.",
+      "triggers": [
+        "mirtazapine",
+        "avanza",
+        "antidepressant",
+        "another doctor",
+        "other prescriber",
+        "other pharmacy",
+        "weight gain",
+        "appetite",
+        "cravings",
+        "prescribing cascade",
+        "side effect",
+        "cause weight",
+        "hold wegovy",
+        "hold off",
+        "before weight"
+      ],
+      "unlockHint": "“She started mirtazapine 30 mg at night from another GP in July and has gained 8 kg since, with a big increase in appetite. I think the mirtazapine is driving the weight gain. Could we review that before starting semaglutide?”"
+    },
+    {
+      "id": "gp-switch-plan",
+      "agent": "prescriber",
+      "fact": "You ask what the pharmacist recommends. You accept a plan to talk to Dr Hartley (with her consent) and consider switching to a more weight-neutral antidepressant such as sertraline, starting at 50 mg daily, by tapering the mirtazapine down over a couple of weeks (or cross-tapering) rather than stopping it suddenly, with a sleep plan and close mood monitoring. You'd reassess her weight in about 3 months and reconsider semaglutide then if needed.",
+      "triggers": [
+        "switch",
+        "change antidepressant",
+        "alternative",
+        "sertraline",
+        "ssri",
+        "escitalopram",
+        "weight neutral",
+        "taper",
+        "cross taper",
+        "stop suddenly",
+        "withdrawal",
+        "discontinuation",
+        "mood monitoring",
+        "dr hartley",
+        "recommend"
+      ],
+      "unlockHint": "“I'd suggest contacting Dr Hartley about switching to a more weight-neutral antidepressant such as sertraline, tapering the mirtazapine rather than stopping it suddenly, and monitoring her mood closely.”"
+    }
+  ],
+  "answerKey": {
+    "plantedProblem": "Ms Doyle has gained 8 kg in about three months since starting mirtazapine (15 mg, increased to 30 mg at night) in early July, prescribed by another GP and filled at another pharmacy, so it is not on this pharmacy's dispensing history and her GP, Dr Lim, doesn't know about it. Mirtazapine commonly increases appetite (especially for carbohydrates) and causes weight gain, mainly through H1 histamine and 5-HT2C receptor blockade, often early in treatment. Prescribing semaglutide to treat a drug-induced adverse effect is a prescribing cascade; before the mirtazapine her BMI was about 28.7 with no weight-related comorbidities, so she would not have met the Wegovy criteria. The candidate must uncover the mirtazapine through a full medication history (including other prescribers and pharmacies), link it to the weight gain, and, with her consent, recommend to Dr Lim that the Wegovy be held while the antidepressant is reviewed with the other prescriber (e.g. a switch to a more weight-neutral antidepressant such as sertraline, with a taper rather than abrupt cessation and mood monitoring). The candidate must also stop her from abruptly stopping the mirtazapine herself.",
+    "acceptableResolutions": [
+      "Take a full medication history, specifically asking about medicines from other doctors or filled at other pharmacies, and uncover mirtazapine 30 mg at night started in early July.",
+      "Take a weight history (steady 81 kg for years, 8 kg gain since July) and link the timing to mirtazapine; explain the mechanism (increased appetite and carbohydrate craving through antihistamine and 5-HT2C effects) and that this is a recognised common adverse effect.",
+      "Assess mood and safety sensitively (mood improved, no suicidal thoughts) and check contraindications and precautions for semaglutide (pancreatitis, gallbladder disease, family history of medullary thyroid cancer, pregnancy).",
+      "With her consent, phone Dr Lim with the specific facts, name the prescribing cascade, and recommend holding the Wegovy while the antidepressant is reviewed with Dr Hartley, e.g. switching to a more weight-neutral SSRI such as sertraline with a gradual taper or cross-taper and close mood monitoring; reassess weight after the change.",
+      "Counsel her not to stop mirtazapine suddenly, explain the plan and why the injection is on hold, give lifestyle advice for evening cravings, and arrange follow-up.",
+      "Document the intervention, the call and the agreed plan; suggest she uses one pharmacy or My Health Record so all her medicines are visible to her prescribers."
+    ],
+    "unacceptableActions": [
+      "Dispensing Wegovy and demonstrating the pen without taking a medication history that would uncover the mirtazapine (overall fail).",
+      "Finding the mirtazapine but not linking it to the weight gain or not telling the prescriber.",
+      "Telling her to stop the mirtazapine, or agreeing when she says she'll just stop it, without a supervised plan.",
+      "Ignoring her mood or failing to consider the risk of depression relapse when changing antidepressants.",
+      "Disclosing her mental health treatment to the prescriber without her consent, or discussing it at the counter where others can hear.",
+      "Recommending another weight-promoting option, or an antidepressant switch without any taper, monitoring or prescriber involvement."
+    ],
+    "counsellingPoints": [
+      "Your weight gain started soon after you began mirtazapine, and increased appetite and weight gain are common side effects of it, so the injection may be treating a side effect rather than the cause.",
+      "Please don't stop the mirtazapine suddenly. Stopping abruptly can cause withdrawal symptoms such as poor sleep, anxiety, nausea and dizziness, and your low mood could come back. Any change should be done gradually with your doctor.",
+      "Dr Lim has asked us to hold the Wegovy for now. She'll see you this week to talk to Dr Hartley about changing to an antidepressant that is less likely to cause weight gain, such as sertraline.",
+      "If you change antidepressants, watch your mood and sleep closely over the first few weeks. Tell your doctor straight away if your mood drops, and seek urgent help (Lifeline 13 11 14 or 000) if you have any thoughts of harming yourself.",
+      "For the evening cravings, plan a filling dinner with protein and vegetables, keep easy snack foods out of the house, and keep up your daily walks.",
+      "If semaglutide is started later, it's injected once a week on the same day, with the dose increased slowly to reduce nausea, vomiting and diarrhoea. Stop it and seek urgent care for severe ongoing tummy pain, which can be pancreatitis or gallbladder trouble.",
+      "Try to fill all your medicines at one pharmacy, or keep My Health Record up to date, and tell every doctor about everything you take, including tablets from other doctors.",
+      "Come back or call us if you have questions before your appointment with Dr Lim."
+    ],
+    "codePrinciples": [],
+    "legal": [],
+    "modelAnswer": "1. Set-up: introduce self, confirm Ms Doyle's identity and date of birth, and move to the consultation room because weight and mental health are sensitive. 2. Gather information: why the injection was prescribed and her weight history (steady at about 81 kg for years, 8 kg gain since July, now 89 kg, height 168 cm); a full medication history, specifically asking about medicines from other doctors or filled at other pharmacies, which uncovers mirtazapine 15 mg increased to 30 mg at night from Dr Hartley in early July for low mood and poor sleep; appetite changes (ravenous, carbohydrate cravings in the evening within weeks of starting); current mood and safety (improved, no thoughts of self-harm); medical history relevant to semaglutide (no pancreatitis, gallbladder disease or family history of medullary thyroid cancer; Mirena IUD, not planning pregnancy). Ask consent to share the mirtazapine with Dr Lim. 3. Identify and explain: the temporal relationship and the appetite change strongly suggest mirtazapine-induced weight gain, a common adverse effect caused by H1 and 5-HT2C antagonism. Starting semaglutide to counteract it is a prescribing cascade, adding cost (private script) and adverse effects (GI effects, gallbladder disease, pancreatitis) without treating the cause. Before mirtazapine her BMI was about 28.7 with no weight-related comorbidities, below the TGA threshold for Wegovy. 4. References: AMH (mirtazapine adverse effects; semaglutide precautions), eTG Psychotropic (choosing and switching antidepressants), Wegovy product information, and the Maudsley Prescribing Guidelines for switching. 5. Contact Dr Lim (ISBAR): mirtazapine 30 mg at night started early July by another GP, 8 kg gain since, increased appetite; recommend holding Wegovy and reviewing the antidepressant with Dr Hartley, considering a switch to a more weight-neutral option such as sertraline 50 mg daily, with mirtazapine tapered (or cross-tapered) rather than stopped, a plan for sleep, and mood review in 1 to 2 weeks; reassess weight in about 3 months and reconsider semaglutide only if still indicated. Answer her pushback with the specific facts. 6. Outcome: do not dispense the Wegovy today; keep the prescription for her or return it, as agreed. 7. Counsel: explain the link, don't stop mirtazapine suddenly, the plan and timeframe, mood warning signs and crisis contacts, practical tips for evening cravings, and brief information about semaglutide in case it's started later. 8. Follow-up: confirm she has an appointment with Dr Lim this week and offer a check-in after the switch. 9. Document the medication history, the intervention, her consent, the call and the agreed plan; encourage one pharmacy or My Health Record."
+  },
+  "review": {
+    "status": "draft",
+    "version": "0.1"
+  },
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 12/10/2026 AM session, Part C)",
+    "Needs pharmacist review: the mirtazapine details (started early July by a second GP at another pharmacy, 15 mg increased to 30 mg), the weight figures (81 kg to 89 kg, 168 cm; BMI about 28.7 before and 31.5 now), the choice of Wegovy 0.25 mg on a private script, the recommended switch to sertraline 50 mg daily with a taper or cross-taper, and the expected outcome (hold semaglutide rather than dispense) were invented or interpreted. Check the Wegovy TGA criteria and pack details, and current eTG Psychotropic advice on switching from mirtazapine."
+  ]
+}

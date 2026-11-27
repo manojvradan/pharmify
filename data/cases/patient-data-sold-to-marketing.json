@@ -1,0 +1,73 @@
+{
+  "id": "patient-data-sold-to-marketing",
+  "title": "A report for the owner",
+  "category": "legal",
+  "problemType": "Use and disclosure of patients' health information for third-party marketing",
+  "setting": "Community pharmacy, Canberra, ACT",
+  "questionSheet": "You are a pharmacist at a community pharmacy in Canberra. The owner, Nick, asks you to run a report from the dispensing software listing every patient dispensed metformin in the past 12 months, with their names, mobile numbers, email and postal addresses. He explains: 'A marketing company is launching a range of blood-sugar support supplements and diabetic socks. They'll pay us $2 a contact and send the offers out themselves. It's good for the patients, really.' The patients have not been asked about this, and the pharmacy's privacy policy says patient information is used to provide pharmacy services. Explain the legal and ethical issues, what you would do, and what the pharmacy could do instead.",
+  "documents": {
+    "notes": [
+      "About 1,400 patients were dispensed metformin at this pharmacy in the past 12 months.",
+      "The marketing company is a separate business with no involvement in the patients' care.",
+      "The pharmacy's privacy policy (displayed and on its website) says patient information is collected and used to provide pharmacy and related health services, and is not sold to third parties.",
+      "Patients have not consented to their information being used for marketing or shared with other businesses."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Pharmacy owner · Nick",
+      "name": "Nick",
+      "avatar": "felix-romano",
+      "voice": "au-man-mid-30s",
+      "standing": "professional",
+      "description": "The pharmacist owner, in his late thirties. Friendly and entrepreneurial, under financial pressure, and genuinely thinks this is harmless and 'good for the patients'. Mildly annoyed if refused flatly, but responds to a calm explanation of the law and the risks and is open to a lawful alternative.",
+      "bio": {"Full name": "Nick Papadakis", "Role": "Pharmacist and owner of this pharmacy", "Workplace": "This community pharmacy in Canberra"},
+      "situation": "You own the pharmacy and are asking the pharmacist on duty to run a report.",
+      "knowsPatient": true,
+      "openingLine": "Can you pull a list of everyone on metformin, with their contact details? A marketing company wants it.",
+      "publicFacts": [
+        "A marketing company will pay $2 per patient contact.",
+        "You think the offers would be useful for people with diabetes."
+      ]
+    }
+  },
+  "hiddenFacts": [],
+  "answerKey": {
+    "plantedProblem": "Producing a list of patients taking metformin reveals health information (that they are likely to have diabetes), which is sensitive information under the Privacy Act 1988 (Cth). Using it for direct marketing and disclosing it to a third-party marketing company, for payment and without consent, is not the purpose it was collected for, is not within patients' reasonable expectations, and is prohibited by the Australian Privacy Principles (APP 6 and APP 7) and the ACT health records privacy principles. It also breaches patient confidentiality and trust under the Pharmacy Board's Code of Conduct and the PSA Code of Ethics. The pharmacist must decline, whatever the owner's instruction.",
+    "acceptableResolutions": [
+      "Identify that a list of patients on a specific medicine is health information and therefore sensitive information, even if only contact details are handed over, because the list itself reveals the condition.",
+      "State that the Privacy Act applies to every private health service provider holding health information, regardless of turnover, and that use or disclosure for a secondary purpose such as third-party marketing needs consent (APP 6), and use of sensitive information for direct marketing needs consent (APP 7).",
+      "Note that selling the data also contradicts the pharmacy's own privacy policy and would likely be an eligible data breach, which would have to be notified to the OAIC and the affected patients.",
+      "Decline to run or hand over the report, explaining this calmly and respectfully to the owner with the legal basis, the risks (OAIC investigation and penalties, notifiable data breach, professional misconduct findings, loss of patient trust) and the ethical duty of confidentiality.",
+      "Offer lawful alternatives: patient care communications that relate to the reason for collection (for example a diabetes medication review, foot-care or blood-glucose clinic run by the pharmacy) to patients who have agreed to receive them; an opt-in program where patients actively consent to marketing; or in-store displays of products, with no data shared with outside companies.",
+      "Document the request and your response; if the owner proceeds anyway, seek advice (PSA, professional indemnity insurer, the OAIC) and consider a notification to the Pharmacy Board/Ahpra, since the owner is a registered pharmacist."
+    ],
+    "unacceptableActions": [
+      "Running the report and giving patient contact details to the marketing company.",
+      "Sending the list after removing medicine names, on the basis that 'it's only contact details', when the list itself reveals that they take metformin.",
+      "Assuming consent because patients signed up for SMS script reminders or loyalty programs.",
+      "Following the owner's instruction because he is your employer and the responsibility is his."
+    ],
+    "counsellingPoints": [],
+    "codePrinciples": [
+      "Ahpra shared Code of Conduct (adopted by the Pharmacy Board): protect patients' privacy and right to confidentiality, and use and disclose their information only as the law and their consent allow.",
+      "Ahpra shared Code of Conduct: avoid conflicts of interest and do not exploit the professional relationship for financial gain.",
+      "PSA Code of Ethics, Care principle: respect and protect the patient's privacy and confidentiality.",
+      "PSA Code of Ethics, Integrity principle: do not let commercial interests compromise patients' interests or the trust placed in the profession."
+    ],
+    "legal": [
+      "Privacy Act 1988 (Cth): health information is sensitive information; the small business exemption does not apply to an organisation that provides a health service and holds health information, so the pharmacy must comply with the Australian Privacy Principles.",
+      "APP 6 (use or disclosure): personal information may be used or disclosed only for the primary purpose of collection unless an exception applies; for sensitive information a secondary use must be directly related to that purpose and reasonably expected, or have the patient's consent. Third-party marketing meets neither.",
+      "APP 7 (direct marketing): an organisation may use or disclose sensitive information for direct marketing only with the individual's consent.",
+      "Privacy Act 1988 (Cth), Part IIIC Notifiable Data Breaches scheme: an unauthorised disclosure likely to cause serious harm must be notified to the OAIC and affected individuals.",
+      "Health Records (Privacy and Access) Act 1997 (ACT): the Privacy Principles for health records in the ACT also restrict use and disclosure of patients' health information without consent.",
+      "Spam Act 2003 (Cth): commercial electronic messages (SMS and email) need the recipient's consent."
+    ],
+    "modelAnswer": "1. Name the issue: a list of patients on metformin isn't just contact details. It reveals that they very likely have diabetes, so it is health information, which is sensitive information under the Privacy Act 1988 (Cth). The pharmacy collected it to provide pharmacy services, not to sell to a marketing company.\n\n2. What the law says: the Privacy Act applies to every private health service provider holding health information, whatever its size. Under APP 6, sensitive information can only be used or disclosed for a secondary purpose with consent, or where it is directly related to the original purpose and patients would reasonably expect it; selling it to a marketing company for supplements is neither. APP 7 allows sensitive information to be used for direct marketing only with consent. The ACT Health Records (Privacy and Access) Act 1997 adds similar restrictions, and the Spam Act needs consent for marketing SMS and emails. It would also contradict the pharmacy's own privacy policy, and the disclosure would likely be a notifiable data breach.\n\n3. Ethically, it breaches confidentiality and the trust patients place in us, and puts profit ahead of their interests, contrary to the Code of Conduct and the PSA Code of Ethics. The people affected are about 1,400 patients, the owner, me and the reputation of the pharmacy and profession.\n\n4. My decision: I would not run or hand over the report, and I'd tell Nick calmly why: 'I can't do this. It's sensitive health information and sharing it for marketing without consent breaches the Privacy Act, and it could mean an OAIC investigation, penalties, a data breach notification to every patient and professional complaints against both of us.'\n\n5. Offer something lawful: the pharmacy could run its own diabetes services, such as medication reviews, foot checks or a blood-glucose clinic, for patients who have agreed to hear about them, set up a genuine opt-in program for product offers, or display the products in store. No data goes to outside companies.\n\n6. Document the request and my response. If Nick goes ahead anyway, I'd seek advice from the PSA, my indemnity insurer or the OAIC, and consider a notification to the Pharmacy Board, since he's a registered pharmacist."
+  },
+  "review": {"status": "draft", "version": "0.1"},
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 16/10/2026 PM session, Part B)",
+    "Needs pharmacist review: classified legal (the answer turns on the Privacy Act/APPs) although confidentiality is also an ethical theme, so code principles are included; ACT setting; the medicine (metformin), the products (supplements and diabetic socks), $2 per contact, ~1,400 patients and the privacy policy wording were invented. Check the description of APP 6 and APP 7 for sensitive information, the application of the Health Records (Privacy and Access) Act 1997 (ACT) to private pharmacies, and that suggesting the pharmacy's own diabetes-service reminders as a lawful alternative is appropriate."
+  ]
+}

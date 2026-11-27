@@ -1,0 +1,76 @@
+{
+  "id": "celebrity-patient-social-media",
+  "title": "A famous face",
+  "category": "ethical",
+  "problemType": "Confidentiality and privacy breach on social media",
+  "setting": "Community pharmacy, Perth, Western Australia",
+  "questionSheet": "You are a pharmacist at a busy community pharmacy in Perth. This morning, Marcus Bell, a well-known TV presenter, collected a prescription. Your pharmacist colleague, Jess, asked him for a selfie at the counter and he agreed. During your lunch break you see that Jess has posted the photo to her public Instagram story with the caption \"Guess who's one of our regulars!\" and the pharmacy tagged. His dispensed medicine is on the counter in front of him, and the label, showing his full name and \"Escitalopram 10 mg tablets\", is readable. The story has been up for about two hours, has around 800 views, and a follower has replied asking whether he is \"OK\". Jess is on the floor now; the pharmacist in charge, who is also the owner, is in the dispensary. Explain what you would do and why, referring to your professional, ethical and legal obligations.",
+  "documents": {
+    "notes": [
+      "Jess's Instagram account is public, with about 3,000 followers, and her profile names the pharmacy where she works.",
+      "The story was posted at about 11 am and has about 800 views. Stories stay up for 24 hours unless deleted; views and screenshots cannot be recalled.",
+      "Mr Bell agreed to a selfie. Nothing was said about posting it or about his medicine being in the shot.",
+      "The pharmacy has a privacy policy but no written social media policy.",
+      "Mr Bell's contact details are in the dispensing system."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient · Mr Bell",
+      "name": "Mr Bell",
+      "avatar": "felix-romano",
+      "voice": "au-man-mid-30s",
+      "description": "A TV presenter of 38, friendly and easygoing with staff, but very protective of his private life. He has never spoken publicly about his mental health. If he learns of the post he would be shocked, embarrassed and angry, and would want to know what the pharmacy is doing about it.",
+      "bio": {"Full name": "Marcus Bell", "Date of birth": "21 August 1988", "Age": "38", "Address": "Subiaco WA", "Occupation": "Television presenter"},
+      "openingLine": "Hi, Marcus Bell. I think there's something waiting for me?",
+      "publicFacts": [
+        "He is a well-known TV presenter who has collected his prescriptions here for about a year.",
+        "He agreed to a quick selfie with a staff member this morning."
+      ]
+    }
+  },
+  "hiddenFacts": [],
+  "answerKey": {
+    "plantedProblem": "A breach of patient confidentiality and privacy. A pharmacist has publicly posted an image that identifies a patient and his medicine, which discloses sensitive health information (it implies a mental health condition) without consent, for no clinical purpose. Agreeing to a selfie is not consent to disclose health information. The candidate must act quickly to stop further spread, escalate to the pharmacist in charge, treat it as a possible notifiable data breach, be open with Mr Bell, and deal with the colleague's conduct fairly, including considering a notification to Ahpra.",
+    "acceptableResolutions": [
+      "Name the dilemma and the people affected: Mr Bell's right to privacy and dignity, against loyalty to a colleague; also the pharmacy, the colleague herself and public trust in pharmacists.",
+      "Act immediately: speak to Jess privately and ask her to delete the story at once (and any copies or other posts), without humiliating her in front of others.",
+      "Escalate straight away to the pharmacist in charge and owner, since the pharmacy is responsible for the health information it holds.",
+      "Treat it as a possible eligible data breach under the Notifiable Data Breaches scheme: health information disclosed without authorisation, likely to cause serious harm (embarrassment, reputational and emotional harm), so the owner should assess it promptly and notify the OAIC and Mr Bell if it qualifies.",
+      "Practise open disclosure with Mr Bell: the pharmacy contacts him promptly and privately, explains what happened and what has been done, apologises sincerely, and tells him how to complain (including to the OAIC or Ahpra).",
+      "Limit further harm: do not reply to or confirm anything to the follower who asked about him; ask the platform to remove any reshares or screenshots that are found.",
+      "Consider the colleague's professional obligations: this breaches the Code of Conduct and Ahpra's social media guidance. A mandatory notification threshold is unlikely to be met, but a voluntary notification to Ahpra may be appropriate, and Jess may choose to self-report; the owner manages the employment side.",
+      "Support Jess fairly: she probably did not intend harm; she needs to understand why it was wrong, with training and supervision.",
+      "Prevent recurrence: a written social media and photography policy (no patients or patient information in images, no posts from the dispensary or counter), staff training on privacy, and review at a staff meeting.",
+      "Document the incident, the actions taken, the breach assessment and the communications with Mr Bell."
+    ],
+    "unacceptableActions": [
+      "Doing nothing, or leaving the story up to 'expire' after 24 hours.",
+      "Treating the selfie consent as consent to share his medicine or health information.",
+      "Covering it up and not telling Mr Bell or the pharmacist in charge.",
+      "Commenting on the post, confirming his condition to the follower, or discussing his medicine with other staff or customers.",
+      "Confronting Jess publicly in front of customers, or reporting her without first stopping the harm."
+    ],
+    "counsellingPoints": [],
+    "codePrinciples": [
+      "PSA Code of Ethics, Care principle 2a and 2c: respect the patient's dignity and protect his privacy and confidentiality; health information is shared only with consent or where the law requires it.",
+      "PSA Code of Ethics, Integrity principle: act honestly and transparently, including open disclosure when something has gone wrong.",
+      "PSA Code of Ethics, Collaboration principle: take appropriate action when a colleague's conduct puts patients at risk, while treating the colleague with respect.",
+      "Pharmacy Board of Australia Code of Conduct (Ahpra shared Code of conduct): protect patients' privacy and right to confidentiality, and do not disclose information without consent or legal authority.",
+      "Pharmacy Board of Australia Code of Conduct: practitioners must maintain professional boundaries and must not use social media in a way that breaches confidentiality or brings the profession into disrepute.",
+      "Ahpra and National Boards' social media guidance: registered practitioners' National Law and Code obligations, including confidentiality, apply online, including on personal accounts.",
+      "Pharmacy Board of Australia Code of Conduct: be open and honest with patients when an adverse event occurs, including an apology (open disclosure)."
+    ],
+    "legal": [
+      "Privacy Act 1988 (Cth), Australian Privacy Principle 6: health information collected to provide a health service may not be used or disclosed for another purpose, such as social media, without consent. Private health service providers are covered regardless of turnover.",
+      "Privacy Act 1988 (Cth), Notifiable Data Breaches scheme (Part IIIC): an unauthorised disclosure of personal information likely to cause serious harm is an eligible data breach; the entity must assess a suspected breach promptly and notify the OAIC and the affected person as soon as practicable.",
+      "Health Practitioner Regulation National Law (WA): a breach of confidentiality can be unprofessional conduct, and anyone may make a voluntary notification to Ahpra."
+    ],
+    "modelAnswer": "1. Name the dilemma: a colleague has publicly disclosed a patient's identity and medicine. Escitalopram implies a mental health condition, which is highly sensitive health information, and it was shared without consent and for no clinical purpose. Agreeing to a selfie is not consent to disclose his medicine. I have to weigh loyalty to Jess against my duty to protect Mr Bell's privacy. The people affected are Mr Bell, Jess, the pharmacy and public trust in pharmacists.\n\n2. Stop the harm first: I would take Jess aside privately and ask her to delete the story now, along with any other posts, and not to reply to the follower. I'd stay calm and not shame her.\n\n3. Escalate: I'd tell the pharmacist in charge straight away, because the pharmacy is responsible for the health information it holds. Under the Privacy Act, this is likely an eligible data breach under the Notifiable Data Breaches scheme, because it is an unauthorised disclosure of health information that could cause serious harm. The owner must assess it promptly and notify the OAIC and Mr Bell.\n\n4. Open disclosure: the pharmacy should contact Mr Bell privately and promptly, explain what happened and what has been done, apologise sincerely, and tell him how to make a complaint. Being honest is the right thing to do, even though it is uncomfortable, and he may already have seen the post.\n\n5. The colleague: posting it breaches the Code of Conduct and Ahpra's social media guidance, which apply on personal accounts. It probably doesn't meet the mandatory notification threshold, but a voluntary notification may be appropriate, or Jess may self-report. Either way, I'd support her to understand why it was wrong, and the owner would handle the employment side.\n\n6. Document what happened, what was done and when.\n\n7. Prevent recurrence: a written social media and photography policy, privacy training for all staff, and a discussion at the next staff meeting."
+  },
+  "review": {"status": "draft", "version": "0.1"},
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 06/10/2026 PM session, Part B)",
+    "Needs pharmacist review: WA setting chosen by the drafter; the celebrity, the medicine (escitalopram), Instagram story, view count, selfie consent and the follower's reply are invented; the view that the mandatory notification threshold is unlikely to be met and a voluntary notification may be appropriate; that the NDB scheme applies (pharmacy as a private health service provider). PSA Code of Ethics principle numbers (Care 2a, 2c) follow the bank's existing conscientious objection case and should be checked against the current Code. Answer key written from current Australian practice."
+  ]
+}

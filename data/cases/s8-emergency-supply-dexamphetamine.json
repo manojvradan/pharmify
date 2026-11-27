@@ -1,0 +1,74 @@
+{
+  "id": "s8-emergency-supply-dexamphetamine",
+  "title": "Ran out yesterday",
+  "category": "legal",
+  "problemType": "Emergency supply of a Schedule 8 medicine",
+  "setting": "Community pharmacy, Parramatta, New South Wales",
+  "questionSheet": "You are the pharmacist on duty at a community pharmacy in Parramatta, NSW. Mr Ethan Brooks (31), a regular patient, has adult ADHD and takes dexamphetamine, prescribed by his psychiatrist, Dr Ravi Menon. He tells you he ran out yesterday, and his prescription has no repeats left. He can't get an appointment with Dr Menon for another three days. He asks: 'Can you just give me a few days' worth to tide me over? You know I'm on it, it's all in your system.' His dispensing record and SafeScript NSW are shown below. Explain the legal issues and what you would do.",
+  "documents": {
+    "dispensingHistory": [
+      {"date": "1 Nov 2026", "item": "Dexamphetamine 5 mg tablets (Aspen Dexamfetamine)", "directions": "Take TWO tablets in the morning and TWO tablets at midday", "quantity": "100", "prescriber": "Dr R. Menon (psychiatrist)"},
+      {"date": "6 Oct 2026", "item": "Dexamphetamine 5 mg tablets (Aspen Dexamfetamine)", "directions": "Take TWO tablets in the morning and TWO tablets at midday", "quantity": "100", "prescriber": "Dr R. Menon (psychiatrist)"},
+      {"date": "10 Sep 2026", "item": "Dexamphetamine 5 mg tablets (Aspen Dexamfetamine)", "directions": "Take TWO tablets in the morning and TWO tablets at midday", "quantity": "100", "prescriber": "Dr R. Menon (psychiatrist)"}
+    ],
+    "notes": [
+      "The 1 Nov 2026 supply was the last repeat on the prescription. No new prescription is on file.",
+      "SafeScript NSW: dexamphetamine only, one prescriber (Dr R. Menon), dispensed only at this pharmacy, at intervals consistent with the directions (100 tablets lasts 25 days).",
+      "Dr Menon's rooms have a published phone number and email address. You have not yet tried to contact the practice.",
+      "Mr Brooks says he feels tired and unfocused today and has a big work deadline."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient · Mr Brooks",
+      "name": "Mr Brooks",
+      "avatar": "felix-romano",
+      "voice": "au-man-mid-30s",
+      "description": "A 31-year-old software developer, polite but stressed and a bit frustrated. He has been stable on treatment for years and feels he is being treated like a drug seeker. He calms down when the pharmacist acknowledges his situation, explains the law clearly and actively helps him get a prescription quickly.",
+      "bio": {"Full name": "Ethan Brooks", "Date of birth": "19 August 1995", "Age": "31", "Address": "44 Marion Street, Harris Park NSW 2150", "Phone": "0491 572 549", "Occupation": "Software developer"},
+      "openingLine": "Hey, I've run out of my dexamphetamine and can't see Dr Menon for three days. Can you give me a few to tide me over?",
+      "publicFacts": [
+        "He ran out of dexamphetamine yesterday.",
+        "His prescription has no repeats left.",
+        "He can't get an appointment with his psychiatrist for three days.",
+        "He feels tired and unfocused and has a work deadline."
+      ]
+    }
+  },
+  "hiddenFacts": [],
+  "answerKey": {
+    "plantedProblem": "A request for an emergency supply of a Schedule 8 medicine (a drug of addiction in NSW) without a prescription. NSW law lets pharmacists make an emergency supply without a prescription only of certain Schedule 4 medicines, never Schedule 8, so the pharmacist cannot lawfully supply dexamphetamine even though the patient is genuine, stable and on time with his supplies. The lawful route is an emergency direction or a new (including electronic) prescription from an authorised prescriber. The pharmacist must help him get one, explain that missing a few days is uncomfortable but not medically dangerous, and record the encounter.",
+    "acceptableResolutions": [
+      "State clearly that dexamphetamine is Schedule 8 and cannot be supplied without a valid prescription; pharmacist emergency supply does not cover S8 medicines, however reliable the patient.",
+      "Confirm the history and check SafeScript NSW; note that his supplies are on time and from one prescriber, so there are no red flags.",
+      "Contact Dr Menon's practice using its published number, explain the situation and ask him to issue an electronic prescription, or to give an emergency direction to supply a small quantity, with the written prescription sent within the legally required time.",
+      "If Dr Menon can't be reached, help him find another prescriber who is lawfully able to prescribe a psychostimulant for him (for example a co-prescribing GP or the on-call psychiatrist), rather than sending him off with nothing.",
+      "Reassure and counsel him: stopping dexamphetamine for a few days is not dangerous, though he may feel tired, flat, hungry or unfocused and his ADHD symptoms will return; be careful driving if he feels unusually tired or distracted, and never take anyone else's tablets.",
+      "Record the request, the advice and every contact with the prescriber, and record any supply made on an emergency direction in the S8 register.",
+      "Prevent recurrence: note on his file to prompt him to arrange a new prescription when he collects his last repeat, and offer a reminder system."
+    ],
+    "unacceptableActions": [
+      "Supplying any dexamphetamine without a prescription or a lawful prescriber's direction, including 'owing' it against a future prescription.",
+      "Lending tablets from another patient's supply or from stock.",
+      "Treating him as a drug seeker or refusing to help get a prescription.",
+      "Accepting a verbal direction from someone who can't be verified as the prescriber, for example by calling a number he supplies.",
+      "Advising him to borrow tablets from someone else or double up when he gets more."
+    ],
+    "counsellingPoints": [],
+    "codePrinciples": [
+      "PSA Code of Ethics, Care principle: be empathetic and help the patient get timely care even when you can't supply."
+    ],
+    "legal": [
+      "Poisons and Therapeutic Goods Act 1966 (NSW) and Poisons and Therapeutic Goods Regulation 2008 (NSW): dexamphetamine is a drug of addiction (Schedule 8) and may be supplied only on a valid prescription. A pharmacist's emergency supply without a prescription is limited to certain Schedule 4 medicines for continuing therapy and never extends to Schedule 8.",
+      "Poisons and Therapeutic Goods Regulation 2008 (NSW): in an emergency, a prescriber may direct a pharmacist by phone, email or fax to supply a drug of addiction, and must then send the written prescription within the legally required time (24 hours). The pharmacist must be satisfied the direction is genuine.",
+      "Psychostimulants for ADHD in NSW must be prescribed in line with NSW Health's psychostimulant prescribing rules (an authorised specialist, or a GP co-prescribing under that arrangement), so not every prescriber can lawfully write it.",
+      "Every supply of a drug of addiction must be recorded in the drugs of addiction register, and real-time prescription monitoring (SafeScript NSW) should be checked before supply."
+    ],
+    "modelAnswer": "1. The legal issue: dexamphetamine is a Schedule 8 drug of addiction. Under the Poisons and Therapeutic Goods Act 1966 and Regulation 2008 (NSW), it can only be supplied on a valid prescription. Pharmacists can make an emergency supply without a prescription only of certain Schedule 4 medicines for continuing therapy, never S8. So I cannot give Mr Brooks a few days' supply myself, even though his history and SafeScript show he is stable, uses one prescriber and one pharmacy, and is on time.\n\n2. What the law allows: his prescriber can issue an electronic prescription remotely. In an emergency, the prescriber can also direct me by phone, email or fax to supply a small quantity and must send the written prescription within 24 hours. I must be sure the direction really comes from the prescriber.\n\n3. Steps: I'd acknowledge his frustration and explain that this is a legal limit, not a judgement about him. I'd phone Dr Menon's rooms on the published number and ask for an e-script or an emergency direction for enough to last until his appointment. If Dr Menon isn't available, I'd ask the practice about the covering psychiatrist, or help him reach a co-prescribing GP who is authorised to prescribe psychostimulants for him. I would not owe, lend or borrow tablets.\n\n4. Counsel him: missing a few days of dexamphetamine isn't dangerous, but he may feel tired, flat, hungry or unfocused and his ADHD symptoms will return. He should take care driving if he feels unusually tired or distracted, and never take anyone else's medicine.\n\n5. Document: I'd record the request, my advice and every contact with the prescriber. Any supply on an emergency direction goes in the drugs of addiction register and is matched to the prescription when it arrives.\n\n6. Prevent recurrence: I'd add a note to his file to prompt him to book a script renewal when he collects his last repeat, and offer a reminder."
+  },
+  "review": {"status": "draft", "version": "0.1"},
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 13/10/2026 AM session, Part B)",
+    "Needs pharmacist review: NSW setting; the patient's dose, prescriber (a psychiatrist), dispensing dates and clean SafeScript result are invented; the current name of the NSW Act and Regulation, the S4-only scope of NSW pharmacist emergency supply, the NSW emergency-direction rule for drugs of addiction and its 24-hour timeframe, and the current NSW psychostimulant prescribing rules (including recent GP prescribing reforms); the answer key is written from current Australian practice because the recall row gives no answer."
+  ]
+}

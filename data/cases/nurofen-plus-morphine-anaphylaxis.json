@@ -1,0 +1,288 @@
+{
+  "id": "nurofen-plus-morphine-anaphylaxis",
+  "title": "Something for his back",
+  "category": "clinical",
+  "problemType": "Drug allergy (cross-reactivity) and choice of analgesia",
+  "specialty": "rheumatology",
+  "setting": "Community pharmacy, Midland WA",
+  "questionSheet": "Mr Craig Dawson, a man of about forty, presents a new prescription for Nurofen Plus (ibuprofen 200 mg/codeine 12.8 mg) tablets from Dr Sethi, a locum at an after-hours medical clinic. He hurt his lower back three days ago. His pharmacy profile and dispensing history are attached. Dr Sethi can be contacted by phone. Manage the situation as you would in practice. You may contact the prescriber.",
+  "documents": {
+    "prescription": {
+      "item": "Nurofen Plus tablets (ibuprofen 200 mg/codeine phosphate 12.8 mg) · Qty 30 · No repeats",
+      "directions": "Two tablets every 6 hours when required for pain, with food. Maximum 6 tablets in 24 hours.",
+      "footer": "Dr A. Sethi (locum) · Craig Dawson, DOB 19/08/1986",
+      "prescriberDetail": "Midland After Hours Medical Clinic, WA",
+      "date": "13/10/2026",
+      "pbs": false
+    },
+    "dispensingHistory": [
+      {
+        "date": "28 Sep 2026",
+        "item": "Pantoprazole 20 mg tablets (generic)",
+        "directions": "One tablet daily before breakfast",
+        "quantity": "30",
+        "prescriber": "Dr L. Fitzgerald (GP)"
+      },
+      {
+        "date": "27 Aug 2026",
+        "item": "Pantoprazole 20 mg tablets (generic)",
+        "directions": "One tablet daily before breakfast",
+        "quantity": "30",
+        "prescriber": "Dr L. Fitzgerald (GP)"
+      },
+      {
+        "date": "29 Jul 2026",
+        "item": "Pantoprazole 20 mg tablets (generic)",
+        "directions": "One tablet daily before breakfast",
+        "quantity": "30",
+        "prescriber": "Dr L. Fitzgerald (GP)"
+      },
+      {
+        "date": "6 Jun 2026",
+        "item": "Cefalexin 500 mg capsules (generic)",
+        "directions": "One capsule four times daily for 5 days",
+        "quantity": "20",
+        "prescriber": "Dr L. Fitzgerald (GP)"
+      }
+    ],
+    "notes": [
+      "Pharmacy patient profile · Allergies and adverse reactions: MORPHINE — anaphylaxis (hospital, 2021, patient-reported). No other known allergies.",
+      "Today's date: 14 Oct 2026, afternoon."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient · Mr Dawson",
+      "name": "Mr Dawson",
+      "description": "A 40-year-old scaffolder, gruff, sore and in a hurry; he's been standing stiffly at the counter and wants the 'strong Nurofen' so he can get home. Average health literacy. He doesn't connect codeine with morphine ('morphine's that hospital drip stuff, this is just Nurofen'). He gets impatient with long-winded or jargon-heavy explanations and may say 'mate, I just need something for the pain', but becomes cooperative and thankful once the pharmacist explains clearly and briefly why codeine could cause the same reaction and gives him a plan that will actually help his back. He answers direct questions honestly.",
+      "bio": {
+        "Full name": "Craig Dawson",
+        "Date of birth": "19 August 1986",
+        "Age": "40",
+        "Address": "27 Banksia Road, Midland WA 6056",
+        "Phone": "0491 571 804",
+        "Occupation": "Scaffolder"
+      },
+      "avatar": "wally-morris",
+      "voice": "au-man-40s",
+      "openingLine": "G'day. Did my back in at work. The doctor last night wrote me up for the strong Nurofen, can you do that quick?",
+      "publicFacts": [
+        "He hurt his lower back three days ago at work.",
+        "He saw a locum at the after-hours clinic last night, who wrote the Nurofen Plus script.",
+        "His back is stiff and sore and he wants to get back to work as soon as possible.",
+        "He's after something stronger than what he's been getting off the shelf."
+      ]
+    },
+    "prescriber": {
+      "label": "Call the locum",
+      "name": "Dr Sethi",
+      "description": "An after-hours locum in his forties, rushed and between patients, with short answers and medium pushback. His first reaction is that codeine isn't morphine and 12.8 mg is a tiny dose. He accepts the pharmacist's view if they explain clearly that codeine is converted to morphine in the body and is structurally the same opioid family, so a true anaphylaxis to morphine means avoiding codeine, and if they offer a specific alternative. He'll ask 'So what do you want me to give him then?' and expects a concrete answer.",
+      "bio": {
+        "Full name": "Dr Arjun Sethi",
+        "Role": "Locum general practitioner",
+        "Workplace": "Midland After Hours Medical Clinic, WA"
+      },
+      "avatar": "dr-kapoor",
+      "voice": "au-man-professional",
+      "openingLine": "Sethi here, I've only got a minute. What's the problem?",
+      "publicFacts": [
+        "You saw Craig Dawson at the after-hours clinic last night for acute lower back pain after lifting at work three days ago.",
+        "You found no red flags on examination and diagnosed non-specific acute low back pain.",
+        "You prescribed Nurofen Plus, 30 tablets, for a few days of pain relief.",
+        "You don't have his usual GP's records; he's not a regular patient of yours."
+      ]
+    }
+  },
+  "hiddenFacts": [
+    {
+      "id": "anaphylaxis-detail",
+      "agent": "patient",
+      "fact": "In 2021 you had your appendix out at the hospital. Minutes after they gave you morphine through the drip your throat swelled, you couldn't breathe, you came out in hives and your blood pressure dropped. They gave you adrenaline and you spent a night in intensive care. They told you never to have morphine again. The locum didn't ask about allergies, and you didn't think morphine mattered for tablets. As far as you know you've never had codeine.",
+      "triggers": [
+        "allergy",
+        "allergies",
+        "allergic",
+        "reaction",
+        "morphine",
+        "anaphylaxis",
+        "what happened",
+        "hospital",
+        "adrenaline",
+        "swelling",
+        "hives",
+        "codeine",
+        "tell locum",
+        "intensive care"
+      ],
+      "unlockHint": "“Your record shows an anaphylactic reaction to morphine. Can you tell me what happened, and did you mention it to the doctor last night?”"
+    },
+    {
+      "id": "current-analgesia",
+      "agent": "patient",
+      "fact": "For the last three days you've been taking two 200 mg Nurofen tablets (ibuprofen) three times a day with food, plus a couple of Panadol once or twice. It takes the edge off: the pain goes from about 8 out of 10 to about 5. You've been using a heat pack at night. You planned to keep taking the Nurofen as well as the new script.",
+      "triggers": [
+        "taken anything",
+        "take anything",
+        "painkillers",
+        "pain relief",
+        "nurofen",
+        "ibuprofen",
+        "panadol",
+        "paracetamol",
+        "heat pack",
+        "so far",
+        "helped",
+        "already take",
+        "pain score",
+        "how bad"
+      ],
+      "unlockHint": "“What have you been taking for the pain so far, how much, and how well is it working?”"
+    },
+    {
+      "id": "back-red-flags",
+      "agent": "patient",
+      "fact": "You hurt it lifting a scaffold plank awkwardly; you felt a twinge then it seized up. The pain is across your lower back and doesn't go down your legs. No numbness or pins and needles, no trouble with your bladder or bowels, no numbness between your legs, no fever, no weight loss, and no history of cancer. It's slowly getting a bit better each day.",
+      "triggers": [
+        "numbness",
+        "pins needles",
+        "tingling",
+        "legs",
+        "bladder",
+        "bowel",
+        "toilet",
+        "saddle",
+        "fever",
+        "weight loss",
+        "cancer",
+        "how happen",
+        "injury",
+        "lifting",
+        "sciatica"
+      ],
+      "unlockHint": "“How did you hurt it? Any pain down the legs, numbness, or problems with your bladder or bowels?”"
+    },
+    {
+      "id": "nsaid-suitability",
+      "agent": "patient",
+      "fact": "You take pantoprazole every morning for reflux; it's well controlled and you've never had a stomach ulcer or bleed. You don't have asthma, kidney problems or high blood pressure, and you don't take any blood thinners. You have four to six beers on a Saturday.",
+      "triggers": [
+        "asthma",
+        "kidney",
+        "stomach",
+        "reflux",
+        "ulcer",
+        "heartburn",
+        "blood pressure",
+        "blood thinner",
+        "alcohol",
+        "beer",
+        "other medicine",
+        "medical conditions",
+        "health problems",
+        "pantoprazole"
+      ],
+      "unlockHint": "“Do you have any other health conditions, like reflux, stomach ulcers, asthma, kidney problems or high blood pressure, and do you drink alcohol?”"
+    },
+    {
+      "id": "work-driving",
+      "agent": "patient",
+      "fact": "You work at heights on scaffolding and drive the work ute. You've had two days off and your boss wants you back on light duties next week. You have a medical certificate until Friday.",
+      "triggers": [
+        "work",
+        "job",
+        "drive",
+        "driving",
+        "heights",
+        "machinery",
+        "off work",
+        "time off",
+        "certificate",
+        "light duties",
+        "boss"
+      ],
+      "unlockHint": "“What does your work involve? Are you driving or working at heights?”"
+    },
+    {
+      "id": "locum-accepts-allergy",
+      "agent": "prescriber",
+      "fact": "You didn't know about the morphine anaphylaxis; he wasn't asked or didn't say. If the pharmacist explains that codeine is metabolised to morphine (via CYP2D6) and belongs to the same phenanthrene opioid group, so true anaphylaxis to morphine means codeine should be avoided, you agree to cancel the Nurofen Plus and add the allergy to your notes. If they only say 'he's allergic to morphine', ask 'Codeine's not morphine, is it?'",
+      "triggers": [
+        "anaphylaxis",
+        "morphine",
+        "allergy",
+        "allergic",
+        "codeine",
+        "metabolised",
+        "converted",
+        "cyp2d6",
+        "phenanthrene",
+        "cross reactivity",
+        "cross react",
+        "cancel"
+      ],
+      "unlockHint": "“He had anaphylaxis to morphine in 2021. Codeine is converted to morphine and is in the same opioid group, so I don't think he should have Nurofen Plus.”"
+    },
+    {
+      "id": "locum-alternative",
+      "agent": "prescriber",
+      "fact": "When asked what to give instead, you accept a specific recommendation: ibuprofen on its own (for example 400 mg three times a day with food, continuing his pantoprazole, for up to about a week), heat, staying active, and physiotherapy, with GP review if not improving in a week or if any red flags develop. You'd normally avoid opioids for acute back pain anyway. If asked, you agree that if an opioid ever became necessary it should be from a different structural class and only after careful consideration. You'll write an ibuprofen script if the pharmacist prefers, or the pharmacist can supply it over the counter.",
+      "triggers": [
+        "ibuprofen alone",
+        "ibuprofen",
+        "nsaid",
+        "anti inflammatory",
+        "paracetamol",
+        "alternative",
+        "instead",
+        "heat",
+        "physio",
+        "stay active",
+        "tramadol",
+        "different opioid",
+        "review"
+      ],
+      "unlockHint": "“I'd suggest plain ibuprofen 400 mg three times a day with food for up to a week, with heat, staying active and physio, and GP review if not improving.”"
+    }
+  ],
+  "answerKey": {
+    "plantedProblem": "A prescription for Nurofen Plus (ibuprofen 200 mg/codeine 12.8 mg) for a patient with a documented severe anaphylactic reaction to morphine. Codeine is a phenanthrene opioid metabolised to morphine via CYP2D6, so there is a real risk of a serious hypersensitivity reaction; codeine (and other phenanthrene opioids: morphine, oxycodone, hydromorphone, hydrocodone) should be avoided. The locum didn't know about the allergy. The patient is also already taking OTC ibuprofen 400 mg three times daily, so adding Nurofen Plus would double the ibuprofen. For acute non-specific low back pain without red flags, opioids are not recommended first line anyway; an NSAID alone with heat, activity and physiotherapy is appropriate.",
+    "acceptableResolutions": [
+      "Checks the allergy on the profile with the patient: what happened, when and what treatment (anaphylaxis with adrenaline and ICU), and confirms the locum didn't know.",
+      "Does not dispense Nurofen Plus and explains that codeine is converted to morphine and is in the same structural group, so it could cause the same reaction.",
+      "Asks what he's already taking (OTC ibuprofen 400 mg three times daily) and recognises Nurofen Plus would have doubled the ibuprofen.",
+      "Screens for back pain red flags (leg symptoms, numbness, bladder/bowel or saddle symptoms, fever, weight loss, cancer, major trauma) and for NSAID suitability (reflux on PPI, no ulcer, asthma, kidney disease, hypertension, anticoagulants).",
+      "Phones the locum with a specific recommendation: cancel Nurofen Plus; ibuprofen alone 400 mg three times daily with food for a short course (up to about a week), continue pantoprazole, plus heat, staying active and physiotherapy; GP review in a week or sooner with red flags.",
+      "If an opioid were ever needed, advises avoiding all phenanthrene opioids and using a structurally different agent only after careful assessment (e.g. tramadol or tapentadol), not codeine or oxycodone.",
+      "Updates allergy records, advises him to tell every prescriber and pharmacist, suggests a MedicAlert bracelet and having the allergy recorded in My Health Record and with his usual GP, and documents the intervention."
+    ],
+    "unacceptableActions": [
+      "Dispensing Nurofen Plus despite the documented morphine anaphylaxis (overall fail).",
+      "Telling him codeine is fine because it is 'not morphine' or because the dose is small.",
+      "Recommending another phenanthrene opioid such as oxycodone, hydromorphone or a paracetamol/codeine combination.",
+      "Supplying both Nurofen Plus and his OTC ibuprofen, or not checking what he is already taking.",
+      "Failing to screen for red flags or NSAID cautions before recommending ibuprofen."
+    ],
+    "counsellingPoints": [
+      "Don't take Nurofen Plus or anything with codeine in it (such as Panadeine Forte or Mersyndol Forte): your body turns codeine into morphine, so it could cause the same life-threatening reaction you had in hospital.",
+      "Always tell every doctor, dentist and pharmacist that you had anaphylaxis to morphine and ask whether a new painkiller is related; wearing a MedicAlert bracelet and having it on your My Health Record helps in an emergency.",
+      "Keep taking ibuprofen on its own, 400 mg (two 200 mg tablets) three times a day with food, for up to about a week, no more than 1200 mg a day unless your doctor prescribes more, and don't take any other anti-inflammatory at the same time.",
+      "Keep taking your pantoprazole each morning to protect your stomach; stop the ibuprofen and see a doctor if you get black stools, vomiting blood or bad stomach pain.",
+      "Heat packs, gentle walking and staying as active as you can speed recovery more than bed rest; a physio can help you get back to work safely.",
+      "Go to the emergency department straight away if you get numbness between your legs, trouble passing urine or controlling your bowels, or weakness or numbness in your legs; see a GP if it isn't improving in a week or you develop a fever.",
+      "Ease off the beers while you're taking ibuprofen, because alcohol adds to the risk of stomach irritation."
+    ],
+    "codePrinciples": [],
+    "legal": [
+      "Nurofen Plus (ibuprofen/codeine) has been Schedule 4 (prescription only) under the Poisons Standard since 1 February 2018, and is supplied in WA under the Medicines and Poisons Act 2014 (WA) and Medicines and Poisons Regulations 2016 (WA); a pharmacist may decline to dispense a prescription where supply would not be in the patient's interests and should contact the prescriber."
+    ],
+    "modelAnswer": "1. Set-up: introduce self, confirm identity (Craig Dawson, DOB 19 August 1986) and that the script is for him; acknowledge his pain and move somewhere he can sit or stand comfortably. 2. Gather information: check the allergy flagged on his profile (morphine, 2021: throat swelling, breathing difficulty, hives, hypotension, adrenaline, ICU — true anaphylaxis) and whether the locum knew (he didn't); how the injury happened (lifting at work three days ago, gradually improving); red flags (no leg pain or numbness, no bladder, bowel or saddle symptoms, no fever, weight loss, cancer or major trauma); what he's taken so far (OTC ibuprofen 400 mg three times daily plus occasional paracetamol, pain down from 8 to 5) and that he planned to continue it with the new script; NSAID suitability (reflux controlled on pantoprazole, no ulcer or bleed, no asthma, kidney disease, hypertension or anticoagulants; weekend alcohol); work (heights, driving). 3. Identify and explain: codeine is a prodrug metabolised by CYP2D6 to morphine and is a phenanthrene opioid like morphine; after a true anaphylactic reaction to morphine, codeine and other phenanthrenes (oxycodone, hydromorphone, hydrocodone) should be avoided. Even if some opioid reactions are non-allergic histamine release, a documented anaphylaxis cannot be assumed to be benign. Nurofen Plus would also double his ibuprofen. For acute non-specific low back pain without red flags, guidance (eTG, ACSQHC Low Back Pain Clinical Care Standard) favours reassurance, heat, staying active, and an NSAID for a short course; paracetamol alone is of little benefit and opioids are not recommended first line. 4. References: AMH (codeine, opioid allergy and cross-reactivity, ibuprofen), eTG Pain and Analgesia, the Low Back Pain Clinical Care Standard, and the patient's profile. 5. Do not dispense; phone Dr Sethi with ISBAR: patient, documented morphine anaphylaxis, codeine converted to morphine and same structural class, recommend cancelling Nurofen Plus. When he asks 'codeine's not morphine?', explain the metabolism and structure. Recommend ibuprofen alone 400 mg three times daily with food for up to about a week (he can prescribe a higher dose if needed), continue pantoprazole, heat, activity and physio, GP review in a week or sooner. If an opioid were ever needed, avoid phenanthrenes and choose a structurally different agent only after careful assessment, ideally with allergy advice. Ask him to record the allergy. 6. Counsel the patient (above), supply plain ibuprofen OTC or on a new script, and give him a written note of the allergy. 7. Follow-up: advise him to see his usual GP to record the allergy, consider allergist referral and a MedicAlert; return if pain isn't improving. 8. Document: the allergy and its details, the decision not to dispense, the call and agreed plan, what was supplied and counselling; annotate the prescription or have the eScript cancelled as agreed."
+  },
+  "review": {
+    "status": "draft",
+    "version": "0.1"
+  },
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 14/10/2026 PM session, Part C)",
+    "Needs pharmacist review: the recall gives only '40M, lower back injury 3 days ago, Nurofen Plus, severe anaphylaxis to morphine; recommend an alternative and counsel'. Invented or interpreted: details of the 2021 reaction, the locum not knowing, OTC ibuprofen 400 mg three times daily already being taken (doubling-up), reflux on pantoprazole, alcohol, work at heights, the recommended alternative (plain ibuprofen 400 mg three times daily for up to about a week, heat, activity, physio, per the Low Back Pain Clinical Care Standard), and the advice that any future opioid be from a non-phenanthrene class (e.g. tramadol/tapentadol). WA legislation citation and the 2018 codeine up-scheduling date should be checked. Specialty 'rheumatology' is the closest fit for musculoskeletal pain; there is no pain or immunology specialty."
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "id": "dispensing-error-double-dose-repeat",
+  "title": "Picking up her tablets",
+  "category": "ethical",
+  "problemType": "Dispensing error and open disclosure",
+  "setting": "Community pharmacy, Geelong, Victoria (you are the pharmacist in charge)",
+  "questionSheet": "You are the pharmacist in charge at a community pharmacy in Geelong, Victoria. Mrs Dorothy Kovac (72), who has type 2 diabetes, comes in to collect her metformin. She mentions that over the past two weeks she has had several 'shaky, sweaty turns' late in the morning, and two days ago she felt faint in the supermarket until she ate some jelly beans. While checking her record you find that her gliclazide MR 30 mg repeat, dispensed by a locum pharmacist 31 days ago, was labelled 'Take TWO tablets once daily with breakfast'. Her original prescription, and her previous supply, say 'Take ONE tablet once daily with breakfast'. She was not counselled when she collected the repeat, and she has been taking two tablets every morning since. She lives alone and drives. Explain what you would do and why, referring to your professional and ethical obligations.",
+  "documents": {
+    "prescription": {
+      "item": "Gliclazide 30 mg modified-release tablets",
+      "directions": "Take ONE tablet once daily with breakfast · Qty 100 · Repeats 1",
+      "footer": "Dr H. Nasser (GP) · Dorothy Kovac, DOB 05/03/1954",
+      "prescriber": "Dr H. Nasser",
+      "prescriberDetail": "General practitioner · Belmont, VIC",
+      "date": "28 Jul 2026",
+      "quantity": "100",
+      "repeats": "1",
+      "pbs": true
+    },
+    "dispensingHistory": [
+      {"date": "27 Oct 2026", "item": "Gliclazide 30 mg modified-release tablets (generic)", "directions": "Take TWO tablets once daily with breakfast", "quantity": "100", "prescriber": "Dr H. Nasser (GP)"},
+      {"date": "26 Oct 2026", "item": "Metformin 1000 mg extended-release tablets (Diabex XR)", "directions": "Take TWO tablets once daily with the evening meal", "quantity": "60", "prescriber": "Dr H. Nasser (GP)"},
+      {"date": "26 Sep 2026", "item": "Metformin 1000 mg extended-release tablets (Diabex XR)", "directions": "Take TWO tablets once daily with the evening meal", "quantity": "60", "prescriber": "Dr H. Nasser (GP)"},
+      {"date": "26 Sep 2026", "item": "Perindopril 5 mg tablets (generic)", "directions": "Take ONE tablet once daily", "quantity": "30", "prescriber": "Dr H. Nasser (GP)"},
+      {"date": "27 Aug 2026", "item": "Metformin 1000 mg extended-release tablets (Diabex XR)", "directions": "Take TWO tablets once daily with the evening meal", "quantity": "60", "prescriber": "Dr H. Nasser (GP)"},
+      {"date": "28 Jul 2026", "item": "Gliclazide 30 mg modified-release tablets (generic)", "directions": "Take ONE tablet once daily with breakfast", "quantity": "100", "prescriber": "Dr H. Nasser (GP)"}
+    ],
+    "notes": [
+      "The repeat was processed by a dispensary technician and checked by a locum pharmacist. The label directions were changed from the original during data entry.",
+      "No counselling was recorded when the repeat was collected.",
+      "Mrs Kovac has a blood glucose meter at home but says she rarely uses it.",
+      "Her most recent HbA1c, according to her, was 'about 7' at her last GP visit in July."
+    ]
+  },
+  "agents": {
+    "patient": {
+      "label": "Patient · Mrs Kovac",
+      "name": "Mrs Kovac",
+      "avatar": "rosie-costa",
+      "voice": "au-soft-woman",
+      "description": "A 72-year-old retired school librarian who lives alone. Gentle, trusting and a little embarrassed about her 'turns'. She is shaken when she learns of the mistake but is reassured by an honest, calm explanation, a sincere apology and a clear plan. She would lose trust if the pharmacist were vague, played it down or blamed someone else.",
+      "bio": {"Full name": "Dorothy Kovac", "Date of birth": "5 March 1954", "Age": "72", "Address": "7 Banksia Court, Belmont VIC 3216", "Phone": "0491 571 491", "Occupation": "Retired school librarian"},
+      "openingLine": "Hello love, just my metformin today. I've been a bit wobbly lately, to be honest.",
+      "publicFacts": [
+        "She has had several shaky, sweaty turns late in the morning over the past two weeks.",
+        "Two days ago she felt faint in the supermarket and felt better after eating jelly beans.",
+        "She has been taking two gliclazide tablets every morning, as the label says.",
+        "She lives alone and still drives."
+      ]
+    }
+  },
+  "hiddenFacts": [],
+  "answerKey": {
+    "plantedProblem": "A dispensing error that has reached the patient and caused harm. Her gliclazide MR repeat was labelled with double the prescribed dose (60 mg instead of 30 mg daily), she was not counselled, and after a month on the higher dose she has symptoms consistent with recurrent hypoglycaemia, which is a particular risk because she is 72, lives alone and drives. The pharmacist must first make her clinically safe, then meet the professional and ethical duty of open disclosure: tell her honestly what happened, apologise, explain the consequences and the plan, inform her GP, and report, document and learn from the incident. Covering it up, playing it down or quietly relabelling is not acceptable.",
+    "acceptableResolutions": [
+      "Make her safe first: check how she feels now, check her blood glucose in the pharmacy if possible, and treat any hypoglycaemia before going further.",
+      "Tell her promptly and honestly, in plain language, that the pharmacy made an error on her gliclazide label, give a sincere apology without blaming individuals, and explain the likely link to her shaky turns.",
+      "Correct the supply: from tomorrow morning she returns to ONE tablet daily with breakfast; relabel or replace the pack with the correct directions and check she understands.",
+      "Contact her GP the same day to disclose the error, her symptoms and the corrected dose, and to ask whether a review is needed.",
+      "Counsel her on recognising and treating hypoglycaemia, checking her glucose more often for the next week or two, and driving safely: check her glucose before driving and do not drive if it is low or she has symptoms.",
+      "Arrange follow-up: phone her in a day or two, and give her a contact name and number; tell her she can make a complaint or contact the Health Complaints Commissioner if she wishes.",
+      "Document the error, the disclosure, the advice given and the GP contact; complete an incident report; notify the pharmacist in charge or proprietor and the professional indemnity insurer as the policy requires.",
+      "Review why it happened (data entry changed the directions, checking missed it, no counselling at collection) and put in prevention: check every label against the original prescription, counsel on repeats, and act on dose changes flagged by the software."
+    ],
+    "unacceptableActions": [
+      "Quietly correcting the label or the record without telling her what happened.",
+      "Playing down the error, implying she misread the label, or blaming the locum or technician to her.",
+      "Sending her home without first checking she is not hypoglycaemic, or letting her drive while symptomatic.",
+      "Not informing her GP.",
+      "Failing to document or report the incident."
+    ],
+    "counsellingPoints": [
+      "From tomorrow morning, take ONE gliclazide MR 30 mg tablet with breakfast, as your doctor prescribed; don't take a second tablet.",
+      "Signs of a low blood sugar include shakiness, sweating, a fast heartbeat, hunger, confusion or feeling faint. If they happen, have about 15 g of fast-acting sugar straight away (for example 6 to 7 jelly beans or half a glass of fruit juice), recheck after 15 minutes, then have a snack such as a sandwich or your next meal.",
+      "Check your blood glucose more often for the next week or two, especially late morning and before driving.",
+      "Don't drive if your glucose is low or you have any low-sugar symptoms; check it is above 5 mmol/L before driving and keep jelly beans in the car.",
+      "Don't skip or delay meals while taking gliclazide.",
+      "Seek urgent help (call 000) if you have a low that doesn't improve with sugar, if you become confused or drowsy, or if anyone finds you unwell."
+    ],
+    "codePrinciples": [
+      "Pharmacy Board of Australia (Ahpra shared) Code of Conduct, open disclosure: when something goes wrong, practitioners must recognise and acknowledge it, act immediately to rectify the problem and prevent further harm, explain promptly and fully to the patient what happened and the likely effects, and give an apology.",
+      "PSA Code of Ethics, Care principle: the patient's health and wellbeing come first, so making her clinically safe takes priority over every other step.",
+      "PSA Code of Ethics, Integrity principle: be honest and truthful with patients and do not mislead, including about errors.",
+      "PSA Code of Ethics, Collaboration principle: inform and work with her GP so her care is coordinated.",
+      "PSA Code of Ethics, Competence principle: report errors, reflect on them and improve systems to prevent recurrence.",
+      "Australian Open Disclosure Framework (Australian Commission on Safety and Quality in Health Care): acknowledge, apologise, give a factual explanation, describe the plan, and say what is being done to prevent recurrence."
+    ],
+    "legal": [
+      "Drugs, Poisons and Controlled Substances Regulations 2017 (Vic): dispensed medicines must be labelled with the directions for use as prescribed; the incorrect label breached this.",
+      "Pharmacy Board of Australia Guidelines for dispensing of medicines: check the label against the prescription and give counselling, including on repeats when directions differ.",
+      "Professional indemnity insurance must be held (Health Practitioner Regulation National Law, as in force in Victoria), and insurers expect prompt notification of incidents; an apology given as part of open disclosure is not an admission of liability under Victorian civil liability law.",
+      "Victoria's statutory duty of candour applies to health service entities such as hospitals, not community pharmacies; the professional duty of open disclosure still applies in full."
+    ],
+    "modelAnswer": "1. Name the dilemma: our pharmacy made an error that has harmed Mrs Kovac. Her gliclazide repeat was labelled with double the prescribed dose and she wasn't counselled, and after a month on 60 mg her shaky, sweaty turns and near-faint are very likely hypoglycaemia. My duties are to make her safe and to be honest with her. The pressure in the other direction is the natural wish to protect the pharmacy and my colleague from blame. The people affected are Mrs Kovac, her GP, the locum and technician, the proprietor and the public's trust in pharmacists.\n\n2. Make her safe first: I would take her to the consulting room, ask how she feels now and check her blood glucose. If it is low, I'd treat it and recheck before doing anything else, and I would not let her drive while she is symptomatic.\n\n3. Weigh the options. Quietly relabelling would protect no one: it is dishonest, breaches the Code of Conduct's open disclosure requirement, leaves her GP unaware and stops her understanding her symptoms. Open disclosure is the only acceptable choice.\n\n4. Disclose, communicate and correct: I'd tell her plainly that we made a mistake on her gliclazide label and that it is probably the cause of her turns, and apologise sincerely without blaming individuals. I'd explain that from tomorrow she goes back to one tablet with breakfast, relabel or replace the pack, and check her understanding. I'd counsel her on hypo symptoms and treatment, more frequent glucose checks, checking her glucose before driving, not skipping meals, and when to call 000. I'd give her a contact name, phone her in a day or two, and tell her she can complain if she wishes.\n\n5. Collaborate: I'd phone Dr Nasser the same day to disclose the error, her symptoms and the corrected dose, and ask whether she needs a review.\n\n6. Document and report: I'd record the error, the disclosure, the advice and the GP call, complete an incident report, and inform the proprietor and our indemnity insurer.\n\n7. Prevent recurrence: review the cause with the team without blame, require every label to be checked against the original prescription, counsel on repeats, and act on dose-change alerts in the software."
+  },
+  "review": {"status": "draft", "version": "0.1"},
+  "sources": [
+    "AHPRA 2026 intern oral exam recall sheet (candidate-reported, 12/10/2026 PM session, Part B)",
+    "Needs pharmacist review: Victorian setting; the medicine (gliclazide MR 30 mg, so the error doubled the dose to 60 mg), the patient's hypoglycaemic symptoms, her other medicines, the dispensing history dates and who made the error are all invented; categorised as ethical (open disclosure) rather than legal; hypoglycaemia treatment and driving thresholds (15 g fast carbohydrate, above 5 mmol/L to drive); the Victorian labelling requirement, the apology protection under Victorian civil liability law, and the scope of Victoria's statutory duty of candour."
+  ]
+}
